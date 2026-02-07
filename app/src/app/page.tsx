@@ -57,13 +57,13 @@ export default async function HomePage() {
     })) ?? [];
   return (
     <main className="bg-[var(--background)] text-[var(--foreground)]">
-      <section className="relative min-h-[70vh] w-full overflow-hidden">
+      <section className="relative min-h-screen w-full overflow-hidden">
         <div className="absolute inset-0 bg-[var(--surface-strong)]" />
         <HeroMedia images={heroImages} />
         <div className="absolute inset-0 bg-black/35" />
         <div className="absolute inset-0 hero-motion" aria-hidden="true" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-transparent" />
-        <div className="relative z-10 mx-auto flex min-h-[70vh] max-w-6xl items-center px-6 py-20">
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl items-center px-6 pt-28 pb-20">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 rounded-full bg-white/85 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--foreground)]">
               Villa Monte Calvia — Alghero
@@ -86,10 +86,20 @@ export default async function HomePage() {
             </div>
           </div>
         </div>
+        <a
+          className="hero-scroll-indicator absolute left-1/2 top-[85vh] flex -translate-x-1/2 flex-col items-center gap-2 text-xs uppercase tracking-[0.3em] text-white/80"
+          href="#highlights"
+          aria-label="Przewiń w dół"
+        >
+          <span className="text-[10px]">Przewiń</span>
+          <span className="flex h-10 w-6 items-start justify-center rounded-full border border-white/50">
+            <span className="mt-2 h-2 w-2 rounded-full bg-white/80" />
+          </span>
+        </a>
       </section>
 
       <Reveal>
-        <section className="mx-auto max-w-6xl px-6 pb-16">
+        <section id="highlights" className="mx-auto max-w-6xl px-6 pb-16">
           <h2 className="text-2xl font-semibold md:text-3xl">
             Najważniejsze atuty
           </h2>

@@ -80,3 +80,35 @@ h4 {
     animation: none;
   }
 }
+
+.hero-scroll-indicator {
+  animation: hero-scroll 2.2s ease-in-out infinite;
+}
+
+@keyframes hero-scroll {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+    opacity: 0.65;
+  }
+  50% {
+    transform: translate(-50%, 10px);
+    opacity: 1;
+  }
+}
+
+.hero-scroll-indicator span span {
+  animation: hero-scroll-dot 2.2s ease-in-out infinite;
+}
+
+@keyframes hero-scroll-dot {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 0.4;
+  }
+}
