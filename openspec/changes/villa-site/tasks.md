@@ -14,11 +14,11 @@
 
 ## 3. Core pages and content structure
 
-- [ ] 3.1 Build Home page section structure per spec (Hero → Highlights → Story → Garden → Interiors → Location → Amenities → CTA)
-- [ ] 3.2 Map Polish description into section copy and refine for web readability
-- [ ] 3.3 Assign section imagery from materials (exterior/garden/interiors/location)
-- [ ] 3.4 Build Gallery page server component with masonry grid shell
-- [ ] 3.5 Build Contact page with form UI and validation states
+- [x] 3.1 Build Home page section structure per spec (Hero → Highlights → Story → Garden → Interiors → Location → Amenities → CTA)
+- [x] 3.2 Map Polish description into section copy and refine for web readability
+- [x] 3.3 Assign section imagery from materials (exterior/garden/interiors/location)
+- [x] 3.4 Build Gallery page server component with masonry grid shell
+- [x] 3.5 Build Contact page with form UI and validation states
 
 ## 4. Gallery and premium lightbox
 

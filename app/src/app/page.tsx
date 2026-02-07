@@ -1,65 +1,204 @@
-import Image from "next/image";
+const sectionImages = {
+  hero: ["dom z zew -najlepsze/1.png", "dom z zew -najlepsze/4.png"],
+  garden: ["dom z zew -najlepsze/16.png", "dom z zew -najlepsze/20.png"],
+  interiors: ["salon-najlepsze/17.jpg", "salon-najlepsze/23.jpg"],
+  location: ["plaża1.JPG", "zachód słońca2.jpeg", "zatoka1.JPG"],
+};
 
-export default function Home() {
+const highlights = [
+  "Prywatna posiadłość na terenie ok. 1 hektara",
+  "6 sypialni dwuosobowych z prywatnymi łazienkami",
+  "Klimatyzacja w całym obiekcie",
+  "Tarasy i bezpośrednie wyjścia na zewnątrz",
+  "Strefy wypoczynku i biesiadowania na świeżym powietrzu",
+  "Blisko miasta, portu, plaż i lotniska",
+];
+
+const amenities = [
+  "Altana z letnią kuchnią i dużym stołem",
+  "Zadaszona weranda z panoramicznym widokiem",
+  "Wielofunkcyjne boisko",
+  "Rozległe trawniki i śródziemnomorska zieleń",
+  "Prywatny parking",
+];
+
+function SectionPlaceholder({
+  label,
+  files,
+}: {
+  label: string;
+  files: string[];
+}) {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div className="rounded-3xl border border-[var(--surface)] bg-[var(--surface)] p-6">
+      <p className="text-sm uppercase tracking-[0.2em] text-[var(--muted)]">
+        {label}
+      </p>
+      <ul className="mt-4 space-y-1 text-sm text-[var(--muted)]">
+        {files.map((file) => (
+          <li key={file}>{file}</li>
+        ))}
+      </ul>
     </div>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <main className="bg-[var(--background)] text-[var(--foreground)]">
+      <section className="mx-auto grid min-h-[70vh] max-w-6xl gap-12 px-6 py-20 md:grid-cols-[1.1fr_0.9fr]">
+        <div className="flex flex-col justify-center gap-6">
+          <p className="text-sm uppercase tracking-[0.25em] text-[var(--muted)]">
+            Villa Monte Calvia — Alghero
+          </p>
+          <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
+            Twój prywatny azyl wśród oliwek i śródziemnomorskiej zieleni
+          </h1>
+          <p className="text-base text-[var(--muted)] md:text-lg">
+            Przestronna, dwukondygnacyjna rezydencja u podnóża góry Calvia łączy
+            elegancję z wygodą nowoczesnego domu. Cisza, przestrzeń i klimat
+            Sardynii — zaledwie kilka minut od Alghero.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <a
+              className="rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-strong)]"
+              href="/contact"
+            >
+              Sprawdź dostępność
+            </a>
+            <a
+              className="rounded-full border border-[var(--accent)] px-6 py-3 text-sm font-semibold text-[var(--accent-strong)] transition hover:border-[var(--accent-strong)]"
+              href="/gallery"
+            >
+              Zobacz galerię
+            </a>
+          </div>
+        </div>
+        <SectionPlaceholder label="Hero images" files={sectionImages.hero} />
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-16">
+        <h2 className="text-2xl font-semibold md:text-3xl">
+          Najważniejsze atuty
+        </h2>
+        <ul className="mt-6 grid gap-4 md:grid-cols-2">
+          {highlights.map((item) => (
+            <li
+              key={item}
+              className="rounded-2xl border border-[var(--surface)] bg-white/60 px-4 py-3 text-sm text-[var(--muted)]"
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-16">
+        <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
+          <div>
+            <h2 className="text-2xl font-semibold md:text-3xl">Nieruchomość</h2>
+            <p className="mt-4 text-[var(--muted)]">
+              Willa znajduje się na prywatnym, starannie zagospodarowanym terenie
+              otoczonym śródziemnomorską roślinnością. To miejsce stworzone do
+              wypoczynku w rytmie „slow”: poranna kawa na tarasie, długie posiłki
+              w ogrodzie i cisza z dala od tłumów — bez rezygnowania z bliskości
+              Alghero.
+            </p>
+          </div>
+          <SectionPlaceholder label="Garden images" files={sectionImages.garden} />
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-16">
+        <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
+          <SectionPlaceholder
+            label="Interiors images"
+            files={sectionImages.interiors}
+          />
+          <div>
+            <h2 className="text-2xl font-semibold md:text-3xl">Wnętrza</h2>
+            <p className="mt-4 text-[var(--muted)]">
+              Komfortowe, dopracowane wnętrza zapewniają prywatność, wygodę i
+              przestrzeń do wspólnego spędzania czasu. Do dyspozycji jest 6
+              sypialni z prywatnymi łazienkami, salon z aneksem kuchennym,
+              pralnia oraz klimatyzacja w całym obiekcie.
+            </p>
+            <a
+              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-strong)]"
+              href="/gallery"
+            >
+              Zobacz wnętrza w galerii →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-16">
+        <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
+          <div>
+            <h2 className="text-2xl font-semibold md:text-3xl">Ogród i tarasy</h2>
+            <p className="mt-4 text-[var(--muted)]">
+              Ogromny ogród jest sercem Villa Monte Calvia. Zadaszona weranda,
+              altana z letnią kuchnią, strefy relaksu i wielofunkcyjne boisko
+              tworzą przestrzeń na wspólne posiłki, zabawy dzieci i długie
+              wieczory na świeżym powietrzu.
+            </p>
+          </div>
+          <SectionPlaceholder label="Outdoor images" files={sectionImages.garden} />
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-16">
+        <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
+          <SectionPlaceholder label="Location images" files={sectionImages.location} />
+          <div>
+            <h2 className="text-2xl font-semibold md:text-3xl">Lokalizacja</h2>
+            <p className="mt-4 text-[var(--muted)]">
+              Villa Monte Calvia zapewnia spokój i prywatność, a jednocześnie
+              pozwala w kilka minut dotrzeć do centrum Alghero, plaż, zatok oraz
+              lotniska (ok. 15 minut).
+            </p>
+            <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
+              <li>Centrum Alghero i port</li>
+              <li>Liczne plaże i malownicze zatoki</li>
+              <li>Zabytki i atrakcje archeologiczne</li>
+              <li>Sklepy, kawiarnie i restauracje</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-16">
+        <h2 className="text-2xl font-semibold md:text-3xl">Udogodnienia</h2>
+        <ul className="mt-6 grid gap-4 md:grid-cols-2">
+          {amenities.map((item) => (
+            <li
+              key={item}
+              className="rounded-2xl border border-[var(--surface)] bg-white/60 px-4 py-3 text-sm text-[var(--muted)]"
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-24">
+        <div className="rounded-3xl bg-[var(--surface)] p-10 text-center">
+          <h2 className="text-2xl font-semibold md:text-3xl">
+            Zapraszamy do Villa Monte Calvia
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-[var(--muted)]">
+            Idealny wybór dla rodzin i grup przyjaciół, które cenią przestrzeń,
+            prywatność i śródziemnomorski styl życia.
+          </p>
+          <a
+            className="mt-6 inline-flex rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-strong)]"
+            href="/contact"
+          >
+            Skontaktuj się z nami
+          </a>
+        </div>
+      </section>
+    </main>
   );
 }
