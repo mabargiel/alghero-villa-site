@@ -1,10 +1,15 @@
 "use client";
 
 import {useEffect, useMemo, useState} from "react";
-import type {GalleryImage} from "@/lib/sanity/queries";
+type GalleryImageView = {
+  key: string;
+  altText: string;
+  url: string;
+  aspectRatio?: number;
+};
 
 type Props = {
-  images: GalleryImage[];
+  images: GalleryImageView[];
 };
 
 export default function GalleryClient({images}: Props) {
@@ -73,11 +78,9 @@ export default function GalleryClient({images}: Props) {
     <>
       <div className="columns-1 gap-3 sm:columns-2 lg:columns-3">
         {images.map((image, index) => {
-          const aspectRatio =
-            image.image.asset.metadata?.dimensions?.aspectRatio;
           return (
             <figure
-              key={image._key}
+              key={image.key}
               className="group mb-3 break-inside-avoid overflow-hidden rounded-xl border border-[var(--surface)] bg-white shadow-sm transition hover:shadow-md"
             >
               <button
@@ -88,22 +91,22 @@ export default function GalleryClient({images}: Props) {
               >
                 <div
                   className="w-full bg-[var(--surface)]"
-                  style={aspectRatio ? {aspectRatio} : undefined}
+                  style={
+                    image.aspectRatio
+                      ? {aspectRatio: image.aspectRatio}
+                      : undefined
+                  }
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={image.image.asset.url}
+                    src={image.url}
                     alt={image.altText}
                     className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.01]"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </button>
-              {(image.title || image.caption) && (
-                <figcaption className="px-4 py-3 text-sm text-[var(--muted)]">
-                  {image.title || image.caption}
-                </figcaption>
-              )}
             </figure>
           );
         })}
@@ -140,7 +143,7 @@ export default function GalleryClient({images}: Props) {
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={activeImage.image.asset.url}
+                  src={activeImage.url}
                   alt={activeImage.altText}
                   className="max-h-[80vh] w-auto rounded-2xl"
                 />
@@ -151,7 +154,7 @@ export default function GalleryClient({images}: Props) {
                 <div className="absolute inset-0 flex items-center justify-center">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={nextImage.image.asset.url}
+                    src={nextImage.url}
                     alt={nextImage.altText}
                     className={`max-h-[80vh] w-auto rounded-2xl transition-opacity duration-200 ${
                       isTransitioning ? "opacity-100" : "opacity-0"

@@ -1,9 +1,15 @@
+import {urlFor} from "@/lib/sanity/image";
 import {getGallery} from "@/lib/sanity/queries";
 import GalleryClient from "./GalleryClient";
 
 export default async function GalleryPage() {
   const gallery = await getGallery();
-  const images = gallery?.images ?? [];
+  const images = (gallery?.images ?? []).map((image) => ({
+    key: image._key,
+    altText: image.altText,
+    url: urlFor(image.image).width(1400).quality(80).auto("format").url(),
+    aspectRatio: image.image.asset.metadata?.dimensions?.aspectRatio,
+  }));
 
   return (
     <main className="mx-auto min-h-screen max-w-6xl px-6 py-16">

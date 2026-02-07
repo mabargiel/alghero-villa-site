@@ -41,9 +41,9 @@
 
 ## 7. Performance, accessibility, SEO
 
-- [ ] 7.1 Optimize hero and gallery images with responsive sizes
-- [ ] 7.2 Add alt text usage, focus states, and keyboard support
-- [ ] 7.3 Add sitemap/robots and OpenGraph metadata
+- [x] 7.1 Optimize hero and gallery images with responsive sizes
+- [x] 7.2 Add alt text usage, focus states, and keyboard support
+- [x] 7.3 Add sitemap/robots and OpenGraph metadata
 
 ## 8. Deployment
 

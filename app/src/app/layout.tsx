@@ -20,6 +20,22 @@ export const metadata: Metadata = {
   },
   description:
     "Elegancka, ciepła willa w Alghero z ogromnym ogrodem — idealna dla rodzin i grup szukających wypoczynku wśród natury Sardynii.",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://montecalvia.com",
+  ),
+  openGraph: {
+    title: "Villa Monte Calvia — Alghero",
+    description:
+      "Elegancka, ciepła willa w Alghero z ogromnym ogrodem — idealna dla rodzin i grup szukających wypoczynku wśród natury Sardynii.",
+    type: "website",
+    locale: "pl_PL",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Villa Monte Calvia — Alghero",
+    description:
+      "Elegancka, ciepła willa w Alghero z ogromnym ogrodem — idealna dla rodzin i grup szukających wypoczynku wśród natury Sardynii.",
+  },
 };
 
 export default function RootLayout({
