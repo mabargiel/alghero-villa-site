@@ -35,9 +35,9 @@
 
 ## 6. Contact form delivery
 
-- [ ] 6.1 Add serverless route for email delivery (Resend/SendGrid)
-- [ ] 6.2 Implement honeypot and basic rate limiting
-- [ ] 6.3 Add success/error messaging and confirmation UX
+- [x] 6.1 Add serverless route for email delivery (Resend/SendGrid)
+- [x] 6.2 Implement honeypot and basic rate limiting
+- [x] 6.3 Add success/error messaging and confirmation UX
 
 ## 7. Performance, accessibility, SEO
 
