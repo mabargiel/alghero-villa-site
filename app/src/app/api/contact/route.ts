@@ -69,7 +69,7 @@ export async function POST(request: Request) {
       {status: 500},
     );
   }
-
+ 
   const resend = new Resend(resendApiKey);
 
   const result = await resend.emails.send({
