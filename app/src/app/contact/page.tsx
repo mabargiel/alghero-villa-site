@@ -17,10 +17,10 @@ export default function ContactPage() {
       <form className="grid gap-6 rounded-2xl border border-[var(--surface)] bg-white p-8">
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-medium text-[var(--muted)]">
-            Imię i nazwisko *
+            Imię *
             <input
               className="rounded-xl border border-[var(--surface)] bg-white px-4 py-3 text-base text-[var(--foreground)]"
-              name="name"
+              name="firstName"
               required
             />
           </label>
@@ -35,50 +35,13 @@ export default function ContactPage() {
           </label>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          <label className="grid gap-2 text-sm font-medium text-[var(--muted)]">
-            Telefon
-            <input
-              className="rounded-xl border border-[var(--surface)] bg-white px-4 py-3 text-base text-[var(--foreground)]"
-              name="phone"
-              type="tel"
-            />
-          </label>
-          <label className="grid gap-2 text-sm font-medium text-[var(--muted)]">
-            Liczba gości
-            <input
-              className="rounded-xl border border-[var(--surface)] bg-white px-4 py-3 text-base text-[var(--foreground)]"
-              name="guests"
-              type="number"
-              min={1}
-            />
-          </label>
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-2">
-          <label className="grid gap-2 text-sm font-medium text-[var(--muted)]">
-            Data przyjazdu
-            <input
-              className="rounded-xl border border-[var(--surface)] bg-white px-4 py-3 text-base text-[var(--foreground)]"
-              name="dateFrom"
-              type="date"
-            />
-          </label>
-          <label className="grid gap-2 text-sm font-medium text-[var(--muted)]">
-            Data wyjazdu
-            <input
-              className="rounded-2xl border border-[var(--surface)] bg-white px-4 py-3 text-base text-[var(--foreground)]"
-              name="dateTo"
-              type="date"
-            />
-          </label>
-        </div>
-
         <label className="grid gap-2 text-sm font-medium text-[var(--muted)]">
-          Wiadomość
-          <textarea
-            className="min-h-[140px] rounded-xl border border-[var(--surface)] bg-white px-4 py-3 text-base text-[var(--foreground)]"
-            name="message"
+          Telefon *
+          <input
+            className="rounded-xl border border-[var(--surface)] bg-white px-4 py-3 text-base text-[var(--foreground)]"
+            name="phone"
+            type="tel"
+            required
           />
         </label>
 

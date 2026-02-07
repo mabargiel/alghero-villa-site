@@ -21,11 +21,22 @@ export type GalleryImage = {
 export type Gallery = {
   _id: string
   images: GalleryImage[]
+  heroImages?: GalleryImage[]
 }
 
 const galleryQuery = `
   *[_type == "gallery"][0]{
     _id,
+    heroImages[] {
+      _key,
+      altText,
+      image {
+        asset->{
+          _id,
+          url
+        }
+      }
+    },
     images[] {
       _key,
       altText,

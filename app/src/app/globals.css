@@ -37,3 +37,41 @@ h4 {
   font-family: var(--font-playfair), "Times New Roman", serif;
   letter-spacing: 0.01em;
 }
+
+.hero-text-shadow {
+  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
+
+.hero-motion {
+  background: radial-gradient(
+      circle at 20% 20%,
+      rgba(107, 122, 75, 0.18),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 80% 30%,
+      rgba(235, 229, 216, 0.55),
+      transparent 60%
+    );
+  background-size: 140% 140%;
+  animation: hero-pan 18s ease-in-out infinite;
+  opacity: 0.25;
+}
+
+@keyframes hero-pan {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-motion {
+    animation: none;
+  }
+}

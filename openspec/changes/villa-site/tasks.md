@@ -29,9 +29,9 @@
 
 ## 5. Motion and polish
 
-- [ ] 5.1 Implement hero motion overlay with reduced-motion fallback
-- [ ] 5.2 Add section reveal animations with Framer Motion and intersection triggers
-- [ ] 5.3 Tune spacing, typography scale, and natural color palette
+- [x] 5.1 Implement hero motion overlay with reduced-motion fallback
+- [x] 5.2 Add section reveal animations with Framer Motion and intersection triggers
+- [x] 5.3 Tune spacing, typography scale, and natural color palette
 
 ## 6. Contact form delivery
 
