@@ -47,6 +47,6 @@
 
 ## 8. Deployment
 
-- [ ] 8.1 Configure environment variables for CMS and email provider
-- [ ] 8.2 Deploy to Vercel and verify builds
-- [ ] 8.3 Smoke test pages on mobile and desktop
+- [x] 8.1 Configure environment variables for CMS and email provider
+- [x] 8.2 Deploy to Vercel and verify builds
+- [x] 8.3 Smoke test pages on mobile and desktop
