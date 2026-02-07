@@ -22,10 +22,10 @@
 
 ## 4. Gallery and premium lightbox
 
-- [ ] 4.1 Render CMS gallery data in masonry grid with responsive columns
-- [ ] 4.2 Reserve space using aspect ratios to avoid layout shift
-- [ ] 4.3 Implement premium lightbox (open/close, cross-fade, keyboard, swipe)
-- [ ] 4.4 Add captions when title/caption exists
+- [x] 4.1 Render CMS gallery data in masonry grid with responsive columns
+- [x] 4.2 Reserve space using aspect ratios to avoid layout shift
+- [x] 4.3 Implement premium lightbox (open/close, cross-fade, keyboard, swipe)
+- [x] 4.4 Add captions when title/caption exists
 
 ## 5. Motion and polish
 

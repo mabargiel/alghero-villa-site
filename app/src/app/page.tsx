@@ -30,7 +30,7 @@ function SectionPlaceholder({
   files: string[];
 }) {
   return (
-    <div className="rounded-3xl border border-[var(--surface)] bg-[var(--surface)] p-6">
+    <div className="rounded-2xl border border-[var(--surface)] bg-[var(--surface)] p-6">
       <p className="text-sm uppercase tracking-[0.2em] text-[var(--muted)]">
         {label}
       </p>
@@ -46,35 +46,32 @@ function SectionPlaceholder({
 export default function HomePage() {
   return (
     <main className="bg-[var(--background)] text-[var(--foreground)]">
-      <section className="mx-auto grid min-h-[70vh] max-w-6xl gap-12 px-6 py-20 md:grid-cols-[1.1fr_0.9fr]">
-        <div className="flex flex-col justify-center gap-6">
-          <p className="text-sm uppercase tracking-[0.25em] text-[var(--muted)]">
-            Villa Monte Calvia — Alghero
-          </p>
-          <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
-            Twój prywatny azyl wśród oliwek i śródziemnomorskiej zieleni
-          </h1>
-          <p className="text-base text-[var(--muted)] md:text-lg">
-            Przestronna, dwukondygnacyjna rezydencja u podnóża góry Calvia łączy
-            elegancję z wygodą nowoczesnego domu. Cisza, przestrzeń i klimat
-            Sardynii — zaledwie kilka minut od Alghero.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <a
-              className="rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-strong)]"
-              href="/contact"
-            >
-              Sprawdź dostępność
-            </a>
-            <a
-              className="rounded-full border border-[var(--accent)] px-6 py-3 text-sm font-semibold text-[var(--accent-strong)] transition hover:border-[var(--accent-strong)]"
-              href="/gallery"
-            >
-              Zobacz galerię
-            </a>
+      <section className="relative min-h-[70vh] w-full overflow-hidden">
+        <div className="absolute inset-0 bg-[var(--surface-strong)]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/60 to-transparent" />
+        <div className="relative z-10 mx-auto flex min-h-[70vh] max-w-6xl items-center px-6 py-20">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--muted)]">
+              Villa Monte Calvia — Alghero
+            </div>
+            <h1 className="mt-6 text-4xl font-semibold leading-tight md:text-5xl">
+              Twój prywatny azyl wśród oliwek i śródziemnomorskiej zieleni
+            </h1>
+            <p className="mt-4 text-base text-[var(--muted)] md:text-lg">
+              Przestronna, dwukondygnacyjna rezydencja u podnóża góry Calvia łączy
+              elegancję z wygodą nowoczesnego domu. Cisza, przestrzeń i klimat
+              Sardynii — zaledwie kilka minut od Alghero.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a
+                className="rounded-xl bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-strong)]"
+                href="/contact"
+              >
+                Sprawdź dostępność
+              </a>
+            </div>
           </div>
         </div>
-        <SectionPlaceholder label="Hero images" files={sectionImages.hero} />
       </section>
 
       <section className="mx-auto max-w-6xl px-6 pb-16">
@@ -85,7 +82,7 @@ export default function HomePage() {
           {highlights.map((item) => (
             <li
               key={item}
-              className="rounded-2xl border border-[var(--surface)] bg-white/60 px-4 py-3 text-sm text-[var(--muted)]"
+              className="rounded-xl border border-[var(--surface)] bg-white px-4 py-3 text-sm text-[var(--muted)]"
             >
               {item}
             </li>
@@ -174,7 +171,7 @@ export default function HomePage() {
           {amenities.map((item) => (
             <li
               key={item}
-              className="rounded-2xl border border-[var(--surface)] bg-white/60 px-4 py-3 text-sm text-[var(--muted)]"
+              className="rounded-xl border border-[var(--surface)] bg-white px-4 py-3 text-sm text-[var(--muted)]"
             >
               {item}
             </li>
@@ -183,7 +180,7 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 pb-24">
-        <div className="rounded-3xl bg-[var(--surface)] p-10 text-center">
+        <div className="rounded-2xl bg-[var(--surface)] p-10 text-center">
           <h2 className="text-2xl font-semibold md:text-3xl">
             Zapraszamy do Villa Monte Calvia
           </h2>
@@ -192,7 +189,7 @@ export default function HomePage() {
             prywatność i śródziemnomorski styl życia.
           </p>
           <a
-            className="mt-6 inline-flex rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-strong)]"
+            className="mt-6 inline-flex rounded-xl bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-strong)]"
             href="/contact"
           >
             Skontaktuj się z nami

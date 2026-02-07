@@ -2,8 +2,6 @@ import {sanityClient} from './client'
 
 export type GalleryImage = {
   _key: string
-  title?: string
-  caption?: string
   altText: string
   image: {
     asset: {
@@ -22,18 +20,14 @@ export type GalleryImage = {
 
 export type Gallery = {
   _id: string
-  title?: string
   images: GalleryImage[]
 }
 
 const galleryQuery = `
   *[_type == "gallery"][0]{
     _id,
-    title,
     images[] {
       _key,
-      title,
-      caption,
       altText,
       image {
         asset->{

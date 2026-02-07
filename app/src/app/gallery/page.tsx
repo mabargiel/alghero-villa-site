@@ -1,4 +1,5 @@
 import {getGallery} from "@/lib/sanity/queries";
+import GalleryClient from "./GalleryClient";
 
 export default async function GalleryPage() {
   const gallery = await getGallery();
@@ -23,36 +24,7 @@ export default async function GalleryPage() {
           Dodaj zdjęcia w Sanity Studio, aby pojawiły się w galerii.
         </div>
       ) : (
-        <div className="columns-1 gap-6 sm:columns-2 lg:columns-3">
-          {images.map((image) => {
-            const aspectRatio =
-              image.image.asset.metadata?.dimensions?.aspectRatio;
-            return (
-              <figure
-                key={image._key}
-                className="mb-6 break-inside-avoid overflow-hidden rounded-2xl border border-[var(--surface)] bg-white/70"
-              >
-                <div
-                  className="w-full bg-[var(--surface)]"
-                  style={aspectRatio ? {aspectRatio} : undefined}
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={image.image.asset.url}
-                    alt={image.altText}
-                    className="h-full w-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-                {(image.title || image.caption) && (
-                  <figcaption className="px-4 py-3 text-sm text-[var(--muted)]">
-                    {image.title || image.caption}
-                  </figcaption>
-                )}
-              </figure>
-            );
-          })}
-        </div>
+        <GalleryClient images={images} />
       )}
     </main>
   );

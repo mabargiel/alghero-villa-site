@@ -1,11 +1,11 @@
 ## ADDED Requirements
 
 ### Requirement: Home page structure and narrative
-The system SHALL provide a long-scroll home page with these sections in order: Hero, Highlights, Property story, Garden & outdoor living, Interiors teaser, Location teaser, Amenities, CTA band + contact teaser, and Footer.
+The system SHALL provide a long-scroll home page with a top navigation bar and these sections in order: Hero, Highlights, Property story, Garden & outdoor living, Interiors teaser, Location teaser, Amenities, CTA band + contact teaser, and Footer.
 
 #### Scenario: Home page section order
 - **WHEN** a visitor scrolls the home page
-- **THEN** the sections appear in the defined order with distinct headings
+- **THEN** the sections appear in the defined order with distinct headings and a navigation bar is visible at the top
 
 ### Requirement: Polish description as content source
 The system SHALL use the Polish description in `materials/description-polish` as the primary source for home page section copy (Property, Interiors, Garden, Location, and audience fit), with minimal edits for web readability.
