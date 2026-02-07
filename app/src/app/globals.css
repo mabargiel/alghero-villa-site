@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fcfbf7;
+  --foreground: #26241f;
+  --muted: #6f6b5e;
+  --surface: #f4f1e9;
+  --surface-strong: #ebe5d8;
+  --accent: #6b7a4b;
+  --accent-strong: #4e5f34;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+}
+
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-playfair), "Times New Roman", serif;
+  letter-spacing: 0.01em;
+}
+
+.hero-text-shadow {
+  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
+
+.hero-motion {
+  background: radial-gradient(
+      circle at 20% 20%,
+      rgba(107, 122, 75, 0.18),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 80% 30%,
+      rgba(235, 229, 216, 0.55),
+      transparent 60%
+    );
+  background-size: 140% 140%;
+  animation: hero-pan 18s ease-in-out infinite;
+  opacity: 0.25;
+}
+
+@keyframes hero-pan {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-motion {
+    animation: none;
+  }
+}
+
+.hero-scroll-indicator {
+  animation: hero-scroll 2.2s ease-in-out infinite;
+}
+
+@keyframes hero-scroll {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+    opacity: 0.65;
+  }
+  50% {
+    transform: translate(-50%, 10px);
+    opacity: 1;
+  }
+}
+
+.hero-scroll-indicator span span {
+  animation: hero-scroll-dot 2.2s ease-in-out infinite;
+}
+
+@keyframes hero-scroll-dot {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 0.4;
+  }
+}
