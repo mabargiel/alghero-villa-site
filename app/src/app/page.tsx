@@ -69,16 +69,22 @@ export default async function HomePage() {
               Villa Monte Calvia — Alghero
             </div>
             <h1 className="mt-6 text-4xl font-semibold leading-tight text-white md:text-5xl hero-text-shadow">
-              Twój prywatny azyl wśród oliwek i śródziemnomorskiej zieleni
+              <span className="md:hidden">Prywatny azyl wśród oliwek</span>
+              <span className="hidden md:inline">
+                Twój prywatny azyl wśród oliwek i śródziemnomorskiej zieleni
+              </span>
             </h1>
-            <p className="mt-4 text-base text-white/85 md:text-lg">
+            <p className="mt-4 text-base text-white/85 md:hidden">
+              Elegancka willa blisko Alghero, cisza i natura w zasięgu ręki.
+            </p>
+            <p className="mt-4 hidden text-base text-white/85 md:block md:text-lg">
               Przestronna, dwukondygnacyjna rezydencja u podnóża góry Calvia łączy
               elegancję z wygodą nowoczesnego domu. Cisza, przestrzeń i klimat
               Sardynii — zaledwie kilka minut od Alghero.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a
-                className="rounded-xl bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-strong)]"
+                className="rounded-xl bg-[var(--accent-strong)] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-black/30 transition hover:bg-[var(--accent)] hover:shadow-black/40"
                 href="/contact"
               >
                 Sprawdź dostępność
@@ -87,27 +93,36 @@ export default async function HomePage() {
           </div>
         </div>
         <a
-          className="hero-scroll-indicator absolute left-1/2 top-[85vh] flex -translate-x-1/2 flex-col items-center gap-2 text-xs uppercase tracking-[0.3em] text-white/80"
+          className="hero-scroll-indicator absolute left-0 right-0 top-[85vh] flex justify-center text-xs uppercase tracking-[0.3em] text-white/80"
           href="#highlights"
           aria-label="Przewiń w dół"
         >
-          <span className="text-[10px]">Przewiń</span>
-          <span className="flex h-10 w-6 items-start justify-center rounded-full border border-white/50">
-            <span className="mt-2 h-2 w-2 rounded-full bg-white/80" />
+          <span className="flex flex-col items-center gap-2">
+            <span className="text-[10px]">Przewiń</span>
+            <span className="flex h-10 w-6 items-start justify-center rounded-full border border-white/50">
+              <span className="mt-2 h-2 w-2 rounded-full bg-white/80" />
+            </span>
           </span>
         </a>
       </section>
 
       <Reveal>
-        <section id="highlights" className="mx-auto max-w-6xl px-6 pb-16">
+        <section
+          id="highlights"
+          className="mx-auto max-w-6xl px-6 pt-16 pb-16"
+        >
           <h2 className="text-2xl font-semibold md:text-3xl">
             Najważniejsze atuty
           </h2>
+          <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
+          <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
+            Komfort, przestrzeń i śródziemnomorska natura w jednym miejscu
+          </p>
           <ul className="mt-6 grid gap-4 md:grid-cols-2">
             {highlights.map((item) => (
               <li
                 key={item}
-                className="rounded-xl border border-[var(--surface)] bg-white px-4 py-3 text-sm text-[var(--muted)]"
+                className="rounded-xl border border-[var(--surface)] bg-white px-4 py-3 text-sm text-[var(--muted)] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
               >
                 {item}
               </li>
@@ -121,6 +136,10 @@ export default async function HomePage() {
           <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
             <div>
               <h2 className="text-2xl font-semibold md:text-3xl">Nieruchomość</h2>
+              <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
+              <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
+                Prywatna posiadłość na terenie ok. 1 hektara
+              </p>
               <p className="mt-4 text-[var(--muted)]">
                 Willa znajduje się na prywatnym, starannie zagospodarowanym terenie
                 otoczonym śródziemnomorską roślinnością. To miejsce stworzone do
@@ -143,6 +162,10 @@ export default async function HomePage() {
             />
             <div>
               <h2 className="text-2xl font-semibold md:text-3xl">Wnętrza</h2>
+              <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
+              <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
+                6 komfortowych sypialni z prywatnymi łazienkami
+              </p>
               <p className="mt-4 text-[var(--muted)]">
                 Komfortowe, dopracowane wnętrza zapewniają prywatność, wygodę i
                 przestrzeń do wspólnego spędzania czasu. Do dyspozycji jest 6
@@ -165,6 +188,10 @@ export default async function HomePage() {
           <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
             <div>
               <h2 className="text-2xl font-semibold md:text-3xl">Ogród i tarasy</h2>
+              <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
+              <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
+                Zadaszona weranda i strefy relaksu wśród zieleni
+              </p>
               <p className="mt-4 text-[var(--muted)]">
                 Ogromny ogród jest sercem Villa Monte Calvia. Zadaszona weranda,
                 altana z letnią kuchnią, strefy relaksu i wielofunkcyjne boisko
@@ -183,6 +210,10 @@ export default async function HomePage() {
             <SectionPlaceholder label="Location images" files={sectionImages.location} />
             <div>
               <h2 className="text-2xl font-semibold md:text-3xl">Lokalizacja</h2>
+              <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
+              <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
+                15 minut do lotniska, plaż i zabytków Alghero
+              </p>
               <p className="mt-4 text-[var(--muted)]">
                 Villa Monte Calvia zapewnia spokój i prywatność, a jednocześnie
                 pozwala w kilka minut dotrzeć do centrum Alghero, plaż, zatok oraz
@@ -202,11 +233,15 @@ export default async function HomePage() {
       <Reveal>
         <section className="mx-auto max-w-6xl px-6 pb-16">
           <h2 className="text-2xl font-semibold md:text-3xl">Udogodnienia</h2>
+          <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
+          <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
+            Wszystko na miejscu, bez kompromisów
+          </p>
           <ul className="mt-6 grid gap-4 md:grid-cols-2">
             {amenities.map((item) => (
               <li
                 key={item}
-                className="rounded-xl border border-[var(--surface)] bg-white px-4 py-3 text-sm text-[var(--muted)]"
+                className="rounded-xl border border-[var(--surface)] bg-white px-4 py-3 text-sm text-[var(--muted)] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
               >
                 {item}
               </li>

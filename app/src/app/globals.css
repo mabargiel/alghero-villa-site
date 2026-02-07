@@ -6,8 +6,8 @@
   --muted: #6f6b5e;
   --surface: #f4f1e9;
   --surface-strong: #ebe5d8;
-  --accent: #6b7a4b;
-  --accent-strong: #4e5f34;
+  --accent: #5f6f36;
+  --accent-strong: #445526;
 }
 
 @theme inline {
@@ -18,16 +18,36 @@
   --color-surface-strong: var(--surface-strong);
   --color-accent: var(--accent);
   --color-accent-strong: var(--accent-strong);
-  --font-sans: var(--font-inter);
-  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-lato);
+  --font-serif: var(--font-lato);
 }
 
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  font-family: var(--font-lato), Arial, Helvetica, sans-serif;
   line-height: 1.6;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 :focus-visible {
@@ -39,8 +59,8 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-playfair), "Times New Roman", serif;
-  letter-spacing: 0.01em;
+  font-family: var(--font-lato), Arial, Helvetica, sans-serif;
+  letter-spacing: 0.005em;
 }
 
 .hero-text-shadow {
@@ -88,11 +108,11 @@ h4 {
 @keyframes hero-scroll {
   0%,
   100% {
-    transform: translate(-50%, 0);
+    transform: translateY(0);
     opacity: 0.65;
   }
   50% {
-    transform: translate(-50%, 10px);
+    transform: translateY(10px);
     opacity: 1;
   }
 }
