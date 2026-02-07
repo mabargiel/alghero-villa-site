@@ -51,6 +51,23 @@ export default function ContactPage() {
           </svg>
           Instagram
         </a>
+        <a
+          className="inline-flex items-center gap-2 text-sm font-semibold transition hover:text-[var(--accent)]"
+          href="https://www.google.com/search?sca_esv=01e84e26bfa42c3c&hl=pl&authuser=0&sxsrf=ANbL-n6NmWfmS8WlWdzEkLpDLwXNZkgpwA:1770480521981&kgmid=/g/11yy4gd_gs&q=Villa+Monte+Calvia&shndl=30&source=sh/x/loc/uni/m1/1&kgs=16a3d798bec3e108&shem=shrtsdl&utm_source=shrtsdl,sh/x/loc/uni/m1/1"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Google"
+        >
+          <svg
+            aria-hidden="true"
+            className="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M12 10.2v3.7h5.2c-.5 2.3-2.5 3.7-5.2 3.7a5.9 5.9 0 1 1 0-11.8c1.6 0 2.9.6 3.9 1.5l2.5-2.5A9.3 9.3 0 0 0 12 2.7a9.3 9.3 0 1 0 0 18.6c4.7 0 8.8-3.4 8.8-9.1 0-.6-.1-1.1-.2-2H12Z" />
+          </svg>
+          Google
+        </a>
       </div>
 
       <ContactForm />

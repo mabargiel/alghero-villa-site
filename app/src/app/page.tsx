@@ -62,9 +62,9 @@ export default async function HomePage() {
         <div className="pointer-events-none absolute inset-0">
           <HeroMedia images={heroImages} />
         </div>
-        <div className="pointer-events-none absolute inset-0 bg-black/35" />
+        <div className="pointer-events-none absolute inset-0 bg-black/45" />
         <div className="pointer-events-none absolute inset-0 hero-motion" aria-hidden="true" />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/90 via-black/55 to-transparent" />
         <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl items-center px-6 pt-28 pb-20">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 rounded-full bg-white/85 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--foreground)]">
@@ -76,10 +76,10 @@ export default async function HomePage() {
                 Twój prywatny azyl wśród oliwek i śródziemnomorskiej zieleni
               </span>
             </h1>
-            <p className="mt-4 text-base text-white/85 md:hidden">
+            <p className="mt-4 text-base text-white/90 hero-text-shadow md:hidden">
               Elegancka willa blisko Alghero, cisza i natura w zasięgu ręki.
             </p>
-            <p className="mt-4 hidden text-base text-white/85 md:block md:text-lg">
+            <p className="mt-4 hidden text-base text-white/90 hero-text-shadow md:block md:text-lg">
               Przestronna, dwukondygnacyjna rezydencja u podnóża góry Calvia łączy
               elegancję z wygodą nowoczesnego domu. Cisza, przestrzeń i klimat
               Sardynii — zaledwie kilka minut od Alghero.
