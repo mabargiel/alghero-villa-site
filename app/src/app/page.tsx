@@ -58,11 +58,13 @@ export default async function HomePage() {
   return (
     <main className="bg-[var(--background)] text-[var(--foreground)]">
       <section className="relative min-h-screen w-full overflow-hidden">
-        <div className="absolute inset-0 bg-[var(--surface-strong)]" />
-        <HeroMedia images={heroImages} />
-        <div className="absolute inset-0 bg-black/35" />
-        <div className="absolute inset-0 hero-motion" aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-[var(--surface-strong)]" />
+        <div className="pointer-events-none absolute inset-0">
+          <HeroMedia images={heroImages} />
+        </div>
+        <div className="pointer-events-none absolute inset-0 bg-black/35" />
+        <div className="pointer-events-none absolute inset-0 hero-motion" aria-hidden="true" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-transparent" />
         <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl items-center px-6 pt-28 pb-20">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 rounded-full bg-white/85 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--foreground)]">
@@ -93,14 +95,14 @@ export default async function HomePage() {
           </div>
         </div>
         <a
-          className="hero-scroll-indicator absolute left-0 right-0 top-[85vh] flex justify-center text-xs uppercase tracking-[0.3em] text-white/80"
+          className="hero-scroll-indicator absolute left-0 right-0 top-[85vh] flex justify-center text-xs uppercase tracking-[0.3em] text-white"
           href="#highlights"
           aria-label="Przewiń w dół"
         >
           <span className="flex flex-col items-center gap-2">
-            <span className="text-[10px]">Przewiń</span>
-            <span className="flex h-10 w-6 items-start justify-center rounded-full border border-white/50">
-              <span className="mt-2 h-2 w-2 rounded-full bg-white/80" />
+            <span className="text-[10px] font-semibold">Przewiń</span>
+            <span className="flex h-11 w-7 items-start justify-center rounded-full border border-white/80 bg-black/30">
+              <span className="mt-2 h-2 w-2 rounded-full bg-white" />
             </span>
           </span>
         </a>
