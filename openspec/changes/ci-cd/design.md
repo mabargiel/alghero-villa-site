@@ -1,6 +1,6 @@
 ## Context
 
-Two repositories (app and CMS) need centralized CI/CD, enforced quality gates, and controlled releases. App deployments should use Vercel's Git integration with branch-based environments (`main` → production, `dev` → preview). The CMS uses a single Sanity Studio and production dataset with deploys on `main` updates. Branch protection and required checks must be configured in GitHub, and some prerequisites (tokens, domains, secrets) must be completed manually by the user.
+Two repositories (app and CMS) need centralized CI/CD, enforced quality gates, and controlled releases. App deployments should use Vercel's Git integration with branch-based environments (`main` → production, `dev` → preview). Production should display an "under construction" experience while development proceeds on `dev`. The CMS uses a single Sanity Studio and production dataset with deploys on `main` updates. Branch protection and required checks must be configured in GitHub, and some prerequisites (tokens, domains, secrets) must be completed manually by the user.
 
 ## Goals / Non-Goals
 
@@ -9,7 +9,9 @@ Two repositories (app and CMS) need centralized CI/CD, enforced quality gates, a
 - Run lint/build checks on PRs for the app and build checks for the CMS.
 - Use branch-based deployments: `main` → production, `dev` → preview for the app.
 - Keep Vercel Git integration as the deployment mechanism for the app.
-- Keep a single Sanity Studio and dataset, deployed only on production tags.
+- Keep a single Sanity Studio and dataset, deployed only on `main` updates.
+- Show an "under construction" experience on production (`main`) and serve the full app on `dev`.
+- Remove app-level basic auth and rely on Vercel preview access for non-production.
 
 **Non-Goals:**
 - Create additional branches or datasets for dev.
@@ -25,12 +27,17 @@ Two repositories (app and CMS) need centralized CI/CD, enforced quality gates, a
 - Deploy CMS Studio on `main` updates only.
   - Alternative: deploy on `dev` as well. Rejected to keep CMS deploys minimal.
 - Keep a single Sanity production dataset to reduce operational complexity.
+- Use environment-based gating to show the under construction experience only on production.
+  - Alternative: separate under-construction branch. Rejected to avoid extra branches.
+- Remove basic auth middleware and rely on Vercel preview access.
+  - Alternative: keep basic auth. Rejected because preview access already controls visibility.
   - Alternative: separate dev dataset. Rejected due to simplicity requirements.
 
 ## Risks / Trade-offs
 
 - Branch-based deploys require care when merging to `main` → Mitigation: enforce PR checks and reviews.
 - Single dataset means dev site reads production data → Mitigation: limit dev site exposure; avoid publishing unreviewed content.
+- Under construction gating must cover all routes to avoid leaking content on production → Mitigation: route-level guard in middleware and an explicit under construction route.
 - Manual prerequisite steps (domains, tokens for CMS deploy, GitHub secrets) can block CI → Mitigation: include a checklist and verify secrets before enabling required checks.
 
 ## Migration Plan
@@ -40,7 +47,7 @@ Two repositories (app and CMS) need centralized CI/CD, enforced quality gates, a
 3. Add GitHub Actions workflows for CI and CMS deploy on `main`.
 4. Configure required status checks and branch protection on `main` for both repos.
 5. Validate dev preview deploy from `dev` branch (app only).
-6. Validate production deploy from `main` (app + CMS).
+6. Validate production deploy from `main` (app under construction + CMS).
 7. Remove or disable any Azure Pipelines checks and pipelines.
 
 Rollback: remove/disable workflows and revert branch protection; re-enable Vercel Git integration if needed.
@@ -49,3 +56,4 @@ Rollback: remove/disable workflows and revert branch protection; re-enable Verce
 
 - Should CMS deploys run on `dev` as well, or remain `main` only (current decision: `main` only)?
 - Do we want optional PR previews for the app beyond the `dev` branch?
+- Should the under construction page allow any public paths besides assets/robots/sitemap?

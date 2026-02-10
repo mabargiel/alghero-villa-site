@@ -8,6 +8,8 @@ The project needs consistent, centralized CI/CD and governance across both repos
 - Use branch-based deployments: `main` for production, `dev` for preview.
 - Keep app deployments managed by Vercel Git integration (no GitHub Actions deploys).
 - Deploy Sanity Studio on `main` updates.
+- Show an "under construction" experience on production while development continues on `dev`.
+- Remove basic auth gating from the app (preview access is handled by Vercel).
 - Remove/disable Azure Pipelines (if configured remotely).
 - Add branch protection rules to block direct pushes to `main` and require checks.
 
@@ -18,6 +20,8 @@ The project needs consistent, centralized CI/CD and governance across both repos
 - `branch-release-deploys`: Branch-driven deployments for app (prod on `main`, preview on `dev`) and CMS (prod on `main`).
 - `branch-protection-governance`: Enforced PR-only merges and required checks on `main` for both repos.
 - `vercel-branch-deploys`: Vercel Git-based deploys keyed off `main` and `dev` branches.
+- `under-construction-mode`: Production-only under construction experience for the app.
+- `access-control-removal`: Remove app-level basic auth in favor of Vercel preview access.
 
 ### Modified Capabilities
 - None.
