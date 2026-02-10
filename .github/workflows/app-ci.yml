@@ -4,9 +4,13 @@ on:
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - "openspec/**"
   push:
     branches:
       - main
+    paths-ignore:
+      - "openspec/**"
 
 permissions:
   contents: read

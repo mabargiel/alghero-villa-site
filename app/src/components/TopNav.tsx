@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 
 const navItems = [
   { href: "/", label: "Strona główna" },
@@ -13,7 +13,13 @@ const navItems = [
 export default function TopNav() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const isHome = pathname === "/";
+  const hasMounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+  const isHome = !pathname || pathname === "/";
+  const showSolidNav = hasMounted && !isHome;
 
   function handleToggle() {
     setIsOpen((prev) => !prev);
@@ -26,10 +32,8 @@ export default function TopNav() {
   return (
     <header
       className={`top-0 left-0 z-30 w-full ${
-        isHome
-          ? "absolute"
-          : "sticky border-b border-[var(--surface)] bg-[var(--background)]/90 backdrop-blur"
-      }`}
+        isHome ? "absolute" : "sticky"
+      } ${showSolidNav ? "border-b border-[var(--surface)] bg-[var(--background)]/90 backdrop-blur" : "bg-transparent"}`}
     >
       <div className="mx-auto flex max-w-6xl justify-end px-6 pt-1">
         <div

@@ -1,13 +1,13 @@
 ## 1. Prerequisites and access
 
-- [ ] 1.1 Disable Vercel Git deployments for the app (avoid double deploys)
+- [x] 1.1 Disable Vercel Git deployments for the app (avoid double deploys)
 - [x] 1.2 Add preview domain(s) in Vercel and DNS (if using custom preview domain)
 - [x] 1.4 Create `dev` and `production` datasets in Sanity
 - [x] 1.3 Create Sanity deploy token and confirm Studio hostname set
 - [x] 1.5 Add required GitHub secrets for app and CMS repos
 - [x] 1.6 Identify and remove/disable any Azure Pipelines checks
 - [x] 1.7 Set app env vars for Sanity datasets in Vercel (preview/dev, production)
-- [ ] 1.8 Add Vercel CLI secrets to app repo (token, org ID, project ID)
+- [x] 1.8 Add Vercel CLI secrets to app repo (token, org ID, project ID)
 
 ## 2. App repo CI workflows
 
@@ -24,8 +24,8 @@
 
 ## 4. Branch-based deployments
 
-- [ ] 4.1 Verify preview deploys on PRs to `main` (via GitHub Actions)
-- [ ] 4.2 Verify app deploys on `main` branch to production domain (via GitHub Actions)
+- [x] 4.1 Verify preview deploys on PRs to `main` (via GitHub Actions)
+- [x] 4.2 Verify app deploys on `main` branch to production domain (via GitHub Actions)
 - [x] 4.3 Add CMS deploy workflow for PR previews (`dev`) and `main` (`production`)
 
 ## 5. Under construction mode
@@ -41,4 +41,4 @@
 ## 7. Validation
 
 - [x] 7.1 Open PR to `main` and confirm preview app deploy
-- [ ] 7.2 Push to `main` and confirm prod app + CMS deploy
+- [x] 7.2 Push to `main` and confirm prod app + CMS deploy
