@@ -1,7 +1,7 @@
 "use client";
 
-import {useEffect, useMemo, useState} from "react";
-import {useReducedMotion} from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 
 type HeroImage = {
   altText: string;
@@ -14,7 +14,7 @@ type HeroMediaProps = {
 
 const ROTATE_MS = 6000;
 
-export default function HeroMedia({images}: HeroMediaProps) {
+export default function HeroMedia({ images }: HeroMediaProps) {
   const prefersReducedMotion = useReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -45,7 +45,7 @@ export default function HeroMedia({images}: HeroMediaProps) {
           className={`absolute inset-0 bg-cover bg-center transition-opacity duration-700 ${
             index === activeIndex ? "opacity-100" : "opacity-0"
           }`}
-          style={{backgroundImage: `url(${image.url})`}}
+          style={{ backgroundImage: `url(${image.url})` }}
           aria-hidden={index !== activeIndex}
         />
       ))}

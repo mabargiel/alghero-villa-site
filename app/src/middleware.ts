@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const USERNAME = process.env.SITE_USERNAME || "";
-const PASSWORD = process.env.SITE_PASSWORD || "";
+const IS_PRODUCTION = process.env.VERCEL_ENV === "production";
 
 const PUBLIC_PATHS = new Set([
   "/robots.txt",
   "/sitemap.xml",
   "/favicon.ico",
+  "/under-construction",
 ]);
 
 function isPublicPath(pathname: string) {
@@ -17,38 +17,20 @@ function isPublicPath(pathname: string) {
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  if (!IS_PRODUCTION) {
+    return NextResponse.next();
+  }
+
   if (isPublicPath(pathname)) {
     return NextResponse.next();
   }
 
-  if (!USERNAME || !PASSWORD) {
-    return NextResponse.next();
-  }
-
-  const authHeader = request.headers.get("authorization");
-  if (authHeader) {
-    const [type, encoded] = authHeader.split(" ");
-    if (type === "Basic" && encoded) {
-      try {
-        const decoded = atob(encoded);
-        const [user, pass] = decoded.split(":");
-        if (user === USERNAME && pass === PASSWORD) {
-          return NextResponse.next();
-        }
-      } catch {
-        // ignore malformed auth header
-      }
-    }
-  }
-
-  return new NextResponse("Authentication required", {
-    status: 401,
-    headers: {
-      "WWW-Authenticate": 'Basic realm="Protected"',
-    },
-  });
+  const url = request.nextUrl.clone();
+  url.pathname = "/under-construction";
+  return NextResponse.rewrite(url);
 }
 
 export const config = {
-  matcher: ["/((?!api/contact).*)"],
+  matcher: ["/((?!api).*)"],
 };
