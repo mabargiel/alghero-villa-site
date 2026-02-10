@@ -1,7 +1,7 @@
 ## 1. Prerequisites and access
 
-- [x] 1.1 Configure Vercel Git integration for `main` (prod) and `dev` (preview)
-- [x] 1.2 Add `dev.montecalvia.com` and `www.dev.montecalvia.com` to Vercel and DNS
+- [x] 1.1 Configure Vercel Git integration for `main` (prod) and PR previews
+- [x] 1.2 Add preview domain(s) in Vercel and DNS (if using custom preview domain)
 - [x] 1.3 Create Sanity deploy token and confirm Studio hostname set
 - [x] 1.5 Add required GitHub secrets for app and CMS repos
 - [x] 1.6 Identify and remove/disable any Azure Pipelines checks
@@ -20,7 +20,7 @@
 
 ## 4. Branch-based deployments
 
-- [x] 4.1 Verify app deploys on `dev` branch to preview domain
+- [x] 4.1 Verify preview deploys on PRs to `main`
 - [x] 4.2 Verify app deploys on `main` branch to production domain
 - [x] 4.3 Add CMS deploy workflow for `main` branch only
 
@@ -36,5 +36,5 @@
 
 ## 7. Validation
 
-- [x] 7.1 Push to `dev` and confirm preview app deploy
+- [x] 7.1 Open PR to `main` and confirm preview app deploy
 - [ ] 7.2 Push to `main` and confirm prod app + CMS deploy
