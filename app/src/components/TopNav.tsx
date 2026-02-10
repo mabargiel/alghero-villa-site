@@ -6,9 +6,9 @@ import { useState, useSyncExternalStore } from "react";
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/under-construction", label: "Cennik" },
+  { href: "/pricing", label: "Cennik" },
   { href: "/gallery", label: "Galeria" },
-  { href: "/under-construction", label: "Okolica" },
+  { href: "/location", label: "Okolica" },
   { href: "/contact", label: "Kontakt" },
 ];
 
@@ -20,8 +20,11 @@ export default function TopNav() {
     () => true,
     () => false,
   );
-  const isHome = !pathname || pathname === "/";
-  const showSolidNav = hasMounted && !isHome;
+  const effectivePath =
+    pathname || (typeof window !== "undefined" ? window.location.pathname : "");
+  const isPathReady = Boolean(effectivePath);
+  const isHome = effectivePath === "/";
+  const showSolidNav = hasMounted && isPathReady && !isHome;
 
   function handleToggle() {
     setIsOpen((prev) => !prev);
@@ -121,18 +124,32 @@ export default function TopNav() {
           Villa Monte Calvia
         </div>
 
-        <nav className="hidden items-center gap-8 text-[18px] font-medium tracking-[0.08em] text-[#FFFFFFE6] md:flex">
+        <nav
+          className={`hidden items-center gap-8 text-[18px] font-medium tracking-[0.08em] md:flex ${
+            isHome ? "text-white/90" : "text-[var(--foreground)]"
+          }`}
+        >
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`group relative text-[#FFFFFFE6] transition`}
+                className={`group relative transition ${
+                  isActive
+                    ? isHome
+                      ? "text-white"
+                      : "text-[var(--accent-strong)]"
+                    : isHome
+                      ? "hover:text-white"
+                      : "hover:text-[var(--accent-strong)]"
+                }`}
               >
                 {item.label}
                 <span
-                  className={`absolute -bottom-2 left-0 h-[2px] w-[70%] origin-left rounded-full bg-[#FFFFFFE6] transition-transform duration-300 ${
+                  className={`absolute -bottom-2 left-0 h-[2px] w-[70%] origin-left rounded-full transition-transform duration-300 ${
+                    isHome ? "bg-white/90" : "bg-[var(--accent-strong)]"
+                  } ${
                     isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                   }`}
                 />
