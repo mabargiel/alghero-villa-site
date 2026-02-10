@@ -54,6 +54,20 @@ jobs:
           npx vercel link --yes --token "$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID" --project "$VERCEL_PROJECT_ID"
           npx vercel pull --yes --environment=production --token "$VERCEL_TOKEN"
 
+      - name: Load Vercel env (preview)
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          set -a
+          source .vercel/.env.preview.local
+          set +a
+
+      - name: Load Vercel env (production)
+        if: github.event_name == 'push'
+        run: |
+          set -a
+          source .vercel/.env.production.local
+          set +a
+
       - name: Vercel build
         run: npx vercel build --yes --token "$VERCEL_TOKEN"
         if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
