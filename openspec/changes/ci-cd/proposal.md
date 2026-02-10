@@ -7,6 +7,7 @@ The project needs consistent, centralized CI/CD and governance across both repos
 - Introduce GitHub Actions CI for app and CMS repos with required checks.
 - Use branch-based deployments: `main` for production, PRs to `main` for preview.
 - Deploy the app from GitHub Actions (Vercel CLI) so previews only happen after CI passes.
+- Comment preview deployment URLs on PRs after successful deploys.
 - Deploy Sanity Studio to `production` on `main` updates and to `dev` on PR previews.
 - Show an "under construction" experience on production while development continues via PR previews.
 - Remove basic auth gating from the app (preview access is handled by Vercel).
@@ -20,6 +21,7 @@ The project needs consistent, centralized CI/CD and governance across both repos
 - `branch-release-deploys`: Branch-driven deployments for app (prod on `main`, preview on PRs) and CMS (prod on `main`, dev on PRs).
 - `branch-protection-governance`: Enforced PR-only merges and required checks on `main` for both repos.
 - `vercel-branch-deploys`: GitHub Actions-driven Vercel deploys keyed off `main` and PR previews.
+- `preview-deploy-comments`: Post preview deployment URLs back to PRs after successful deploys.
 - `sanity-dataset-split`: Separate `dev` and `production` datasets with environment-based configuration.
 - `under-construction-mode`: Production-only under construction experience for the app.
 - `access-control-removal`: Remove app-level basic auth in favor of Vercel preview access.

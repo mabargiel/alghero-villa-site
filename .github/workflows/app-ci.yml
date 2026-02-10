@@ -8,6 +8,10 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   lint-build-deploy:
     runs-on: ubuntu-latest
@@ -40,20 +44,41 @@ jobs:
 
       - name: Vercel pull (preview)
         if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
-        run: npx vercel pull --yes --environment=preview --token "$VERCEL_TOKEN"
+        run: npx vercel pull --yes --environment=preview --token "$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID" --project "$VERCEL_PROJECT_ID"
 
       - name: Vercel pull (production)
         if: github.event_name == 'push'
-        run: npx vercel pull --yes --environment=production --token "$VERCEL_TOKEN"
+        run: npx vercel pull --yes --environment=production --token "$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID" --project "$VERCEL_PROJECT_ID"
 
       - name: Vercel build
-        run: npx vercel build --yes --token "$VERCEL_TOKEN"
+        run: npx vercel build --yes --token "$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID"
         if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
 
       - name: Vercel deploy (preview)
         if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
-        run: npx vercel deploy --prebuilt --yes --token "$VERCEL_TOKEN"
+        id: vercel_deploy_preview
+        run: |
+          url=$(npx vercel deploy --prebuilt --yes --token "$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID" | tail -n 1)
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+
+      - name: Comment preview URL
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const url = '${{ steps.vercel_deploy_preview.outputs.url }}';
+            if (!url) {
+              core.setFailed("Missing preview URL from Vercel deploy.");
+              return;
+            }
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `Preview deployment is ready: ${url}`
+            });
 
       - name: Vercel deploy (production)
         if: github.event_name == 'push'
-        run: npx vercel deploy --prebuilt --prod --yes --token "$VERCEL_TOKEN"
+        run: npx vercel deploy --prebuilt --prod --yes --token "$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID"

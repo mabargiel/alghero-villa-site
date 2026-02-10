@@ -24,6 +24,8 @@ Two repositories (app and CMS) need centralized CI/CD, enforced quality gates, a
   - Alternative: rely on Vercel Git integration. Rejected because it deploys previews even when CI fails.
 - Use branch-based deploys for the app (`main` production, PR previews) using Vercel CLI in GitHub Actions.
   - Alternative: tag-based deploys. Rejected to simplify the release process.
+- Post preview deployment URLs as PR comments after successful deploys.
+  - Alternative: rely on Vercel bot comments. Rejected because Git integration is disabled.
 - Deploy CMS Studio on PR previews to `dev` and on `main` updates to `production`.
   - Alternative: deploy only on `main`. Rejected to keep dev previews aligned with the dev dataset.
 - Keep separate datasets to isolate preview content from production.
@@ -38,6 +40,7 @@ Two repositories (app and CMS) need centralized CI/CD, enforced quality gates, a
 
 - Branch-based deploys require care when merging to `main` → Mitigation: enforce PR checks and reviews.
 - GitHub Actions deploys require secrets for Vercel CLI → Mitigation: store org/project IDs and token in repo secrets.
+- PR comment posting requires `pull-requests: write` permission → Mitigation: set workflow permissions explicitly.
 - Dataset split introduces duplication and content drift risk → Mitigation: keep dev dataset minimal and periodically sync if needed.
 - Under construction gating must cover all routes to avoid leaking content on production → Mitigation: route-level guard in middleware and an explicit under construction route.
 - Manual prerequisite steps (domains, tokens for CMS deploy, GitHub secrets) can block CI → Mitigation: include a checklist and verify secrets before enabling required checks.

@@ -13,6 +13,7 @@
 
 - [x] 2.1 Add GitHub Actions workflow for lint/build + Vercel deploy on PRs and `main`
 - [x] 2.2 Validate workflow names for branch protection checks
+- [x] 2.3 Add PR comment with preview deployment URL
 
 ## 3. CMS repo CI workflows
 
