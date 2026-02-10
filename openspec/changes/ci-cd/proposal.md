@@ -5,9 +5,9 @@ The project needs consistent, centralized CI/CD and governance across both repos
 ## What Changes
 
 - Introduce GitHub Actions CI for app and CMS repos with required checks.
-- Add tag-based deployment flow: `vX.Y.Z` triggers production deploys; `vX.Y.Z-dev` triggers dev app deploys only.
-- Centralize app deployments in GitHub Actions (Vercel CLI) instead of Vercel Git integration.
-- Deploy Sanity Studio only on production tags.
+- Use branch-based deployments: `main` for production, `dev` for preview.
+- Keep app deployments managed by Vercel Git integration (no GitHub Actions deploys).
+- Deploy Sanity Studio on `main` updates.
 - Remove/disable Azure Pipelines (if configured remotely).
 - Add branch protection rules to block direct pushes to `main` and require checks.
 
@@ -15,9 +15,9 @@ The project needs consistent, centralized CI/CD and governance across both repos
 
 ### New Capabilities
 - `ci-quality-gates`: CI workflows with lint/build checks and required status checks for PRs in both repos.
-- `tag-release-deploys`: Tag-driven deployment workflows for app (dev/prod) and CMS (prod only).
+- `branch-release-deploys`: Branch-driven deployments for app (prod on `main`, preview on `dev`) and CMS (prod on `main`).
 - `branch-protection-governance`: Enforced PR-only merges and required checks on `main` for both repos.
-- `vercel-cli-deploys`: GitHub Actions-driven deploys to Vercel dev/prod projects with explicit environment mapping.
+- `vercel-branch-deploys`: Vercel Git-based deploys keyed off `main` and `dev` branches.
 
 ### Modified Capabilities
 - None.

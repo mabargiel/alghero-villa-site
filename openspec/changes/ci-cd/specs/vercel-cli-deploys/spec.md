@@ -1,19 +1,19 @@
 ## ADDED Requirements
 
-### Requirement: Explicit Vercel project targeting
-The system MUST deploy using Vercel CLI with explicit project IDs for production and dev deployments.
+### Requirement: Vercel Git-based deployments
+The system MUST deploy the app using Vercel Git integration with explicit production and preview environment mapping.
 
-#### Scenario: Production deploy uses prod project ID
-- **WHEN** a production tag deploy is triggered
-- **THEN** the deployment uses the configured production Vercel project ID
+#### Scenario: Production deploy uses main branch
+- **WHEN** changes are pushed to `main`
+- **THEN** the deployment is created as a production deployment
 
-#### Scenario: Dev deploy uses dev project ID
-- **WHEN** a dev tag deploy is triggered
-- **THEN** the deployment uses the configured dev Vercel project ID
+#### Scenario: Dev deploy uses dev branch
+- **WHEN** changes are pushed to `dev`
+- **THEN** the deployment is created as a preview deployment
 
 ### Requirement: Centralized deploy source
-The system MUST use GitHub Actions as the sole deployment mechanism for app releases.
+The system MUST use Vercel Git integration as the sole deployment mechanism for app releases.
 
-#### Scenario: Deploys originate from GitHub Actions
-- **WHEN** a production or dev tag triggers an app deploy
-- **THEN** the deployment is executed by GitHub Actions and not by Vercel Git integration
+#### Scenario: Deploys originate from Vercel Git integration
+- **WHEN** changes are pushed to `main` or `dev`
+- **THEN** the deployment is executed by Vercel Git integration
