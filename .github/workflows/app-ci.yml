@@ -57,20 +57,34 @@ jobs:
       - name: Load Vercel env (preview)
         if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         run: |
-          set -a
-          source .vercel/.env.preview.local
-          set +a
+          while IFS= read -r line; do
+            [[ "$line" =~ ^[A-Za-z_][A-Za-z0-9_]*= ]] || continue
+            key="${line%%=*}"
+            val="${line#*=}"
+            val="${val%\"}"
+            val="${val#\"}"
+            echo "${key}=${val}" >> "$GITHUB_ENV"
+          done < .vercel/.env.preview.local
 
       - name: Load Vercel env (production)
         if: github.event_name == 'push'
         run: |
-          set -a
-          source .vercel/.env.production.local
-          set +a
+          while IFS= read -r line; do
+            [[ "$line" =~ ^[A-Za-z_][A-Za-z0-9_]*= ]] || continue
+            key="${line%%=*}"
+            val="${line#*=}"
+            val="${val%\"}"
+            val="${val#\"}"
+            echo "${key}=${val}" >> "$GITHUB_ENV"
+          done < .vercel/.env.production.local
 
-      - name: Vercel build
+      - name: Vercel build (preview)
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         run: npx vercel build --yes --token "$VERCEL_TOKEN"
-        if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+
+      - name: Vercel build (production)
+        if: github.event_name == 'push'
+        run: npx vercel build --prod --yes --token "$VERCEL_TOKEN"
 
       - name: Vercel deploy (preview)
         if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
