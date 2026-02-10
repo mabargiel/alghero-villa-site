@@ -1,6 +1,6 @@
 "use client";
 
-import {useEffect, useMemo, useState} from "react";
+import { useEffect, useMemo, useState } from "react";
 type GalleryImageView = {
   key: string;
   altText: string;
@@ -12,7 +12,7 @@ type Props = {
   images: GalleryImageView[];
 };
 
-export default function GalleryClient({images}: Props) {
+export default function GalleryClient({ images }: Props) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [nextIndex, setNextIndex] = useState<number | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -93,7 +93,7 @@ export default function GalleryClient({images}: Props) {
                   className="w-full bg-[var(--surface)]"
                   style={
                     image.aspectRatio
-                      ? {aspectRatio: image.aspectRatio}
+                      ? { aspectRatio: image.aspectRatio }
                       : undefined
                   }
                 >
@@ -164,23 +164,22 @@ export default function GalleryClient({images}: Props) {
               )}
             </div>
 
-
             <button
-              className="absolute left-0 top-1/2 -translate-y-1/2 rounded-lg bg-white/10 px-4 py-2 text-sm transition hover:bg-white/20"
+              className="absolute top-1/2 left-0 -translate-y-1/2 rounded-lg bg-white/10 px-4 py-2 text-sm transition hover:bg-white/20"
               type="button"
               onClick={showPrev}
             >
               ←
             </button>
             <button
-              className="absolute right-0 top-1/2 -translate-y-1/2 rounded-lg bg-white/10 px-4 py-2 text-sm transition hover:bg-white/20"
+              className="absolute top-1/2 right-0 -translate-y-1/2 rounded-lg bg-white/10 px-4 py-2 text-sm transition hover:bg-white/20"
               type="button"
               onClick={showNext}
             >
               →
             </button>
             <button
-              className="absolute right-0 top-0 rounded-lg bg-white/10 px-3 py-1 text-sm transition hover:bg-white/20"
+              className="absolute top-0 right-0 rounded-lg bg-white/10 px-3 py-1 text-sm transition hover:bg-white/20"
               type="button"
               onClick={closeLightbox}
               aria-label="Close"

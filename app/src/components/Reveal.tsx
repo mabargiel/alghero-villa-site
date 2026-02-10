@@ -5,6 +5,6 @@ type RevealProps = {
   className?: string;
 };
 
-export default function Reveal({children, className}: RevealProps) {
+export default function Reveal({ children, className }: RevealProps) {
   return <div className={className}>{children}</div>;
 }

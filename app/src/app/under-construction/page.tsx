@@ -2,7 +2,7 @@ export default function UnderConstructionPage() {
   return (
     <main className="min-h-screen bg-white text-gray-900">
       <div className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center px-6 py-16 text-center">
-        <p className="text-sm font-semibold uppercase tracking-widest text-gray-500">
+        <p className="text-sm font-semibold tracking-widest text-gray-500 uppercase">
           Villa Monte Calvia
         </p>
         <h1 className="mt-4 text-3xl font-semibold sm:text-4xl">

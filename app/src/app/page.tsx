@@ -1,7 +1,7 @@
 import HeroMedia from "@/components/HeroMedia";
 import Reveal from "@/components/Reveal";
-import {urlFor} from "@/lib/sanity/image";
-import {getGallery} from "@/lib/sanity/queries";
+import { urlFor } from "@/lib/sanity/image";
+import { getGallery } from "@/lib/sanity/queries";
 
 const sectionImages = {
   hero: ["dom z zew -najlepsze/1.png", "dom z zew -najlepsze/4.png"],
@@ -36,7 +36,7 @@ function SectionPlaceholder({
 }) {
   return (
     <div className="rounded-2xl border border-[var(--surface)] bg-[var(--surface)] p-6">
-      <p className="text-sm uppercase tracking-[0.2em] text-[var(--muted)]">
+      <p className="text-sm tracking-[0.2em] text-[var(--muted)] uppercase">
         {label}
       </p>
       <ul className="mt-4 space-y-1 text-sm text-[var(--muted)]">
@@ -63,26 +63,29 @@ export default async function HomePage() {
           <HeroMedia images={heroImages} />
         </div>
         <div className="pointer-events-none absolute inset-0 bg-black/45" />
-        <div className="pointer-events-none absolute inset-0 hero-motion" aria-hidden="true" />
+        <div
+          className="hero-motion pointer-events-none absolute inset-0"
+          aria-hidden="true"
+        />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/90 via-black/55 to-transparent" />
         <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl items-center px-6 pt-28 pb-20">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/85 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--foreground)]">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/85 px-4 py-2 text-xs tracking-[0.3em] text-[var(--foreground)] uppercase">
               Villa Monte Calvia — Alghero
             </div>
-            <h1 className="mt-6 text-4xl font-semibold leading-tight text-white md:text-5xl hero-text-shadow">
+            <h1 className="hero-text-shadow mt-6 text-4xl leading-tight font-semibold text-white md:text-5xl">
               <span className="md:hidden">Prywatny azyl wśród oliwek</span>
               <span className="hidden md:inline">
                 Twój prywatny azyl wśród oliwek i śródziemnomorskiej zieleni
               </span>
             </h1>
-            <p className="mt-4 text-base text-white/90 hero-text-shadow md:hidden">
+            <p className="hero-text-shadow mt-4 text-base text-white/90 md:hidden">
               Elegancka willa blisko Alghero, cisza i natura w zasięgu ręki.
             </p>
-            <p className="mt-4 hidden text-base text-white/90 hero-text-shadow md:block md:text-lg">
-              Przestronna, dwukondygnacyjna rezydencja u podnóża góry Calvia łączy
-              elegancję z wygodą nowoczesnego domu. Cisza, przestrzeń i klimat
-              Sardynii — zaledwie kilka minut od Alghero.
+            <p className="hero-text-shadow mt-4 hidden text-base text-white/90 md:block md:text-lg">
+              Przestronna, dwukondygnacyjna rezydencja u podnóża góry Calvia
+              łączy elegancję z wygodą nowoczesnego domu. Cisza, przestrzeń i
+              klimat Sardynii — zaledwie kilka minut od Alghero.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a
@@ -95,7 +98,7 @@ export default async function HomePage() {
           </div>
         </div>
         <a
-          className="hero-scroll-indicator absolute left-0 right-0 top-[85vh] flex justify-center text-xs uppercase tracking-[0.3em] text-white"
+          className="hero-scroll-indicator absolute top-[85vh] right-0 left-0 flex justify-center text-xs tracking-[0.3em] text-white uppercase"
           href="#highlights"
           aria-label="Przewiń w dół"
         >
@@ -109,10 +112,7 @@ export default async function HomePage() {
       </section>
 
       <Reveal>
-        <section
-          id="highlights"
-          className="mx-auto max-w-6xl px-6 pt-16 pb-16"
-        >
+        <section id="highlights" className="mx-auto max-w-6xl px-6 pt-16 pb-16">
           <h2 className="text-2xl font-semibold md:text-3xl">
             Najważniejsze atuty
           </h2>
@@ -137,20 +137,25 @@ export default async function HomePage() {
         <section className="mx-auto max-w-6xl px-6 pb-16">
           <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
             <div>
-              <h2 className="text-2xl font-semibold md:text-3xl">Nieruchomość</h2>
+              <h2 className="text-2xl font-semibold md:text-3xl">
+                Nieruchomość
+              </h2>
               <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
               <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
                 Prywatna posiadłość na terenie ok. 1 hektara
               </p>
               <p className="mt-4 text-[var(--muted)]">
-                Willa znajduje się na prywatnym, starannie zagospodarowanym terenie
-                otoczonym śródziemnomorską roślinnością. To miejsce stworzone do
-                wypoczynku w rytmie „slow”: poranna kawa na tarasie, długie posiłki
-                w ogrodzie i cisza z dala od tłumów — bez rezygnowania z bliskości
-                Alghero.
+                Willa znajduje się na prywatnym, starannie zagospodarowanym
+                terenie otoczonym śródziemnomorską roślinnością. To miejsce
+                stworzone do wypoczynku w rytmie „slow”: poranna kawa na
+                tarasie, długie posiłki w ogrodzie i cisza z dala od tłumów —
+                bez rezygnowania z bliskości Alghero.
               </p>
             </div>
-            <SectionPlaceholder label="Garden images" files={sectionImages.garden} />
+            <SectionPlaceholder
+              label="Garden images"
+              files={sectionImages.garden}
+            />
           </div>
         </section>
       </Reveal>
@@ -189,7 +194,9 @@ export default async function HomePage() {
         <section className="mx-auto max-w-6xl px-6 pb-16">
           <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
             <div>
-              <h2 className="text-2xl font-semibold md:text-3xl">Ogród i tarasy</h2>
+              <h2 className="text-2xl font-semibold md:text-3xl">
+                Ogród i tarasy
+              </h2>
               <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
               <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
                 Zadaszona weranda i strefy relaksu wśród zieleni
@@ -201,7 +208,10 @@ export default async function HomePage() {
                 wieczory na świeżym powietrzu.
               </p>
             </div>
-            <SectionPlaceholder label="Outdoor images" files={sectionImages.garden} />
+            <SectionPlaceholder
+              label="Outdoor images"
+              files={sectionImages.garden}
+            />
           </div>
         </section>
       </Reveal>
@@ -209,17 +219,22 @@ export default async function HomePage() {
       <Reveal>
         <section className="mx-auto max-w-6xl px-6 pb-16">
           <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
-            <SectionPlaceholder label="Location images" files={sectionImages.location} />
+            <SectionPlaceholder
+              label="Location images"
+              files={sectionImages.location}
+            />
             <div>
-              <h2 className="text-2xl font-semibold md:text-3xl">Lokalizacja</h2>
+              <h2 className="text-2xl font-semibold md:text-3xl">
+                Lokalizacja
+              </h2>
               <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
               <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
                 15 minut do lotniska, plaż i zabytków Alghero
               </p>
               <p className="mt-4 text-[var(--muted)]">
                 Villa Monte Calvia zapewnia spokój i prywatność, a jednocześnie
-                pozwala w kilka minut dotrzeć do centrum Alghero, plaż, zatok oraz
-                lotniska (ok. 15 minut).
+                pozwala w kilka minut dotrzeć do centrum Alghero, plaż, zatok
+                oraz lotniska (ok. 15 minut).
               </p>
               <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
                 <li>Centrum Alghero i port</li>
@@ -259,8 +274,8 @@ export default async function HomePage() {
               Zapraszamy do Villa Monte Calvia
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--muted)]">
-              Idealny wybór dla rodzin i grup przyjaciół, które cenią przestrzeń,
-              prywatność i śródziemnomorski styl życia.
+              Idealny wybór dla rodzin i grup przyjaciół, które cenią
+              przestrzeń, prywatność i śródziemnomorski styl życia.
             </p>
             <a
               className="mt-6 inline-flex rounded-xl bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-strong)]"

@@ -4,7 +4,7 @@ export default function ContactPage() {
   return (
     <main className="mx-auto min-h-screen max-w-4xl px-6 pt-28 pb-16">
       <header className="mb-10">
-        <p className="text-sm uppercase tracking-[0.2em] text-[var(--muted)]">
+        <p className="text-sm tracking-[0.2em] text-[var(--muted)] uppercase">
           Kontakt
         </p>
         <h1 className="text-4xl font-semibold md:text-5xl">

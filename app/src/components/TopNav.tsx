@@ -25,7 +25,7 @@ export default function TopNav() {
 
   return (
     <header
-      className={`left-0 top-0 z-30 w-full ${
+      className={`top-0 left-0 z-30 w-full ${
         isHome
           ? "absolute"
           : "sticky border-b border-[var(--surface)] bg-[var(--background)]/90 backdrop-blur"
@@ -39,9 +39,7 @@ export default function TopNav() {
         >
           <a
             className={`transition ${
-              isHome
-                ? "hover:text-white"
-                : "hover:text-[var(--accent-strong)]"
+              isHome ? "hover:text-white" : "hover:text-[var(--accent-strong)]"
             }`}
             href="https://facebook.com"
             target="_blank"
@@ -65,9 +63,7 @@ export default function TopNav() {
           />
           <a
             className={`transition ${
-              isHome
-                ? "hover:text-white"
-                : "hover:text-[var(--accent-strong)]"
+              isHome ? "hover:text-white" : "hover:text-[var(--accent-strong)]"
             }`}
             href="https://instagram.com"
             target="_blank"
@@ -91,9 +87,7 @@ export default function TopNav() {
           />
           <a
             className={`transition ${
-              isHome
-                ? "hover:text-white"
-                : "hover:text-[var(--accent-strong)]"
+              isHome ? "hover:text-white" : "hover:text-[var(--accent-strong)]"
             }`}
             href="https://www.google.com/search?sca_esv=01e84e26bfa42c3c&hl=pl&authuser=0&sxsrf=ANbL-n6NmWfmS8WlWdzEkLpDLwXNZkgpwA:1770480521981&kgmid=/g/11yy4gd_gs&q=Villa+Monte+Calvia&shndl=30&source=sh/x/loc/uni/m1/1&kgs=16a3d798bec3e108&shem=shrtsdl&utm_source=shrtsdl,sh/x/loc/uni/m1/1"
             target="_blank"
@@ -113,7 +107,7 @@ export default function TopNav() {
       </div>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 pt-0 pb-4 md:pb-6">
         <div
-          className={`text-xs uppercase tracking-[0.35em] ${
+          className={`text-xs tracking-[0.35em] uppercase ${
             isHome ? "text-white/80" : "text-[var(--foreground)]"
           }`}
         >
@@ -121,7 +115,7 @@ export default function TopNav() {
         </div>
 
         <nav
-          className={`hidden items-center gap-8 text-[15px] font-semibold uppercase tracking-[0.18em] md:flex ${
+          className={`hidden items-center gap-8 text-[15px] font-semibold tracking-[0.18em] uppercase md:flex ${
             isHome ? "text-white/90" : "text-[var(--foreground)]"
           }`}
         >
@@ -153,7 +147,7 @@ export default function TopNav() {
         </nav>
 
         <button
-          className={`flex items-center gap-2 rounded-full border px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] md:hidden ${
+          className={`flex items-center gap-2 rounded-full border px-3 py-2 text-xs font-semibold tracking-[0.18em] uppercase md:hidden ${
             isHome
               ? "border-white/40 text-white/90"
               : "border-[var(--surface)] text-[var(--foreground)]"
@@ -166,17 +160,17 @@ export default function TopNav() {
           Menu
           <span className="relative h-4 w-4">
             <span
-              className={`absolute left-0 top-1 block h-[2px] w-4 rounded-full transition ${
+              className={`absolute top-1 left-0 block h-[2px] w-4 rounded-full transition ${
                 isOpen ? "translate-y-[5px] rotate-45" : ""
               } ${isHome ? "bg-white" : "bg-[var(--foreground)]"}`}
             />
             <span
-              className={`absolute left-0 top-1/2 block h-[2px] w-4 -translate-y-1/2 rounded-full transition ${
+              className={`absolute top-1/2 left-0 block h-[2px] w-4 -translate-y-1/2 rounded-full transition ${
                 isOpen ? "opacity-0" : ""
               } ${isHome ? "bg-white" : "bg-[var(--foreground)]"}`}
             />
             <span
-              className={`absolute left-0 bottom-1 block h-[2px] w-4 rounded-full transition ${
+              className={`absolute bottom-1 left-0 block h-[2px] w-4 rounded-full transition ${
                 isOpen ? "-translate-y-[5px] -rotate-45" : ""
               } ${isHome ? "bg-white" : "bg-[var(--foreground)]"}`}
             />
@@ -201,7 +195,7 @@ export default function TopNav() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-sm font-semibold uppercase tracking-[0.18em] transition ${
+                className={`text-sm font-semibold tracking-[0.18em] uppercase transition ${
                   isActive
                     ? "text-[var(--accent)]"
                     : isHome

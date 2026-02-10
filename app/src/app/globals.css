@@ -69,7 +69,8 @@ h4 {
 }
 
 .hero-motion {
-  background: radial-gradient(
+  background:
+    radial-gradient(
       circle at 20% 20%,
       rgba(107, 122, 75, 0.18),
       transparent 55%

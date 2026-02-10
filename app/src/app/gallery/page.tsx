@@ -1,5 +1,5 @@
-import {urlFor} from "@/lib/sanity/image";
-import {getGallery} from "@/lib/sanity/queries";
+import { urlFor } from "@/lib/sanity/image";
+import { getGallery } from "@/lib/sanity/queries";
 import GalleryClient from "./GalleryClient";
 
 export default async function GalleryPage() {
@@ -14,7 +14,7 @@ export default async function GalleryPage() {
   return (
     <main className="mx-auto min-h-screen max-w-6xl px-6 pt-28 pb-16">
       <header className="mb-10">
-        <p className="text-sm uppercase tracking-[0.2em] text-[var(--muted)]">
+        <p className="text-sm tracking-[0.2em] text-[var(--muted)] uppercase">
           Galeria
         </p>
         <h1 className="text-4xl font-semibold md:text-5xl">

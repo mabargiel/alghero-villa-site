@@ -1,15 +1,16 @@
-import {Resend} from "resend";
+import { Resend } from "resend";
 
 export const runtime = "nodejs";
 
 const resendApiKey = process.env.RESEND_API_KEY || "";
 const contactToEmail = process.env.CONTACT_TO_EMAIL || "";
 const contactFromEmail =
-  process.env.CONTACT_FROM_EMAIL || "Villa Monte Calvia <onboarding@resend.dev>";
+  process.env.CONTACT_FROM_EMAIL ||
+  "Villa Monte Calvia <onboarding@resend.dev>";
 
 const rateLimitWindowMs = 10 * 60 * 1000;
 const rateLimitMax = 5;
-const rateLimitStore = new Map<string, {count: number; resetAt: number}>();
+const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
 
 function getClientIp(request: Request) {
   const forwarded = request.headers.get("x-forwarded-for");
@@ -23,7 +24,7 @@ function isRateLimited(ip: string) {
   const now = Date.now();
   const entry = rateLimitStore.get(ip);
   if (!entry || entry.resetAt < now) {
-    rateLimitStore.set(ip, {count: 1, resetAt: now + rateLimitWindowMs});
+    rateLimitStore.set(ip, { count: 1, resetAt: now + rateLimitWindowMs });
     return false;
   }
   if (entry.count >= rateLimitMax) {
@@ -38,8 +39,8 @@ export async function POST(request: Request) {
   const ip = getClientIp(request);
   if (isRateLimited(ip)) {
     return Response.json(
-      {message: "Zbyt wiele prób. Spróbuj ponownie później."},
-      {status: 429},
+      { message: "Zbyt wiele prób. Spróbuj ponownie później." },
+      { status: 429 },
     );
   }
 
@@ -51,25 +52,25 @@ export async function POST(request: Request) {
 
   if (website) {
     return Response.json(
-      {message: "Wykryto spam. Spróbuj ponownie później."},
-      {status: 400},
+      { message: "Wykryto spam. Spróbuj ponownie później." },
+      { status: 400 },
     );
   }
 
   if (!firstName || !email || !phone) {
     return Response.json(
-      {message: "Uzupełnij wymagane pola formularza."},
-      {status: 400},
+      { message: "Uzupełnij wymagane pola formularza." },
+      { status: 400 },
     );
   }
 
   if (!resendApiKey || !contactToEmail) {
     return Response.json(
-      {message: "Brak konfiguracji email. Skontaktuj się z administratorem."},
-      {status: 500},
+      { message: "Brak konfiguracji email. Skontaktuj się z administratorem." },
+      { status: 500 },
     );
   }
- 
+
   const resend = new Resend(resendApiKey);
 
   const result = await resend.emails.send({
@@ -82,10 +83,10 @@ export async function POST(request: Request) {
 
   if (result.error) {
     return Response.json(
-      {message: "Błąd wysyłki email. Spróbuj ponownie później."},
-      {status: 502},
+      { message: "Błąd wysyłki email. Spróbuj ponownie później." },
+      { status: 502 },
     );
   }
 
-  return Response.json({ok: true});
+  return Response.json({ ok: true });
 }
