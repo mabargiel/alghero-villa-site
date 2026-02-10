@@ -62,15 +62,14 @@ export default async function HomePage() {
         <div className="pointer-events-none absolute inset-0">
           <HeroMedia images={heroImages} />
         </div>
-        <div className="pointer-events-none absolute inset-0 bg-black/45" />
+        <div className="pointer-events-none absolute inset-0 bg-black/75" />
         <div
           className="hero-motion pointer-events-none absolute inset-0"
           aria-hidden="true"
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/90 via-black/55 to-transparent" />
         <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl items-center px-6 pt-28 pb-20">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/85 px-4 py-2 text-xs tracking-[0.3em] text-[var(--foreground)] uppercase">
+          <div className="max-w-2xl text-center md:text-left">
+            <div className="mx-auto inline-flex items-center gap-2 rounded-full bg-white/85 px-4 py-2 text-xs tracking-[0.3em] text-[var(--foreground)] uppercase md:mx-0">
               Villa Monte Calvia — Alghero
             </div>
             <h1 className="hero-text-shadow mt-6 text-4xl leading-tight font-semibold text-white md:text-5xl">
@@ -87,9 +86,9 @@ export default async function HomePage() {
               łączy elegancję z wygodą nowoczesnego domu. Cisza, przestrzeń i
               klimat Sardynii — zaledwie kilka minut od Alghero.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap justify-center gap-3 md:justify-start">
               <a
-                className="rounded-xl bg-[var(--accent-strong)] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-black/30 transition hover:bg-[var(--accent)] hover:shadow-black/40"
+                className="rounded-xl bg-gradient-to-r from-[var(--accent-strong)] to-[var(--accent)] px-6 py-3 text-sm font-semibold text-white shadow-[0_18px_40px_-24px_rgba(0,0,0,0.75)] transition hover:-translate-y-0.5 hover:shadow-[0_24px_55px_-30px_rgba(0,0,0,0.8)]"
                 href="/contact"
               >
                 Sprawdź dostępność
@@ -278,7 +277,7 @@ export default async function HomePage() {
               przestrzeń, prywatność i śródziemnomorski styl życia.
             </p>
             <a
-              className="mt-6 inline-flex rounded-xl bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-strong)]"
+              className="mt-6 inline-flex rounded-xl bg-gradient-to-r from-[var(--accent-strong)] to-[var(--accent)] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_34px_-22px_rgba(0,0,0,0.7)] transition hover:-translate-y-0.5 hover:shadow-[0_22px_50px_-28px_rgba(0,0,0,0.75)]"
               href="/contact"
             >
               Skontaktuj się z nami

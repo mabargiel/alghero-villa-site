@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState, useSyncExternalStore } from "react";
 
 const navItems = [
-  { href: "/", label: "Strona główna" },
+  { href: "/", label: "Home" },
   { href: "/gallery", label: "Galeria" },
   { href: "/contact", label: "Kontakt" },
 ];
@@ -35,7 +35,7 @@ export default function TopNav() {
         isHome ? "absolute" : "sticky"
       } ${showSolidNav ? "border-b border-[var(--surface)] bg-[var(--background)]/90 backdrop-blur" : "bg-transparent"}`}
     >
-      <div className="mx-auto flex max-w-6xl justify-end px-6 pt-1">
+      <div className="mx-auto flex max-w-6xl justify-end px-6 pt-3 pb-2">
         <div
           className={`flex items-center gap-3 text-sm ${
             isHome ? "text-white/65" : "text-[var(--muted)]"
@@ -52,19 +52,17 @@ export default function TopNav() {
           >
             <svg
               aria-hidden="true"
-              className="h-5 w-5"
+              className="block h-[18px] w-[18px]"
               viewBox="0 0 24 24"
-              fill="currentColor"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              <path d="M13.5 9.5V7.2c0-.7.4-1.1 1.1-1.1h1.7V4h-2.3C11.8 4 11 5.1 11 6.8v2.7H9v2.6h2v7.9h2.5v-7.9h2.2l.4-2.6h-2.6Z" />
+              <path d="M15 3h-2.5a4.5 4.5 0 0 0-4.5 4.5V10H6v4h2v7h4v-7h3l1-4h-4V7.5A1.5 1.5 0 0 1 13.5 6H15V3Z" />
             </svg>
           </a>
-          <span
-            className={`h-4 w-px ${
-              isHome ? "bg-white/25" : "bg-[var(--surface-strong)]"
-            }`}
-            aria-hidden="true"
-          />
           <a
             className={`transition ${
               isHome ? "hover:text-white" : "hover:text-[var(--accent-strong)]"
@@ -76,19 +74,19 @@ export default function TopNav() {
           >
             <svg
               aria-hidden="true"
-              className="h-5 w-5"
+              className="block h-[18px] w-[18px]"
               viewBox="0 0 24 24"
-              fill="currentColor"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              <path d="M16.5 7.5h.01M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Zm5 5a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm6.5-.6a.9.9 0 1 1-1.8 0 .9.9 0 0 1 1.8 0Z" />
+              <rect x="3" y="3" width="18" height="18" rx="5" ry="5" />
+              <circle cx="12" cy="12" r="4" />
+              <path d="M17.5 6.5h.01" />
             </svg>
           </a>
-          <span
-            className={`h-4 w-px ${
-              isHome ? "bg-white/25" : "bg-[var(--surface-strong)]"
-            }`}
-            aria-hidden="true"
-          />
           <a
             className={`transition ${
               isHome ? "hover:text-white" : "hover:text-[var(--accent-strong)]"
@@ -100,50 +98,41 @@ export default function TopNav() {
           >
             <svg
               aria-hidden="true"
-              className="h-5 w-5"
+              className="block h-[18px] w-[18px]"
               viewBox="0 0 24 24"
-              fill="currentColor"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              <path d="M12 10.2v3.7h5.2c-.5 2.3-2.5 3.7-5.2 3.7a5.9 5.9 0 1 1 0-11.8c1.6 0 2.9.6 3.9 1.5l2.5-2.5A9.3 9.3 0 0 0 12 2.7a9.3 9.3 0 1 0 0 18.6c4.7 0 8.8-3.4 8.8-9.1 0-.6-.1-1.1-.2-2H12Z" />
+              <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0Z" />
+              <circle cx="12" cy="10" r="3" />
             </svg>
           </a>
         </div>
       </div>
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 pt-0 pb-4 md:pb-6">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 pt-1 pb-6 md:pb-8">
         <div
-          className={`text-xs tracking-[0.35em] uppercase ${
-            isHome ? "text-white/80" : "text-[var(--foreground)]"
-          }`}
+          className="text-xs tracking-[0.35em] uppercase text-[var(--brand)]"
         >
           Villa Monte Calvia
         </div>
 
-        <nav
-          className={`hidden items-center gap-8 text-[15px] font-semibold tracking-[0.18em] uppercase md:flex ${
-            isHome ? "text-white/90" : "text-[var(--foreground)]"
-          }`}
-        >
+        <nav className="hidden items-center gap-8 text-[18px] font-medium tracking-[0.08em] text-[#FFFFFFE6] md:flex">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`group relative transition ${
-                  isActive
-                    ? isHome
-                      ? "text-white"
-                      : "text-[var(--accent-strong)]"
-                    : isHome
-                      ? "hover:text-white"
-                      : "hover:text-[var(--accent-strong)]"
-                }`}
+                className={`group relative text-[#FFFFFFE6] transition`}
               >
                 {item.label}
                 <span
-                  className={`absolute -bottom-2 left-0 h-[3px] w-full origin-left rounded-full transition-transform duration-300 ${
-                    isHome ? "bg-white/90" : "bg-[var(--accent-strong)]"
-                  } ${isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
+                  className={`absolute -bottom-2 left-0 h-[2px] w-[70%] origin-left rounded-full bg-[#FFFFFFE6] transition-transform duration-300 ${
+                    isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                  }`}
                 />
               </Link>
             );
@@ -199,13 +188,7 @@ export default function TopNav() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-sm font-semibold tracking-[0.18em] uppercase transition ${
-                  isActive
-                    ? "text-[var(--accent)]"
-                    : isHome
-                      ? "text-white/90 hover:text-white"
-                      : "text-[var(--foreground)] hover:text-[var(--accent-strong)]"
-                }`}
+                className="text-sm font-medium tracking-[0.08em] text-[#FFFFFFE6] transition hover:text-[#FFFFFFE6]"
                 onClick={handleClose}
               >
                 {item.label}
