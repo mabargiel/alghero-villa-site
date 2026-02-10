@@ -4,13 +4,17 @@ on:
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - main
 
 jobs:
-  lint-build:
+  lint-build-deploy:
     runs-on: ubuntu-latest
     env:
-      NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID }}
-      NEXT_PUBLIC_SANITY_DATASET: ${{ vars.NEXT_PUBLIC_SANITY_DATASET }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     defaults:
       run:
         working-directory: app
@@ -34,5 +38,22 @@ jobs:
       - name: Lint styles
         run: npm run lint:styles
 
-      - name: Build
-        run: npm run build
+      - name: Vercel pull (preview)
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        run: npx vercel pull --yes --environment=preview --token "$VERCEL_TOKEN"
+
+      - name: Vercel pull (production)
+        if: github.event_name == 'push'
+        run: npx vercel pull --yes --environment=production --token "$VERCEL_TOKEN"
+
+      - name: Vercel build
+        run: npx vercel build --yes --token "$VERCEL_TOKEN"
+        if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+
+      - name: Vercel deploy (preview)
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        run: npx vercel deploy --prebuilt --yes --token "$VERCEL_TOKEN"
+
+      - name: Vercel deploy (production)
+        if: github.event_name == 'push'
+        run: npx vercel deploy --prebuilt --prod --yes --token "$VERCEL_TOKEN"
