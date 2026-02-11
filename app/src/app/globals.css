@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #EDF3F0;
+  --background: #edf3f0;
   --foreground: #26241f;
   --muted: #6f6b5e;
   --surface: #f4f1e9;
   --surface-strong: #ebe5d8;
-  --brand: #48685A;
-  --accent: #48685A;
-  --accent-strong: #48685A;
+  --brand: #48685a;
+  --accent: #48685a;
+  --accent-strong: #48685a;
 }
 
 @theme inline {
@@ -72,16 +72,8 @@ h4 {
 
 .hero-motion {
   background:
-    radial-gradient(
-      circle at 20% 20%,
-      rgb(107 122 75 / 18%),
-      transparent 55%
-    ),
-    radial-gradient(
-      circle at 80% 30%,
-      rgb(235 229 216 / 55%),
-      transparent 60%
-    );
+    radial-gradient(circle at 20% 20%, rgb(107 122 75 / 18%), transparent 55%),
+    radial-gradient(circle at 80% 30%, rgb(235 229 216 / 55%), transparent 60%);
   background-size: 140% 140%;
   animation: hero-pan 18s ease-in-out infinite;
   opacity: 0.25;

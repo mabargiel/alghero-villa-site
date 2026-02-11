@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useSyncExternalStore } from "react";
+import { useState } from "react";
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -15,16 +15,9 @@ const navItems = [
 export default function TopNav() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const hasMounted = useSyncExternalStore(
-    () => () => {},
-    () => true,
-    () => false,
-  );
   const effectivePath =
     pathname || (typeof window !== "undefined" ? window.location.pathname : "");
-  const isPathReady = Boolean(effectivePath);
   const isHome = effectivePath === "/";
-  const showSolidNav = hasMounted && isPathReady && !isHome;
 
   function handleToggle() {
     setIsOpen((prev) => !prev);
@@ -114,9 +107,7 @@ export default function TopNav() {
         </div>
       </div>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 pt-1 pb-6 md:pb-8">
-        <div
-          className="text-xs tracking-[0.35em] uppercase text-[var(--brand)]"
-        >
+        <div className="text-xs tracking-[0.35em] text-[var(--brand)] uppercase">
           Villa Monte Calvia
         </div>
 
@@ -146,7 +137,9 @@ export default function TopNav() {
                   className={`absolute -bottom-2 left-0 h-[2px] w-[70%] origin-left rounded-full transition-transform duration-300 ${
                     isHome ? "bg-white/90" : "bg-[var(--accent-strong)]"
                   } ${
-                    isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    isActive
+                      ? "scale-x-100"
+                      : "scale-x-0 group-hover:scale-x-100"
                   }`}
                 />
               </Link>
@@ -198,7 +191,6 @@ export default function TopNav() {
       >
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-6">
           {navItems.map((item) => {
-            const isActive = pathname === item.href;
             return (
               <Link
                 key={item.href}
