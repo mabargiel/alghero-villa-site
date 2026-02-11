@@ -35,11 +35,7 @@ export default function TopNav() {
   }
 
   return (
-    <header
-      className={`top-0 left-0 z-30 w-full ${
-        isHome ? "absolute" : "sticky"
-      } ${showSolidNav ? "border-b border-[var(--surface)] bg-[var(--background)]/90 backdrop-blur" : "bg-transparent"}`}
-    >
+    <header className="absolute top-0 left-0 z-30 w-full">
       <div className="mx-auto flex max-w-6xl justify-end px-6 pt-3 pb-2">
         <div
           className={`flex items-center gap-3 text-sm ${
