@@ -175,7 +175,7 @@ export default async function HomePage() {
 
       {miniGalleryImages.length === 5 ? (
         <Reveal>
-          <section className="relative w-screen px-0 pb-16">
+          <section className="relative hidden w-screen px-0 pb-16 md:block">
             <div
               className="grid w-full items-center gap-1 px-0"
               style={{
@@ -209,7 +209,7 @@ export default async function HomePage() {
       <Reveal>
         <section className="mx-auto max-w-6xl px-6 pb-16">
           <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
-            <div>
+            <div className="order-1 md:order-none">
               <h2 className="text-2xl font-semibold md:text-3xl">
                 Nieruchomość
               </h2>
@@ -225,7 +225,11 @@ export default async function HomePage() {
                 bez rezygnowania z bliskości Alghero.
               </p>
             </div>
-            {propertyImage ? <SectionImage {...propertyImage} /> : null}
+            {propertyImage ? (
+              <div className="order-2 md:order-none">
+                <SectionImage {...propertyImage} />
+              </div>
+            ) : null}
           </div>
         </section>
       </Reveal>
@@ -233,8 +237,12 @@ export default async function HomePage() {
       <Reveal>
         <section className="mx-auto max-w-6xl px-6 pb-16">
           <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
-            {interiorsImage ? <SectionImage {...interiorsImage} /> : null}
-            <div>
+            {interiorsImage ? (
+              <div className="order-2 md:order-none">
+                <SectionImage {...interiorsImage} />
+              </div>
+            ) : null}
+            <div className="order-1 md:order-none">
               <h2 className="text-2xl font-semibold md:text-3xl">Wnętrza</h2>
               <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
               <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
@@ -260,7 +268,7 @@ export default async function HomePage() {
       <Reveal>
         <section className="mx-auto max-w-6xl px-6 pb-16">
           <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
-            <div>
+            <div className="order-1 md:order-none">
               <h2 className="text-2xl font-semibold md:text-3xl">
                 Ogród i tarasy
               </h2>
@@ -275,7 +283,11 @@ export default async function HomePage() {
                 wieczory na świeżym powietrzu.
               </p>
             </div>
-            {gardenImage ? <SectionImage {...gardenImage} /> : null}
+            {gardenImage ? (
+              <div className="order-2 md:order-none">
+                <SectionImage {...gardenImage} />
+              </div>
+            ) : null}
           </div>
         </section>
       </Reveal>
@@ -283,8 +295,12 @@ export default async function HomePage() {
       <Reveal>
         <section className="mx-auto max-w-6xl px-6 pb-16">
           <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
-            {locationImage ? <SectionImage {...locationImage} /> : null}
-            <div>
+            {locationImage ? (
+              <div className="order-2 md:order-none">
+                <SectionImage {...locationImage} />
+              </div>
+            ) : null}
+            <div className="order-1 md:order-none">
               <h2 className="text-2xl font-semibold md:text-3xl">
                 Lokalizacja
               </h2>
