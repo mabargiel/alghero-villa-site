@@ -6,9 +6,9 @@ export default async function GalleryPage() {
   const gallery = await getGallery();
   const images = (gallery?.images ?? []).map((image) => ({
     key: image._key,
-    altText: image.altText,
-    url: urlFor(image.image).width(1400).quality(80).auto("format").url(),
-    aspectRatio: image.image.asset.metadata?.dimensions?.aspectRatio,
+    altText: "",
+    url: urlFor(image).width(1400).quality(80).auto("format").url(),
+    aspectRatio: image.asset.metadata?.dimensions?.aspectRatio,
   }));
 
   return (

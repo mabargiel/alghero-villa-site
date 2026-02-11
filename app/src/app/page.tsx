@@ -1,14 +1,7 @@
 import HeroMedia from "@/components/HeroMedia";
 import Reveal from "@/components/Reveal";
 import { urlFor } from "@/lib/sanity/image";
-import { getGallery } from "@/lib/sanity/queries";
-
-const sectionImages = {
-  hero: ["dom z zew -najlepsze/1.png", "dom z zew -najlepsze/4.png"],
-  garden: ["dom z zew -najlepsze/16.png", "dom z zew -najlepsze/20.png"],
-  interiors: ["salon-najlepsze/17.jpg", "salon-najlepsze/23.jpg"],
-  location: ["plaża1.JPG", "zachód słońca2.jpeg", "zatoka1.JPG"],
-};
+import { getHero, getHomeSections, getMiniGallery } from "@/lib/sanity/queries";
 
 const highlights = [
   "Prywatna posiadłość na terenie ok. 1 hektara",
@@ -27,42 +20,90 @@ const amenities = [
   "Prywatny parking",
 ];
 
-function SectionPlaceholder({
-  label,
-  files,
+function SectionImage({
+  altText,
+  url,
 }: {
-  label: string;
-  files: string[];
+  altText: string;
+  url: string;
 }) {
   return (
-    <div className="rounded-2xl border border-[var(--surface)] bg-[var(--surface)] p-6">
-      <p className="text-sm tracking-[0.2em] text-[var(--muted)] uppercase">
-        {label}
-      </p>
-      <ul className="mt-4 space-y-1 text-sm text-[var(--muted)]">
-        {files.map((file) => (
-          <li key={file}>{file}</li>
-        ))}
-      </ul>
+    <div className="group relative h-[260px] overflow-hidden rounded-lg bg-[var(--surface)] shadow-[0_25px_55px_-35px_rgba(20,20,20,0.5)] md:h-[320px] lg:h-[380px]">
+      <img
+        src={url}
+        alt={altText}
+        className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.02]"
+        loading="lazy"
+        decoding="async"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-80 transition duration-700 group-hover:opacity-60" />
     </div>
   );
 }
 
 export default async function HomePage() {
-  const gallery = await getGallery();
+  const [hero, sections, miniGallery] = await Promise.all([
+    getHero(),
+    getHomeSections(),
+    getMiniGallery(),
+  ]);
+  const sectionMap = new Map(
+    (sections ?? []).map((section) => [section.sectionKey, section.image]),
+  );
   const heroImages =
-    gallery?.heroImages?.map((image) => ({
+    hero?.images?.map((image) => ({
       altText: image.altText,
-      url: urlFor(image.image).width(2000).quality(85).auto("format").url(),
+      url: urlFor(image.image).width(2200).quality(85).auto("format").url(),
+    })) ?? [];
+  const heroMobileImage = hero?.mobileImage
+    ? {
+        altText: hero.mobileImage.altText,
+        url: urlFor(hero.mobileImage.image)
+          .width(1400)
+          .quality(85)
+          .auto("format")
+          .url(),
+      }
+    : undefined;
+  const sectionImage = (key: string) => {
+    const image = sectionMap.get(key);
+    if (!image) {
+      return null;
+    }
+    return {
+      altText: image.altText,
+      url: urlFor(image.image).width(1400).quality(85).auto("format").url(),
+    };
+  };
+  const propertyImage = sectionImage("property");
+  const interiorsImage = sectionImage("interiors");
+  const gardenImage = sectionImage("garden");
+  const locationImage = sectionImage("location");
+  const miniGalleryImages =
+    miniGallery?.images?.slice(0, 5).map((image) => ({
+      key: image._key,
+      altText: "",
+      url: urlFor(image).width(1200).quality(85).auto("format").url(),
     })) ?? [];
   return (
     <main className="bg-[var(--background)] text-[var(--foreground)]">
       <section className="relative min-h-screen w-full overflow-hidden">
         <div className="pointer-events-none absolute inset-0 bg-[var(--surface-strong)]" />
         <div className="pointer-events-none absolute inset-0">
-          <HeroMedia images={heroImages} />
+          <HeroMedia
+            images={heroImages}
+            mobileImage={heroMobileImage}
+            videoUrl={hero?.videoUrl}
+          />
         </div>
-        <div className="pointer-events-none absolute inset-0 bg-black/75" />
+        {hero?.videoUrl ? (
+          <>
+            <div className="pointer-events-none absolute inset-0 bg-black/70 md:hidden" />
+            <div className="pointer-events-none absolute inset-0 hidden bg-black/35 md:block" />
+          </>
+        ) : (
+          <div className="pointer-events-none absolute inset-0 bg-black/75" />
+        )}
         <div
           className="hero-motion pointer-events-none absolute inset-0"
           aria-hidden="true"
@@ -132,6 +173,39 @@ export default async function HomePage() {
         </section>
       </Reveal>
 
+      {miniGalleryImages.length === 5 ? (
+        <Reveal>
+          <section className="relative w-screen px-0 pb-16">
+            <div
+              className="grid w-full items-center gap-1 px-0"
+              style={{
+                gridTemplateColumns: "1fr 1fr 1.15fr 1fr 1fr",
+              }}
+            >
+              {miniGalleryImages.map((image, index) => (
+                <div
+                  key={image.key}
+                  className="mini-gallery-item relative"
+                  style={{
+                    transitionDelay: `${index * 90}ms`,
+                  }}
+                >
+                  <div className="w-full overflow-hidden">
+                    <img
+                      src={image.url}
+                      alt={image.altText}
+                      className="aspect-[4/3] h-full w-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        </Reveal>
+      ) : null}
+
       <Reveal>
         <section className="mx-auto max-w-6xl px-6 pb-16">
           <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
@@ -151,10 +225,7 @@ export default async function HomePage() {
                 bez rezygnowania z bliskości Alghero.
               </p>
             </div>
-            <SectionPlaceholder
-              label="Garden images"
-              files={sectionImages.garden}
-            />
+            {propertyImage ? <SectionImage {...propertyImage} /> : null}
           </div>
         </section>
       </Reveal>
@@ -162,10 +233,7 @@ export default async function HomePage() {
       <Reveal>
         <section className="mx-auto max-w-6xl px-6 pb-16">
           <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
-            <SectionPlaceholder
-              label="Interiors images"
-              files={sectionImages.interiors}
-            />
+            {interiorsImage ? <SectionImage {...interiorsImage} /> : null}
             <div>
               <h2 className="text-2xl font-semibold md:text-3xl">Wnętrza</h2>
               <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
@@ -207,10 +275,7 @@ export default async function HomePage() {
                 wieczory na świeżym powietrzu.
               </p>
             </div>
-            <SectionPlaceholder
-              label="Outdoor images"
-              files={sectionImages.garden}
-            />
+            {gardenImage ? <SectionImage {...gardenImage} /> : null}
           </div>
         </section>
       </Reveal>
@@ -218,10 +283,7 @@ export default async function HomePage() {
       <Reveal>
         <section className="mx-auto max-w-6xl px-6 pb-16">
           <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
-            <SectionPlaceholder
-              label="Location images"
-              files={sectionImages.location}
-            />
+            {locationImage ? <SectionImage {...locationImage} /> : null}
             <div>
               <h2 className="text-2xl font-semibold md:text-3xl">
                 Lokalizacja
@@ -268,7 +330,7 @@ export default async function HomePage() {
 
       <Reveal>
         <section className="mx-auto max-w-6xl px-6 pb-24">
-          <div className="rounded-2xl bg-[var(--surface)] p-10 text-center">
+          <div className="rounded-xl bg-[var(--surface-strong)] p-10 text-center shadow-[0_22px_50px_-32px_rgba(20,20,20,0.5)]">
             <h2 className="text-2xl font-semibold md:text-3xl">
               Zapraszamy do Villa Monte Calvia
             </h2>

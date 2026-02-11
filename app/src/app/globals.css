@@ -70,6 +70,33 @@ h4 {
   text-shadow: 0 8px 30px rgb(0 0 0 / 45%);
 }
 
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease;
+  will-change: opacity, transform;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mini-gallery-item {
+  opacity: 0;
+  transform: translateY(10px) scale(0.98);
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease;
+}
+
+.reveal-visible .mini-gallery-item {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
 .hero-motion {
   background:
     radial-gradient(circle at 20% 20%, rgb(107 122 75 / 18%), transparent 55%),
@@ -94,6 +121,12 @@ h4 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
   .hero-motion {
     animation: none;
   }
