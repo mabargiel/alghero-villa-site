@@ -24,6 +24,7 @@ export default function HeroMedia({
 }: HeroMediaProps) {
   const prefersReducedMotion = useReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [hasVideoError, setHasVideoError] = useState(false);
 
   const safeImages = useMemo(
     () => images.filter((image) => image.url),
@@ -38,6 +39,7 @@ export default function HeroMedia({
 
   const canRotate = !prefersReducedMotion && safeImages.length > 1;
   const canPlayVideo = Boolean(videoUrl) && !prefersReducedMotion;
+  const shouldPlayVideo = canPlayVideo && !hasVideoError;
 
   useEffect(() => {
     if (!canRotate) {
@@ -56,15 +58,15 @@ export default function HeroMedia({
   return (
     <div className="absolute inset-0">
       <div className="hidden h-full w-full md:block">
-        {canPlayVideo ? (
+        {shouldPlayVideo ? (
           <video
             className="absolute inset-0 h-full w-full object-cover"
             autoPlay
             muted
             loop
             playsInline
-            preload="metadata"
-            poster={mobileImage?.url}
+            preload="auto"
+            onError={() => setHasVideoError(true)}
           >
             <source src={videoUrl} type="video/mp4" />
           </video>
@@ -89,7 +91,9 @@ export default function HeroMedia({
           <Image
             src={fallbackImage.url}
             alt={fallbackImage.altText}
-            className="h-full w-full object-cover"
+            fill
+            sizes="100vw"
+            className="object-cover"
             loading="eager"
             decoding="async" 
           />

@@ -21,7 +21,9 @@ function SectionImage({ altText, url }: { altText: string; url: string }) {
       <Image
         src={url}
         alt={altText}
-        className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.02]"
+        fill
+        sizes="(min-width: 1024px) 33vw, 100vw"
+        className="object-cover transition duration-700 group-hover:scale-[1.02]"
         loading="lazy"
         decoding="async"
       />
@@ -76,8 +78,8 @@ export default async function HomePage() {
     })) ?? [];
   return (
     <main className="bg-[var(--background)] text-[var(--foreground)]">
-      <section className="relative min-h-screen w-full overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-[var(--surface-strong)]" />
+      <section className="hero-shell relative min-h-screen w-full overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 bg-[var(--deep-olive)]" />
         <div className="pointer-events-none absolute inset-0">
           <HeroMedia
             images={heroImages}
@@ -148,6 +150,8 @@ export default async function HomePage() {
           <Image
             src="/divider.svg"
             alt=""
+            width={480}
+            height={88}
             className="mx-auto mb-6 h-12 w-auto fill-[var(--accent)]"
           />
           <h2 className="text-2xl font-semibold md:text-3xl">Udogodnienia</h2>
@@ -188,20 +192,20 @@ export default async function HomePage() {
               {miniGalleryImages.map((image, index) => (
                 <div
                   key={image.key}
-                  className="mini-gallery-item relative"
+                  className="mini-gallery-item relative aspect-[4/3] w-full overflow-hidden"
                   style={{
                     transitionDelay: `${index * 90}ms`,
                   }}
                 >
-                  <div className="w-full overflow-hidden">
-                    <Image
-                      src={image.url}
-                      alt={image.altText}
-                      className="aspect-[4/3] h-full w-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
+                  <Image
+                    src={image.url}
+                    alt={image.altText}
+                    fill
+                    sizes="20vw"
+                    className="object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
               ))}
             </div>

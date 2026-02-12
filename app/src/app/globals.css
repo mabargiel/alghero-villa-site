@@ -177,3 +177,27 @@ h4 {
     opacity: 0.4;
   }
 }
+
+.hero-shell {
+  position: relative;
+}
+
+.hero-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #050805;
+  z-index: 30;
+  pointer-events: none;
+  animation: hero-shell-reveal 2400ms ease-out forwards;
+}
+
+@keyframes hero-shell-reveal {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
