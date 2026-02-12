@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 type GalleryImageView = {
   key: string;
   altText: string;
@@ -38,28 +38,31 @@ export default function GalleryClient({ images }: Props) {
     setIsTransitioning(false);
   }
 
-  function showImage(targetIndex: number) {
-    if (targetIndex < 0 || targetIndex >= images.length || isTransitioning) {
-      return;
-    }
-    setNextIndex(targetIndex);
-    setIsTransitioning(true);
-    window.setTimeout(() => {
-      setActiveIndex(targetIndex);
-      setNextIndex(null);
-      setIsTransitioning(false);
-    }, 220);
-  }
+  const showImage = useCallback(
+    (targetIndex: number) => {
+      if (targetIndex < 0 || targetIndex >= images.length || isTransitioning) {
+        return;
+      }
+      setNextIndex(targetIndex);
+      setIsTransitioning(true);
+      window.setTimeout(() => {
+        setActiveIndex(targetIndex);
+        setNextIndex(null);
+        setIsTransitioning(false);
+      }, 220);
+    },
+    [images, isTransitioning],
+  );
 
-  function showNext() {
+  const showNext = useCallback(() => {
     if (activeIndex === null) return;
     showImage((activeIndex + 1) % images.length);
-  }
+  }, [activeIndex, images, showImage]);
 
-  function showPrev() {
+  const showPrev = useCallback(() => {
     if (activeIndex === null) return;
     showImage((activeIndex - 1 + images.length) % images.length);
-  }
+  }, [activeIndex, images, showImage]);
 
   useEffect(() => {
     if (!hasLightbox) return;
@@ -72,7 +75,7 @@ export default function GalleryClient({ images }: Props) {
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [hasLightbox, activeIndex]);
+  }, [hasLightbox, activeIndex, showNext, showPrev]);
 
   return (
     <>

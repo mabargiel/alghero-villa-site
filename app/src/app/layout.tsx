@@ -44,6 +44,26 @@ export default function RootLayout({
       <body className={`${lato.variable} antialiased`}>
         <TopNav />
         {children}
+        <footer className="mt-12 w-full bg-[var(--surface-strong)]">
+          <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 border-t border-white/30 p-6 pt-8 text-xs text-[var(--muted)] md:flex-row md:items-center md:justify-between">
+            <span>
+              © {new Date().getFullYear()} Villa Monte Calvia TM. All rights
+              reserved.
+            </span>
+            <span>
+              Designed and implemented by{" "}
+              <a
+                href="https://github.com/mabargiel/alghero-villa-site"
+                className="font-semibold text-[var(--foreground)] underline decoration-[var(--accent)] underline-offset-4 transition hover:text-[var(--accent-strong)]"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Mateusz Bargiel
+              </a>
+              .
+            </span>
+          </div>
+        </footer>
       </body>
     </html>
   );

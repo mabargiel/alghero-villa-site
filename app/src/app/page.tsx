@@ -1,68 +1,100 @@
 import HeroMedia from "@/components/HeroMedia";
+import LucideIcon from "@/components/LucideIcon";
 import Reveal from "@/components/Reveal";
 import { urlFor } from "@/lib/sanity/image";
-import { getGallery } from "@/lib/sanity/queries";
-
-const sectionImages = {
-  hero: ["dom z zew -najlepsze/1.png", "dom z zew -najlepsze/4.png"],
-  garden: ["dom z zew -najlepsze/16.png", "dom z zew -najlepsze/20.png"],
-  interiors: ["salon-najlepsze/17.jpg", "salon-najlepsze/23.jpg"],
-  location: ["plaża1.JPG", "zachód słońca2.jpeg", "zatoka1.JPG"],
-};
-
-const highlights = [
-  "Prywatna posiadłość na terenie ok. 1 hektara",
-  "6 sypialni dwuosobowych z prywatnymi łazienkami",
-  "Klimatyzacja w całym obiekcie",
-  "Tarasy i bezpośrednie wyjścia na zewnątrz",
-  "Strefy wypoczynku i biesiadowania na świeżym powietrzu",
-  "Blisko miasta, portu, plaż i lotniska",
-];
+import type { HomeSection } from "@/lib/sanity/queries";
+import { getHero, getHomeSections, getMiniGallery } from "@/lib/sanity/queries";
+import Image from "next/image";
 
 const amenities = [
-  "Altana z letnią kuchnią i dużym stołem",
-  "Zadaszona weranda z panoramicznym widokiem",
-  "Wielofunkcyjne boisko",
-  "Rozległe trawniki i śródziemnomorska zieleń",
-  "Prywatny parking",
+  { label: "Prywatny teren 1 ha", iconKey: "land" },
+  { label: "6 sypialni en-suite", iconKey: "bedrooms" },
+  { label: "Klimatyzacja w całym domu", iconKey: "climate" },
+  { label: "Tarasy i ogród", iconKey: "terraces" },
+  { label: "Strefy relaksu na zewnątrz", iconKey: "outdoor" },
+  { label: "Blisko plaż i lotniska", iconKey: "location" },
 ];
 
-function SectionPlaceholder({
-  label,
-  files,
-}: {
-  label: string;
-  files: string[];
-}) {
+function SectionImage({ altText, url }: { altText: string; url: string }) {
   return (
-    <div className="rounded-2xl border border-[var(--surface)] bg-[var(--surface)] p-6">
-      <p className="text-sm tracking-[0.2em] text-[var(--muted)] uppercase">
-        {label}
-      </p>
-      <ul className="mt-4 space-y-1 text-sm text-[var(--muted)]">
-        {files.map((file) => (
-          <li key={file}>{file}</li>
-        ))}
-      </ul>
+    <div className="group relative h-[260px] overflow-hidden rounded-lg bg-[var(--surface)] shadow-[0_25px_55px_-35px_rgba(20,20,20,0.5)] md:h-[320px] lg:h-[380px]">
+      <Image
+        src={url}
+        alt={altText}
+        fill
+        sizes="(min-width: 1024px) 33vw, 100vw"
+        className="object-cover transition duration-700 group-hover:scale-[1.02]"
+        loading="lazy"
+        decoding="async"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-80 transition duration-700 group-hover:opacity-60" />
     </div>
   );
 }
 
 export default async function HomePage() {
-  const gallery = await getGallery();
+  const [hero, sections, miniGallery] = await Promise.all([
+    getHero(),
+    getHomeSections(),
+    getMiniGallery(),
+  ]);
+  const sectionMap = new Map<HomeSection["sectionKey"], HomeSection["image"]>(
+    (sections ?? []).map((section) => [section.sectionKey, section.image]),
+  );
   const heroImages =
-    gallery?.heroImages?.map((image) => ({
+    hero?.images?.map((image) => ({
       altText: image.altText,
-      url: urlFor(image.image).width(2000).quality(85).auto("format").url(),
+      url: urlFor(image.image).width(2200).quality(85).auto("format").url(),
+    })) ?? [];
+  const heroMobileImage = hero?.mobileImage
+    ? {
+        altText: hero.mobileImage.altText,
+        url: urlFor(hero.mobileImage.image)
+          .width(1400)
+          .quality(85)
+          .auto("format")
+          .url(),
+      }
+    : undefined;
+  const sectionImage = (key: HomeSection["sectionKey"]) => {
+    const image = sectionMap.get(key);
+    if (!image) {
+      return null;
+    }
+    return {
+      altText: image.altText,
+      url: urlFor(image.image).width(1400).quality(85).auto("format").url(),
+    };
+  };
+  const propertyImage = sectionImage("property");
+  const interiorsImage = sectionImage("interiors");
+  const gardenImage = sectionImage("garden");
+  const locationImage = sectionImage("location");
+  const miniGalleryImages =
+    miniGallery?.images?.slice(0, 5).map((image) => ({
+      key: image._key,
+      altText: "",
+      url: urlFor(image).width(1200).quality(85).auto("format").url(),
     })) ?? [];
   return (
     <main className="bg-[var(--background)] text-[var(--foreground)]">
-      <section className="relative min-h-screen w-full overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-[var(--surface-strong)]" />
+      <section className="hero-shell relative min-h-screen w-full overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 bg-[var(--deep-olive)]" />
         <div className="pointer-events-none absolute inset-0">
-          <HeroMedia images={heroImages} />
+          <HeroMedia
+            images={heroImages}
+            mobileImage={heroMobileImage}
+            videoUrl={hero?.videoUrl}
+          />
         </div>
-        <div className="pointer-events-none absolute inset-0 bg-black/75" />
+        {hero?.videoUrl ? (
+          <>
+            <div className="pointer-events-none absolute inset-0 bg-black/70 md:hidden" />
+            <div className="pointer-events-none absolute inset-0 hidden bg-black/35 md:block" />
+          </>
+        ) : (
+          <div className="pointer-events-none absolute inset-0 bg-black/75" />
+        )}
         <div
           className="hero-motion pointer-events-none absolute inset-0"
           aria-hidden="true"
@@ -111,31 +143,80 @@ export default async function HomePage() {
       </section>
 
       <Reveal>
-        <section id="highlights" className="mx-auto max-w-6xl px-6 pt-16 pb-16">
-          <h2 className="text-2xl font-semibold md:text-3xl">
-            Najważniejsze atuty
-          </h2>
-          <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
+        <section
+          id="highlights"
+          className="mx-auto max-w-6xl px-6 pt-16 pb-16 text-center"
+        >
+          <Image
+            src="/divider.svg"
+            alt=""
+            width={480}
+            height={88}
+            className="mx-auto mb-6 h-12 w-auto fill-[var(--accent)]"
+          />
+          <h2 className="text-2xl font-semibold md:text-3xl">Udogodnienia</h2>
+          <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
           <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
-            Komfort, przestrzeń i śródziemnomorska natura w jednym miejscu
+            Najważniejsze atuty w jednym miejscu
           </p>
-          <ul className="mt-6 grid gap-4 md:grid-cols-2">
-            {highlights.map((item) => (
-              <li
-                key={item}
-                className="rounded-xl border border-[var(--surface)] bg-white px-4 py-3 text-sm text-[var(--muted)] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+          <div className="mt-10 grid grid-cols-3 items-start gap-6 text-center md:grid-cols-6 md:gap-4">
+            {amenities.map((item) => (
+              <div
+                key={item.label}
+                className="flex min-w-0 flex-col items-center gap-3"
               >
-                {item}
-              </li>
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-[0_0_0_1px_rgba(72,104,90,0.2),_0_10px_18px_-12px_rgba(72,104,90,0.55),_0_20px_40px_-18px_rgba(0,0,0,0.6)]">
+                  <LucideIcon
+                    name={item.iconKey}
+                    className="h-5 w-5 text-[var(--accent-strong)] md:h-6 md:w-6"
+                  />
+                </div>
+                <span className="text-[10px] font-semibold tracking-[0.14em] text-[var(--foreground)] uppercase sm:text-[11px] md:text-xs">
+                  {item.label}
+                </span>
+              </div>
             ))}
-          </ul>
+          </div>
         </section>
       </Reveal>
+
+      {miniGalleryImages.length === 5 ? (
+        <Reveal>
+          <section className="relative hidden w-screen px-0 pb-16 md:block">
+            <div
+              className="grid w-full items-center gap-1 px-0"
+              style={{
+                gridTemplateColumns: "1fr 1fr 1.15fr 1fr 1fr",
+              }}
+            >
+              {miniGalleryImages.map((image, index) => (
+                <div
+                  key={image.key}
+                  className="mini-gallery-item relative aspect-[4/3] w-full overflow-hidden"
+                  style={{
+                    transitionDelay: `${index * 90}ms`,
+                  }}
+                >
+                  <Image
+                    src={image.url}
+                    alt={image.altText}
+                    fill
+                    sizes="20vw"
+                    className="object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
+        </Reveal>
+      ) : null}
 
       <Reveal>
         <section className="mx-auto max-w-6xl px-6 pb-16">
           <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
-            <div>
+            <div className="order-1 md:order-none">
               <h2 className="text-2xl font-semibold md:text-3xl">
                 Nieruchomość
               </h2>
@@ -144,17 +225,23 @@ export default async function HomePage() {
                 Prywatna posiadłość na terenie ok. 1 hektara
               </p>
               <p className="mt-4 text-[var(--muted)]">
-                Willa znajduje się na prywatnym, starannie zagospodarowanym
-                terenie otoczonym śródziemnomorską roślinnością. To miejsce
-                stworzone do wypoczynku w rytmie „slow”: poranna kawa na
-                tarasie, długie posiłki w ogrodzie i cisza z dala od tłumów —
-                bez rezygnowania z bliskości Alghero.
+                Villa Monte Calvia to prywatna rezydencja na rozległym terenie,
+                otoczona śródziemnomorską roślinnością. Zapewnia spokój i
+                przestrzeń na wypoczynek w rytmie „slow”, a jednocześnie
+                pozostaje blisko Alghero.
               </p>
+              <a
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-strong)]"
+                href="/interiors"
+              >
+                Zobacz wnętrza →
+              </a>
             </div>
-            <SectionPlaceholder
-              label="Garden images"
-              files={sectionImages.garden}
-            />
+            {propertyImage ? (
+              <div className="order-2 md:order-none">
+                <SectionImage {...propertyImage} />
+              </div>
+            ) : null}
           </div>
         </section>
       </Reveal>
@@ -162,21 +249,21 @@ export default async function HomePage() {
       <Reveal>
         <section className="mx-auto max-w-6xl px-6 pb-16">
           <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
-            <SectionPlaceholder
-              label="Interiors images"
-              files={sectionImages.interiors}
-            />
-            <div>
+            {interiorsImage ? (
+              <div className="order-2 md:order-none">
+                <SectionImage {...interiorsImage} />
+              </div>
+            ) : null}
+            <div className="order-1 md:order-none">
               <h2 className="text-2xl font-semibold md:text-3xl">Wnętrza</h2>
               <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
               <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
                 6 komfortowych sypialni z prywatnymi łazienkami
               </p>
               <p className="mt-4 text-[var(--muted)]">
-                Komfortowe, dopracowane wnętrza zapewniają prywatność, wygodę i
-                przestrzeń do wspólnego spędzania czasu. Do dyspozycji jest 6
-                sypialni z prywatnymi łazienkami, salon z aneksem kuchennym,
-                pralnia oraz klimatyzacja w całym obiekcie.
+                Wnętrza łączą elegancję z wygodą codziennego życia. Znajdziesz
+                tu 6 sypialni z łazienkami, przestronny salon z aneksem
+                kuchennym i strefy wspólne idealne do odpoczynku.
               </p>
               <a
                 className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-strong)]"
@@ -192,7 +279,7 @@ export default async function HomePage() {
       <Reveal>
         <section className="mx-auto max-w-6xl px-6 pb-16">
           <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
-            <div>
+            <div className="order-1 md:order-none">
               <h2 className="text-2xl font-semibold md:text-3xl">
                 Ogród i tarasy
               </h2>
@@ -201,16 +288,23 @@ export default async function HomePage() {
                 Zadaszona weranda i strefy relaksu wśród zieleni
               </p>
               <p className="mt-4 text-[var(--muted)]">
-                Ogromny ogród jest sercem Villa Monte Calvia. Zadaszona weranda,
-                altana z letnią kuchnią, strefy relaksu i wielofunkcyjne boisko
-                tworzą przestrzeń na wspólne posiłki, zabawy dzieci i długie
-                wieczory na świeżym powietrzu.
+                Ogród to serce posiadłości: zadaszona weranda, altana z letnią
+                kuchnią i strefy relaksu pozwalają spędzać całe dnie na
+                zewnątrz. Wieczory sprzyjają wspólnym kolacjom i spokojnym
+                chwilom wśród zieleni.
               </p>
+              <a
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-strong)]"
+                href="/location"
+              >
+                Poznaj okolicę →
+              </a>
             </div>
-            <SectionPlaceholder
-              label="Outdoor images"
-              files={sectionImages.garden}
-            />
+            {gardenImage ? (
+              <div className="order-2 md:order-none">
+                <SectionImage {...gardenImage} />
+              </div>
+            ) : null}
           </div>
         </section>
       </Reveal>
@@ -218,11 +312,12 @@ export default async function HomePage() {
       <Reveal>
         <section className="mx-auto max-w-6xl px-6 pb-16">
           <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
-            <SectionPlaceholder
-              label="Location images"
-              files={sectionImages.location}
-            />
-            <div>
+            {locationImage ? (
+              <div className="order-2 md:order-none">
+                <SectionImage {...locationImage} />
+              </div>
+            ) : null}
+            <div className="order-1 md:order-none">
               <h2 className="text-2xl font-semibold md:text-3xl">
                 Lokalizacja
               </h2>
@@ -231,15 +326,39 @@ export default async function HomePage() {
                 15 minut do lotniska, plaż i zabytków Alghero
               </p>
               <p className="mt-4 text-[var(--muted)]">
-                Villa Monte Calvia zapewnia spokój i prywatność, a jednocześnie
-                pozwala w kilka minut dotrzeć do centrum Alghero, plaż, zatok
-                oraz lotniska (ok. 15 minut).
+                Willa gwarantuje ciszę, a jednocześnie umożliwia szybki dojazd
+                do centrum Alghero, portu, plaż i lotniska (ok. 15 minut). To
+                idealny punkt wypadowy do odkrywania zachodniej Sardynii.
               </p>
-              <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
-                <li>Centrum Alghero i port</li>
-                <li>Liczne plaże i malownicze zatoki</li>
-                <li>Zabytki i atrakcje archeologiczne</li>
-                <li>Sklepy, kawiarnie i restauracje</li>
+              <ul className="mt-5 grid gap-3 text-sm text-[var(--muted)] sm:grid-cols-2">
+                <li className="flex items-center gap-3 rounded-lg bg-white/70 px-3 py-2 shadow-sm">
+                  <LucideIcon
+                    name="port"
+                    className="h-4 w-4 text-[var(--accent)]"
+                  />
+                  Centrum Alghero i port
+                </li>
+                <li className="flex items-center gap-3 rounded-lg bg-white/70 px-3 py-2 shadow-sm">
+                  <LucideIcon
+                    name="beach"
+                    className="h-4 w-4 text-[var(--accent)]"
+                  />
+                  Liczne plaże i malownicze zatoki
+                </li>
+                <li className="flex items-center gap-3 rounded-lg bg-white/70 px-3 py-2 shadow-sm">
+                  <LucideIcon
+                    name="heritage"
+                    className="h-4 w-4 text-[var(--accent)]"
+                  />
+                  Zabytki i atrakcje archeologiczne
+                </li>
+                <li className="flex items-center gap-3 rounded-lg bg-white/70 px-3 py-2 shadow-sm">
+                  <LucideIcon
+                    name="cafe"
+                    className="h-4 w-4 text-[var(--accent)]"
+                  />
+                  Sklepy, kawiarnie i restauracje
+                </li>
               </ul>
             </div>
           </div>
@@ -247,28 +366,8 @@ export default async function HomePage() {
       </Reveal>
 
       <Reveal>
-        <section className="mx-auto max-w-6xl px-6 pb-16">
-          <h2 className="text-2xl font-semibold md:text-3xl">Udogodnienia</h2>
-          <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
-          <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
-            Wszystko na miejscu, bez kompromisów
-          </p>
-          <ul className="mt-6 grid gap-4 md:grid-cols-2">
-            {amenities.map((item) => (
-              <li
-                key={item}
-                className="rounded-xl border border-[var(--surface)] bg-white px-4 py-3 text-sm text-[var(--muted)] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </section>
-      </Reveal>
-
-      <Reveal>
         <section className="mx-auto max-w-6xl px-6 pb-24">
-          <div className="rounded-2xl bg-[var(--surface)] p-10 text-center">
+          <div className="rounded-xl bg-[#e3d8c8] p-10 text-center shadow-[0_6px_16px_-10px_rgba(20,20,20,0.28),_0_22px_45px_-28px_rgba(20,20,20,0.4)]">
             <h2 className="text-2xl font-semibold md:text-3xl">
               Zapraszamy do Villa Monte Calvia
             </h2>

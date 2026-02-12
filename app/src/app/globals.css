@@ -1,14 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #EDF3F0;
+  --background: #edf3f0;
   --foreground: #26241f;
   --muted: #6f6b5e;
   --surface: #f4f1e9;
   --surface-strong: #ebe5d8;
-  --brand: #48685A;
-  --accent: #48685A;
-  --accent-strong: #48685A;
+  --brand: #48685a;
+  --accent: #48685a;
+  --accent-strong: #48685a;
+  --deep-olive: #1f2a23;
+  --accent-gold: #d7c38e;
 }
 
 @theme inline {
@@ -20,6 +22,8 @@
   --color-brand: var(--brand);
   --color-accent: var(--accent);
   --color-accent-strong: var(--accent-strong);
+  --color-deep-olive: var(--deep-olive);
+  --color-accent-gold: var(--accent-gold);
   --font-sans: var(--font-lato);
   --font-serif: var(--font-lato);
 }
@@ -70,18 +74,45 @@ h4 {
   text-shadow: 0 8px 30px rgb(0 0 0 / 45%);
 }
 
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease;
+  will-change: opacity, transform;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mini-gallery-item {
+  opacity: 0;
+  transform: translateY(10px) scale(0.98);
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease;
+}
+
+.mini-gallery-item img {
+  transition: transform 0.35s ease;
+}
+
+.mini-gallery-item:hover img {
+  transform: scale(1.06);
+}
+
+.reveal-visible .mini-gallery-item {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
 .hero-motion {
   background:
-    radial-gradient(
-      circle at 20% 20%,
-      rgb(107 122 75 / 18%),
-      transparent 55%
-    ),
-    radial-gradient(
-      circle at 80% 30%,
-      rgb(235 229 216 / 55%),
-      transparent 60%
-    );
+    radial-gradient(circle at 20% 20%, rgb(107 122 75 / 18%), transparent 55%),
+    radial-gradient(circle at 80% 30%, rgb(235 229 216 / 55%), transparent 60%);
   background-size: 140% 140%;
   animation: hero-pan 18s ease-in-out infinite;
   opacity: 0.25;
@@ -102,6 +133,12 @@ h4 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
   .hero-motion {
     animation: none;
   }
@@ -138,5 +175,29 @@ h4 {
   50% {
     transform: translateY(8px);
     opacity: 0.4;
+  }
+}
+
+.hero-shell {
+  position: relative;
+}
+
+.hero-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #050805;
+  z-index: 30;
+  pointer-events: none;
+  animation: hero-shell-reveal 2400ms ease-out forwards;
+}
+
+@keyframes hero-shell-reveal {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
   }
 }

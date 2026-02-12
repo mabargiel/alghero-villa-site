@@ -1,4 +1,5 @@
 import ContactForm from "@/components/ContactForm";
+import SocialIcon from "@/components/SocialIcon";
 
 export default function ContactPage() {
   return (
@@ -24,14 +25,7 @@ export default function ContactPage() {
           rel="noreferrer"
           aria-label="Facebook"
         >
-          <svg
-            aria-hidden="true"
-            className="h-5 w-5"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
-            <path d="M13.5 9.5V7.2c0-.7.4-1.1 1.1-1.1h1.7V4h-2.3C11.8 4 11 5.1 11 6.8v2.7H9v2.6h2v7.9h2.5v-7.9h2.2l.4-2.6h-2.6Z" />
-          </svg>
+          <SocialIcon name="facebook" className="h-5 w-5" />
           Facebook
         </a>
         <a
@@ -41,14 +35,7 @@ export default function ContactPage() {
           rel="noreferrer"
           aria-label="Instagram"
         >
-          <svg
-            aria-hidden="true"
-            className="h-5 w-5"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
-            <path d="M16.5 7.5h.01M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Zm5 5a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm6.5-.6a.9.9 0 1 1-1.8 0 .9.9 0 0 1 1.8 0Z" />
-          </svg>
+          <SocialIcon name="instagram" className="h-5 w-5" />
           Instagram
         </a>
         <a
@@ -58,14 +45,7 @@ export default function ContactPage() {
           rel="noreferrer"
           aria-label="Google"
         >
-          <svg
-            aria-hidden="true"
-            className="h-5 w-5"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
-            <path d="M12 10.2v3.7h5.2c-.5 2.3-2.5 3.7-5.2 3.7a5.9 5.9 0 1 1 0-11.8c1.6 0 2.9.6 3.9 1.5l2.5-2.5A9.3 9.3 0 0 0 12 2.7a9.3 9.3 0 1 0 0 18.6c4.7 0 8.8-3.4 8.8-9.1 0-.6-.1-1.1-.2-2H12Z" />
-          </svg>
+          <SocialIcon name="googlemaps" className="h-5 w-5" />
           Google
         </a>
       </div>

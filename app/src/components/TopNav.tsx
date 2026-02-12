@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useSyncExternalStore } from "react";
+import { useState } from "react";
+import SocialIcon from "@/components/SocialIcon";
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -15,16 +16,9 @@ const navItems = [
 export default function TopNav() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const hasMounted = useSyncExternalStore(
-    () => () => {},
-    () => true,
-    () => false,
-  );
   const effectivePath =
     pathname || (typeof window !== "undefined" ? window.location.pathname : "");
-  const isPathReady = Boolean(effectivePath);
   const isHome = effectivePath === "/";
-  const showSolidNav = hasMounted && isPathReady && !isHome;
 
   function handleToggle() {
     setIsOpen((prev) => !prev);
@@ -35,11 +29,7 @@ export default function TopNav() {
   }
 
   return (
-    <header
-      className={`top-0 left-0 z-30 w-full ${
-        isHome ? "absolute" : "sticky"
-      } ${showSolidNav ? "border-b border-[var(--surface)] bg-[var(--background)]/90 backdrop-blur" : "bg-transparent"}`}
-    >
+    <header className="absolute top-0 left-0 z-30 w-full">
       <div className="mx-auto flex max-w-6xl justify-end px-6 pt-3 pb-2">
         <div
           className={`flex items-center gap-3 text-sm ${
@@ -55,18 +45,7 @@ export default function TopNav() {
             rel="noreferrer"
             aria-label="Facebook"
           >
-            <svg
-              aria-hidden="true"
-              className="block h-[18px] w-[18px]"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M15 3h-2.5a4.5 4.5 0 0 0-4.5 4.5V10H6v4h2v7h4v-7h3l1-4h-4V7.5A1.5 1.5 0 0 1 13.5 6H15V3Z" />
-            </svg>
+            <SocialIcon name="facebook" className="block h-[18px] w-[18px]" />
           </a>
           <a
             className={`transition ${
@@ -77,20 +56,7 @@ export default function TopNav() {
             rel="noreferrer"
             aria-label="Instagram"
           >
-            <svg
-              aria-hidden="true"
-              className="block h-[18px] w-[18px]"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <rect x="3" y="3" width="18" height="18" rx="5" ry="5" />
-              <circle cx="12" cy="12" r="4" />
-              <path d="M17.5 6.5h.01" />
-            </svg>
+            <SocialIcon name="instagram" className="block h-[18px] w-[18px]" />
           </a>
           <a
             className={`transition ${
@@ -101,26 +67,12 @@ export default function TopNav() {
             rel="noreferrer"
             aria-label="Google"
           >
-            <svg
-              aria-hidden="true"
-              className="block h-[18px] w-[18px]"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0Z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
+            <SocialIcon name="googlemaps" className="block h-[18px] w-[18px]" />
           </a>
         </div>
       </div>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 pt-1 pb-6 md:pb-8">
-        <div
-          className="text-xs tracking-[0.35em] uppercase text-[var(--brand)]"
-        >
+        <div className="text-xs tracking-[0.35em] text-[var(--brand)] uppercase">
           Villa Monte Calvia
         </div>
 
@@ -150,7 +102,9 @@ export default function TopNav() {
                   className={`absolute -bottom-2 left-0 h-[2px] w-[70%] origin-left rounded-full transition-transform duration-300 ${
                     isHome ? "bg-white/90" : "bg-[var(--accent-strong)]"
                   } ${
-                    isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    isActive
+                      ? "scale-x-100"
+                      : "scale-x-0 group-hover:scale-x-100"
                   }`}
                 />
               </Link>
@@ -202,7 +156,6 @@ export default function TopNav() {
       >
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-6">
           {navItems.map((item) => {
-            const isActive = pathname === item.href;
             return (
               <Link
                 key={item.href}
