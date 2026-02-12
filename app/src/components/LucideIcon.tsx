@@ -47,5 +47,7 @@ export default function LucideIcon({
   strokeWidth = 1.6,
 }: LucideIconProps) {
   const Icon = iconMap[name as IconKey] ?? Circle;
-  return <Icon className={className} strokeWidth={strokeWidth} aria-hidden="true" />;
+  return (
+    <Icon className={className} strokeWidth={strokeWidth} aria-hidden="true" />
+  );
 }

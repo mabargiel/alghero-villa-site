@@ -12,12 +12,14 @@ Home page sections still show placeholder media and the CMS mixes hero and galle
 ## Capabilities
 
 ### New Capabilities
+
 - `home-page-media`: CMS-managed hero media with desktop video support and a mobile/static fallback, plus image handling for the Home page.
 - `home-section-images`: CMS-managed single image per Home section (property, interiors, garden, location) with required alt text.
 - `gallery-hero-separation`: Separate CMS structures for hero media and gallery images.
 - `home-page-animations`: Motion behavior for Home page sections that remains responsive, non-blocking, and reduced-motion aware.
 
 ### Modified Capabilities
+
 - None.
 
 ## Impact

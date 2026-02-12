@@ -12,11 +12,13 @@ The Home page highlight and amenities sections look plain and text-heavy, which 
 ## Capabilities
 
 ### New Capabilities
+
 - `highlights-media`: CMS-managed highlight tiles with image + label and optional alt text.
 - `amenities-icon-row`: Single-row amenities grid using Lucide icons and brand-aligned dark strip styling.
 - `icon-standardization`: Consistent icon system using Lucide across the site.
 
 ### Modified Capabilities
+
 - None.
 
 ## Impact

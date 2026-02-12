@@ -2,7 +2,9 @@ import HeroMedia from "@/components/HeroMedia";
 import LucideIcon from "@/components/LucideIcon";
 import Reveal from "@/components/Reveal";
 import { urlFor } from "@/lib/sanity/image";
+import type { HomeSection } from "@/lib/sanity/queries";
 import { getHero, getHomeSections, getMiniGallery } from "@/lib/sanity/queries";
+import Image from "next/image";
 
 const amenities = [
   { label: "Prywatny teren 1 ha", iconKey: "land" },
@@ -13,16 +15,10 @@ const amenities = [
   { label: "Blisko plaż i lotniska", iconKey: "location" },
 ];
 
-function SectionImage({
-  altText,
-  url,
-}: {
-  altText: string;
-  url: string;
-}) {
+function SectionImage({ altText, url }: { altText: string; url: string }) {
   return (
     <div className="group relative h-[260px] overflow-hidden rounded-lg bg-[var(--surface)] shadow-[0_25px_55px_-35px_rgba(20,20,20,0.5)] md:h-[320px] lg:h-[380px]">
-      <img
+      <Image
         src={url}
         alt={altText}
         className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.02]"
@@ -40,7 +36,7 @@ export default async function HomePage() {
     getHomeSections(),
     getMiniGallery(),
   ]);
-  const sectionMap = new Map(
+  const sectionMap = new Map<HomeSection["sectionKey"], HomeSection["image"]>(
     (sections ?? []).map((section) => [section.sectionKey, section.image]),
   );
   const heroImages =
@@ -58,7 +54,7 @@ export default async function HomePage() {
           .url(),
       }
     : undefined;
-  const sectionImage = (key: string) => {
+  const sectionImage = (key: HomeSection["sectionKey"]) => {
     const image = sectionMap.get(key);
     if (!image) {
       return null;
@@ -149,14 +145,12 @@ export default async function HomePage() {
           id="highlights"
           className="mx-auto max-w-6xl px-6 pt-16 pb-16 text-center"
         >
-          <img
+          <Image
             src="/divider.svg"
             alt=""
             className="mx-auto mb-6 h-12 w-auto fill-[var(--accent)]"
           />
-          <h2 className="text-2xl font-semibold md:text-3xl">
-            Udogodnienia
-          </h2>
+          <h2 className="text-2xl font-semibold md:text-3xl">Udogodnienia</h2>
           <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
           <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
             Najważniejsze atuty w jednym miejscu
@@ -173,7 +167,7 @@ export default async function HomePage() {
                     className="h-5 w-5 text-[var(--accent-strong)] md:h-6 md:w-6"
                   />
                 </div>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--foreground)] sm:text-[11px] md:text-xs">
+                <span className="text-[10px] font-semibold tracking-[0.14em] text-[var(--foreground)] uppercase sm:text-[11px] md:text-xs">
                   {item.label}
                 </span>
               </div>
@@ -200,7 +194,7 @@ export default async function HomePage() {
                   }}
                 >
                   <div className="w-full overflow-hidden">
-                    <img
+                    <Image
                       src={image.url}
                       alt={image.altText}
                       className="aspect-[4/3] h-full w-full object-cover"
@@ -263,9 +257,9 @@ export default async function HomePage() {
                 6 komfortowych sypialni z prywatnymi łazienkami
               </p>
               <p className="mt-4 text-[var(--muted)]">
-                Wnętrza łączą elegancję z wygodą codziennego życia. Znajdziesz tu
-                6 sypialni z łazienkami, przestronny salon z aneksem kuchennym i
-                strefy wspólne idealne do odpoczynku.
+                Wnętrza łączą elegancję z wygodą codziennego życia. Znajdziesz
+                tu 6 sypialni z łazienkami, przestronny salon z aneksem
+                kuchennym i strefy wspólne idealne do odpoczynku.
               </p>
               <a
                 className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-strong)]"
@@ -291,9 +285,9 @@ export default async function HomePage() {
               </p>
               <p className="mt-4 text-[var(--muted)]">
                 Ogród to serce posiadłości: zadaszona weranda, altana z letnią
-                kuchnią i strefy relaksu pozwalają spędzać całe dnie na zewnątrz.
-                Wieczory sprzyjają wspólnym kolacjom i spokojnym chwilom wśród
-                zieleni.
+                kuchnią i strefy relaksu pozwalają spędzać całe dnie na
+                zewnątrz. Wieczory sprzyjają wspólnym kolacjom i spokojnym
+                chwilom wśród zieleni.
               </p>
               <a
                 className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-strong)]"
@@ -328,25 +322,37 @@ export default async function HomePage() {
                 15 minut do lotniska, plaż i zabytków Alghero
               </p>
               <p className="mt-4 text-[var(--muted)]">
-                Willa gwarantuje ciszę, a jednocześnie umożliwia szybki dojazd do
-                centrum Alghero, portu, plaż i lotniska (ok. 15 minut). To
+                Willa gwarantuje ciszę, a jednocześnie umożliwia szybki dojazd
+                do centrum Alghero, portu, plaż i lotniska (ok. 15 minut). To
                 idealny punkt wypadowy do odkrywania zachodniej Sardynii.
               </p>
               <ul className="mt-5 grid gap-3 text-sm text-[var(--muted)] sm:grid-cols-2">
                 <li className="flex items-center gap-3 rounded-lg bg-white/70 px-3 py-2 shadow-sm">
-                  <LucideIcon name="port" className="h-4 w-4 text-[var(--accent)]" />
+                  <LucideIcon
+                    name="port"
+                    className="h-4 w-4 text-[var(--accent)]"
+                  />
                   Centrum Alghero i port
                 </li>
                 <li className="flex items-center gap-3 rounded-lg bg-white/70 px-3 py-2 shadow-sm">
-                  <LucideIcon name="beach" className="h-4 w-4 text-[var(--accent)]" />
+                  <LucideIcon
+                    name="beach"
+                    className="h-4 w-4 text-[var(--accent)]"
+                  />
                   Liczne plaże i malownicze zatoki
                 </li>
                 <li className="flex items-center gap-3 rounded-lg bg-white/70 px-3 py-2 shadow-sm">
-                  <LucideIcon name="heritage" className="h-4 w-4 text-[var(--accent)]" />
+                  <LucideIcon
+                    name="heritage"
+                    className="h-4 w-4 text-[var(--accent)]"
+                  />
                   Zabytki i atrakcje archeologiczne
                 </li>
                 <li className="flex items-center gap-3 rounded-lg bg-white/70 px-3 py-2 shadow-sm">
-                  <LucideIcon name="cafe" className="h-4 w-4 text-[var(--accent)]" />
+                  <LucideIcon
+                    name="cafe"
+                    className="h-4 w-4 text-[var(--accent)]"
+                  />
                   Sklepy, kawiarnie i restauracje
                 </li>
               </ul>

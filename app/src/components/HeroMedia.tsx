@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useReducedMotion } from "framer-motion";
+import Image from "next/image";
 
 type HeroImage = {
   altText: string;
@@ -85,7 +86,7 @@ export default function HeroMedia({
       </div>
       <div className="absolute inset-0 block md:hidden">
         {fallbackImage ? (
-          <img
+          <Image
             src={fallbackImage.url}
             alt={fallbackImage.altText}
             className="h-full w-full object-cover"

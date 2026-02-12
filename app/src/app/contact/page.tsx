@@ -1,5 +1,5 @@
 import ContactForm from "@/components/ContactForm";
-import { Facebook, Instagram, MapPin } from "lucide-react";
+import SocialIcon from "@/components/SocialIcon";
 
 export default function ContactPage() {
   return (
@@ -25,7 +25,7 @@ export default function ContactPage() {
           rel="noreferrer"
           aria-label="Facebook"
         >
-          <Facebook className="h-5 w-5" strokeWidth={1.6} />
+          <SocialIcon name="facebook" className="h-5 w-5" />
           Facebook
         </a>
         <a
@@ -35,7 +35,7 @@ export default function ContactPage() {
           rel="noreferrer"
           aria-label="Instagram"
         >
-          <Instagram className="h-5 w-5" strokeWidth={1.6} />
+          <SocialIcon name="instagram" className="h-5 w-5" />
           Instagram
         </a>
         <a
@@ -45,7 +45,7 @@ export default function ContactPage() {
           rel="noreferrer"
           aria-label="Google"
         >
-          <MapPin className="h-5 w-5" strokeWidth={1.6} />
+          <SocialIcon name="googlemaps" className="h-5 w-5" />
           Google
         </a>
       </div>

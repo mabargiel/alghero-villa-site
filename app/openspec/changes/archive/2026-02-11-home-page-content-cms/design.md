@@ -5,12 +5,14 @@ The Home page currently uses placeholder blocks for section media and relies on 
 ## Goals / Non-Goals
 
 **Goals:**
+
 - Provide CMS-managed hero media with desktop video support and a mobile/static fallback.
 - Provide CMS-managed single images (with required alt text) for the four Home sections.
 - Split hero and gallery structures in the CMS for clarity and editing.
 - Add on-scroll/hover animations that do not block scrolling or delay interactivity.
 
 **Non-Goals:**
+
 - Editing Home section copy in CMS (text remains hardcoded for now).
 - Building the interiors subpage with multi-room imagery.
 - Introducing heavy animation frameworks or scroll hijacking libraries.

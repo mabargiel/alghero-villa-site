@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Facebook, Instagram, MapPin } from "lucide-react";
+import SocialIcon from "@/components/SocialIcon";
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -45,7 +45,7 @@ export default function TopNav() {
             rel="noreferrer"
             aria-label="Facebook"
           >
-            <Facebook className="block h-[18px] w-[18px]" strokeWidth={1.6} />
+            <SocialIcon name="facebook" className="block h-[18px] w-[18px]" />
           </a>
           <a
             className={`transition ${
@@ -56,7 +56,7 @@ export default function TopNav() {
             rel="noreferrer"
             aria-label="Instagram"
           >
-            <Instagram className="block h-[18px] w-[18px]" strokeWidth={1.6} />
+            <SocialIcon name="instagram" className="block h-[18px] w-[18px]" />
           </a>
           <a
             className={`transition ${
@@ -67,7 +67,7 @@ export default function TopNav() {
             rel="noreferrer"
             aria-label="Google"
           >
-            <MapPin className="block h-[18px] w-[18px]" strokeWidth={1.6} />
+            <SocialIcon name="googlemaps" className="block h-[18px] w-[18px]" />
           </a>
         </div>
       </div>

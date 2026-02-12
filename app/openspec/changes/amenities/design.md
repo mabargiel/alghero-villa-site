@@ -5,12 +5,14 @@ The Home page currently renders “Najważniejsze atuty” and “Udogodnienia�
 ## Goals / Non-Goals
 
 **Goals:**
+
 - Replace highlights with image tiles using shorter labels and Lucide icon overlays.
 - Render amenities as a single-row Lucide icon grid on a deep olive background.
 - Standardize all inline SVG icons to a consistent Lucide icon set.
 - Store highlight labels and images in CMS with optional alt text.
 
 **Non-Goals:**
+
 - Editing all Home copy in CMS (only highlights media/labels are CMS-managed).
 - Changing the overall Home page structure beyond the two sections.
 - Introducing heavy animation libraries or major layout refactors.
