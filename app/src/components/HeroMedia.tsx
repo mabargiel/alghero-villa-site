@@ -91,7 +91,7 @@ export default function HeroMedia({
             alt={fallbackImage.altText}
             className="h-full w-full object-cover"
             loading="eager"
-            decoding="async"
+            decoding="async" 
           />
         ) : null}
       </div>
