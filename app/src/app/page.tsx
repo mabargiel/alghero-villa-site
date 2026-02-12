@@ -1,23 +1,16 @@
 import HeroMedia from "@/components/HeroMedia";
+import LucideIcon from "@/components/LucideIcon";
 import Reveal from "@/components/Reveal";
 import { urlFor } from "@/lib/sanity/image";
 import { getHero, getHomeSections, getMiniGallery } from "@/lib/sanity/queries";
 
-const highlights = [
-  "Prywatna posiadłość na terenie ok. 1 hektara",
-  "6 sypialni dwuosobowych z prywatnymi łazienkami",
-  "Klimatyzacja w całym obiekcie",
-  "Tarasy i bezpośrednie wyjścia na zewnątrz",
-  "Strefy wypoczynku i biesiadowania na świeżym powietrzu",
-  "Blisko miasta, portu, plaż i lotniska",
-];
-
 const amenities = [
-  "Altana z letnią kuchnią i dużym stołem",
-  "Zadaszona weranda z panoramicznym widokiem",
-  "Wielofunkcyjne boisko",
-  "Rozległe trawniki i śródziemnomorska zieleń",
-  "Prywatny parking",
+  { label: "Prywatny teren 1 ha", iconKey: "land" },
+  { label: "6 sypialni en-suite", iconKey: "bedrooms" },
+  { label: "Klimatyzacja w całym domu", iconKey: "climate" },
+  { label: "Tarasy i ogród", iconKey: "terraces" },
+  { label: "Strefy relaksu na zewnątrz", iconKey: "outdoor" },
+  { label: "Blisko plaż i lotniska", iconKey: "location" },
 ];
 
 function SectionImage({
@@ -152,24 +145,40 @@ export default async function HomePage() {
       </section>
 
       <Reveal>
-        <section id="highlights" className="mx-auto max-w-6xl px-6 pt-16 pb-16">
+        <section
+          id="highlights"
+          className="mx-auto max-w-6xl px-6 pt-16 pb-16 text-center"
+        >
+          <img
+            src="/divider.svg"
+            alt=""
+            className="mx-auto mb-6 h-12 w-auto fill-[var(--accent)]"
+          />
           <h2 className="text-2xl font-semibold md:text-3xl">
-            Najważniejsze atuty
+            Udogodnienia
           </h2>
-          <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
+          <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
           <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
-            Komfort, przestrzeń i śródziemnomorska natura w jednym miejscu
+            Najważniejsze atuty w jednym miejscu
           </p>
-          <ul className="mt-6 grid gap-4 md:grid-cols-2">
-            {highlights.map((item) => (
-              <li
-                key={item}
-                className="rounded-xl border border-[var(--surface)] bg-white px-4 py-3 text-sm text-[var(--muted)] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+          <div className="mt-10 grid grid-cols-3 items-start gap-6 text-center md:grid-cols-6 md:gap-4">
+            {amenities.map((item) => (
+              <div
+                key={item.label}
+                className="flex min-w-0 flex-col items-center gap-3"
               >
-                {item}
-              </li>
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-[0_0_0_1px_rgba(72,104,90,0.2),_0_10px_18px_-12px_rgba(72,104,90,0.55),_0_20px_40px_-18px_rgba(0,0,0,0.6)]">
+                  <LucideIcon
+                    name={item.iconKey}
+                    className="h-5 w-5 text-[var(--accent-strong)] md:h-6 md:w-6"
+                  />
+                </div>
+                <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--foreground)] sm:text-[11px] md:text-xs">
+                  {item.label}
+                </span>
+              </div>
             ))}
-          </ul>
+          </div>
         </section>
       </Reveal>
 
@@ -218,12 +227,17 @@ export default async function HomePage() {
                 Prywatna posiadłość na terenie ok. 1 hektara
               </p>
               <p className="mt-4 text-[var(--muted)]">
-                Willa znajduje się na prywatnym, starannie zagospodarowanym
-                terenie otoczonym śródziemnomorską roślinnością. To miejsce
-                stworzone do wypoczynku w rytmie „slow”: poranna kawa na
-                tarasie, długie posiłki w ogrodzie i cisza z dala od tłumów —
-                bez rezygnowania z bliskości Alghero.
+                Villa Monte Calvia to prywatna rezydencja na rozległym terenie,
+                otoczona śródziemnomorską roślinnością. Zapewnia spokój i
+                przestrzeń na wypoczynek w rytmie „slow”, a jednocześnie
+                pozostaje blisko Alghero.
               </p>
+              <a
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-strong)]"
+                href="/interiors"
+              >
+                Zobacz wnętrza →
+              </a>
             </div>
             {propertyImage ? (
               <div className="order-2 md:order-none">
@@ -249,10 +263,9 @@ export default async function HomePage() {
                 6 komfortowych sypialni z prywatnymi łazienkami
               </p>
               <p className="mt-4 text-[var(--muted)]">
-                Komfortowe, dopracowane wnętrza zapewniają prywatność, wygodę i
-                przestrzeń do wspólnego spędzania czasu. Do dyspozycji jest 6
-                sypialni z prywatnymi łazienkami, salon z aneksem kuchennym,
-                pralnia oraz klimatyzacja w całym obiekcie.
+                Wnętrza łączą elegancję z wygodą codziennego życia. Znajdziesz tu
+                6 sypialni z łazienkami, przestronny salon z aneksem kuchennym i
+                strefy wspólne idealne do odpoczynku.
               </p>
               <a
                 className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-strong)]"
@@ -277,11 +290,17 @@ export default async function HomePage() {
                 Zadaszona weranda i strefy relaksu wśród zieleni
               </p>
               <p className="mt-4 text-[var(--muted)]">
-                Ogromny ogród jest sercem Villa Monte Calvia. Zadaszona weranda,
-                altana z letnią kuchnią, strefy relaksu i wielofunkcyjne boisko
-                tworzą przestrzeń na wspólne posiłki, zabawy dzieci i długie
-                wieczory na świeżym powietrzu.
+                Ogród to serce posiadłości: zadaszona weranda, altana z letnią
+                kuchnią i strefy relaksu pozwalają spędzać całe dnie na zewnątrz.
+                Wieczory sprzyjają wspólnym kolacjom i spokojnym chwilom wśród
+                zieleni.
               </p>
+              <a
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-strong)]"
+                href="/location"
+              >
+                Poznaj okolicę →
+              </a>
             </div>
             {gardenImage ? (
               <div className="order-2 md:order-none">
@@ -309,15 +328,27 @@ export default async function HomePage() {
                 15 minut do lotniska, plaż i zabytków Alghero
               </p>
               <p className="mt-4 text-[var(--muted)]">
-                Villa Monte Calvia zapewnia spokój i prywatność, a jednocześnie
-                pozwala w kilka minut dotrzeć do centrum Alghero, plaż, zatok
-                oraz lotniska (ok. 15 minut).
+                Willa gwarantuje ciszę, a jednocześnie umożliwia szybki dojazd do
+                centrum Alghero, portu, plaż i lotniska (ok. 15 minut). To
+                idealny punkt wypadowy do odkrywania zachodniej Sardynii.
               </p>
-              <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
-                <li>Centrum Alghero i port</li>
-                <li>Liczne plaże i malownicze zatoki</li>
-                <li>Zabytki i atrakcje archeologiczne</li>
-                <li>Sklepy, kawiarnie i restauracje</li>
+              <ul className="mt-5 grid gap-3 text-sm text-[var(--muted)] sm:grid-cols-2">
+                <li className="flex items-center gap-3 rounded-lg bg-white/70 px-3 py-2 shadow-sm">
+                  <LucideIcon name="port" className="h-4 w-4 text-[var(--accent)]" />
+                  Centrum Alghero i port
+                </li>
+                <li className="flex items-center gap-3 rounded-lg bg-white/70 px-3 py-2 shadow-sm">
+                  <LucideIcon name="beach" className="h-4 w-4 text-[var(--accent)]" />
+                  Liczne plaże i malownicze zatoki
+                </li>
+                <li className="flex items-center gap-3 rounded-lg bg-white/70 px-3 py-2 shadow-sm">
+                  <LucideIcon name="heritage" className="h-4 w-4 text-[var(--accent)]" />
+                  Zabytki i atrakcje archeologiczne
+                </li>
+                <li className="flex items-center gap-3 rounded-lg bg-white/70 px-3 py-2 shadow-sm">
+                  <LucideIcon name="cafe" className="h-4 w-4 text-[var(--accent)]" />
+                  Sklepy, kawiarnie i restauracje
+                </li>
               </ul>
             </div>
           </div>
@@ -325,28 +356,8 @@ export default async function HomePage() {
       </Reveal>
 
       <Reveal>
-        <section className="mx-auto max-w-6xl px-6 pb-16">
-          <h2 className="text-2xl font-semibold md:text-3xl">Udogodnienia</h2>
-          <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
-          <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
-            Wszystko na miejscu, bez kompromisów
-          </p>
-          <ul className="mt-6 grid gap-4 md:grid-cols-2">
-            {amenities.map((item) => (
-              <li
-                key={item}
-                className="rounded-xl border border-[var(--surface)] bg-white px-4 py-3 text-sm text-[var(--muted)] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </section>
-      </Reveal>
-
-      <Reveal>
         <section className="mx-auto max-w-6xl px-6 pb-24">
-          <div className="rounded-xl bg-[var(--surface-strong)] p-10 text-center shadow-[0_22px_50px_-32px_rgba(20,20,20,0.5)]">
+          <div className="rounded-xl bg-[#e3d8c8] p-10 text-center shadow-[0_6px_16px_-10px_rgba(20,20,20,0.28),_0_22px_45px_-28px_rgba(20,20,20,0.4)]">
             <h2 className="text-2xl font-semibold md:text-3xl">
               Zapraszamy do Villa Monte Calvia
             </h2>

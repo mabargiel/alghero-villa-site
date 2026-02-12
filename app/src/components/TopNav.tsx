@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { Facebook, Instagram, MapPin } from "lucide-react";
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -44,18 +45,7 @@ export default function TopNav() {
             rel="noreferrer"
             aria-label="Facebook"
           >
-            <svg
-              aria-hidden="true"
-              className="block h-[18px] w-[18px]"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M15 3h-2.5a4.5 4.5 0 0 0-4.5 4.5V10H6v4h2v7h4v-7h3l1-4h-4V7.5A1.5 1.5 0 0 1 13.5 6H15V3Z" />
-            </svg>
+            <Facebook className="block h-[18px] w-[18px]" strokeWidth={1.6} />
           </a>
           <a
             className={`transition ${
@@ -66,20 +56,7 @@ export default function TopNav() {
             rel="noreferrer"
             aria-label="Instagram"
           >
-            <svg
-              aria-hidden="true"
-              className="block h-[18px] w-[18px]"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <rect x="3" y="3" width="18" height="18" rx="5" ry="5" />
-              <circle cx="12" cy="12" r="4" />
-              <path d="M17.5 6.5h.01" />
-            </svg>
+            <Instagram className="block h-[18px] w-[18px]" strokeWidth={1.6} />
           </a>
           <a
             className={`transition ${
@@ -90,19 +67,7 @@ export default function TopNav() {
             rel="noreferrer"
             aria-label="Google"
           >
-            <svg
-              aria-hidden="true"
-              className="block h-[18px] w-[18px]"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0Z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
+            <MapPin className="block h-[18px] w-[18px]" strokeWidth={1.6} />
           </a>
         </div>
       </div>

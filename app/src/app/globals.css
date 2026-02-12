@@ -9,6 +9,8 @@
   --brand: #48685a;
   --accent: #48685a;
   --accent-strong: #48685a;
+  --deep-olive: #1f2a23;
+  --accent-gold: #d7c38e;
 }
 
 @theme inline {
@@ -20,6 +22,8 @@
   --color-brand: var(--brand);
   --color-accent: var(--accent);
   --color-accent-strong: var(--accent-strong);
+  --color-deep-olive: var(--deep-olive);
+  --color-accent-gold: var(--accent-gold);
   --font-sans: var(--font-lato);
   --font-serif: var(--font-lato);
 }
@@ -90,6 +94,14 @@ h4 {
   transition:
     opacity 700ms ease,
     transform 700ms ease;
+}
+
+.mini-gallery-item img {
+  transition: transform 0.35s ease;
+}
+
+.mini-gallery-item:hover img {
+  transform: scale(1.06);
 }
 
 .reveal-visible .mini-gallery-item {
