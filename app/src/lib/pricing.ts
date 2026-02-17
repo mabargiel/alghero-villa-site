@@ -1,4 +1,8 @@
-import type { PricingConfig, PricingRange, PricingPromotion } from "./sanity/queries";
+import type {
+  PricingConfig,
+  PricingRange,
+  PricingPromotion,
+} from "./sanity/queries";
 
 export type PriceSegment = {
   startDate: Date;
@@ -184,19 +188,13 @@ export function isDateInPricingRange(
   return findRangeForDate(date, config.baseRanges) !== undefined;
 }
 
-export function isDateInPromotion(
-  date: Date,
-  config: PricingConfig,
-): boolean {
+export function isDateInPromotion(date: Date, config: PricingConfig): boolean {
   const range = findRangeForDate(date, config.baseRanges);
   if (!range) return false;
   return findPromotionForDate(date, range.promotions) !== undefined;
 }
 
-export function getPriceTier(
-  date: Date,
-  config: PricingConfig,
-): number | null {
+export function getPriceTier(date: Date, config: PricingConfig): number | null {
   const range = findRangeForDate(date, config.baseRanges);
   return range ? range.pricePerDay : null;
 }

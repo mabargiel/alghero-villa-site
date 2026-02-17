@@ -227,7 +227,6 @@ h4 {
   background: color-mix(in srgb, var(--brand) 12%, transparent);
 }
 
-
 /* Tier background colors on day buttons */
 .pricing-tier-low > .pricing-day-btn {
   background: #dceee4;

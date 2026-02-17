@@ -34,7 +34,7 @@ export default async function PricingPage() {
           {config ? (
             <PricingCalendar config={config} />
           ) : (
-            <p className="text-center text-muted">
+            <p className="text-muted text-center">
               Cennik jest aktualnie niedostępny. Skontaktuj się z nami
               bezpośrednio.
             </p>

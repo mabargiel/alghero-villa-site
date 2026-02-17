@@ -84,24 +84,21 @@ export default function PricingCalendar({ config }: PricingCalendarProps) {
     return classNames;
   }, [priceTiers]);
 
-  const handleDayClick = useCallback(
-    (day: Date, modifiers: Modifiers) => {
-      if (modifiers.disabled) return;
+  const handleDayClick = useCallback((day: Date, modifiers: Modifiers) => {
+    if (modifiers.disabled) return;
 
-      setRange((prev) => {
-        // No selection or complete range → start fresh
-        if (!prev?.from || (prev.from && prev.to)) {
-          return { from: day, to: undefined };
-        }
-        // Have from, no to → complete the range (ensure from < to)
-        if (day < prev.from) {
-          return { from: day, to: prev.from };
-        }
-        return { from: prev.from, to: day };
-      });
-    },
-    [],
-  );
+    setRange((prev) => {
+      // No selection or complete range → start fresh
+      if (!prev?.from || (prev.from && prev.to)) {
+        return { from: day, to: undefined };
+      }
+      // Have from, no to → complete the range (ensure from < to)
+      if (day < prev.from) {
+        return { from: day, to: prev.from };
+      }
+      return { from: prev.from, to: day };
+    });
+  }, []);
 
   const minNightsWarning = useMemo(() => {
     if (!range?.from || !range?.to) return false;
@@ -120,8 +117,8 @@ export default function PricingCalendar({ config }: PricingCalendarProps) {
 
   return (
     <div className="flex flex-col gap-10 lg:flex-row lg:gap-12">
-      <div className="flex-1 min-w-0">
-        <div className="rounded-2xl border border-surface-strong bg-white/60 p-5 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.06)] sm:p-8">
+      <div className="min-w-0 flex-1">
+        <div className="border-surface-strong rounded-2xl border bg-white/60 p-5 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.06)] sm:p-8">
           <DayPicker
             mode="range"
             selected={range}
@@ -147,17 +144,17 @@ export default function PricingCalendar({ config }: PricingCalendarProps) {
               PreviousMonthButton: (props) => (
                 <button
                   {...props}
-                  className="group flex h-9 w-9 items-center justify-center rounded-full border border-surface-strong bg-white transition-all hover:border-brand/30 hover:bg-surface hover:shadow-sm"
+                  className="group border-surface-strong hover:border-brand/30 hover:bg-surface flex h-9 w-9 items-center justify-center rounded-full border bg-white transition-all hover:shadow-sm"
                 >
-                  <ChevronLeft className="h-4 w-4 text-muted transition-colors group-hover:text-brand" />
+                  <ChevronLeft className="text-muted group-hover:text-brand h-4 w-4 transition-colors" />
                 </button>
               ),
               NextMonthButton: (props) => (
                 <button
                   {...props}
-                  className="group flex h-9 w-9 items-center justify-center rounded-full border border-surface-strong bg-white transition-all hover:border-brand/30 hover:bg-surface hover:shadow-sm"
+                  className="group border-surface-strong hover:border-brand/30 hover:bg-surface flex h-9 w-9 items-center justify-center rounded-full border bg-white transition-all hover:shadow-sm"
                 >
-                  <ChevronRight className="h-4 w-4 text-muted transition-colors group-hover:text-brand" />
+                  <ChevronRight className="text-muted group-hover:text-brand h-4 w-4 transition-colors" />
                 </button>
               ),
             }}
@@ -187,11 +184,11 @@ export default function PricingCalendar({ config }: PricingCalendarProps) {
         </div>
 
         {priceTiers.length > 0 && (
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 rounded-xl border border-surface-strong/60 bg-white/40 px-5 py-3.5">
+          <div className="border-surface-strong/60 mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 rounded-xl border bg-white/40 px-5 py-3.5">
             {priceTiers.map((_, index) => (
               <span
                 key={index}
-                className="flex items-center gap-2 text-xs text-muted"
+                className="text-muted flex items-center gap-2 text-xs"
               >
                 <span
                   className={`inline-block h-3.5 w-3.5 rounded-full pricing-legend-${index}`}
@@ -201,8 +198,8 @@ export default function PricingCalendar({ config }: PricingCalendarProps) {
                 </span>
               </span>
             ))}
-            <span className="flex items-center gap-2 text-xs text-muted">
-              <span className="inline-block h-3.5 w-3.5 rounded-full pricing-legend-promo" />
+            <span className="text-muted flex items-center gap-2 text-xs">
+              <span className="pricing-legend-promo inline-block h-3.5 w-3.5 rounded-full" />
               <span className="tracking-wide">Promocja</span>
             </span>
           </div>
@@ -210,7 +207,11 @@ export default function PricingCalendar({ config }: PricingCalendarProps) {
       </div>
 
       <div className="lg:w-[380px] lg:flex-shrink-0">
-        <PriceSummary breakdown={breakdown} config={config} minNightsWarning={minNightsWarning} />
+        <PriceSummary
+          breakdown={breakdown}
+          config={config}
+          minNightsWarning={minNightsWarning}
+        />
       </div>
     </div>
   );

@@ -102,10 +102,10 @@ export default function PriceSummary({
   const hasPromoLines = displayLines.some((l) => l.promotion);
 
   return (
-    <div className="rounded-xl border border-surface-strong bg-surface p-6">
+    <div className="border-surface-strong bg-surface rounded-xl border p-6">
       {minNightsWarning ? (
         <div className="text-center">
-          <h3 className="mb-3 text-lg font-bold text-foreground">
+          <h3 className="text-foreground mb-3 text-lg font-bold">
             Podsumowanie
           </h3>
           <p className="text-sm text-red-700">
@@ -114,7 +114,7 @@ export default function PriceSummary({
         </div>
       ) : breakdown ? (
         <>
-          <h3 className="mb-4 text-lg font-bold text-foreground">
+          <h3 className="text-foreground mb-4 text-lg font-bold">
             Podsumowanie
           </h3>
 
@@ -127,10 +127,9 @@ export default function PriceSummary({
                 >
                   <div className="flex-1">
                     <span className="text-foreground">
-                      {formatDate(line.startDate)} –{" "}
-                      {formatDate(line.endDate)}
+                      {formatDate(line.startDate)} – {formatDate(line.endDate)}
                     </span>
-                    <span className="ml-2 text-muted">
+                    <span className="text-muted ml-2">
                       {line.nights} {nightsLabel(line.nights)}
                     </span>
                     {line.promotion && (
@@ -143,11 +142,11 @@ export default function PriceSummary({
                   </div>
                   <div className="text-right whitespace-nowrap">
                     {line.promotion && (
-                      <span className="mr-2 text-muted line-through">
+                      <span className="text-muted mr-2 line-through">
                         {formatPrice(line.promotion.originalTotal)} €
                       </span>
                     )}
-                    <span className="font-semibold text-foreground">
+                    <span className="text-foreground font-semibold">
                       {formatPrice(line.total)} €
                     </span>
                   </div>
@@ -158,12 +157,10 @@ export default function PriceSummary({
 
           <div
             className={
-              hasPromoLines
-                ? "mt-4 border-t border-surface-strong pt-4"
-                : ""
+              hasPromoLines ? "border-surface-strong mt-4 border-t pt-4" : ""
             }
           >
-            <div className="flex items-center justify-between text-base font-bold text-foreground">
+            <div className="text-foreground flex items-center justify-between text-base font-bold">
               <span>
                 Razem ({breakdown.totalNights}{" "}
                 {nightsLabel(breakdown.totalNights)})
@@ -172,11 +169,11 @@ export default function PriceSummary({
             </div>
           </div>
 
-          <div className="mt-4 space-y-2 border-t border-surface-strong pt-4 text-sm">
+          <div className="border-surface-strong mt-4 space-y-2 border-t pt-4 text-sm">
             {extras.map((extra) => (
               <div
                 key={extra.label}
-                className="flex items-center justify-between text-muted"
+                className="text-muted flex items-center justify-between"
               >
                 <span>{extra.label}</span>
                 <span>
@@ -185,7 +182,7 @@ export default function PriceSummary({
                       <span className="mr-1.5">
                         {formatPrice(extra.amount)} €
                       </span>
-                      <span className="font-medium text-brand">w cenie</span>
+                      <span className="text-brand font-medium">w cenie</span>
                     </span>
                   ) : (
                     `${formatPrice(extra.amount)} €`
@@ -197,13 +194,13 @@ export default function PriceSummary({
 
           <a
             href="/contact"
-            className="mt-6 block w-full rounded-lg bg-brand px-6 py-3 text-center font-semibold text-white transition-colors hover:bg-deep-olive"
+            className="bg-brand hover:bg-deep-olive mt-6 block w-full rounded-lg px-6 py-3 text-center font-semibold text-white transition-colors"
           >
             Zapytaj o termin
           </a>
         </>
       ) : (
-        <div className="text-center text-muted">
+        <div className="text-muted text-center">
           <p className="text-sm">
             Wybierz daty na kalendarzu, aby zobaczyć cenę.
           </p>
@@ -211,9 +208,9 @@ export default function PriceSummary({
       )}
 
       {hasPerks && (
-        <div className="mt-6 space-y-2 border-t border-surface-strong pt-4">
+        <div className="border-surface-strong mt-6 space-y-2 border-t pt-4">
           {config.perks!.map((perk, index) => (
-            <p key={index} className="text-sm text-muted">
+            <p key={index} className="text-muted text-sm">
               {perk}
             </p>
           ))}
