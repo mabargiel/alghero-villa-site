@@ -62,15 +62,13 @@ export default function AreaHighlights({ images }: AreaHighlightsProps) {
               isExpanded ? "z-10" : "z-0"
             }`}
             style={{ transitionDelay: `${index * 100}ms` }}
-            onClick={() =>
-              setExpandedIndex(isExpanded ? null : index)
-            }
+            onClick={() => setExpandedIndex(isExpanded ? null : index)}
             onMouseEnter={() => setExpandedIndex(index)}
             onMouseLeave={() => setExpandedIndex(null)}
           >
             {/* Card that expands upward without affecting layout */}
             <div
-              className={`absolute bottom-0 left-0 right-0 cursor-pointer overflow-hidden rounded-lg transition-all duration-500 ease-out ${
+              className={`absolute right-0 bottom-0 left-0 cursor-pointer overflow-hidden rounded-lg transition-all duration-500 ease-out ${
                 isExpanded ? "h-[340px]" : "h-[260px]"
               }`}
             >
