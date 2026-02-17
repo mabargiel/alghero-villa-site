@@ -41,6 +41,11 @@ export type Hero = {
   _id: string;
   title?: string;
   videoUrl?: string;
+  video?: {
+    asset: {
+      url: string;
+    };
+  };
   images?: MediaImage[];
   mobileImage?: MediaImage;
 };
@@ -80,6 +85,11 @@ const heroQuery = `
     _id,
     title,
     videoUrl,
+    video {
+      asset->{
+        url
+      }
+    },
     images[] {
       altText,
       image {

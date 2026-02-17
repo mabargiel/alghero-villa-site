@@ -77,6 +77,7 @@ export default async function HomePage() {
   const interiorsImage = sectionImage("interiors");
   const gardenImage = sectionImage("garden");
   const locationImage = sectionImage("location");
+  const heroVideoUrl = hero?.video?.asset?.url ?? hero?.videoUrl;
   const areaHighlightImages =
     areaHighlights?.images?.map((image) => ({
       altText: image.altText,
@@ -96,10 +97,10 @@ export default async function HomePage() {
           <HeroMedia
             images={heroImages}
             mobileImage={heroMobileImage}
-            videoUrl={hero?.videoUrl}
+            videoUrl={heroVideoUrl}
           />
         </div>
-        {hero?.videoUrl ? (
+        {heroVideoUrl ? (
           <>
             <div className="pointer-events-none absolute inset-0 bg-black/70 md:hidden" />
             <div className="pointer-events-none absolute inset-0 hidden bg-black/35 md:block" />
