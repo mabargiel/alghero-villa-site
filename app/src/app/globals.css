@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "react-day-picker/style.css" layer(rdp);
 
 :root {
   --background: #edf3f0;
@@ -200,4 +201,100 @@ h4 {
   to {
     opacity: 0;
   }
+}
+
+/* ── Pricing calendar ──────────────────────────────────── */
+
+.pricing-calendar {
+  --rdp-accent-color: transparent;
+  --rdp-accent-background-color: transparent;
+  --rdp-range_start-color: transparent;
+  --rdp-range_end-color: transparent;
+  --rdp-range_middle-color: transparent;
+  --rdp-range_start-background: transparent;
+  --rdp-range_end-background: transparent;
+  --rdp-range_middle-background: transparent;
+  --rdp-selected-border: transparent;
+}
+
+/* Day button base */
+.pricing-day-btn {
+  font-weight: 400;
+  color: var(--foreground);
+}
+
+.pricing-day-btn:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--brand) 12%, transparent);
+}
+
+
+/* Tier background colors on day buttons */
+.pricing-tier-low > .pricing-day-btn {
+  background: #dceee4;
+}
+
+.pricing-tier-mid > .pricing-day-btn {
+  background: #f0e4c3;
+}
+
+.pricing-tier-high > .pricing-day-btn {
+  background: #e8cdb5;
+}
+
+/* Promotion indicator — glowy pink dot in top-right corner */
+.pricing-promo > .pricing-day-btn {
+  position: relative;
+}
+
+.pricing-promo > .pricing-day-btn::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e84393;
+  box-shadow: 0 0 6px 2px rgba(232, 67, 147, 0.45);
+}
+
+/* Today */
+.pricing-day-today > .pricing-day-btn {
+  font-weight: 700;
+  box-shadow: inset 0 -2px 0 var(--brand);
+}
+
+/* Selected range: start & end */
+.pricing-day-range-start > .pricing-day-btn,
+.pricing-day-range-end > .pricing-day-btn,
+.pricing-day-selected > .pricing-day-btn {
+  background: var(--brand) !important;
+  color: white !important;
+  font-weight: 600;
+  box-shadow: 0 4px 12px -2px rgba(72, 104, 90, 0.45);
+}
+
+/* Selected range: middle */
+.pricing-day-range-middle > .pricing-day-btn {
+  background: color-mix(in srgb, var(--brand) 35%, transparent) !important;
+  color: var(--foreground) !important;
+  font-weight: 600;
+}
+
+/* Legend swatches */
+.pricing-legend-0 {
+  background: #7bbe95;
+}
+
+.pricing-legend-1 {
+  background: #d4a94e;
+}
+
+.pricing-legend-2 {
+  background: #c47a4a;
+}
+
+.pricing-legend-promo {
+  background: #e84393;
+  box-shadow: 0 0 6px 2px rgba(232, 67, 147, 0.4);
 }
