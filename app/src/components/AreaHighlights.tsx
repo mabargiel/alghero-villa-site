@@ -42,9 +42,9 @@ const areas: Area[] = [
   },
 ];
 
-type AreaHighlightsProps = {
+type AreaHighlightsProps = Readonly<{
   images: AreaImage[];
-};
+}>;
 
 export default function AreaHighlights({ images }: AreaHighlightsProps) {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
@@ -58,11 +58,21 @@ export default function AreaHighlights({ images }: AreaHighlightsProps) {
         return (
           <div
             key={area.title}
+            role="button"
+            tabIndex={0}
+            aria-expanded={isExpanded}
+            aria-label={`${area.title} — ${isExpanded ? "zwiń" : "rozwiń"}`}
             className={`highlight-card-item relative h-[260px] overflow-visible rounded-lg ${
               isExpanded ? "z-10" : "z-0"
             }`}
             style={{ transitionDelay: `${index * 100}ms` }}
             onClick={() => setExpandedIndex(isExpanded ? null : index)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                setExpandedIndex(isExpanded ? null : index);
+              }
+            }}
             onMouseEnter={() => setExpandedIndex(index)}
             onMouseLeave={() => setExpandedIndex(null)}
           >
