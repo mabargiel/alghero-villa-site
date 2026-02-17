@@ -95,7 +95,7 @@ export default function HeroMedia({
             sizes="100vw"
             className="object-cover"
             loading="eager"
-            decoding="async" 
+            decoding="async"
           />
         ) : null}
       </div>
