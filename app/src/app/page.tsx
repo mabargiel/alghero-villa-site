@@ -103,7 +103,7 @@ export default async function HomePage() {
         {heroVideoUrl ? (
           <>
             <div className="pointer-events-none absolute inset-0 bg-black/70 md:hidden" />
-            <div className="pointer-events-none absolute inset-0 hidden bg-black/35 md:block" />
+            <div className="pointer-events-none absolute inset-0 hidden bg-black/45 md:block" />
           </>
         ) : (
           <div className="pointer-events-none absolute inset-0 bg-black/75" />
@@ -114,7 +114,7 @@ export default async function HomePage() {
         />
         <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl items-center px-6 pt-28 pb-20">
           <div className="max-w-2xl text-center md:text-left">
-            <div className="mx-auto inline-flex items-center gap-2 rounded-full bg-white/85 px-4 py-2 text-xs tracking-[0.3em] text-[var(--foreground)] uppercase md:mx-0">
+            <div className="mx-auto inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-xs tracking-[0.3em] text-[var(--foreground)] uppercase shadow-md md:mx-0">
               Villa Monte Calvia — Alghero
             </div>
             <h1 className="hero-text-shadow mt-6 text-4xl leading-tight font-semibold text-white md:text-5xl">
