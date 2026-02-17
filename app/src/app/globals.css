@@ -110,6 +110,32 @@ h4 {
   transform: translateY(0) scale(1);
 }
 
+.amenity-item {
+  opacity: 0;
+  transform: translateY(14px) scale(0.92);
+  transition:
+    opacity 600ms ease,
+    transform 600ms ease;
+}
+
+.reveal-visible .amenity-item {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.highlight-card-item {
+  opacity: 0;
+  transform: translateY(14px) scale(0.96);
+  transition:
+    opacity 600ms ease,
+    transform 600ms ease;
+}
+
+.reveal-visible .highlight-card-item {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
 .hero-motion {
   background:
     radial-gradient(circle at 20% 20%, rgb(107 122 75 / 18%), transparent 55%),
