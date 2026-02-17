@@ -1,18 +1,24 @@
+import AreaHighlights from "@/components/AreaHighlights";
 import HeroMedia from "@/components/HeroMedia";
 import LucideIcon from "@/components/LucideIcon";
 import Reveal from "@/components/Reveal";
 import { urlFor } from "@/lib/sanity/image";
 import type { HomeSection } from "@/lib/sanity/queries";
-import { getHero, getHomeSections, getMiniGallery } from "@/lib/sanity/queries";
+import {
+  getAreaHighlights,
+  getHero,
+  getHomeSections,
+  getMiniGallery,
+} from "@/lib/sanity/queries";
 import Image from "next/image";
 
 const amenities = [
-  { label: "Prywatny teren 1 ha", iconKey: "land" },
-  { label: "6 sypialni en-suite", iconKey: "bedrooms" },
   { label: "Klimatyzacja w całym domu", iconKey: "climate" },
-  { label: "Tarasy i ogród", iconKey: "terraces" },
-  { label: "Strefy relaksu na zewnątrz", iconKey: "outdoor" },
-  { label: "Blisko plaż i lotniska", iconKey: "location" },
+  { label: "Prywatny parking", iconKey: "parking" },
+  { label: "W pełni wyposażona kuchnia", iconKey: "kitchen" },
+  { label: "Łazienki en-suite", iconKey: "bathroom" },
+  { label: "Samochód do dyspozycji", iconKey: "car-rental" },
+  { label: "Kostkarka do lodu", iconKey: "ice-maker" },
 ];
 
 function SectionImage({ altText, url }: { altText: string; url: string }) {
@@ -33,10 +39,11 @@ function SectionImage({ altText, url }: { altText: string; url: string }) {
 }
 
 export default async function HomePage() {
-  const [hero, sections, miniGallery] = await Promise.all([
+  const [hero, sections, miniGallery, areaHighlights] = await Promise.all([
     getHero(),
     getHomeSections(),
     getMiniGallery(),
+    getAreaHighlights(),
   ]);
   const sectionMap = new Map<HomeSection["sectionKey"], HomeSection["image"]>(
     (sections ?? []).map((section) => [section.sectionKey, section.image]),
@@ -70,6 +77,11 @@ export default async function HomePage() {
   const interiorsImage = sectionImage("interiors");
   const gardenImage = sectionImage("garden");
   const locationImage = sectionImage("location");
+  const areaHighlightImages =
+    areaHighlights?.images?.map((image) => ({
+      altText: image.altText,
+      url: urlFor(image.image).width(800).quality(85).auto("format").url(),
+    })) ?? [];
   const miniGalleryImages =
     miniGallery?.images?.slice(0, 5).map((image) => ({
       key: image._key,
@@ -143,10 +155,7 @@ export default async function HomePage() {
       </section>
 
       <Reveal>
-        <section
-          id="highlights"
-          className="mx-auto max-w-6xl px-6 pt-16 pb-16 text-center"
-        >
+        <div id="highlights" className="mx-auto max-w-6xl px-6 pt-16 pb-4 text-center">
           <Image
             src="/divider.svg"
             alt=""
@@ -154,64 +163,21 @@ export default async function HomePage() {
             height={88}
             className="mx-auto mb-6 h-12 w-auto fill-[var(--accent)]"
           />
-          <h2 className="text-2xl font-semibold md:text-3xl">Udogodnienia</h2>
-          <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
-          <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
-            Najważniejsze atuty w jednym miejscu
-          </p>
-          <div className="mt-10 grid grid-cols-3 items-start gap-6 text-center md:grid-cols-6 md:gap-4">
-            {amenities.map((item) => (
-              <div
-                key={item.label}
-                className="flex min-w-0 flex-col items-center gap-3"
-              >
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-[0_0_0_1px_rgba(72,104,90,0.2),_0_10px_18px_-12px_rgba(72,104,90,0.55),_0_20px_40px_-18px_rgba(0,0,0,0.6)]">
-                  <LucideIcon
-                    name={item.iconKey}
-                    className="h-5 w-5 text-[var(--accent-strong)] md:h-6 md:w-6"
-                  />
-                </div>
-                <span className="text-[10px] font-semibold tracking-[0.14em] text-[var(--foreground)] uppercase sm:text-[11px] md:text-xs">
-                  {item.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </section>
+        </div>
       </Reveal>
 
-      {miniGalleryImages.length === 5 ? (
-        <Reveal>
-          <section className="relative hidden w-screen px-0 pb-16 md:block">
-            <div
-              className="grid w-full items-center gap-1 px-0"
-              style={{
-                gridTemplateColumns: "1fr 1fr 1.15fr 1fr 1fr",
-              }}
-            >
-              {miniGalleryImages.map((image, index) => (
-                <div
-                  key={image.key}
-                  className="mini-gallery-item relative aspect-[4/3] w-full overflow-hidden"
-                  style={{
-                    transitionDelay: `${index * 90}ms`,
-                  }}
-                >
-                  <Image
-                    src={image.url}
-                    alt={image.altText}
-                    fill
-                    sizes="20vw"
-                    className="object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              ))}
-            </div>
-          </section>
-        </Reveal>
-      ) : null}
+      <Reveal>
+        <section className="mx-auto max-w-6xl px-6 pb-16 text-center">
+          <h2 className="text-2xl font-semibold md:text-3xl">
+            Strefy willi
+          </h2>
+          <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
+          <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
+            Odkryj przestrzenie stworzone do wypoczynku
+          </p>
+          <AreaHighlights images={areaHighlightImages} />
+        </section>
+      </Reveal>
 
       <Reveal>
         <section className="mx-auto max-w-6xl px-6 pb-16">
@@ -275,6 +241,39 @@ export default async function HomePage() {
           </div>
         </section>
       </Reveal>
+
+      {miniGalleryImages.length === 5 ? (
+        <Reveal>
+          <section className="relative hidden w-screen px-0 pb-16 md:block">
+            <div
+              className="grid w-full items-center gap-1 px-0"
+              style={{
+                gridTemplateColumns: "1fr 1fr 1.15fr 1fr 1fr",
+              }}
+            >
+              {miniGalleryImages.map((image, index) => (
+                <div
+                  key={image.key}
+                  className="mini-gallery-item relative aspect-[4/3] w-full overflow-hidden"
+                  style={{
+                    transitionDelay: `${index * 90}ms`,
+                  }}
+                >
+                  <Image
+                    src={image.url}
+                    alt={image.altText}
+                    fill
+                    sizes="20vw"
+                    className="object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
+        </Reveal>
+      ) : null}
 
       <Reveal>
         <section className="mx-auto max-w-6xl px-6 pb-16">
@@ -361,6 +360,35 @@ export default async function HomePage() {
                 </li>
               </ul>
             </div>
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section className="mx-auto max-w-6xl px-6 pb-16 text-center">
+          <h2 className="text-2xl font-semibold md:text-3xl">Udogodnienia</h2>
+          <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
+          <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
+            Najważniejsze atuty w jednym miejscu
+          </p>
+          <div className="mt-10 grid grid-cols-3 items-start gap-6 text-center md:grid-cols-6 md:gap-4">
+            {amenities.map((item, index) => (
+              <div
+                key={item.label}
+                className="amenity-item flex min-w-0 flex-col items-center gap-3"
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-[0_0_0_1px_rgba(72,104,90,0.2),_0_10px_18px_-12px_rgba(72,104,90,0.55),_0_20px_40px_-18px_rgba(0,0,0,0.6)]">
+                  <LucideIcon
+                    name={item.iconKey}
+                    className="h-5 w-5 text-[var(--accent-strong)] md:h-6 md:w-6"
+                  />
+                </div>
+                <span className="text-[10px] font-semibold tracking-[0.14em] text-[var(--foreground)] uppercase sm:text-[11px] md:text-xs">
+                  {item.label}
+                </span>
+              </div>
+            ))}
           </div>
         </section>
       </Reveal>

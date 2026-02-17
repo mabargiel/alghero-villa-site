@@ -56,6 +56,11 @@ export type MiniGallery = {
   images: GalleryImage[];
 };
 
+export type AreaHighlight = {
+  _id: string;
+  images?: MediaImage[];
+};
+
 const galleryQuery = `
   *[_type == "gallery"][0]{
     _id,
@@ -128,6 +133,30 @@ const miniGalleryQuery = `
     }
   }
 `;
+
+const areaHighlightQuery = `
+  *[_type == "areaHighlight"][0]{
+    _id,
+    images[] {
+      altText,
+      image {
+        asset->{
+          _id,
+          url,
+          metadata { dimensions }
+        }
+      }
+    }
+  }
+`;
+
+export async function getAreaHighlights() {
+  return sanityClient.fetch<AreaHighlight | null>(
+    areaHighlightQuery,
+    {},
+    { next: { revalidate: 300 } },
+  );
+}
 
 export async function getGallery() {
   return sanityClient.fetch<Gallery | null>(
