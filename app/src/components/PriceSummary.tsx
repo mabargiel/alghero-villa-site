@@ -90,11 +90,11 @@ function SummaryContent({
   breakdown,
   displayLines,
   hasPromoLines,
-}: {
+}: Readonly<{
   breakdown: PriceBreakdown;
   displayLines: DisplayLine[];
   hasPromoLines: boolean;
-}) {
+}>) {
   return (
     <>
       <h3 className="text-foreground mb-4 text-lg font-bold">Podsumowanie</h3>
@@ -194,30 +194,37 @@ export default function PriceSummary({
 
   const hasPromoLines = displayLines.some((l) => l.promotion);
 
+  let content: React.ReactNode;
+  if (minNightsWarning) {
+    content = (
+      <div className="text-center">
+        <h3 className="text-foreground mb-3 text-lg font-bold">Podsumowanie</h3>
+        <p className="text-sm text-red-700">
+          Minimalny pobyt to 5 nocy. Wybierz dłuższy zakres dat.
+        </p>
+      </div>
+    );
+  } else if (breakdown) {
+    content = (
+      <SummaryContent
+        breakdown={breakdown}
+        displayLines={displayLines}
+        hasPromoLines={hasPromoLines}
+      />
+    );
+  } else {
+    content = (
+      <div className="text-muted text-center">
+        <p className="text-sm">
+          Wybierz daty na kalendarzu, aby zobaczyć cenę.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="border-surface-strong bg-surface rounded-xl border p-6">
-      {minNightsWarning ? (
-        <div className="text-center">
-          <h3 className="text-foreground mb-3 text-lg font-bold">
-            Podsumowanie
-          </h3>
-          <p className="text-sm text-red-700">
-            Minimalny pobyt to 5 nocy. Wybierz dłuższy zakres dat.
-          </p>
-        </div>
-      ) : breakdown ? (
-        <SummaryContent
-          breakdown={breakdown}
-          displayLines={displayLines}
-          hasPromoLines={hasPromoLines}
-        />
-      ) : (
-        <div className="text-muted text-center">
-          <p className="text-sm">
-            Wybierz daty na kalendarzu, aby zobaczyć cenę.
-          </p>
-        </div>
-      )}
+      {content}
 
       {hasPerks && (
         <div className="border-surface-strong mt-6 space-y-2 border-t pt-4">
