@@ -77,12 +77,10 @@ function calculateDayPrice(
   return { price: Math.round(discounted * 100) / 100, promotion };
 }
 
-type SegmentKey = string;
-
 function getSegmentKey(
   range: PricingRange,
   promotion: PricingPromotion | undefined,
-): SegmentKey {
+): string {
   return promotion ? `${range._key}:${promotion._key}` : range._key;
 }
 
@@ -96,7 +94,7 @@ export function calculatePriceBreakdown(
 
   // Build segments by walking day-by-day
   const segments: PriceSegment[] = [];
-  let currentSegmentKey: SegmentKey | null = null;
+  let currentSegmentKey: string | null = null;
   let currentSegment: {
     startDate: Date;
     nights: number;

@@ -22,11 +22,40 @@ export function checkMinNightsWarning(range: DateRange | undefined): boolean {
   return nights < MIN_NIGHTS;
 }
 
-type PricingCalendarProps = {
+type PricingCalendarProps = Readonly<{
   config: PricingConfig;
   range: DateRange | undefined;
   onRangeChange: (range: DateRange | undefined) => void;
-};
+}>;
+
+const NAV_BTN =
+  "group border-surface-strong hover:border-brand/30 hover:bg-surface flex h-9 w-9 items-center justify-center rounded-full border bg-white transition-all hover:shadow-sm";
+const NAV_ICON = "text-muted group-hover:text-brand h-4 w-4 transition-colors";
+
+function PreviousMonthButton(
+  props: React.ButtonHTMLAttributes<HTMLButtonElement>,
+) {
+  return (
+    <button {...props} className={NAV_BTN}>
+      <ChevronLeft className={NAV_ICON} />
+    </button>
+  );
+}
+
+function NextMonthButton(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+  return (
+    <button {...props} className={NAV_BTN}>
+      <ChevronRight className={NAV_ICON} />
+    </button>
+  );
+}
+
+const TIER_LABELS = ["Niski sezon", "Średni sezon", "Wysoki sezon"] as const;
+const TIER_STYLES = [
+  "pricing-tier-low",
+  "pricing-tier-mid",
+  "pricing-tier-high",
+] as const;
 
 export default function PricingCalendar({
   config,
@@ -81,14 +110,9 @@ export default function PricingCalendar({
   }, [config, priceTiers]);
 
   const tierClassNames = useMemo(() => {
-    const tierStyles = [
-      "pricing-tier-low",
-      "pricing-tier-mid",
-      "pricing-tier-high",
-    ];
     const classNames: Record<string, string> = {};
     priceTiers.forEach((_, index) => {
-      classNames[`tier${index}`] = tierStyles[index % tierStyles.length];
+      classNames[`tier${index}`] = TIER_STYLES[index % TIER_STYLES.length];
     });
     return classNames;
   }, [priceTiers]);
@@ -108,7 +132,15 @@ export default function PricingCalendar({
     [range, onRangeChange],
   );
 
-  const tierLabels = ["Niski sezon", "Średni sezon", "Wysoki sezon"];
+  const legendItems = useMemo(
+    () =>
+      priceTiers.map((price, index) => ({
+        key: `tier-${price}`,
+        label: TIER_LABELS[index % TIER_LABELS.length],
+        className: `pricing-legend-${index}`,
+      })),
+    [priceTiers],
+  );
 
   return (
     <div>
@@ -135,22 +167,8 @@ export default function PricingCalendar({
             ...tierClassNames,
           }}
           components={{
-            PreviousMonthButton: (props) => (
-              <button
-                {...props}
-                className="group border-surface-strong hover:border-brand/30 hover:bg-surface flex h-9 w-9 items-center justify-center rounded-full border bg-white transition-all hover:shadow-sm"
-              >
-                <ChevronLeft className="text-muted group-hover:text-brand h-4 w-4 transition-colors" />
-              </button>
-            ),
-            NextMonthButton: (props) => (
-              <button
-                {...props}
-                className="group border-surface-strong hover:border-brand/30 hover:bg-surface flex h-9 w-9 items-center justify-center rounded-full border bg-white transition-all hover:shadow-sm"
-              >
-                <ChevronRight className="text-muted group-hover:text-brand h-4 w-4 transition-colors" />
-              </button>
-            ),
+            PreviousMonthButton,
+            NextMonthButton,
           }}
           classNames={{
             root: "pricing-calendar w-full",
@@ -177,19 +195,17 @@ export default function PricingCalendar({
         />
       </div>
 
-      {priceTiers.length > 0 && (
+      {legendItems.length > 0 && (
         <div className="border-surface-strong/60 mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 rounded-xl border bg-white/40 px-5 py-3.5">
-          {priceTiers.map((_, index) => (
+          {legendItems.map((item) => (
             <span
-              key={index}
+              key={item.key}
               className="text-muted flex items-center gap-2 text-xs"
             >
               <span
-                className={`inline-block h-3.5 w-3.5 rounded-full pricing-legend-${index}`}
+                className={`inline-block h-3.5 w-3.5 rounded-full ${item.className}`}
               />
-              <span className="tracking-wide">
-                {tierLabels[index % tierLabels.length]}
-              </span>
+              <span className="tracking-wide">{item.label}</span>
             </span>
           ))}
           <span className="text-muted flex items-center gap-2 text-xs">

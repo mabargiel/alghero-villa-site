@@ -4,11 +4,11 @@ import { useMemo } from "react";
 import type { PricingConfig } from "@/lib/sanity/queries";
 import type { PriceBreakdown, PriceSegment } from "@/lib/pricing";
 
-type PriceSummaryProps = {
+type PriceSummaryProps = Readonly<{
   breakdown: PriceBreakdown | null;
   config: PricingConfig;
   minNightsWarning?: boolean;
-};
+}>;
 
 const extras = [
   { label: "Sprzątanie", amount: 150, type: "included" as const },
@@ -16,6 +16,7 @@ const extras = [
 ];
 
 type DisplayLine = {
+  key: string;
   startDate: Date;
   endDate: Date;
   nights: number;
@@ -30,32 +31,30 @@ function buildDisplayLines(segments: PriceSegment[]): DisplayLine[] {
 
   for (const seg of segments) {
     if (seg.promotion) {
-      // Flush any accumulated regular nights first
       if (regularAccum) {
         lines.push(regularAccum);
         regularAccum = null;
       }
       lines.push({
+        key: `promo-${seg.startDate.getTime()}`,
         startDate: seg.startDate,
         endDate: seg.endDate,
         nights: seg.nights,
         total: seg.total,
         promotion: seg.promotion,
       });
+    } else if (regularAccum) {
+      regularAccum.endDate = seg.endDate;
+      regularAccum.nights += seg.nights;
+      regularAccum.total += seg.total;
     } else {
-      // Accumulate regular (non-promo) segments into one line
-      if (regularAccum) {
-        regularAccum.endDate = seg.endDate;
-        regularAccum.nights += seg.nights;
-        regularAccum.total += seg.total;
-      } else {
-        regularAccum = {
-          startDate: seg.startDate,
-          endDate: seg.endDate,
-          nights: seg.nights,
-          total: seg.total,
-        };
-      }
+      regularAccum = {
+        key: `regular-${seg.startDate.getTime()}`,
+        startDate: seg.startDate,
+        endDate: seg.endDate,
+        nights: seg.nights,
+        total: seg.total,
+      };
     }
   }
 
@@ -87,6 +86,100 @@ function nightsLabel(n: number): string {
   return "nocy";
 }
 
+function SummaryContent({
+  breakdown,
+  displayLines,
+  hasPromoLines,
+}: {
+  breakdown: PriceBreakdown;
+  displayLines: DisplayLine[];
+  hasPromoLines: boolean;
+}) {
+  return (
+    <>
+      <h3 className="text-foreground mb-4 text-lg font-bold">Podsumowanie</h3>
+
+      {hasPromoLines ? (
+        <div className="space-y-3">
+          {displayLines.map((line) => (
+            <div
+              key={line.key}
+              className="flex items-start justify-between gap-4 text-sm"
+            >
+              <div className="flex-1">
+                <span className="text-foreground">
+                  {formatDate(line.startDate)} – {formatDate(line.endDate)}
+                </span>
+                <span className="text-muted ml-2">
+                  {line.nights} {nightsLabel(line.nights)}
+                </span>
+                {line.promotion && (
+                  <span className="ml-2 inline-flex items-center rounded-full bg-pink-100 px-2 py-0.5 text-xs font-semibold text-pink-700">
+                    {line.promotion.type === "percentage"
+                      ? `−${line.promotion.value}%`
+                      : "Promocja"}
+                  </span>
+                )}
+              </div>
+              <div className="text-right whitespace-nowrap">
+                {line.promotion && (
+                  <span className="text-muted mr-2 line-through">
+                    {formatPrice(line.promotion.originalTotal)} €
+                  </span>
+                )}
+                <span className="text-foreground font-semibold">
+                  {formatPrice(line.total)} €
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : null}
+
+      <div
+        className={
+          hasPromoLines ? "border-surface-strong mt-4 border-t pt-4" : ""
+        }
+      >
+        <div className="text-foreground flex items-center justify-between text-base font-bold">
+          <span>
+            Razem ({breakdown.totalNights} {nightsLabel(breakdown.totalNights)})
+          </span>
+          <span>{formatPrice(breakdown.totalPrice)} €</span>
+        </div>
+      </div>
+
+      <div className="border-surface-strong mt-4 space-y-2 border-t pt-4 text-sm">
+        {extras.map((extra) => (
+          <div
+            key={extra.label}
+            className="text-muted flex items-center justify-between"
+          >
+            <span>{extra.label}</span>
+            <span>
+              {extra.type === "included" ? (
+                <span>
+                  <span className="mr-1.5">{formatPrice(extra.amount)} €</span>
+                  <span className="text-brand font-medium">w cenie</span>
+                </span>
+              ) : (
+                `${formatPrice(extra.amount)} €`
+              )}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <a
+        href="/contact"
+        className="mt-6 block w-full rounded-lg bg-[var(--brand)] px-6 py-3 text-center font-semibold text-white shadow-[0_8px_24px_-8px_rgba(72,104,90,0.4)] transition-all hover:-translate-y-0.5 hover:bg-[#567a6a] hover:shadow-[0_12px_32px_-8px_rgba(72,104,90,0.5)]"
+      >
+        Zapytaj o termin
+      </a>
+    </>
+  );
+}
+
 export default function PriceSummary({
   breakdown,
   config,
@@ -113,92 +206,11 @@ export default function PriceSummary({
           </p>
         </div>
       ) : breakdown ? (
-        <>
-          <h3 className="text-foreground mb-4 text-lg font-bold">
-            Podsumowanie
-          </h3>
-
-          {hasPromoLines ? (
-            <div className="space-y-3">
-              {displayLines.map((line, index) => (
-                <div
-                  key={index}
-                  className="flex items-start justify-between gap-4 text-sm"
-                >
-                  <div className="flex-1">
-                    <span className="text-foreground">
-                      {formatDate(line.startDate)} – {formatDate(line.endDate)}
-                    </span>
-                    <span className="text-muted ml-2">
-                      {line.nights} {nightsLabel(line.nights)}
-                    </span>
-                    {line.promotion && (
-                      <span className="ml-2 inline-flex items-center rounded-full bg-pink-100 px-2 py-0.5 text-xs font-semibold text-pink-700">
-                        {line.promotion.type === "percentage"
-                          ? `−${line.promotion.value}%`
-                          : "Promocja"}
-                      </span>
-                    )}
-                  </div>
-                  <div className="text-right whitespace-nowrap">
-                    {line.promotion && (
-                      <span className="text-muted mr-2 line-through">
-                        {formatPrice(line.promotion.originalTotal)} €
-                      </span>
-                    )}
-                    <span className="text-foreground font-semibold">
-                      {formatPrice(line.total)} €
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : null}
-
-          <div
-            className={
-              hasPromoLines ? "border-surface-strong mt-4 border-t pt-4" : ""
-            }
-          >
-            <div className="text-foreground flex items-center justify-between text-base font-bold">
-              <span>
-                Razem ({breakdown.totalNights}{" "}
-                {nightsLabel(breakdown.totalNights)})
-              </span>
-              <span>{formatPrice(breakdown.totalPrice)} €</span>
-            </div>
-          </div>
-
-          <div className="border-surface-strong mt-4 space-y-2 border-t pt-4 text-sm">
-            {extras.map((extra) => (
-              <div
-                key={extra.label}
-                className="text-muted flex items-center justify-between"
-              >
-                <span>{extra.label}</span>
-                <span>
-                  {extra.type === "included" ? (
-                    <span>
-                      <span className="mr-1.5">
-                        {formatPrice(extra.amount)} €
-                      </span>
-                      <span className="text-brand font-medium">w cenie</span>
-                    </span>
-                  ) : (
-                    `${formatPrice(extra.amount)} €`
-                  )}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          <a
-            href="/contact"
-            className="mt-6 block w-full rounded-lg bg-[var(--brand)] px-6 py-3 text-center font-semibold text-white shadow-[0_8px_24px_-8px_rgba(72,104,90,0.4)] transition-all hover:-translate-y-0.5 hover:bg-[#567a6a] hover:shadow-[0_12px_32px_-8px_rgba(72,104,90,0.5)]"
-          >
-            Zapytaj o termin
-          </a>
-        </>
+        <SummaryContent
+          breakdown={breakdown}
+          displayLines={displayLines}
+          hasPromoLines={hasPromoLines}
+        />
       ) : (
         <div className="text-muted text-center">
           <p className="text-sm">
@@ -209,8 +221,8 @@ export default function PriceSummary({
 
       {hasPerks && (
         <div className="border-surface-strong mt-6 space-y-2 border-t pt-4">
-          {config.perks!.map((perk, index) => (
-            <p key={index} className="text-muted text-sm">
+          {config.perks!.map((perk) => (
+            <p key={perk} className="text-muted text-sm">
               {perk}
             </p>
           ))}

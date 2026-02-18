@@ -335,7 +335,7 @@ h4 {
 
 /* ── Pricing modal ───────────────────────────────────── */
 
-.pricing-modal-backdrop {
+.pricing-modal-backdrop::backdrop {
   background: rgb(0 0 0 / 50%);
   animation: pricing-modal-fade-in 200ms ease-out;
 }

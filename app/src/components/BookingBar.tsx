@@ -9,9 +9,9 @@ import { calculatePriceBreakdown, type PriceBreakdown } from "@/lib/pricing";
 import { checkMinNightsWarning } from "./PricingCalendar";
 import PricingModal from "./PricingModal";
 
-type BookingBarProps = {
+type BookingBarProps = Readonly<{
   config: PricingConfig;
-};
+}>;
 
 function formatDate(date: Date): string {
   return date.toLocaleDateString("pl-PL", {
@@ -43,19 +43,12 @@ export default function BookingBar({ config }: BookingBarProps) {
 
   return (
     <>
-      <div
-        className="mx-auto flex w-full max-w-2xl cursor-pointer flex-col items-stretch gap-3 rounded-2xl bg-white/85 p-3 shadow-[0_12px_48px_-6px_rgba(0,0,0,0.3),_0_4px_14px_-4px_rgba(0,0,0,0.15)] backdrop-blur-md sm:flex-row sm:items-center sm:rounded-full sm:p-2 sm:pl-6"
+      <button
+        type="button"
+        className="mx-auto flex w-full max-w-2xl cursor-pointer flex-col items-stretch gap-3 rounded-2xl bg-white/85 p-3 text-left shadow-[0_12px_48px_-6px_rgba(0,0,0,0.3),_0_4px_14px_-4px_rgba(0,0,0,0.15)] backdrop-blur-md sm:flex-row sm:items-center sm:rounded-full sm:p-2 sm:pl-6"
         onClick={() => setIsModalOpen(true)}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            setIsModalOpen(true);
-          }
-        }}
       >
-        <div className="flex flex-1 items-center gap-3 px-3 sm:px-0">
+        <span className="flex flex-1 items-center gap-3 px-3 sm:px-0">
           <Calendar className="h-5 w-5 shrink-0 text-[var(--muted)]" />
           <span className="text-sm text-[var(--foreground)]">
             {range?.from ? formatDate(range.from) : "Zameldowanie"}
@@ -64,26 +57,23 @@ export default function BookingBar({ config }: BookingBarProps) {
           <span className="text-sm text-[var(--foreground)]">
             {range?.to ? formatDate(range.to) : "Wymeldowanie"}
           </span>
-        </div>
+        </span>
 
         {hasValidPrice && (
-          <div className="hidden items-center border-l border-[var(--surface-strong)] px-4 sm:flex">
+          <span className="hidden items-center border-l border-[var(--surface-strong)] px-4 sm:flex">
             <span className="text-sm font-semibold text-[var(--foreground)]">
               {formatPrice(breakdown.totalPrice)} &euro;
             </span>
-          </div>
+          </span>
         )}
 
-        <button
-          className="rounded-xl bg-[var(--brand)] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(72,104,90,0.4)] transition hover:-translate-y-0.5 hover:bg-[#567a6a] hover:shadow-[0_12px_32px_-8px_rgba(72,104,90,0.5)] sm:rounded-full"
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsModalOpen(true);
-          }}
+        <span
+          className="rounded-xl bg-[var(--brand)] px-6 py-3 text-center text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(72,104,90,0.4)] transition hover:-translate-y-0.5 hover:bg-[#567a6a] hover:shadow-[0_12px_32px_-8px_rgba(72,104,90,0.5)] sm:rounded-full"
+          aria-hidden="true"
         >
           Sprawdź cenę
-        </button>
-      </div>
+        </span>
+      </button>
 
       {isModalOpen && (
         <PricingModal
