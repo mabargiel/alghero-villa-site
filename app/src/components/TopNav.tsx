@@ -152,7 +152,9 @@ export default function TopNav() {
             ? "bg-[#0b0f0a]/95 text-white"
             : "bg-[var(--background)] text-[var(--foreground)]"
         } ${
-          isOpen ? "max-h-96 border-t border-white/15" : "max-h-0"
+          isOpen
+            ? `max-h-96 border-t ${isHome ? "border-white/15" : "border-[var(--surface-strong)]"}`
+            : "max-h-0"
         } overflow-hidden transition-all`}
       >
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-6">
@@ -161,7 +163,7 @@ export default function TopNav() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium tracking-[0.08em] text-[#FFFFFFE6] transition hover:text-[#FFFFFFE6]"
+                className="text-sm font-medium tracking-[0.08em] text-inherit transition hover:opacity-80"
                 onClick={handleClose}
               >
                 {item.label}
