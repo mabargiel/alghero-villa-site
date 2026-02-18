@@ -46,6 +46,11 @@ export type Hero = {
       url: string;
     };
   };
+  videoLight?: {
+    asset: {
+      url: string;
+    };
+  };
   images?: MediaImage[];
   mobileImage?: MediaImage;
 };
@@ -110,6 +115,11 @@ const heroQuery = `
     title,
     videoUrl,
     video {
+      asset->{
+        url
+      }
+    },
+    videoLight {
       asset->{
         url
       }

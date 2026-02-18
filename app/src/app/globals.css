@@ -2,11 +2,11 @@
 @import "react-day-picker/style.css" layer(rdp);
 
 :root {
-  --background: #edf3f0;
+  --background: #f5f0ea;
   --foreground: #26241f;
   --muted: #6f6b5e;
-  --surface: #f4f1e9;
-  --surface-strong: #ebe5d8;
+  --surface: #f2ede4;
+  --surface-strong: #e5ddd0;
   --brand: #48685a;
   --accent: #48685a;
   --accent-strong: #48685a;
@@ -72,7 +72,12 @@ h4 {
 }
 
 .hero-text-shadow {
-  text-shadow: 0 8px 30px rgb(0 0 0 / 45%);
+  text-shadow:
+    0 2px 8px rgb(0 0 0 / 60%),
+    0 4px 16px rgb(0 0 0 / 40%),
+    0 8px 40px rgb(0 0 0 / 30%);
+  -webkit-text-stroke: 0.5px rgb(255 255 255 / 30%);
+  paint-order: stroke fill;
 }
 
 .reveal {
@@ -326,4 +331,37 @@ h4 {
 .pricing-legend-promo {
   background: #e84393;
   box-shadow: 0 0 6px 2px rgb(232 67 147 / 40%);
+}
+
+/* ── Pricing modal ───────────────────────────────────── */
+
+.pricing-modal-backdrop {
+  background: rgb(0 0 0 / 50%);
+  animation: pricing-modal-fade-in 200ms ease-out;
+}
+
+.pricing-modal-content {
+  animation: pricing-modal-slide-up 250ms ease-out;
+}
+
+@keyframes pricing-modal-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pricing-modal-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }

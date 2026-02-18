@@ -1,4 +1,5 @@
 import AreaHighlights from "@/components/AreaHighlights";
+import BookingBar from "@/components/BookingBar";
 import HeroMedia from "@/components/HeroMedia";
 import LucideIcon from "@/components/LucideIcon";
 import Reveal from "@/components/Reveal";
@@ -9,6 +10,7 @@ import {
   getHero,
   getHomeSections,
   getMiniGallery,
+  getPricingConfig,
 } from "@/lib/sanity/queries";
 import Image from "next/image";
 
@@ -39,12 +41,14 @@ function SectionImage({ altText, url }: { altText: string; url: string }) {
 }
 
 export default async function HomePage() {
-  const [hero, sections, miniGallery, areaHighlights] = await Promise.all([
-    getHero(),
-    getHomeSections(),
-    getMiniGallery(),
-    getAreaHighlights(),
-  ]);
+  const [hero, sections, miniGallery, areaHighlights, pricingConfig] =
+    await Promise.all([
+      getHero(),
+      getHomeSections(),
+      getMiniGallery(),
+      getAreaHighlights(),
+      getPricingConfig(),
+    ]);
   const sectionMap = new Map<HomeSection["sectionKey"], HomeSection["image"]>(
     (sections ?? []).map((section) => [section.sectionKey, section.image]),
   );
@@ -78,6 +82,7 @@ export default async function HomePage() {
   const gardenImage = sectionImage("garden");
   const locationImage = sectionImage("location");
   const heroVideoUrl = hero?.video?.asset?.url ?? hero?.videoUrl;
+  const heroVideoUrlLight = hero?.videoLight?.asset?.url;
   const areaHighlightImages =
     areaHighlights?.images?.map((image) => ({
       altText: image.altText,
@@ -98,49 +103,47 @@ export default async function HomePage() {
             images={heroImages}
             mobileImage={heroMobileImage}
             videoUrl={heroVideoUrl}
+            videoUrlLight={heroVideoUrlLight}
           />
         </div>
         {heroVideoUrl ? (
           <>
-            <div className="pointer-events-none absolute inset-0 bg-black/70 md:hidden" />
-            <div className="pointer-events-none absolute inset-0 hidden bg-black/45 md:block" />
+            <div className="pointer-events-none absolute inset-0 bg-black/75 md:hidden" />
+            <div className="pointer-events-none absolute inset-0 hidden bg-black/40 md:block" />
           </>
         ) : (
-          <div className="pointer-events-none absolute inset-0 bg-black/75" />
+          <div className="pointer-events-none absolute inset-0 bg-black/80" />
         )}
         <div
           className="hero-motion pointer-events-none absolute inset-0"
           aria-hidden="true"
         />
-        <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl items-center px-6 pt-28 pb-20">
-          <div className="max-w-2xl text-center md:text-left">
-            <div className="mx-auto inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-xs tracking-[0.3em] text-[var(--foreground)] uppercase shadow-md md:mx-0">
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center px-6 pt-28 pb-32 text-center">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-xs tracking-[0.3em] text-[var(--foreground)] uppercase shadow-md">
               Villa Monte Calvia — Alghero
             </div>
-            <h1 className="hero-text-shadow mt-6 text-4xl leading-tight font-semibold text-white md:text-5xl">
+            <h1 className="hero-text-shadow mt-6 text-4xl leading-tight font-bold tracking-wide text-white md:text-5xl">
               <span className="md:hidden">Prywatny azyl wśród oliwek</span>
               <span className="hidden md:inline">
                 Twój prywatny azyl wśród oliwek i śródziemnomorskiej zieleni
               </span>
             </h1>
-            <p className="hero-text-shadow mt-4 text-base text-white/90 md:hidden">
+            <p className="hero-text-shadow mt-4 text-base text-white md:hidden">
               Elegancka willa blisko Alghero, cisza i natura w zasięgu ręki.
             </p>
-            <p className="hero-text-shadow mt-4 hidden text-base text-white/90 md:block md:text-lg">
+            <p className="hero-text-shadow mt-4 hidden text-base text-white md:block md:text-lg">
               Przestronna, dwukondygnacyjna rezydencja u podnóża góry Calvia
               łączy elegancję z wygodą nowoczesnego domu. Cisza, przestrzeń i
               klimat Sardynii — zaledwie kilka minut od Alghero.
             </p>
-            <div className="mt-6 flex flex-wrap justify-center gap-3 md:justify-start">
-              <a
-                className="rounded-xl bg-gradient-to-r from-[var(--accent-strong)] to-[var(--accent)] px-6 py-3 text-sm font-semibold text-white shadow-[0_18px_40px_-24px_rgba(0,0,0,0.75)] transition hover:-translate-y-0.5 hover:shadow-[0_24px_55px_-30px_rgba(0,0,0,0.8)]"
-                href="/contact"
-              >
-                Sprawdź dostępność
-              </a>
-            </div>
           </div>
         </div>
+        {pricingConfig && (
+          <div className="absolute right-0 bottom-[18vh] left-0 z-10 px-6">
+            <BookingBar config={pricingConfig} />
+          </div>
+        )}
         <a
           className="hero-scroll-indicator absolute top-[85vh] right-0 left-0 flex justify-center text-xs tracking-[0.3em] text-white uppercase"
           href="#highlights"
@@ -406,7 +409,7 @@ export default async function HomePage() {
               przestrzeń, prywatność i śródziemnomorski styl życia.
             </p>
             <a
-              className="mt-6 inline-flex rounded-xl bg-gradient-to-r from-[var(--accent-strong)] to-[var(--accent)] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_34px_-22px_rgba(0,0,0,0.7)] transition hover:-translate-y-0.5 hover:shadow-[0_22px_50px_-28px_rgba(0,0,0,0.75)]"
+              className="mt-6 inline-flex rounded-xl bg-[var(--brand)] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_34px_-12px_rgba(72,104,90,0.4)] transition hover:-translate-y-0.5 hover:bg-[#567a6a] hover:shadow-[0_22px_50px_-16px_rgba(72,104,90,0.5)]"
               href="/contact"
             >
               Skontaktuj się z nami

@@ -7,7 +7,6 @@ import SocialIcon from "@/components/SocialIcon";
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/pricing", label: "Cennik" },
   { href: "/gallery", label: "Galeria" },
   { href: "/location", label: "Okolica" },
   { href: "/contact", label: "Kontakt" },

@@ -194,7 +194,7 @@ export default function PriceSummary({
 
           <a
             href="/contact"
-            className="bg-brand hover:bg-deep-olive mt-6 block w-full rounded-lg px-6 py-3 text-center font-semibold text-white transition-colors"
+            className="mt-6 block w-full rounded-lg bg-[var(--brand)] px-6 py-3 text-center font-semibold text-white shadow-[0_8px_24px_-8px_rgba(72,104,90,0.4)] transition-all hover:-translate-y-0.5 hover:bg-[#567a6a] hover:shadow-[0_12px_32px_-8px_rgba(72,104,90,0.5)]"
           >
             Zapytaj o termin
           </a>
