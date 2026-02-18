@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Calendar, ArrowRight } from "lucide-react";
+import { Calendar, ArrowRight, Search } from "lucide-react";
 import type { DateRange } from "react-day-picker";
 
 import type { PricingConfig } from "@/lib/sanity/queries";
@@ -68,9 +68,10 @@ export default function BookingBar({ config }: BookingBarProps) {
         )}
 
         <span
-          className="rounded-xl bg-[var(--brand)] px-6 py-3 text-center text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(72,104,90,0.4)] transition hover:-translate-y-0.5 hover:bg-[#567a6a] hover:shadow-[0_12px_32px_-8px_rgba(72,104,90,0.5)] sm:rounded-full"
+          className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--brand)] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(72,104,90,0.4)] transition hover:-translate-y-0.5 hover:bg-[#567a6a] hover:shadow-[0_12px_32px_-8px_rgba(72,104,90,0.5)] sm:rounded-full"
           aria-hidden="true"
         >
+          <Search className="h-4 w-4" />
           Sprawdź cenę
         </span>
       </button>

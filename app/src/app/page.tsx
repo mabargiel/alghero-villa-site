@@ -126,17 +126,9 @@ export default async function HomePage() {
             <h1 className="hero-text-shadow mt-6 text-4xl leading-tight font-bold tracking-wide text-white md:text-5xl">
               <span className="md:hidden">Prywatny azyl wśród oliwek</span>
               <span className="hidden md:inline">
-                Twój prywatny azyl wśród oliwek i śródziemnomorskiej zieleni
+                Twój prywatny azyl wśród oliwek
               </span>
             </h1>
-            <p className="hero-text-shadow mt-4 text-base text-white md:hidden">
-              Elegancka willa blisko Alghero, cisza i natura w zasięgu ręki.
-            </p>
-            <p className="hero-text-shadow mt-4 hidden text-base text-white md:block md:text-lg">
-              Przestronna, dwukondygnacyjna rezydencja u podnóża góry Calvia
-              łączy elegancję z wygodą nowoczesnego domu. Cisza, przestrzeń i
-              klimat Sardynii — zaledwie kilka minut od Alghero.
-            </p>
           </div>
         </div>
         {pricingConfig && (
