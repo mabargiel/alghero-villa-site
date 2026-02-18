@@ -5,10 +5,7 @@ import { Calendar, ArrowRight } from "lucide-react";
 import type { DateRange } from "react-day-picker";
 
 import type { PricingConfig } from "@/lib/sanity/queries";
-import {
-  calculatePriceBreakdown,
-  type PriceBreakdown,
-} from "@/lib/pricing";
+import { calculatePriceBreakdown, type PriceBreakdown } from "@/lib/pricing";
 import { checkMinNightsWarning } from "./PricingCalendar";
 import PricingModal from "./PricingModal";
 
@@ -40,10 +37,7 @@ export default function BookingBar({ config }: BookingBarProps) {
     return calculatePriceBreakdown(config, range.from, range.to);
   }, [config, range]);
 
-  const minNightsWarning = useMemo(
-    () => checkMinNightsWarning(range),
-    [range],
-  );
+  const minNightsWarning = useMemo(() => checkMinNightsWarning(range), [range]);
 
   const hasValidPrice = breakdown && !minNightsWarning;
 

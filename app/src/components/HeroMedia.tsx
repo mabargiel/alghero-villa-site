@@ -22,18 +22,15 @@ function useConnectionAwareVideoUrl(
   videoUrl?: string,
   videoUrlLight?: string,
 ): string | undefined {
-  const [url, setUrl] = useState(videoUrl);
-
-  useEffect(() => {
-    const connection = (navigator as Navigator & { connection?: { effectiveType?: string } }).connection;
-    if (!connection?.effectiveType || !videoUrlLight) {
-      return;
-    }
+  return useMemo(() => {
+    if (typeof navigator === "undefined" || !videoUrlLight) return videoUrl;
+    const connection = (
+      navigator as Navigator & { connection?: { effectiveType?: string } }
+    ).connection;
+    if (!connection?.effectiveType) return videoUrl;
     const slow = ["slow-2g", "2g", "3g"].includes(connection.effectiveType);
-    setUrl(slow ? videoUrlLight : videoUrl);
+    return slow ? videoUrlLight : videoUrl;
   }, [videoUrl, videoUrlLight]);
-
-  return url;
 }
 
 export default function HeroMedia({

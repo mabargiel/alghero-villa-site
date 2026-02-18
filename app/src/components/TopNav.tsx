@@ -71,7 +71,9 @@ export default function TopNav() {
         </div>
       </div>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 pt-1 pb-6 md:pb-8">
-        <div className={`text-xs tracking-[0.35em] uppercase ${isHome ? "text-white/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]" : "text-[var(--brand)]"}`}>
+        <div
+          className={`text-xs tracking-[0.35em] uppercase ${isHome ? "text-white/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]" : "text-[var(--brand)]"}`}
+        >
           Villa Monte Calvia
         </div>
 

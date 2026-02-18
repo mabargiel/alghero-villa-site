@@ -175,7 +175,9 @@ export default async function HomePage() {
 
       <Reveal>
         <section className="mx-auto max-w-6xl px-6 pb-16 text-center">
-          <h2 className="text-2xl font-semibold md:text-3xl">Strefy willi</h2>
+          <h2 className="text-2xl font-semibold md:text-3xl">
+            Villa Monte Calvia
+          </h2>
           <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
           <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
             Odkryj przestrzenie stworzone do wypoczynku
