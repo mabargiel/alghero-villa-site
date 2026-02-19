@@ -7,7 +7,6 @@ import SocialIcon from "@/components/SocialIcon";
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/pricing", label: "Cennik" },
   { href: "/gallery", label: "Galeria" },
   { href: "/location", label: "Okolica" },
   { href: "/contact", label: "Kontakt" },
@@ -72,7 +71,9 @@ export default function TopNav() {
         </div>
       </div>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 pt-1 pb-6 md:pb-8">
-        <div className={`text-xs tracking-[0.35em] uppercase ${isHome ? "text-white/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]" : "text-[var(--brand)]"}`}>
+        <div
+          className={`text-xs tracking-[0.35em] uppercase ${isHome ? "text-white/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]" : "text-[var(--brand)]"}`}
+        >
           Villa Monte Calvia
         </div>
 
@@ -151,7 +152,9 @@ export default function TopNav() {
             ? "bg-[#0b0f0a]/95 text-white"
             : "bg-[var(--background)] text-[var(--foreground)]"
         } ${
-          isOpen ? "max-h-96 border-t border-white/15" : "max-h-0"
+          isOpen
+            ? `max-h-96 border-t ${isHome ? "border-white/15" : "border-[var(--surface-strong)]"}`
+            : "max-h-0"
         } overflow-hidden transition-all`}
       >
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-6">
@@ -160,7 +163,7 @@ export default function TopNav() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium tracking-[0.08em] text-[#FFFFFFE6] transition hover:text-[#FFFFFFE6]"
+                className="text-sm font-medium tracking-[0.08em] text-inherit transition hover:opacity-80"
                 onClick={handleClose}
               >
                 {item.label}

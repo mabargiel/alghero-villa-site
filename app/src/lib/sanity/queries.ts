@@ -46,6 +46,11 @@ export type Hero = {
       url: string;
     };
   };
+  videoLight?: {
+    asset: {
+      url: string;
+    };
+  };
   images?: MediaImage[];
   mobileImage?: MediaImage;
 };
@@ -64,6 +69,30 @@ export type MiniGallery = {
 export type AreaHighlight = {
   _id: string;
   images?: MediaImage[];
+};
+
+export type PricingPromotion = {
+  _key: string;
+  label: string;
+  startDate: string;
+  endDate: string;
+  type: "percentage" | "fixed";
+  value: number;
+};
+
+export type PricingRange = {
+  _key: string;
+  label: string;
+  startDate: string;
+  endDate: string;
+  pricePerDay: number;
+  promotions?: PricingPromotion[];
+};
+
+export type PricingConfig = {
+  _id: string;
+  baseRanges: PricingRange[];
+  perks?: string[];
 };
 
 const galleryQuery = `
@@ -86,6 +115,11 @@ const heroQuery = `
     title,
     videoUrl,
     video {
+      asset->{
+        url
+      }
+    },
+    videoLight {
       asset->{
         url
       }
@@ -195,6 +229,36 @@ export async function getHomeSections() {
 export async function getMiniGallery() {
   return sanityClient.fetch<MiniGallery | null>(
     miniGalleryQuery,
+    {},
+    { next: { revalidate: 300 } },
+  );
+}
+
+const pricingConfigQuery = `
+  *[_type == "pricingConfig"][0]{
+    _id,
+    baseRanges[] {
+      _key,
+      label,
+      startDate,
+      endDate,
+      pricePerDay,
+      promotions[] {
+        _key,
+        label,
+        startDate,
+        endDate,
+        type,
+        value
+      }
+    },
+perks
+  }
+`;
+
+export async function getPricingConfig() {
+  return sanityClient.fetch<PricingConfig | null>(
+    pricingConfigQuery,
     {},
     { next: { revalidate: 300 } },
   );

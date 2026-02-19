@@ -13,18 +13,36 @@ type HeroMediaProps = {
   images: HeroImage[];
   mobileImage?: HeroImage;
   videoUrl?: string;
+  videoUrlLight?: string;
 };
 
 const ROTATE_MS = 6000;
+
+function useConnectionAwareVideoUrl(
+  videoUrl?: string,
+  videoUrlLight?: string,
+): string | undefined {
+  return useMemo(() => {
+    if (typeof navigator === "undefined" || !videoUrlLight) return videoUrl;
+    const connection = (
+      navigator as Navigator & { connection?: { effectiveType?: string } }
+    ).connection;
+    if (!connection?.effectiveType) return videoUrl;
+    const slow = ["slow-2g", "2g", "3g"].includes(connection.effectiveType);
+    return slow ? videoUrlLight : videoUrl;
+  }, [videoUrl, videoUrlLight]);
+}
 
 export default function HeroMedia({
   images,
   mobileImage,
   videoUrl,
+  videoUrlLight,
 }: HeroMediaProps) {
   const prefersReducedMotion = useReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
   const [hasVideoError, setHasVideoError] = useState(false);
+  const resolvedVideoUrl = useConnectionAwareVideoUrl(videoUrl, videoUrlLight);
 
   const safeImages = useMemo(
     () => images.filter((image) => image.url),
@@ -38,7 +56,7 @@ export default function HeroMedia({
       : undefined;
 
   const canRotate = !prefersReducedMotion && safeImages.length > 1;
-  const canPlayVideo = Boolean(videoUrl) && !prefersReducedMotion;
+  const canPlayVideo = Boolean(resolvedVideoUrl) && !prefersReducedMotion;
   const shouldPlayVideo = canPlayVideo && !hasVideoError;
 
   useEffect(() => {
@@ -51,7 +69,7 @@ export default function HeroMedia({
     return () => window.clearInterval(id);
   }, [canRotate, safeImages.length]);
 
-  if (!fallbackImage && safeImages.length === 0 && !videoUrl) {
+  if (!fallbackImage && safeImages.length === 0 && !resolvedVideoUrl) {
     return null;
   }
 
@@ -68,7 +86,7 @@ export default function HeroMedia({
             preload="auto"
             onError={() => setHasVideoError(true)}
           >
-            <source src={videoUrl} type="video/mp4" />
+            <source src={resolvedVideoUrl} type="video/mp4" />
           </video>
         ) : (
           safeImages.map((image, index) => (
