@@ -1,9 +1,9 @@
 import ContactForm from "@/components/ContactForm";
-import SocialIcon from "@/components/SocialIcon";
+import ContactInfoPanel from "@/components/ContactInfoPanel";
 
 export default function ContactPage() {
   return (
-    <main className="mx-auto min-h-screen max-w-4xl px-6 pt-28 pb-16">
+    <main className="mx-auto min-h-screen max-w-6xl px-6 pt-28 pb-16">
       <header className="mb-10">
         <p className="text-sm tracking-[0.2em] text-[var(--muted)] uppercase">
           Kontakt
@@ -17,40 +17,10 @@ export default function ContactPage() {
         </p>
       </header>
 
-      <div className="mb-6 flex items-center gap-4 text-[var(--accent-strong)]">
-        <a
-          className="inline-flex items-center gap-2 text-sm font-semibold transition hover:text-[var(--accent)]"
-          href="https://facebook.com"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Facebook"
-        >
-          <SocialIcon name="facebook" className="h-5 w-5" />
-          Facebook
-        </a>
-        <a
-          className="inline-flex items-center gap-2 text-sm font-semibold transition hover:text-[var(--accent)]"
-          href="https://instagram.com"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Instagram"
-        >
-          <SocialIcon name="instagram" className="h-5 w-5" />
-          Instagram
-        </a>
-        <a
-          className="inline-flex items-center gap-2 text-sm font-semibold transition hover:text-[var(--accent)]"
-          href="https://www.google.com/search?sca_esv=01e84e26bfa42c3c&hl=pl&authuser=0&sxsrf=ANbL-n6NmWfmS8WlWdzEkLpDLwXNZkgpwA:1770480521981&kgmid=/g/11yy4gd_gs&q=Villa+Monte+Calvia&shndl=30&source=sh/x/loc/uni/m1/1&kgs=16a3d798bec3e108&shem=shrtsdl&utm_source=shrtsdl,sh/x/loc/uni/m1/1"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Google"
-        >
-          <SocialIcon name="googlemaps" className="h-5 w-5" />
-          Google
-        </a>
+      <div className="grid gap-10 md:grid-cols-[1fr_1.2fr] md:items-start">
+        <ContactInfoPanel />
+        <ContactForm />
       </div>
-
-      <ContactForm />
     </main>
   );
 }
