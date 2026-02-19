@@ -15,9 +15,7 @@ const navItems = [
 export default function TopNav() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const effectivePath =
-    pathname || (typeof window !== "undefined" ? window.location.pathname : "");
-  const isHome = effectivePath === "/";
+  const isHome = !pathname || pathname === "/";
 
   function handleToggle() {
     setIsOpen((prev) => !prev);
