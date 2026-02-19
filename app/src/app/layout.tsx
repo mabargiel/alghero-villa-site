@@ -10,6 +10,10 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
+  icons: {
+    icon: "/favicon.png",
+    apple: "/favicon.png",
+  },
   title: {
     default: "Villa Monte Calvia — Alghero",
     template: "%s | Villa Monte Calvia",
