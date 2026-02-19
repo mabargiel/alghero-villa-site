@@ -69,11 +69,22 @@ export default function TopNav() {
         </div>
       </div>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 pt-1 pb-6 md:pb-8">
-        <div
-          className={`text-xs tracking-[0.35em] uppercase ${isHome ? "text-white/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]" : "text-[var(--brand)]"}`}
-        >
-          Villa Monte Calvia
-        </div>
+        <Link href="/" aria-label="Villa Monte Calvia — Strona główna">
+          <span
+            className={`block h-20 w-64 ${isHome ? "drop-shadow-[0_2px_12px_rgba(0,0,0,0.7)]" : ""}`}
+            style={{
+              maskImage: "url(/logo.svg)",
+              WebkitMaskImage: "url(/logo.svg)",
+              maskSize: "contain",
+              WebkitMaskSize: "contain",
+              maskRepeat: "no-repeat",
+              WebkitMaskRepeat: "no-repeat",
+              maskPosition: "left center",
+              WebkitMaskPosition: "left center",
+              backgroundColor: isHome ? "#ffffff" : "var(--brand)",
+            }}
+          />
+        </Link>
 
         <nav
           className={`hidden items-center gap-8 text-[18px] font-medium tracking-[0.08em] md:flex ${
