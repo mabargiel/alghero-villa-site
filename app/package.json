@@ -24,6 +24,9 @@
     "resend": "^6.9.1",
     "simple-icons": "^14.4.0"
   },
+  "overrides": {
+    "@swc/helpers": "0.5.18"
+  },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
