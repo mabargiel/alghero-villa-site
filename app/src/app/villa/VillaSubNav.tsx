@@ -11,6 +11,12 @@ type VillaSubNavProps = Readonly<{
   groups: SubNavGroup[];
 }>;
 
+function labelStyle(isActive: boolean, isHovered: boolean): string {
+  if (isActive) return "font-semibold text-[var(--accent-strong)]";
+  if (isHovered) return "font-medium text-[var(--foreground)] opacity-70";
+  return "font-normal text-[var(--muted)] opacity-40";
+}
+
 export default function VillaSubNav({ groups }: VillaSubNavProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
@@ -84,13 +90,7 @@ export default function VillaSubNav({ groups }: VillaSubNavProps) {
               >
                 {/* Label — always visible, active is bold accent, inactive is muted */}
                 <span
-                  className={`max-w-[min(200px,30vw)] truncate text-xs transition-all duration-200 ${
-                    isActive
-                      ? "font-semibold text-[var(--accent-strong)]"
-                      : isHovered
-                        ? "font-medium text-[var(--foreground)] opacity-70"
-                        : "font-normal text-[var(--muted)] opacity-40"
-                  }`}
+                  className={`max-w-[min(200px,30vw)] truncate text-xs transition-all duration-200 ${labelStyle(isActive, isHovered)}`}
                 >
                   {item.label}
                 </span>

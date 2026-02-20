@@ -49,7 +49,7 @@ export default function RoomTilesGrid({ rooms }: RoomTilesGridProps) {
     [lightboxRoom],
   );
   const activeImage = images[activeIndex] ?? null;
-  const nextImage = nextIndex !== null ? (images[nextIndex] ?? null) : null;
+  const nextImage = nextIndex === null ? null : (images[nextIndex] ?? null);
 
   function openLightbox(room: Room) {
     setLightboxRoom(room);
@@ -93,8 +93,8 @@ export default function RoomTilesGrid({ rooms }: RoomTilesGridProps) {
       if (event.key === "ArrowRight") showNext();
       if (event.key === "ArrowLeft") showPrev();
     }
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    globalThis.addEventListener("keydown", onKeyDown);
+    return () => globalThis.removeEventListener("keydown", onKeyDown);
   }, [lightboxRoom, showNext, showPrev]);
 
   return (
@@ -155,26 +155,20 @@ export default function RoomTilesGrid({ rooms }: RoomTilesGridProps) {
 
       {/* Lightbox */}
       {lightboxRoom && activeImage && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/25 backdrop-blur-xl"
-          role="dialog"
+        <dialog
+          open
+          className="fixed inset-0 z-50 m-0 flex h-full max-h-none w-full max-w-none items-center justify-center border-none bg-transparent p-0"
           aria-modal="true"
           aria-label={`Galeria — ${lightboxRoom.title}`}
-          onClick={closeLightbox}
-          onTouchStart={(e) => setTouchStartX(e.touches[0]?.clientX ?? null)}
-          onTouchEnd={(e) => {
-            if (touchStartX === null) return;
-            const dx =
-              (e.changedTouches[0]?.clientX ?? touchStartX) - touchStartX;
-            if (dx > 50) showPrev();
-            if (dx < -50) showNext();
-            setTouchStartX(null);
-          }}
         >
-          <div
-            className="relative mx-4 max-w-4xl rounded-2xl bg-white/80 p-4 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.3)] backdrop-blur-sm md:p-6"
-            onClick={(e) => e.stopPropagation()}
-          >
+          {/* Backdrop button */}
+          <button
+            type="button"
+            className="fixed inset-0 -z-10 h-full w-full cursor-default border-none bg-black/25 p-0 backdrop-blur-xl"
+            onClick={closeLightbox}
+            aria-label="Zamknij galerię"
+          />
+          <div className="relative mx-4 max-w-4xl rounded-2xl bg-white/80 p-4 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.3)] backdrop-blur-sm md:p-6">
             {/* Close button */}
             <button
               className="absolute top-3 right-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-black/5 text-sm text-[var(--foreground)] transition hover:bg-black/10"
@@ -193,7 +187,22 @@ export default function RoomTilesGrid({ rooms }: RoomTilesGridProps) {
               </span>
             </p>
 
-            <div className="relative mx-auto flex max-h-[70vh] items-center justify-center">
+            <button
+              type="button"
+              className="relative mx-auto flex max-h-[70vh] cursor-default items-center justify-center border-none bg-transparent p-0"
+              onTouchStart={(e) =>
+                setTouchStartX(e.touches[0]?.clientX ?? null)
+              }
+              onTouchEnd={(e) => {
+                if (touchStartX === null) return;
+                const dx =
+                  (e.changedTouches[0]?.clientX ?? touchStartX) - touchStartX;
+                if (dx > 50) showPrev();
+                if (dx < -50) showNext();
+                setTouchStartX(null);
+              }}
+              aria-label="Przesuń aby zmienić zdjęcie"
+            >
               {/* Active image */}
               <div
                 className={`transition-opacity duration-200 ${
@@ -221,7 +230,7 @@ export default function RoomTilesGrid({ rooms }: RoomTilesGridProps) {
                   />
                 </div>
               )}
-            </div>
+            </button>
 
             {images.length > 1 && (
               <>
@@ -266,7 +275,7 @@ export default function RoomTilesGrid({ rooms }: RoomTilesGridProps) {
               </>
             )}
           </div>
-        </div>
+        </dialog>
       )}
     </>
   );

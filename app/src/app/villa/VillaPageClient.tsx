@@ -214,10 +214,10 @@ export default function VillaPageClient({
 function SalonCarousel({
   coverImage,
   galleryImages,
-}: {
+}: Readonly<{
   coverImage: ImageData | null;
   galleryImages: ImageData[];
-}) {
+}>) {
   const images = useMemo(() => {
     const all: ImageData[] = [];
     if (coverImage) all.push(coverImage);
@@ -271,9 +271,9 @@ function SalonCarousel({
       </div>
       {images.length > 1 && (
         <div className="mt-3 flex justify-center gap-2">
-          {images.map((_, i) => (
+          {images.map((img, i) => (
             <button
-              key={i}
+              key={img.url}
               onClick={() => goTo(i)}
               aria-label={`Zdjęcie ${i + 1}`}
               className={`rounded-full transition-all duration-300 ${
@@ -289,7 +289,10 @@ function SalonCarousel({
   );
 }
 
-function ExteriorImage({ url, altText }: { url: string; altText: string }) {
+function ExteriorImage({
+  url,
+  altText,
+}: Readonly<{ url: string; altText: string }>) {
   return (
     <div className="group relative h-[260px] overflow-hidden rounded-lg bg-[var(--surface)] shadow-[0_25px_55px_-35px_rgba(20,20,20,0.5)] md:h-[320px] lg:h-[380px]">
       <Image
