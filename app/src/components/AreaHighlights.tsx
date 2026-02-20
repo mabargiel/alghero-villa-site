@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import LucideIcon from "./LucideIcon";
 
 type AreaImage = {
@@ -56,23 +57,14 @@ export default function AreaHighlights({ images }: AreaHighlightsProps) {
         const isExpanded = expandedIndex === index;
 
         return (
-          <div
+          <Link
             key={area.title}
-            role="button"
-            tabIndex={0}
-            aria-expanded={isExpanded}
-            aria-label={`${area.title} — ${isExpanded ? "zwiń" : "rozwiń"}`}
+            href="/villa"
+            aria-label={area.title}
             className={`highlight-card-item relative h-[260px] overflow-visible rounded-lg ${
               isExpanded ? "z-10" : "z-0"
             }`}
             style={{ transitionDelay: `${index * 100}ms` }}
-            onClick={() => setExpandedIndex(isExpanded ? null : index)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                setExpandedIndex(isExpanded ? null : index);
-              }
-            }}
             onMouseEnter={() => setExpandedIndex(index)}
             onMouseLeave={() => setExpandedIndex(null)}
           >
@@ -138,7 +130,7 @@ export default function AreaHighlights({ images }: AreaHighlightsProps) {
                 </p>
               </div>
             </div>
-          </div>
+          </Link>
         );
       })}
     </div>

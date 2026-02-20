@@ -2,45 +2,31 @@
 @import "react-day-picker/style.css" layer(rdp);
 
 :root {
-  --background: #f5f0ea;
+  --nav-height: 56px;
+  --background: #ede6da;
   --foreground: #26241f;
   --muted: #6f6b5e;
-  --surface: #f2ede4;
-  --surface-strong: #e5ddd0;
+  --surface: #e6dfd2;
+  --surface-strong: #d9d0c2;
   --brand: #48685a;
   --accent: #48685a;
   --accent-strong: #48685a;
   --deep-olive: #1f2a23;
   --accent-gold: #d7c38e;
 
-  /* Navbar mode (default: subpage) */
-  --nav-text: var(--foreground);
-  --nav-text-muted: var(--muted);
-  --nav-text-hover: var(--accent-strong);
-  --nav-active: var(--accent-strong);
-  --nav-logo-bg: var(--brand);
-  --nav-logo-shadow: none;
-  --nav-border: var(--surface);
-  --nav-hamburger: var(--foreground);
-  --nav-mobile-bg: var(--background);
-  --nav-mobile-text: var(--foreground);
-  --nav-mobile-border: var(--surface-strong);
-  --nav-underline: var(--accent-strong);
-}
-
-html.is-home {
-  --nav-text: rgba(255, 255, 255, 0.9);
-  --nav-text-muted: rgba(255, 255, 255, 0.65);
+  /* Navbar — always light (all pages have dark header area) */
+  --nav-text: rgb(255 255 255 / 90%);
+  --nav-text-muted: rgb(255 255 255 / 65%);
   --nav-text-hover: white;
   --nav-active: white;
-  --nav-logo-bg: #ffffff;
-  --nav-logo-shadow: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.7));
-  --nav-border: rgba(255, 255, 255, 0.4);
+  --nav-logo-bg: #fff;
+  --nav-logo-shadow: drop-shadow(0 2px 12px rgb(0 0 0 / 70%));
+  --nav-border: rgb(255 255 255 / 40%);
   --nav-hamburger: white;
-  --nav-mobile-bg: rgba(11, 15, 10, 0.95);
+  --nav-mobile-bg: rgb(11 15 10 / 95%);
   --nav-mobile-text: white;
-  --nav-mobile-border: rgba(255, 255, 255, 0.15);
-  --nav-underline: rgba(255, 255, 255, 0.9);
+  --nav-mobile-border: rgb(255 255 255 / 15%);
+  --nav-underline: rgb(255 255 255 / 90%);
 }
 
 @theme inline {

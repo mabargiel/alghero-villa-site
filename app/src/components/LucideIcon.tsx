@@ -1,7 +1,10 @@
 import {
   Activity,
+  Armchair,
+  Baby,
   Bath,
   BedDouble,
+  BedSingle,
   Car,
   CarFront,
   Circle,
@@ -16,6 +19,7 @@ import {
   Trees,
   Umbrella,
   UtensilsCrossed,
+  Wifi,
   Wind,
 } from "lucide-react";
 
@@ -39,6 +43,11 @@ const iconMap = {
   beach: Sun,
   heritage: Landmark,
   cafe: Coffee,
+  wifi: Wifi,
+  crib: Baby,
+  "extra-bed": BedSingle,
+  lounger: Armchair,
+  "garden-furniture": Umbrella,
 };
 
 export type IconKey = keyof typeof iconMap;

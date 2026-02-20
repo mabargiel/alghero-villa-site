@@ -1,5 +1,6 @@
 import { urlFor } from "@/lib/sanity/image";
 import { getGallery } from "@/lib/sanity/queries";
+import SubpageHeader from "@/components/SubpageHeader";
 import GalleryClient from "./GalleryClient";
 
 export default async function GalleryPage() {
@@ -12,26 +13,21 @@ export default async function GalleryPage() {
   }));
 
   return (
-    <main className="mx-auto min-h-screen max-w-6xl px-6 pt-28 pb-16">
-      <header className="mb-10">
-        <p className="text-sm tracking-[0.2em] text-[var(--muted)] uppercase">
-          Galeria
-        </p>
-        <h1 className="text-4xl font-semibold md:text-5xl">
-          Villa Monte Calvia
-        </h1>
-        <p className="mt-4 max-w-2xl text-[var(--muted)]">
-          Wybór zdjęć przedstawiających ogród, wnętrza oraz otoczenie willi.
-        </p>
-      </header>
-
-      {images.length === 0 ? (
-        <div className="rounded-3xl border border-[var(--surface)] bg-[var(--surface)] p-10 text-center text-[var(--muted)]">
-          Dodaj zdjęcia w Sanity Studio, aby pojawiły się w galerii.
-        </div>
-      ) : (
-        <GalleryClient images={images} />
-      )}
+    <main className="min-h-screen pb-16">
+      <SubpageHeader
+        eyebrow="Galeria"
+        title="Villa Monte Calvia"
+        description="Wybór zdjęć przedstawiających ogród, wnętrza oraz otoczenie willi."
+      />
+      <div className="mx-auto max-w-6xl px-6 pt-10">
+        {images.length === 0 ? (
+          <div className="rounded-3xl border border-[var(--surface)] bg-[var(--surface)] p-10 text-center text-[var(--muted)]">
+            Dodaj zdjęcia w Sanity Studio, aby pojawiły się w galerii.
+          </div>
+        ) : (
+          <GalleryClient images={images} />
+        )}
+      </div>
     </main>
   );
 }

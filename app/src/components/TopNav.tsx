@@ -2,26 +2,20 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SocialIcon from "@/components/SocialIcon";
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/gallery", label: "Galeria" },
+  { href: "/villa", label: "Obiekt" },
   { href: "/location", label: "Okolica" },
+  { href: "/gallery", label: "Galeria" },
   { href: "/contact", label: "Kontakt" },
 ];
 
 export default function TopNav() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle(
-      "is-home",
-      !pathname || pathname === "/",
-    );
-  }, [pathname]);
 
   function handleToggle() {
     setIsOpen((prev) => !prev);

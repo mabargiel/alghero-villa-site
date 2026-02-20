@@ -95,6 +95,25 @@ export type PricingConfig = {
   perks?: string[];
 };
 
+export type VillaRoomImages = {
+  _key: string;
+  roomKey: string;
+  coverImage: MediaImage;
+  galleryImages?: MediaImage[];
+};
+
+export type VillaExteriorImage = {
+  _key: string;
+  sectionKey: string;
+  image: MediaImage;
+};
+
+export type VillaPage = {
+  _id: string;
+  roomImages?: VillaRoomImages[];
+  exteriorImages?: VillaExteriorImage[];
+};
+
 const galleryQuery = `
   *[_type == "gallery"][0]{
     _id,
@@ -259,6 +278,58 @@ perks
 export async function getPricingConfig() {
   return sanityClient.fetch<PricingConfig | null>(
     pricingConfigQuery,
+    {},
+    { next: { revalidate: 300 } },
+  );
+}
+
+const villaPageQuery = `
+  *[_type == "villaPage"][0]{
+    _id,
+    roomImages[] {
+      _key,
+      roomKey,
+      coverImage {
+        altText,
+        image {
+          asset->{
+            _id,
+            url,
+            metadata { dimensions }
+          }
+        }
+      },
+      galleryImages[] {
+        altText,
+        image {
+          asset->{
+            _id,
+            url,
+            metadata { dimensions }
+          }
+        }
+      }
+    },
+    exteriorImages[] {
+      _key,
+      sectionKey,
+      image {
+        altText,
+        image {
+          asset->{
+            _id,
+            url,
+            metadata { dimensions }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export async function getVillaPage() {
+  return sanityClient.fetch<VillaPage | null>(
+    villaPageQuery,
     {},
     { next: { revalidate: 300 } },
   );

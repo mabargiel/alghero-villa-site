@@ -182,9 +182,7 @@ export default async function HomePage() {
         <section className="mx-auto max-w-6xl px-6 pb-16">
           <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
             <div className="order-1 md:order-none">
-              <h2 className="text-2xl font-semibold md:text-3xl">
-                Nieruchomość
-              </h2>
+              <h2 className="text-2xl font-semibold md:text-3xl">Villa</h2>
               <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
               <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
                 Prywatna posiadłość na terenie ok. 1 hektara
@@ -197,7 +195,7 @@ export default async function HomePage() {
               </p>
               <a
                 className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-strong)]"
-                href="/interiors"
+                href="/villa"
               >
                 Zobacz wnętrza →
               </a>
@@ -232,9 +230,9 @@ export default async function HomePage() {
               </p>
               <a
                 className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-strong)]"
-                href="/gallery"
+                href="/villa"
               >
-                Zobacz wnętrza w galerii →
+                Zobacz wnętrza →
               </a>
             </div>
           </div>
