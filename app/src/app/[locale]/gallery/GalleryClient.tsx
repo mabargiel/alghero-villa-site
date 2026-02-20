@@ -8,9 +8,9 @@ type GalleryImageView = {
   aspectRatio?: number;
 };
 
-type Props = {
+type Props = Readonly<{
   images: GalleryImageView[];
-};
+}>;
 
 export default function GalleryClient({ images }: Props) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -45,7 +45,7 @@ export default function GalleryClient({ images }: Props) {
       }
       setNextIndex(targetIndex);
       setIsTransitioning(true);
-      window.setTimeout(() => {
+      globalThis.setTimeout(() => {
         setActiveIndex(targetIndex);
         setNextIndex(null);
         setIsTransitioning(false);
@@ -73,8 +73,8 @@ export default function GalleryClient({ images }: Props) {
       if (event.key === "ArrowLeft") showPrev();
     }
 
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    globalThis.addEventListener("keydown", onKeyDown);
+    return () => globalThis.removeEventListener("keydown", onKeyDown);
   }, [hasLightbox, activeIndex, showNext, showPrev]);
 
   return (
@@ -116,11 +116,12 @@ export default function GalleryClient({ images }: Props) {
       </div>
 
       {hasLightbox && activeImage && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 px-4 py-10 text-white"
-          role="dialog"
-          aria-modal="true"
-          onClick={closeLightbox}
+        <dialog
+          open
+          className="fixed inset-0 z-50 flex items-center justify-center border-none bg-black/90 px-4 py-10 text-white"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) closeLightbox();
+          }}
           onTouchStart={(event) => {
             setTouchStartX(event.touches[0]?.clientX ?? null);
           }}
@@ -133,10 +134,7 @@ export default function GalleryClient({ images }: Props) {
             setTouchStartX(null);
           }}
         >
-          <div
-            className="relative w-full max-w-5xl"
-            onClick={(event) => event.stopPropagation()}
-          >
+          <div className="relative w-full max-w-5xl">
             <div className="relative mx-auto flex max-h-[80vh] items-center justify-center">
               {/* Active image */}
               <div
@@ -190,7 +188,7 @@ export default function GalleryClient({ images }: Props) {
               ✕
             </button>
           </div>
-        </div>
+        </dialog>
       )}
     </>
   );

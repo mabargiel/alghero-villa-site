@@ -2,10 +2,7 @@
 
 import { DayPicker, type DateRange, type Modifiers } from "react-day-picker";
 import { useTranslations, useLocale } from "next-intl";
-import { pl } from "react-day-picker/locale";
-import { it } from "react-day-picker/locale";
-import { es } from "react-day-picker/locale";
-import { enUS } from "react-day-picker/locale";
+import { pl, it, es, enUS } from "react-day-picker/locale";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import type { PricingConfig } from "@/lib/sanity/queries";

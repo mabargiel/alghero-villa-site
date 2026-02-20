@@ -25,7 +25,10 @@ const amenityIconKeys = [
   "ice-maker",
 ];
 
-function SectionImage({ altText, url }: { altText: string; url: string }) {
+function SectionImage({
+  altText,
+  url,
+}: Readonly<{ altText: string; url: string }>) {
   return (
     <div className="group relative h-[260px] overflow-hidden rounded-lg bg-[var(--surface)] shadow-[0_25px_55px_-35px_rgba(20,20,20,0.5)] md:h-[320px] lg:h-[380px]">
       <Image

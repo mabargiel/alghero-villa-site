@@ -64,7 +64,7 @@ export default async function LocaleLayout({
     <NextIntlClientProvider messages={messages}>
       <script
         dangerouslySetInnerHTML={{
-          __html: `(function(){if(window.location.pathname==='/'||window.location.pathname.match(/^\\/[a-z]{2}\\/?$/)){document.documentElement.classList.add('is-home')}})()`,
+          __html: String.raw`(function(){if(window.location.pathname==='/'||window.location.pathname.match(/^\/[a-z]{2}\/?$/)){document.documentElement.classList.add('is-home')}})()`,
         }}
       />
       <TopNav />
@@ -84,7 +84,7 @@ export default async function LocaleLayout({
             >
               Mateusz Bargiel
             </a>
-            .
+            {"."}
           </span>
         </div>
       </footer>
