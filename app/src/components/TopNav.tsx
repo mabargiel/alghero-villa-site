@@ -7,15 +7,15 @@ import SocialIcon from "@/components/SocialIcon";
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/gallery", label: "Galeria" },
+  { href: "/villa", label: "Obiekt" },
   { href: "/location", label: "Okolica" },
+  { href: "/gallery", label: "Galeria" },
   { href: "/contact", label: "Kontakt" },
 ];
 
 export default function TopNav() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const isHome = !pathname || pathname === "/";
 
   function handleToggle() {
     setIsOpen((prev) => !prev);
@@ -28,15 +28,9 @@ export default function TopNav() {
   return (
     <header className="absolute top-0 left-0 z-30 w-full">
       <div className="mx-auto flex max-w-6xl justify-end px-6 pt-3 pb-2">
-        <div
-          className={`flex items-center gap-3 text-sm ${
-            isHome ? "text-white/65" : "text-[var(--muted)]"
-          }`}
-        >
+        <div className="flex items-center gap-3 text-sm text-[var(--nav-text-muted)]">
           <a
-            className={`transition ${
-              isHome ? "hover:text-white" : "hover:text-[var(--accent-strong)]"
-            }`}
+            className="transition hover:text-[var(--nav-text-hover)]"
             href="https://facebook.com"
             target="_blank"
             rel="noreferrer"
@@ -45,9 +39,7 @@ export default function TopNav() {
             <SocialIcon name="facebook" className="block h-[18px] w-[18px]" />
           </a>
           <a
-            className={`transition ${
-              isHome ? "hover:text-white" : "hover:text-[var(--accent-strong)]"
-            }`}
+            className="transition hover:text-[var(--nav-text-hover)]"
             href="https://instagram.com"
             target="_blank"
             rel="noreferrer"
@@ -56,9 +48,7 @@ export default function TopNav() {
             <SocialIcon name="instagram" className="block h-[18px] w-[18px]" />
           </a>
           <a
-            className={`transition ${
-              isHome ? "hover:text-white" : "hover:text-[var(--accent-strong)]"
-            }`}
+            className="transition hover:text-[var(--nav-text-hover)]"
             href="https://www.google.com/search?sca_esv=01e84e26bfa42c3c&hl=pl&authuser=0&sxsrf=ANbL-n6NmWfmS8WlWdzEkLpDLwXNZkgpwA:1770480521981&kgmid=/g/11yy4gd_gs&q=Villa+Monte+Calvia&shndl=30&source=sh/x/loc/uni/m1/1&kgs=16a3d798bec3e108&shem=shrtsdl&utm_source=shrtsdl,sh/x/loc/uni/m1/1"
             target="_blank"
             rel="noreferrer"
@@ -71,7 +61,7 @@ export default function TopNav() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 pt-1 pb-6 md:pb-8">
         <Link href="/" aria-label="Villa Monte Calvia — Strona główna">
           <span
-            className={`block h-20 w-64 ${isHome ? "drop-shadow-[0_2px_12px_rgba(0,0,0,0.7)]" : ""}`}
+            className="block h-20 w-64 [filter:var(--nav-logo-shadow)]"
             style={{
               maskImage: "url(/logo.svg)",
               WebkitMaskImage: "url(/logo.svg)",
@@ -81,16 +71,12 @@ export default function TopNav() {
               WebkitMaskRepeat: "no-repeat",
               maskPosition: "left center",
               WebkitMaskPosition: "left center",
-              backgroundColor: isHome ? "#ffffff" : "var(--brand)",
+              backgroundColor: "var(--nav-logo-bg)",
             }}
           />
         </Link>
 
-        <nav
-          className={`hidden items-center gap-8 text-[18px] font-medium tracking-[0.08em] md:flex ${
-            isHome ? "text-white/90" : "text-[var(--foreground)]"
-          }`}
-        >
+        <nav className="hidden items-center gap-8 text-[18px] font-medium tracking-[0.08em] text-[var(--nav-text)] md:flex">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -99,19 +85,13 @@ export default function TopNav() {
                 href={item.href}
                 className={`group relative transition ${
                   isActive
-                    ? isHome
-                      ? "text-white"
-                      : "text-[var(--accent-strong)]"
-                    : isHome
-                      ? "hover:text-white"
-                      : "hover:text-[var(--accent-strong)]"
+                    ? "text-[var(--nav-active)]"
+                    : "hover:text-[var(--nav-text-hover)]"
                 }`}
               >
                 {item.label}
                 <span
-                  className={`absolute -bottom-2 left-0 h-[2px] w-[70%] origin-left rounded-full transition-transform duration-300 ${
-                    isHome ? "bg-white/90" : "bg-[var(--accent-strong)]"
-                  } ${
+                  className={`absolute -bottom-2 left-0 h-[2px] w-[70%] origin-left rounded-full bg-[var(--nav-underline)] transition-transform duration-300 ${
                     isActive
                       ? "scale-x-100"
                       : "scale-x-0 group-hover:scale-x-100"
@@ -123,11 +103,7 @@ export default function TopNav() {
         </nav>
 
         <button
-          className={`flex items-center gap-2 rounded-full border px-3 py-2 text-xs font-semibold tracking-[0.18em] uppercase md:hidden ${
-            isHome
-              ? "border-white/40 text-white/90"
-              : "border-[var(--surface)] text-[var(--foreground)]"
-          }`}
+          className="flex items-center gap-2 rounded-full border border-[var(--nav-border)] px-3 py-2 text-xs font-semibold tracking-[0.18em] text-[var(--nav-text)] uppercase md:hidden"
           type="button"
           aria-expanded={isOpen}
           aria-controls="mobile-nav"
@@ -136,19 +112,19 @@ export default function TopNav() {
           Menu
           <span className="relative h-4 w-4">
             <span
-              className={`absolute top-1 left-0 block h-[2px] w-4 rounded-full transition ${
+              className={`absolute top-1 left-0 block h-[2px] w-4 rounded-full bg-[var(--nav-hamburger)] transition ${
                 isOpen ? "translate-y-[5px] rotate-45" : ""
-              } ${isHome ? "bg-white" : "bg-[var(--foreground)]"}`}
+              }`}
             />
             <span
-              className={`absolute top-1/2 left-0 block h-[2px] w-4 -translate-y-1/2 rounded-full transition ${
+              className={`absolute top-1/2 left-0 block h-[2px] w-4 -translate-y-1/2 rounded-full bg-[var(--nav-hamburger)] transition ${
                 isOpen ? "opacity-0" : ""
-              } ${isHome ? "bg-white" : "bg-[var(--foreground)]"}`}
+              }`}
             />
             <span
-              className={`absolute bottom-1 left-0 block h-[2px] w-4 rounded-full transition ${
+              className={`absolute bottom-1 left-0 block h-[2px] w-4 rounded-full bg-[var(--nav-hamburger)] transition ${
                 isOpen ? "-translate-y-[5px] -rotate-45" : ""
-              } ${isHome ? "bg-white" : "bg-[var(--foreground)]"}`}
+              }`}
             />
           </span>
         </button>
@@ -156,13 +132,9 @@ export default function TopNav() {
 
       <div
         id="mobile-nav"
-        className={`md:hidden ${
-          isHome
-            ? "bg-[#0b0f0a]/95 text-white"
-            : "bg-[var(--background)] text-[var(--foreground)]"
-        } ${
+        className={`bg-[var(--nav-mobile-bg)] text-[var(--nav-mobile-text)] md:hidden ${
           isOpen
-            ? `max-h-96 border-t ${isHome ? "border-white/15" : "border-[var(--surface-strong)]"}`
+            ? "max-h-96 border-t border-[var(--nav-mobile-border)]"
             : "max-h-0"
         } overflow-hidden transition-all`}
       >

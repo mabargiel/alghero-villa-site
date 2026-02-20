@@ -2,16 +2,31 @@
 @import "react-day-picker/style.css" layer(rdp);
 
 :root {
-  --background: #f5f0ea;
+  --nav-height: 56px;
+  --background: #ede6da;
   --foreground: #26241f;
   --muted: #6f6b5e;
-  --surface: #f2ede4;
-  --surface-strong: #e5ddd0;
+  --surface: #e6dfd2;
+  --surface-strong: #d9d0c2;
   --brand: #48685a;
   --accent: #48685a;
   --accent-strong: #48685a;
   --deep-olive: #1f2a23;
   --accent-gold: #d7c38e;
+
+  /* Navbar — always light (all pages have dark header area) */
+  --nav-text: rgb(255 255 255 / 90%);
+  --nav-text-muted: rgb(255 255 255 / 65%);
+  --nav-text-hover: white;
+  --nav-active: white;
+  --nav-logo-bg: #fff;
+  --nav-logo-shadow: drop-shadow(0 2px 12px rgb(0 0 0 / 70%));
+  --nav-border: rgb(255 255 255 / 40%);
+  --nav-hamburger: white;
+  --nav-mobile-bg: rgb(11 15 10 / 95%);
+  --nav-mobile-text: white;
+  --nav-mobile-border: rgb(255 255 255 / 15%);
+  --nav-underline: rgb(255 255 255 / 90%);
 }
 
 @theme inline {
@@ -75,14 +90,6 @@ h3,
 h4 {
   font-family: var(--font-lato), Arial, Helvetica, sans-serif;
   letter-spacing: 0.005em;
-}
-
-/* Smooth color transition for nav to avoid SSR flash */
-header a,
-header div,
-header nav,
-header button {
-  transition: color 200ms ease-out;
 }
 
 .hero-text-shadow {

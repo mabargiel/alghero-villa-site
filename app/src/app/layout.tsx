@@ -46,6 +46,11 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <body className={`${lato.variable} antialiased`}>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){if(window.location.pathname==='/'){document.documentElement.classList.add('is-home')}})()`,
+          }}
+        />
         <TopNav />
         {children}
         <footer className="mt-12 w-full bg-[var(--surface-strong)]">

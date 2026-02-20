@@ -41,7 +41,7 @@
 
 ## 7. Verification
 
-- [ ] 7.1 Verify the full flow: hero loads → booking bar visible → click opens modal → select dates → price shows → close modal → bar shows dates + price → "Zapytaj o termin" links to /contact
-- [ ] 7.2 Test mobile responsiveness (modal, booking bar, hero text centering)
-- [ ] 7.3 Verify color palette changes render correctly across all sections
+- [x] 7.1 Verify the full flow: hero loads → booking bar visible → click opens modal → select dates → price shows → close modal → bar shows dates + price → "Zapytaj o termin" links to /contact
+- [x] 7.2 Test mobile responsiveness (modal, booking bar, hero text centering)
+- [x] 7.3 Verify color palette changes render correctly across all sections
 - [x] 7.4 Run `next build` to confirm no build errors
