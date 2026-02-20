@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import LucideIcon from "@/components/LucideIcon";
 
 type RoomImage = {
@@ -18,18 +19,18 @@ type Room = {
   amenities: string[];
 };
 
-const amenityLabels: Record<string, string> = {
-  wifi: "WiFi",
-  climate: "Klimatyzacja",
-  crib: "Łóżeczko",
-  "extra-bed": "Dostawka",
-  bathroom: "Łazienka",
-  lounger: "Leżak",
-  kitchen: "Kuchnia",
-  parking: "Parking",
-  "ice-maker": "Kostkarka",
-  "car-rental": "Samochód",
-  "garden-furniture": "Meble ogrodowe",
+const amenityKeyMap: Record<string, string> = {
+  wifi: "amenityWifi",
+  climate: "amenityClimate",
+  crib: "amenityCrib",
+  "extra-bed": "amenityExtraBed",
+  bathroom: "amenityBathroom",
+  lounger: "amenityLounger",
+  kitchen: "amenityKitchen",
+  parking: "amenityParking",
+  "ice-maker": "amenityIceMaker",
+  "car-rental": "amenityCarRental",
+  "garden-furniture": "amenityGardenFurniture",
 };
 
 type RoomTilesGridProps = Readonly<{
@@ -37,6 +38,7 @@ type RoomTilesGridProps = Readonly<{
 }>;
 
 export default function RoomTilesGrid({ rooms }: RoomTilesGridProps) {
+  const t = useTranslations("villa");
   // Lightbox state
   const [lightboxRoom, setLightboxRoom] = useState<Room | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -136,14 +138,14 @@ export default function RoomTilesGrid({ rooms }: RoomTilesGridProps) {
                   <span
                     key={key}
                     className="inline-flex items-center gap-1 text-[10px] text-[var(--muted)] sm:text-xs"
-                    title={amenityLabels[key] ?? key}
+                    title={t(amenityKeyMap[key] ?? key)}
                   >
                     <LucideIcon
                       name={key}
                       className="h-3 w-3 text-[var(--accent-strong)] sm:h-3.5 sm:w-3.5"
                     />
                     <span className="hidden sm:inline">
-                      {amenityLabels[key] ?? key}
+                      {t(amenityKeyMap[key] ?? key)}
                     </span>
                   </span>
                 ))}
@@ -159,14 +161,14 @@ export default function RoomTilesGrid({ rooms }: RoomTilesGridProps) {
           open
           className="fixed inset-0 z-50 m-0 flex h-full max-h-none w-full max-w-none items-center justify-center border-none bg-transparent p-0"
           aria-modal="true"
-          aria-label={`Galeria — ${lightboxRoom.title}`}
+          aria-label={t("galleryAria", { title: lightboxRoom.title })}
         >
           {/* Backdrop button */}
           <button
             type="button"
             className="fixed inset-0 -z-10 h-full w-full cursor-default border-none bg-black/25 p-0 backdrop-blur-xl"
             onClick={closeLightbox}
-            aria-label="Zamknij galerię"
+            aria-label={t("closeGalleryAria")}
           />
           <div className="relative mx-4 max-w-4xl rounded-2xl bg-white/80 p-4 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.3)] backdrop-blur-sm md:p-6">
             {/* Close button */}
@@ -174,7 +176,7 @@ export default function RoomTilesGrid({ rooms }: RoomTilesGridProps) {
               className="absolute top-3 right-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-black/5 text-sm text-[var(--foreground)] transition hover:bg-black/10"
               type="button"
               onClick={closeLightbox}
-              aria-label="Zamknij"
+              aria-label={t("closeAria")}
             >
               ✕
             </button>
@@ -201,7 +203,7 @@ export default function RoomTilesGrid({ rooms }: RoomTilesGridProps) {
                 if (dx < -50) showNext();
                 setTouchStartX(null);
               }}
-              aria-label="Przesuń aby zmienić zdjęcie"
+              aria-label={t("swipeToChangeAria")}
             >
               {/* Active image */}
               <div
@@ -238,7 +240,7 @@ export default function RoomTilesGrid({ rooms }: RoomTilesGridProps) {
                   className="absolute top-1/2 left-3 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[var(--foreground)] shadow-[0_4px_14px_rgba(0,0,0,0.15)] transition hover:shadow-[0_6px_20px_rgba(0,0,0,0.2)]"
                   type="button"
                   onClick={showPrev}
-                  aria-label="Poprzednie zdjęcie"
+                  aria-label={t("previousPhotoAria")}
                 >
                   <svg
                     width="18"
@@ -257,7 +259,7 @@ export default function RoomTilesGrid({ rooms }: RoomTilesGridProps) {
                   className="absolute top-1/2 right-3 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[var(--foreground)] shadow-[0_4px_14px_rgba(0,0,0,0.15)] transition hover:shadow-[0_6px_20px_rgba(0,0,0,0.2)]"
                   type="button"
                   onClick={showNext}
-                  aria-label="Następne zdjęcie"
+                  aria-label={t("nextPhotoAria")}
                 >
                   <svg
                     width="18"

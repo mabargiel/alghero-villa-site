@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import type { DateRange } from "react-day-picker";
 
 import type { PricingConfig } from "@/lib/sanity/queries";
@@ -27,6 +28,7 @@ export default function PricingModal({
   onClose,
 }: PricingModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const t = useTranslations("pricing");
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -63,13 +65,13 @@ export default function PricingModal({
             type="button"
             onClick={onClose}
             className="absolute top-4 right-4 flex h-9 w-9 items-center justify-center rounded-full bg-[var(--surface)] text-[var(--muted)] transition hover:bg-[var(--surface-strong)] hover:text-[var(--foreground)]"
-            aria-label="Zamknij"
+            aria-label={t("close")}
           >
             <X className="h-5 w-5" />
           </button>
 
           <h2 className="mb-6 text-xl font-semibold text-[var(--foreground)]">
-            Sprawdź cenę
+            {t("checkPrice")}
           </h2>
 
           <PricingCalendar

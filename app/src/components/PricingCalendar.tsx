@@ -1,8 +1,11 @@
 "use client";
 
-import { useCallback, useMemo } from "react";
 import { DayPicker, type DateRange, type Modifiers } from "react-day-picker";
+import { useTranslations, useLocale } from "next-intl";
 import { pl } from "react-day-picker/locale";
+import { it } from "react-day-picker/locale";
+import { es } from "react-day-picker/locale";
+import { enUS } from "react-day-picker/locale";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import type { PricingConfig } from "@/lib/sanity/queries";
@@ -21,6 +24,13 @@ export function checkMinNightsWarning(range: DateRange | undefined): boolean {
   );
   return nights < MIN_NIGHTS;
 }
+
+const dayPickerLocales: Record<string, typeof pl> = {
+  pl,
+  it,
+  es,
+  en: enUS,
+};
 
 type PricingCalendarProps = Readonly<{
   config: PricingConfig;
@@ -50,24 +60,27 @@ function NextMonthButton(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   );
 }
 
-const TIER_LABELS = ["Niski sezon", "Średni sezon", "Wysoki sezon"] as const;
-const TIER_STYLES = [
-  "pricing-tier-low",
-  "pricing-tier-mid",
-  "pricing-tier-high",
-] as const;
-
 export default function PricingCalendar({
   config,
   range,
   onRangeChange,
 }: PricingCalendarProps) {
-  const priceTiers = useMemo(() => {
-    const prices = config.baseRanges.map((r) => r.pricePerDay);
-    return [...new Set(prices)].sort((a, b) => a - b);
-  }, [config]);
+  const t = useTranslations("pricing");
+  const locale = useLocale();
+  const dpLocale = dayPickerLocales[locale] ?? enUS;
 
-  const startMonth = useMemo(() => {
+  const tierLabels = [t("tierLow"), t("tierMid"), t("tierHigh")] as const;
+
+  const TIER_STYLES = [
+    "pricing-tier-low",
+    "pricing-tier-mid",
+    "pricing-tier-high",
+  ] as const;
+
+  const prices = config.baseRanges.map((r) => r.pricePerDay);
+  const priceTiers = [...new Set(prices)].sort((a, b) => a - b);
+
+  const startMonth = (() => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
@@ -83,64 +96,45 @@ export default function PricingCalendar({
       return new Date(futureDates[0].getFullYear(), futureDates[0].getMonth());
     }
     return today;
-  }, [config]);
+  })();
 
-  const disabledMatcher = useMemo(
-    () => (date: Date) => {
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      if (date < today) return true;
-      return !isDateInPricingRange(date, config);
-    },
-    [config],
-  );
+  const disabledMatcher = (date: Date) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (date < today) return true;
+    return !isDateInPricingRange(date, config);
+  };
 
-  const promotionMatcher = useMemo(
-    () => (date: Date) => isDateInPromotion(date, config),
-    [config],
-  );
+  const promotionMatcher = (date: Date) => isDateInPromotion(date, config);
 
-  const tierModifiers = useMemo(() => {
-    const modifiers: Record<string, (date: Date) => boolean> = {};
-    priceTiers.forEach((price, index) => {
-      modifiers[`tier${index}`] = (date: Date) =>
-        getPriceTier(date, config) === price;
-    });
-    return modifiers;
-  }, [config, priceTiers]);
+  const tierModifiers: Record<string, (date: Date) => boolean> = {};
+  priceTiers.forEach((price, index) => {
+    tierModifiers[`tier${index}`] = (date: Date) =>
+      getPriceTier(date, config) === price;
+  });
 
-  const tierClassNames = useMemo(() => {
-    const classNames: Record<string, string> = {};
-    priceTiers.forEach((_, index) => {
-      classNames[`tier${index}`] = TIER_STYLES[index % TIER_STYLES.length];
-    });
-    return classNames;
-  }, [priceTiers]);
+  const tierClassNames: Record<string, string> = {};
+  priceTiers.forEach((_, index) => {
+    tierClassNames[`tier${index}`] = TIER_STYLES[index % TIER_STYLES.length];
+  });
 
-  const handleDayClick = useCallback(
-    (day: Date, modifiers: Modifiers) => {
-      if (modifiers.disabled) return;
+  function handleDayClick(day: Date, modifiers: Modifiers) {
+    if (modifiers.disabled) return;
 
-      if (!range?.from || (range.from && range.to)) {
-        onRangeChange({ from: day, to: undefined });
-      } else if (day < range.from) {
-        onRangeChange({ from: day, to: range.from });
-      } else {
-        onRangeChange({ from: range.from, to: day });
-      }
-    },
-    [range, onRangeChange],
-  );
+    if (!range?.from || (range.from && range.to)) {
+      onRangeChange({ from: day, to: undefined });
+    } else if (day < range.from) {
+      onRangeChange({ from: day, to: range.from });
+    } else {
+      onRangeChange({ from: range.from, to: day });
+    }
+  }
 
-  const legendItems = useMemo(
-    () =>
-      priceTiers.map((price, index) => ({
-        key: `tier-${price}`,
-        label: TIER_LABELS[index % TIER_LABELS.length],
-        className: `pricing-legend-${index}`,
-      })),
-    [priceTiers],
-  );
+  const legendItems = priceTiers.map((price, index) => ({
+    key: `tier-${price}`,
+    label: tierLabels[index % tierLabels.length],
+    className: `pricing-legend-${index}`,
+  }));
 
   return (
     <div>
@@ -150,10 +144,10 @@ export default function PricingCalendar({
           selected={range}
           onSelect={() => {}}
           onDayClick={handleDayClick}
-          locale={pl}
+          locale={dpLocale}
           formatters={{
             formatWeekdayName: (date) =>
-              date.toLocaleDateString("pl-PL", { weekday: "narrow" }),
+              date.toLocaleDateString(locale, { weekday: "narrow" }),
           }}
           numberOfMonths={2}
           defaultMonth={startMonth}
@@ -210,7 +204,7 @@ export default function PricingCalendar({
           ))}
           <span className="text-muted flex items-center gap-2 text-xs">
             <span className="pricing-legend-promo inline-block h-3.5 w-3.5 rounded-full" />
-            <span className="tracking-wide">Promocja</span>
+            <span className="tracking-wide">{t("promotion")}</span>
           </span>
         </div>
       )}

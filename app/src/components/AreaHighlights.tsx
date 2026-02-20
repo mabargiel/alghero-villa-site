@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import LucideIcon from "./LucideIcon";
 
 type AreaImage = {
@@ -11,34 +12,30 @@ type AreaImage = {
 };
 
 type Area = {
-  title: string;
-  description: string;
+  titleKey: string;
+  descriptionKey: string;
   iconKey: string;
 };
 
 const areas: Area[] = [
   {
-    title: "Sypialnie",
-    description:
-      "Sześć przestronnych sypialni z prywatnymi łazienkami — komfort i intymność dla każdego gościa.",
+    titleKey: "areaBedroomsTitle",
+    descriptionKey: "areaBedroomsDescription",
     iconKey: "bedrooms",
   },
   {
-    title: "Salon",
-    description:
-      "Jasny, otwarty salon z wygodnymi sofami i widokiem na ogród — serce wspólnych chwil.",
+    titleKey: "areaSalonTitle",
+    descriptionKey: "areaSalonDescription",
     iconKey: "living-room",
   },
   {
-    title: "Ogród",
-    description:
-      "Hektar śródziemnomorskiej zieleni, drzewa oliwne i cisza — prywatna oaza spokoju.",
+    titleKey: "areaGardenTitle",
+    descriptionKey: "areaGardenDescription",
     iconKey: "garden",
   },
   {
-    title: "Weranda",
-    description:
-      "Zadaszona weranda z letnią kuchnią — gotowanie i relaks na świeżym powietrzu.",
+    titleKey: "areaVerandaTitle",
+    descriptionKey: "areaVerandaDescription",
     iconKey: "veranda",
   },
 ];
@@ -49,18 +46,20 @@ type AreaHighlightsProps = Readonly<{
 
 export default function AreaHighlights({ images }: AreaHighlightsProps) {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const t = useTranslations("home");
 
   return (
     <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4 md:gap-2">
       {areas.map((area, index) => {
         const image = images[index];
         const isExpanded = expandedIndex === index;
+        const title = t(area.titleKey);
 
         return (
           <Link
-            key={area.title}
+            key={area.iconKey}
             href="/villa"
-            aria-label={area.title}
+            aria-label={title}
             className={`highlight-card-item relative h-[260px] overflow-visible rounded-lg ${
               isExpanded ? "z-10" : "z-0"
             }`}
@@ -112,7 +111,7 @@ export default function AreaHighlights({ images }: AreaHighlightsProps) {
                   strokeWidth={1.4}
                 />
                 <span className="text-xs font-semibold tracking-[0.18em] text-white uppercase drop-shadow-lg sm:text-sm">
-                  {area.title}
+                  {title}
                 </span>
               </div>
 
@@ -123,10 +122,10 @@ export default function AreaHighlights({ images }: AreaHighlightsProps) {
                 }`}
               >
                 <span className="text-sm font-semibold tracking-[0.14em] text-white uppercase drop-shadow-lg sm:text-base">
-                  {area.title}
+                  {title}
                 </span>
                 <p className="mt-2 text-xs leading-relaxed text-white/90 drop-shadow-lg sm:text-sm">
-                  {area.description}
+                  {t(area.descriptionKey)}
                 </p>
               </div>
             </div>

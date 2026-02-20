@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { Calendar, ArrowRight, Search } from "lucide-react";
+import { useTranslations, useLocale, useFormatter } from "next-intl";
 import type { DateRange } from "react-day-picker";
 
 import type { PricingConfig } from "@/lib/sanity/queries";
@@ -13,24 +14,12 @@ type BookingBarProps = Readonly<{
   config: PricingConfig;
 }>;
 
-function formatDate(date: Date): string {
-  return date.toLocaleDateString("pl-PL", {
-    day: "numeric",
-    month: "short",
-  });
-}
-
-function formatPrice(amount: number): string {
-  return new Intl.NumberFormat("pl-PL", {
-    style: "decimal",
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(Math.round(amount));
-}
-
 export default function BookingBar({ config }: BookingBarProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [range, setRange] = useState<DateRange | undefined>();
+  const t = useTranslations("pricing");
+  const locale = useLocale();
+  const format = useFormatter();
 
   const breakdown: PriceBreakdown | null = useMemo(() => {
     if (!range?.from || !range?.to) return null;
@@ -40,6 +29,18 @@ export default function BookingBar({ config }: BookingBarProps) {
   const minNightsWarning = useMemo(() => checkMinNightsWarning(range), [range]);
 
   const hasValidPrice = breakdown && !minNightsWarning;
+
+  function formatDate(date: Date): string {
+    return format.dateTime(date, { day: "numeric", month: "short" });
+  }
+
+  function formatPrice(amount: number): string {
+    return new Intl.NumberFormat(locale, {
+      style: "decimal",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(Math.round(amount));
+  }
 
   return (
     <>
@@ -51,11 +52,11 @@ export default function BookingBar({ config }: BookingBarProps) {
         <span className="flex flex-1 items-center gap-3 px-3 sm:px-0">
           <Calendar className="h-5 w-5 shrink-0 text-[var(--muted)]" />
           <span className="text-sm text-[var(--foreground)]">
-            {range?.from ? formatDate(range.from) : "Zameldowanie"}
+            {range?.from ? formatDate(range.from) : t("checkIn")}
           </span>
           <ArrowRight className="h-4 w-4 shrink-0 text-[var(--muted)]" />
           <span className="text-sm text-[var(--foreground)]">
-            {range?.to ? formatDate(range.to) : "Wymeldowanie"}
+            {range?.to ? formatDate(range.to) : t("checkOut")}
           </span>
         </span>
 
@@ -72,7 +73,7 @@ export default function BookingBar({ config }: BookingBarProps) {
           aria-hidden="true"
         >
           <Search className="h-4 w-4" />
-          Sprawdź cenę
+          {t("checkPrice")}
         </span>
       </button>
 

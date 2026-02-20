@@ -1,20 +1,30 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations, useLocale } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
 import { useState } from "react";
 import SocialIcon from "@/components/SocialIcon";
+import { routing } from "@/i18n/routing";
 
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/villa", label: "Obiekt" },
-  { href: "/location", label: "Okolica" },
-  { href: "/gallery", label: "Galeria" },
-  { href: "/contact", label: "Kontakt" },
+  { href: "/" as const, key: "home" },
+  { href: "/villa" as const, key: "villa" },
+  { href: "/location" as const, key: "location" },
+  { href: "/gallery" as const, key: "gallery" },
+  { href: "/contact" as const, key: "contact" },
 ];
+
+const localeLabels: Record<string, string> = {
+  en: "EN",
+  it: "IT",
+  pl: "PL",
+  es: "ES",
+};
 
 export default function TopNav() {
   const pathname = usePathname();
+  const locale = useLocale();
+  const t = useTranslations("nav");
   const [isOpen, setIsOpen] = useState(false);
 
   function handleToggle() {
@@ -34,7 +44,7 @@ export default function TopNav() {
             href="https://facebook.com"
             target="_blank"
             rel="noreferrer"
-            aria-label="Facebook"
+            aria-label={t("facebookAria")}
           >
             <SocialIcon name="facebook" className="block h-[18px] w-[18px]" />
           </a>
@@ -43,7 +53,7 @@ export default function TopNav() {
             href="https://instagram.com"
             target="_blank"
             rel="noreferrer"
-            aria-label="Instagram"
+            aria-label={t("instagramAria")}
           >
             <SocialIcon name="instagram" className="block h-[18px] w-[18px]" />
           </a>
@@ -52,14 +62,37 @@ export default function TopNav() {
             href="https://www.google.com/search?sca_esv=01e84e26bfa42c3c&hl=pl&authuser=0&sxsrf=ANbL-n6NmWfmS8WlWdzEkLpDLwXNZkgpwA:1770480521981&kgmid=/g/11yy4gd_gs&q=Villa+Monte+Calvia&shndl=30&source=sh/x/loc/uni/m1/1&kgs=16a3d798bec3e108&shem=shrtsdl&utm_source=shrtsdl,sh/x/loc/uni/m1/1"
             target="_blank"
             rel="noreferrer"
-            aria-label="Google"
+            aria-label={t("googleAria")}
           >
             <SocialIcon name="googlemaps" className="block h-[18px] w-[18px]" />
           </a>
+          <span className="mx-1 text-[var(--nav-text-muted)] opacity-40">
+            |
+          </span>
+          {routing.locales.map((loc, index) => (
+            <span key={loc} className="flex items-center">
+              {index > 0 && (
+                <span className="mr-1.5 text-[10px] text-[var(--nav-text-muted)] opacity-30">
+                  |
+                </span>
+              )}
+              <Link
+                href={pathname}
+                locale={loc}
+                className={`text-xs tracking-[0.1em] transition ${
+                  loc === locale
+                    ? "font-bold text-[var(--nav-active)]"
+                    : "text-[var(--nav-text-muted)] hover:text-[var(--nav-text-hover)]"
+                }`}
+              >
+                {localeLabels[loc]}
+              </Link>
+            </span>
+          ))}
         </div>
       </div>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 pt-1 pb-6 md:pb-8">
-        <Link href="/" aria-label="Villa Monte Calvia — Strona główna">
+        <Link href="/" aria-label={t("logoAria")}>
           <span
             className="block h-20 w-64 [filter:var(--nav-logo-shadow)]"
             style={{
@@ -89,7 +122,7 @@ export default function TopNav() {
                     : "hover:text-[var(--nav-text-hover)]"
                 }`}
               >
-                {item.label}
+                {t(item.key)}
                 <span
                   className={`absolute -bottom-2 left-0 h-[2px] w-[70%] origin-left rounded-full bg-[var(--nav-underline)] transition-transform duration-300 ${
                     isActive
@@ -109,7 +142,7 @@ export default function TopNav() {
           aria-controls="mobile-nav"
           onClick={handleToggle}
         >
-          Menu
+          {t("menu")}
           <span className="relative h-4 w-4">
             <span
               className={`absolute top-1 left-0 block h-[2px] w-4 rounded-full bg-[var(--nav-hamburger)] transition ${
@@ -147,7 +180,7 @@ export default function TopNav() {
                 className="text-sm font-medium tracking-[0.08em] text-inherit transition hover:opacity-80"
                 onClick={handleClose}
               >
-                {item.label}
+                {t(item.key)}
               </Link>
             );
           })}
