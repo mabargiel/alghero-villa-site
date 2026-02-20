@@ -38,57 +38,63 @@ export default function TopNav() {
   return (
     <header className="absolute top-0 left-0 z-30 w-full">
       <div className="mx-auto flex max-w-6xl justify-end px-6 pt-3 pb-2">
-        <div className="flex items-center gap-3 text-sm text-[var(--nav-text-muted)]">
-          <a
-            className="transition hover:text-[var(--nav-text-hover)]"
-            href="https://facebook.com"
-            target="_blank"
-            rel="noreferrer"
-            aria-label={t("facebookAria")}
-          >
-            <SocialIcon name="facebook" className="block h-[18px] w-[18px]" />
-          </a>
-          <a
-            className="transition hover:text-[var(--nav-text-hover)]"
-            href="https://instagram.com"
-            target="_blank"
-            rel="noreferrer"
-            aria-label={t("instagramAria")}
-          >
-            <SocialIcon name="instagram" className="block h-[18px] w-[18px]" />
-          </a>
-          <a
-            className="transition hover:text-[var(--nav-text-hover)]"
-            href="https://www.google.com/search?sca_esv=01e84e26bfa42c3c&hl=pl&authuser=0&sxsrf=ANbL-n6NmWfmS8WlWdzEkLpDLwXNZkgpwA:1770480521981&kgmid=/g/11yy4gd_gs&q=Villa+Monte+Calvia&shndl=30&source=sh/x/loc/uni/m1/1&kgs=16a3d798bec3e108&shem=shrtsdl&utm_source=shrtsdl,sh/x/loc/uni/m1/1"
-            target="_blank"
-            rel="noreferrer"
-            aria-label={t("googleAria")}
-          >
-            <SocialIcon name="googlemaps" className="block h-[18px] w-[18px]" />
-          </a>
-          <span className="mx-1 text-[var(--nav-text-muted)] opacity-40">
-            |
-          </span>
-          {routing.locales.map((loc, index) => (
-            <span key={loc} className="flex items-center">
-              {index > 0 && (
-                <span className="mr-1.5 text-[10px] text-[var(--nav-text-muted)] opacity-30">
-                  |
-                </span>
-              )}
-              <Link
-                href={pathname}
-                locale={loc}
-                className={`text-xs tracking-[0.1em] transition ${
-                  loc === locale
-                    ? "font-bold text-[var(--nav-active)]"
-                    : "text-[var(--nav-text-muted)] hover:text-[var(--nav-text-hover)]"
-                }`}
-              >
-                {localeLabels[loc]}
-              </Link>
-            </span>
-          ))}
+        <div className="flex items-center gap-4 text-sm text-[var(--nav-text-muted)]">
+          <div className="flex items-center gap-4">
+            <a
+              className="transition hover:text-[var(--nav-text-hover)]"
+              href="https://facebook.com"
+              target="_blank"
+              rel="noreferrer"
+              aria-label={t("facebookAria")}
+            >
+              <SocialIcon name="facebook" className="block h-[18px] w-[18px]" />
+            </a>
+            <a
+              className="transition hover:text-[var(--nav-text-hover)]"
+              href="https://instagram.com"
+              target="_blank"
+              rel="noreferrer"
+              aria-label={t("instagramAria")}
+            >
+              <SocialIcon
+                name="instagram"
+                className="block h-[18px] w-[18px]"
+              />
+            </a>
+            <a
+              className="transition hover:text-[var(--nav-text-hover)]"
+              href="https://www.google.com/search?sca_esv=01e84e26bfa42c3c&hl=pl&authuser=0&sxsrf=ANbL-n6NmWfmS8WlWdzEkLpDLwXNZkgpwA:1770480521981&kgmid=/g/11yy4gd_gs&q=Villa+Monte+Calvia&shndl=30&source=sh/x/loc/uni/m1/1&kgs=16a3d798bec3e108&shem=shrtsdl&utm_source=shrtsdl,sh/x/loc/uni/m1/1"
+              target="_blank"
+              rel="noreferrer"
+              aria-label={t("googleAria")}
+            >
+              <SocialIcon
+                name="googlemaps"
+                className="block h-[18px] w-[18px]"
+              />
+            </a>
+          </div>
+          <span className="h-3.5 w-px bg-[var(--nav-text-muted)] opacity-40" />
+          <div className="flex items-center gap-2">
+            {routing.locales.map((loc, index) => (
+              <span key={loc} className="flex items-center gap-2">
+                {index > 0 && (
+                  <span className="h-2.5 w-px bg-[var(--nav-text-muted)] opacity-30" />
+                )}
+                <Link
+                  href={pathname}
+                  locale={loc}
+                  className={`text-xs tracking-[0.1em] transition ${
+                    loc === locale
+                      ? "font-bold text-[var(--nav-active)]"
+                      : "text-[var(--nav-text-muted)] hover:text-[var(--nav-text-hover)]"
+                  }`}
+                >
+                  {localeLabels[loc]}
+                </Link>
+              </span>
+            ))}
+          </div>
         </div>
       </div>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 pt-1 pb-6 md:pb-8">
