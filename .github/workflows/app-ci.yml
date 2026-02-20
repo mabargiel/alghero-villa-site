@@ -6,11 +6,15 @@ on:
       - main
     paths-ignore:
       - "openspec/**"
+      - "**.md"
+      - "LICENSE"
   push:
     branches:
       - main
     paths-ignore:
       - "openspec/**"
+      - "**.md"
+      - "LICENSE"
 
 permissions:
   contents: read
