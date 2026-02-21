@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 type FormState = "idle" | "sending" | "success" | "error";
 
 export default function ContactForm() {
   const [state, setState] = useState<FormState>("idle");
   const [message, setMessage] = useState<string | null>(null);
+  const t = useTranslations("contact");
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -31,19 +33,15 @@ export default function ContactForm() {
 
       const data = await response.json().catch(() => ({}));
       if (!response.ok) {
-        throw new Error(data?.message || "Nie udało się wysłać wiadomości.");
+        throw new Error(data?.message || t("errorGeneric"));
       }
 
       setState("success");
-      setMessage("Dziękujemy! Odezwiemy się wkrótce.");
+      setMessage(t("success"));
       form.reset();
     } catch (error) {
       setState("error");
-      setMessage(
-        error instanceof Error
-          ? error.message
-          : "Wystąpił błąd podczas wysyłania.",
-      );
+      setMessage(error instanceof Error ? error.message : t("errorUnknown"));
     }
   }
 
@@ -55,7 +53,7 @@ export default function ContactForm() {
     >
       <div className="grid gap-4 md:grid-cols-2">
         <label className="grid gap-2 text-sm font-medium text-[var(--muted)]">
-          Imię *
+          {t("firstName")} *
           <input
             className="rounded-xl border border-[var(--surface)] bg-white px-4 py-3 text-base text-[var(--foreground)]"
             name="firstName"
@@ -63,7 +61,7 @@ export default function ContactForm() {
           />
         </label>
         <label className="grid gap-2 text-sm font-medium text-[var(--muted)]">
-          Email *
+          {t("email")} *
           <input
             className="rounded-xl border border-[var(--surface)] bg-white px-4 py-3 text-base text-[var(--foreground)]"
             name="email"
@@ -74,7 +72,7 @@ export default function ContactForm() {
       </div>
 
       <label className="grid gap-2 text-sm font-medium text-[var(--muted)]">
-        Telefon *
+        {t("phone")} *
         <input
           className="rounded-xl border border-[var(--surface)] bg-white px-4 py-3 text-base text-[var(--foreground)]"
           name="phone"
@@ -110,7 +108,7 @@ export default function ContactForm() {
         type="submit"
         disabled={state === "sending"}
       >
-        {state === "sending" ? "Wysyłanie..." : "Wyślij zapytanie"}
+        {state === "sending" ? t("sending") : t("send")}
       </button>
     </form>
   );

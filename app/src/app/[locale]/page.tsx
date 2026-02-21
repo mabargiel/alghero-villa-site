@@ -12,18 +12,23 @@ import {
   getMiniGallery,
   getPricingConfig,
 } from "@/lib/sanity/queries";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
+import { Link } from "@/i18n/navigation";
 
-const amenities = [
-  { label: "Klimatyzacja w całym domu", iconKey: "climate" },
-  { label: "Prywatny parking", iconKey: "parking" },
-  { label: "W pełni wyposażona kuchnia", iconKey: "kitchen" },
-  { label: "Łazienki en-suite", iconKey: "bathroom" },
-  { label: "Samochód do dyspozycji", iconKey: "car-rental" },
-  { label: "Kostkarka do lodu", iconKey: "ice-maker" },
+const amenityIconKeys = [
+  "climate",
+  "parking",
+  "kitchen",
+  "bathroom",
+  "car-rental",
+  "ice-maker",
 ];
 
-function SectionImage({ altText, url }: { altText: string; url: string }) {
+function SectionImage({
+  altText,
+  url,
+}: Readonly<{ altText: string; url: string }>) {
   return (
     <div className="group relative h-[260px] overflow-hidden rounded-lg bg-[var(--surface)] shadow-[0_25px_55px_-35px_rgba(20,20,20,0.5)] md:h-[320px] lg:h-[380px]">
       <Image
@@ -49,6 +54,7 @@ export default async function HomePage() {
       getAreaHighlights(),
       getPricingConfig(),
     ]);
+  const t = await getTranslations("home");
   const sectionMap = new Map<HomeSection["sectionKey"], HomeSection["image"]>(
     (sections ?? []).map((section) => [section.sectionKey, section.image]),
   );
@@ -94,6 +100,16 @@ export default async function HomePage() {
       altText: "",
       url: urlFor(image).width(1200).quality(85).auto("format").url(),
     })) ?? [];
+
+  const amenityLabels = [
+    t("amenity1"),
+    t("amenity2"),
+    t("amenity3"),
+    t("amenity4"),
+    t("amenity5"),
+    t("amenity6"),
+  ];
+
   return (
     <main className="bg-[var(--background)] text-[var(--foreground)]">
       <section className="hero-shell relative min-h-screen w-full overflow-hidden">
@@ -121,13 +137,11 @@ export default async function HomePage() {
         <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center px-6 pt-28 pb-32 text-center">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-xs tracking-[0.3em] text-[var(--foreground)] uppercase shadow-md">
-              Villa Monte Calvia — Alghero
+              {t("heroBadge")}
             </div>
             <h1 className="hero-text-shadow mt-6 text-4xl leading-tight font-bold tracking-wide text-white md:text-5xl">
-              <span className="md:hidden">Prywatny azyl wśród oliwek</span>
-              <span className="hidden md:inline">
-                Twój prywatny azyl wśród oliwek
-              </span>
+              <span className="md:hidden">{t("heroHeadlineMobile")}</span>
+              <span className="hidden md:inline">{t("heroHeadline")}</span>
             </h1>
           </div>
         </div>
@@ -139,10 +153,12 @@ export default async function HomePage() {
         <a
           className="hero-scroll-indicator absolute top-[85vh] right-0 left-0 flex justify-center text-xs tracking-[0.3em] text-white uppercase"
           href="#highlights"
-          aria-label="Przewiń w dół"
+          aria-label={t("scrollAria")}
         >
           <span className="flex flex-col items-center gap-2">
-            <span className="text-[10px] font-semibold">Przewiń</span>
+            <span className="text-[10px] font-semibold">
+              {t("scrollLabel")}
+            </span>
             <span className="flex h-11 w-7 items-start justify-center rounded-full border border-white/80 bg-black/30">
               <span className="mt-2 h-2 w-2 rounded-full bg-white" />
             </span>
@@ -172,7 +188,7 @@ export default async function HomePage() {
           </h2>
           <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
           <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
-            Odkryj przestrzenie stworzone do wypoczynku
+            {t("discoverSubtitle")}
           </p>
           <AreaHighlights images={areaHighlightImages} />
         </section>
@@ -182,23 +198,22 @@ export default async function HomePage() {
         <section className="mx-auto max-w-6xl px-6 pb-16">
           <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
             <div className="order-1 md:order-none">
-              <h2 className="text-2xl font-semibold md:text-3xl">Villa</h2>
+              <h2 className="text-2xl font-semibold md:text-3xl">
+                {t("villaTitle")}
+              </h2>
               <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
               <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
-                Prywatna posiadłość na terenie ok. 1 hektara
+                {t("villaSubtitle")}
               </p>
               <p className="mt-4 text-[var(--muted)]">
-                Villa Monte Calvia to prywatna rezydencja na rozległym terenie,
-                otoczona śródziemnomorską roślinnością. Zapewnia spokój i
-                przestrzeń na wypoczynek w rytmie „slow”, a jednocześnie
-                pozostaje blisko Alghero.
+                {t("villaDescription")}
               </p>
-              <a
+              <Link
                 className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-strong)]"
                 href="/villa"
               >
-                Zobacz wnętrza →
-              </a>
+                {t("villaLink")}
+              </Link>
             </div>
             {propertyImage ? (
               <div className="order-2 md:order-none">
@@ -218,22 +233,22 @@ export default async function HomePage() {
               </div>
             ) : null}
             <div className="order-1 md:order-none">
-              <h2 className="text-2xl font-semibold md:text-3xl">Wnętrza</h2>
+              <h2 className="text-2xl font-semibold md:text-3xl">
+                {t("interiorsTitle")}
+              </h2>
               <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
               <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
-                6 komfortowych sypialni z prywatnymi łazienkami
+                {t("interiorsSubtitle")}
               </p>
               <p className="mt-4 text-[var(--muted)]">
-                Wnętrza łączą elegancję z wygodą codziennego życia. Znajdziesz
-                tu 6 sypialni z łazienkami, przestronny salon z aneksem
-                kuchennym i strefy wspólne idealne do odpoczynku.
+                {t("interiorsDescription")}
               </p>
-              <a
+              <Link
                 className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-strong)]"
                 href="/villa"
               >
-                Zobacz wnętrza →
-              </a>
+                {t("interiorsLink")}
+              </Link>
             </div>
           </div>
         </section>
@@ -277,24 +292,21 @@ export default async function HomePage() {
           <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
             <div className="order-1 md:order-none">
               <h2 className="text-2xl font-semibold md:text-3xl">
-                Ogród i tarasy
+                {t("gardenTitle")}
               </h2>
               <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
               <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
-                Zadaszona weranda i strefy relaksu wśród zieleni
+                {t("gardenSubtitle")}
               </p>
               <p className="mt-4 text-[var(--muted)]">
-                Ogród to serce posiadłości: zadaszona weranda, altana z letnią
-                kuchnią i strefy relaksu pozwalają spędzać całe dnie na
-                zewnątrz. Wieczory sprzyjają wspólnym kolacjom i spokojnym
-                chwilom wśród zieleni.
+                {t("gardenDescription")}
               </p>
-              <a
+              <Link
                 className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-strong)]"
                 href="/location"
               >
-                Poznaj okolicę →
-              </a>
+                {t("gardenLink")}
+              </Link>
             </div>
             {gardenImage ? (
               <div className="order-2 md:order-none">
@@ -315,16 +327,14 @@ export default async function HomePage() {
             ) : null}
             <div className="order-1 md:order-none">
               <h2 className="text-2xl font-semibold md:text-3xl">
-                Lokalizacja
+                {t("locationTitle")}
               </h2>
               <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
               <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
-                15 minut do lotniska, plaż i zabytków Alghero
+                {t("locationSubtitle")}
               </p>
               <p className="mt-4 text-[var(--muted)]">
-                Willa gwarantuje ciszę, a jednocześnie umożliwia szybki dojazd
-                do centrum Alghero, portu, plaż i lotniska (ok. 15 minut). To
-                idealny punkt wypadowy do odkrywania zachodniej Sardynii.
+                {t("locationDescription")}
               </p>
               <ul className="mt-5 grid gap-3 text-sm text-[var(--muted)] sm:grid-cols-2">
                 <li className="flex items-center gap-3 rounded-lg bg-white/70 px-3 py-2 shadow-sm">
@@ -332,28 +342,28 @@ export default async function HomePage() {
                     name="port"
                     className="h-4 w-4 text-[var(--accent)]"
                   />
-                  Centrum Alghero i port
+                  {t("locationItem1")}
                 </li>
                 <li className="flex items-center gap-3 rounded-lg bg-white/70 px-3 py-2 shadow-sm">
                   <LucideIcon
                     name="beach"
                     className="h-4 w-4 text-[var(--accent)]"
                   />
-                  Liczne plaże i malownicze zatoki
+                  {t("locationItem2")}
                 </li>
                 <li className="flex items-center gap-3 rounded-lg bg-white/70 px-3 py-2 shadow-sm">
                   <LucideIcon
                     name="heritage"
                     className="h-4 w-4 text-[var(--accent)]"
                   />
-                  Zabytki i atrakcje archeologiczne
+                  {t("locationItem3")}
                 </li>
                 <li className="flex items-center gap-3 rounded-lg bg-white/70 px-3 py-2 shadow-sm">
                   <LucideIcon
                     name="cafe"
                     className="h-4 w-4 text-[var(--accent)]"
                   />
-                  Sklepy, kawiarnie i restauracje
+                  {t("locationItem4")}
                 </li>
               </ul>
             </div>
@@ -363,26 +373,28 @@ export default async function HomePage() {
 
       <Reveal>
         <section className="mx-auto max-w-6xl px-6 pb-16 text-center">
-          <h2 className="text-2xl font-semibold md:text-3xl">Udogodnienia</h2>
+          <h2 className="text-2xl font-semibold md:text-3xl">
+            {t("amenitiesTitle")}
+          </h2>
           <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
           <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
-            Najważniejsze atuty w jednym miejscu
+            {t("amenitiesSubtitle")}
           </p>
           <div className="mt-10 grid grid-cols-3 items-start gap-6 text-center md:grid-cols-6 md:gap-4">
-            {amenities.map((item, index) => (
+            {amenityIconKeys.map((iconKey, index) => (
               <div
-                key={item.label}
+                key={iconKey}
                 className="amenity-item flex min-w-0 flex-col items-center gap-3"
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-[0_0_0_1px_rgba(72,104,90,0.2),_0_10px_18px_-12px_rgba(72,104,90,0.55),_0_20px_40px_-18px_rgba(0,0,0,0.6)]">
                   <LucideIcon
-                    name={item.iconKey}
+                    name={iconKey}
                     className="h-5 w-5 text-[var(--accent-strong)] md:h-6 md:w-6"
                   />
                 </div>
                 <span className="text-[10px] font-semibold tracking-[0.14em] text-[var(--foreground)] uppercase sm:text-[11px] md:text-xs">
-                  {item.label}
+                  {amenityLabels[index]}
                 </span>
               </div>
             ))}
@@ -394,18 +406,17 @@ export default async function HomePage() {
         <section className="mx-auto max-w-6xl px-6 pb-24">
           <div className="rounded-xl bg-[#e3d8c8] p-10 text-center shadow-[0_6px_16px_-10px_rgba(20,20,20,0.28),_0_22px_45px_-28px_rgba(20,20,20,0.4)]">
             <h2 className="text-2xl font-semibold md:text-3xl">
-              Zapraszamy do Villa Monte Calvia
+              {t("ctaTitle")}
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--muted)]">
-              Idealny wybór dla rodzin i grup przyjaciół, które cenią
-              przestrzeń, prywatność i śródziemnomorski styl życia.
+              {t("ctaDescription")}
             </p>
-            <a
+            <Link
               className="mt-6 inline-flex rounded-xl bg-[var(--brand)] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_34px_-12px_rgba(72,104,90,0.4)] transition hover:-translate-y-0.5 hover:bg-[#567a6a] hover:shadow-[0_22px_50px_-16px_rgba(72,104,90,0.5)]"
               href="/contact"
             >
-              Skontaktuj się z nami
-            </a>
+              {t("ctaButton")}
+            </Link>
           </div>
         </section>
       </Reveal>

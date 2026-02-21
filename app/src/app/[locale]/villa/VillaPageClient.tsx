@@ -2,23 +2,25 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import Reveal from "@/components/Reveal";
 import LucideIcon from "@/components/LucideIcon";
 import VillaSubNav from "./VillaSubNav";
 import RoomTilesGrid from "./RoomTilesGrid";
 
-const amenityLabels: Record<string, string> = {
-  wifi: "WiFi",
-  climate: "Klimatyzacja",
-  crib: "Łóżeczko",
-  "extra-bed": "Dostawka",
-  bathroom: "Łazienka",
-  lounger: "Leżak",
-  kitchen: "Kuchnia",
-  parking: "Parking",
-  "ice-maker": "Kostkarka",
-  "car-rental": "Samochód",
-  "garden-furniture": "Meble ogrodowe",
+const amenityTranslationKeys: Record<string, string> = {
+  wifi: "amenityWifi",
+  climate: "amenityClimate",
+  crib: "amenityCrib",
+  "extra-bed": "amenityExtraBed",
+  bathroom: "amenityBathroom",
+  lounger: "amenityLounger",
+  kitchen: "amenityKitchen",
+  parking: "amenityParking",
+  "ice-maker": "amenityIceMaker",
+  "car-rental": "amenityCarRental",
+  "garden-furniture": "amenityGardenFurniture",
 };
 
 type ImageData = {
@@ -53,14 +55,15 @@ export default function VillaPageClient({
   rooms,
   exteriorSections,
 }: VillaPageClientProps) {
+  const t = useTranslations("villa");
   const bedrooms = rooms.filter((r) => !r.isSalon);
   const salon = rooms.find((r) => r.isSalon) ?? null;
 
   // Build sub-nav groups
   const interiorItems: { id: string; label: string }[] = [];
-  if (salon) interiorItems.push({ id: "salon", label: "Salon" });
+  if (salon) interiorItems.push({ id: "salon", label: t("salonLabel") });
   if (bedrooms.length > 0)
-    interiorItems.push({ id: "sypialnie", label: "Sypialnie" });
+    interiorItems.push({ id: "sypialnie", label: t("bedroomsLabel") });
 
   const exteriorItems = exteriorSections.map((s) => ({
     id: `ext-${s.key}`,
@@ -69,16 +72,23 @@ export default function VillaPageClient({
 
   const groups = [
     ...(interiorItems.length > 0
-      ? [{ label: "Wnętrza", items: interiorItems }]
+      ? [{ label: t("groupInteriors"), items: interiorItems }]
       : []),
     ...(exteriorItems.length > 0
-      ? [{ label: "Na zewnątrz", items: exteriorItems }]
+      ? [{ label: t("groupOutdoors"), items: exteriorItems }]
       : []),
   ];
 
+  function getAmenityLabel(key: string): string {
+    const translationKey = amenityTranslationKeys[key];
+    return translationKey ? t(translationKey as Parameters<typeof t>[0]) : key;
+  }
+
   return (
     <>
-      {groups.length > 0 && <VillaSubNav groups={groups} />}
+      {groups.length > 0 && (
+        <VillaSubNav groups={groups} ariaLabel={t("sectionNavAria")} />
+      )}
 
       <div className="mx-auto max-w-6xl px-6">
         {/* === SALON === */}
@@ -92,7 +102,7 @@ export default function VillaPageClient({
                   </h2>
                   <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
                   <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
-                    Przestronny salon z w pełni wyposażoną kuchnią
+                    {t("salonSubtitle")}
                   </p>
                   <p className="mt-4 text-[var(--muted)]">
                     {salon.description}
@@ -108,7 +118,7 @@ export default function VillaPageClient({
                             name={key}
                             className="h-3.5 w-3.5 text-[var(--accent-strong)]"
                           />
-                          {amenityLabels[key] ?? key}
+                          {getAmenityLabel(key)}
                         </span>
                       ))}
                     </div>
@@ -126,10 +136,12 @@ export default function VillaPageClient({
         {/* === BEDROOMS === */}
         {bedrooms.length > 0 && (
           <section id="sypialnie" className="pb-16">
-            <h2 className="text-2xl font-semibold md:text-3xl">Sypialnie</h2>
+            <h2 className="text-2xl font-semibold md:text-3xl">
+              {t("bedroomsTitle")}
+            </h2>
             <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
             <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
-              {bedrooms.length} komfortowych sypialni z prywatnymi łazienkami
+              {t("bedroomsSubtitle", { count: bedrooms.length })}
             </p>
             <div className="mt-8">
               <RoomTilesGrid rooms={bedrooms} />
@@ -142,7 +154,7 @@ export default function VillaPageClient({
           <div className="flex items-center gap-4 pb-12">
             <div className="h-px flex-1 bg-[var(--surface)]" />
             <span className="text-xs font-semibold tracking-[0.2em] text-[var(--muted)] uppercase">
-              Na zewnątrz
+              {t("groupOutdoors")}
             </span>
             <div className="h-px flex-1 bg-[var(--surface)]" />
           </div>
@@ -191,18 +203,17 @@ export default function VillaPageClient({
           <section className="pb-24">
             <div className="rounded-xl bg-[#e3d8c8] p-10 text-center shadow-[0_6px_16px_-10px_rgba(20,20,20,0.28),_0_22px_45px_-28px_rgba(20,20,20,0.4)]">
               <h2 className="text-2xl font-semibold md:text-3xl">
-                Zapraszamy do Villa Monte Calvia
+                {t("ctaTitle")}
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-[var(--muted)]">
-                Idealny wybór dla rodzin i grup przyjaciół, które cenią
-                przestrzeń, prywatność i śródziemnomorski styl życia.
+                {t("ctaDescription")}
               </p>
-              <a
+              <Link
                 className="mt-6 inline-flex rounded-xl bg-[var(--brand)] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_34px_-12px_rgba(72,104,90,0.4)] transition hover:-translate-y-0.5 hover:bg-[#567a6a] hover:shadow-[0_22px_50px_-16px_rgba(72,104,90,0.5)]"
                 href="/contact"
               >
-                Skontaktuj się z nami
-              </a>
+                {t("ctaButton")}
+              </Link>
             </div>
           </section>
         </Reveal>
@@ -218,6 +229,7 @@ function SalonCarousel({
   coverImage: ImageData | null;
   galleryImages: ImageData[];
 }>) {
+  const t = useTranslations("villa");
   const images = useMemo(() => {
     const all: ImageData[] = [];
     if (coverImage) all.push(coverImage);
@@ -275,7 +287,7 @@ function SalonCarousel({
             <button
               key={img.url}
               onClick={() => goTo(i)}
-              aria-label={`Zdjęcie ${i + 1}`}
+              aria-label={t("photoAria", { index: i + 1 })}
               className={`rounded-full transition-all duration-300 ${
                 i === active
                   ? "h-2.5 w-2.5 bg-[var(--accent-strong)]"

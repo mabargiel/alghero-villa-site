@@ -1,10 +1,15 @@
+"use client";
+
 import { MapPin, Phone, Mail } from "lucide-react";
+import { useTranslations } from "next-intl";
 import SocialIcon from "@/components/SocialIcon";
 
 const VILLA_COORDS = "40.58021945061172,8.3685655685544";
 const DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${VILLA_COORDS}`;
 
 export default function ContactInfoPanel() {
+  const t = useTranslations("contact");
+
   return (
     <div className="flex flex-col gap-6">
       {/* Static map with pin overlay */}
@@ -18,7 +23,7 @@ export default function ContactInfoPanel() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/map-alghero.png"
-            alt="Villa Monte Calvia — lokalizacja na mapie"
+            alt={t("mapAlt")}
             className="w-full object-cover transition group-hover:brightness-95"
           />
           {/* Inset border */}
@@ -38,7 +43,7 @@ export default function ContactInfoPanel() {
           rel="noreferrer"
           className="absolute bottom-2 left-1/2 z-10 -translate-x-1/2 translate-y-1/2 rounded-xl bg-gradient-to-r from-[var(--accent-strong)] to-[var(--accent)] px-10 py-2 text-xs font-semibold tracking-[0.15em] text-white uppercase shadow-[0_16px_34px_-22px_rgba(0,0,0,0.7)] transition hover:translate-y-[calc(50%-2px)] hover:shadow-[0_22px_50px_-28px_rgba(0,0,0,0.75)]"
         >
-          Sprawdź dojazd
+          {t("getDirections")}
         </a>
       </div>
 

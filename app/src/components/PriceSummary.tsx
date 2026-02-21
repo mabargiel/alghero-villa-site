@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo } from "react";
+import { useTranslations, useLocale, useFormatter } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import type { PricingConfig } from "@/lib/sanity/queries";
 import type { PriceBreakdown, PriceSegment } from "@/lib/pricing";
 
@@ -9,11 +11,6 @@ type PriceSummaryProps = Readonly<{
   config: PricingConfig;
   minNightsWarning?: boolean;
 }>;
-
-const extras = [
-  { label: "Sprzątanie", amount: 150, type: "included" as const },
-  { label: "Depozyt zwrotny", amount: 800, type: "deposit" as const },
-];
 
 type DisplayLine = {
   key: string;
@@ -65,27 +62,6 @@ function buildDisplayLines(segments: PriceSegment[]): DisplayLine[] {
   return lines;
 }
 
-function formatDate(date: Date): string {
-  return date.toLocaleDateString("pl-PL", {
-    day: "numeric",
-    month: "short",
-  });
-}
-
-function formatPrice(amount: number): string {
-  return new Intl.NumberFormat("pl-PL", {
-    style: "decimal",
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(Math.round(amount));
-}
-
-function nightsLabel(n: number): string {
-  if (n === 1) return "noc";
-  if (n < 5) return "noce";
-  return "nocy";
-}
-
 function SummaryContent({
   breakdown,
   displayLines,
@@ -95,9 +71,32 @@ function SummaryContent({
   displayLines: DisplayLine[];
   hasPromoLines: boolean;
 }>) {
+  const t = useTranslations("pricing");
+  const locale = useLocale();
+  const format = useFormatter();
+
+  function formatDate(date: Date): string {
+    return format.dateTime(date, { day: "numeric", month: "short" });
+  }
+
+  function formatPrice(amount: number): string {
+    return new Intl.NumberFormat(locale, {
+      style: "decimal",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(Math.round(amount));
+  }
+
+  const extras = [
+    { label: t("cleaning"), amount: 150, type: "included" as const },
+    { label: t("deposit"), amount: 800, type: "deposit" as const },
+  ];
+
+  const nightsLabel = t("nights", { count: breakdown.totalNights });
+
   return (
     <>
-      <h3 className="text-foreground mb-4 text-lg font-bold">Podsumowanie</h3>
+      <h3 className="text-foreground mb-4 text-lg font-bold">{t("summary")}</h3>
 
       {hasPromoLines ? (
         <div className="space-y-3">
@@ -111,13 +110,13 @@ function SummaryContent({
                   {formatDate(line.startDate)} – {formatDate(line.endDate)}
                 </span>
                 <span className="text-muted ml-2">
-                  {line.nights} {nightsLabel(line.nights)}
+                  {line.nights} {t("nights", { count: line.nights })}
                 </span>
                 {line.promotion && (
                   <span className="ml-2 inline-flex items-center rounded-full bg-pink-100 px-2 py-0.5 text-xs font-semibold text-pink-700">
                     {line.promotion.type === "percentage"
                       ? `−${line.promotion.value}%`
-                      : "Promocja"}
+                      : t("promotion")}
                   </span>
                 )}
               </div>
@@ -143,7 +142,7 @@ function SummaryContent({
       >
         <div className="text-foreground flex items-center justify-between text-base font-bold">
           <span>
-            Razem ({breakdown.totalNights} {nightsLabel(breakdown.totalNights)})
+            {t("total", { nights: `${breakdown.totalNights} ${nightsLabel}` })}
           </span>
           <span>{formatPrice(breakdown.totalPrice)} €</span>
         </div>
@@ -160,7 +159,9 @@ function SummaryContent({
               {extra.type === "included" ? (
                 <span>
                   <span className="mr-1.5">{formatPrice(extra.amount)} €</span>
-                  <span className="text-brand font-medium">w cenie</span>
+                  <span className="text-brand font-medium">
+                    {t("included")}
+                  </span>
                 </span>
               ) : (
                 `${formatPrice(extra.amount)} €`
@@ -170,12 +171,12 @@ function SummaryContent({
         ))}
       </div>
 
-      <a
+      <Link
         href="/contact"
         className="mt-6 block w-full rounded-lg bg-[var(--brand)] px-6 py-3 text-center font-semibold text-white shadow-[0_8px_24px_-8px_rgba(72,104,90,0.4)] transition-all hover:-translate-y-0.5 hover:bg-[#567a6a] hover:shadow-[0_12px_32px_-8px_rgba(72,104,90,0.5)]"
       >
-        Zapytaj o termin
-      </a>
+        {t("askAbout")}
+      </Link>
     </>
   );
 }
@@ -185,6 +186,7 @@ export default function PriceSummary({
   config,
   minNightsWarning,
 }: PriceSummaryProps) {
+  const t = useTranslations("pricing");
   const hasPerks = config.perks && config.perks.length > 0;
 
   const displayLines = useMemo(() => {
@@ -198,10 +200,10 @@ export default function PriceSummary({
   if (minNightsWarning) {
     content = (
       <div className="text-center">
-        <h3 className="text-foreground mb-3 text-lg font-bold">Podsumowanie</h3>
-        <p className="text-sm text-red-700">
-          Minimalny pobyt to 5 nocy. Wybierz dłuższy zakres dat.
-        </p>
+        <h3 className="text-foreground mb-3 text-lg font-bold">
+          {t("summary")}
+        </h3>
+        <p className="text-sm text-red-700">{t("minNightsWarning")}</p>
       </div>
     );
   } else if (breakdown) {
@@ -215,9 +217,7 @@ export default function PriceSummary({
   } else {
     content = (
       <div className="text-muted text-center">
-        <p className="text-sm">
-          Wybierz daty na kalendarzu, aby zobaczyć cenę.
-        </p>
+        <p className="text-sm">{t("selectDates")}</p>
       </div>
     );
   }

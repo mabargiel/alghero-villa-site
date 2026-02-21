@@ -39,7 +39,7 @@ export async function POST(request: Request) {
   const ip = getClientIp(request);
   if (isRateLimited(ip)) {
     return Response.json(
-      { message: "Zbyt wiele prób. Spróbuj ponownie później." },
+      { message: "Too many attempts. Please try again later." },
       { status: 429 },
     );
   }
@@ -52,21 +52,24 @@ export async function POST(request: Request) {
 
   if (website) {
     return Response.json(
-      { message: "Wykryto spam. Spróbuj ponownie później." },
+      { message: "Spam detected. Please try again later." },
       { status: 400 },
     );
   }
 
   if (!firstName || !email || !phone) {
     return Response.json(
-      { message: "Uzupełnij wymagane pola formularza." },
+      { message: "Please fill in all required fields." },
       { status: 400 },
     );
   }
 
   if (!resendApiKey || !contactToEmail) {
     return Response.json(
-      { message: "Brak konfiguracji email. Skontaktuj się z administratorem." },
+      {
+        message:
+          "Email configuration missing. Please contact the administrator.",
+      },
       { status: 500 },
     );
   }
@@ -77,13 +80,13 @@ export async function POST(request: Request) {
     from: contactFromEmail,
     to: contactToEmail,
     replyTo: email,
-    subject: `Nowe zapytanie — ${firstName}`,
-    text: `Imię: ${firstName}\nEmail: ${email}\nTelefon: ${phone}`,
+    subject: `New enquiry — ${firstName}`,
+    text: `Name: ${firstName}\nEmail: ${email}\nPhone: ${phone}`,
   });
 
   if (result.error) {
     return Response.json(
-      { message: "Błąd wysyłki email. Spróbuj ponownie później." },
+      { message: "Email delivery failed. Please try again later." },
       { status: 502 },
     );
   }

@@ -1,10 +1,12 @@
 import { urlFor } from "@/lib/sanity/image";
 import { getGallery } from "@/lib/sanity/queries";
+import { getTranslations } from "next-intl/server";
 import SubpageHeader from "@/components/SubpageHeader";
 import GalleryClient from "./GalleryClient";
 
 export default async function GalleryPage() {
   const gallery = await getGallery();
+  const t = await getTranslations("gallery");
   const images = (gallery?.images ?? []).map((image) => ({
     key: image._key,
     altText: "",
@@ -15,14 +17,14 @@ export default async function GalleryPage() {
   return (
     <main className="min-h-screen pb-16">
       <SubpageHeader
-        eyebrow="Galeria"
-        title="Villa Monte Calvia"
-        description="Wybór zdjęć przedstawiających ogród, wnętrza oraz otoczenie willi."
+        eyebrow={t("eyebrow")}
+        title={t("title")}
+        description={t("description")}
       />
       <div className="mx-auto max-w-6xl px-6 pt-10">
         {images.length === 0 ? (
           <div className="rounded-3xl border border-[var(--surface)] bg-[var(--surface)] p-10 text-center text-[var(--muted)]">
-            Dodaj zdjęcia w Sanity Studio, aby pojawiły się w galerii.
+            {t("emptyState")}
           </div>
         ) : (
           <GalleryClient images={images} />

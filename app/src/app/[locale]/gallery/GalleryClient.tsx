@@ -8,9 +8,9 @@ type GalleryImageView = {
   aspectRatio?: number;
 };
 
-type Props = {
+type Props = Readonly<{
   images: GalleryImageView[];
-};
+}>;
 
 export default function GalleryClient({ images }: Props) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -45,7 +45,7 @@ export default function GalleryClient({ images }: Props) {
       }
       setNextIndex(targetIndex);
       setIsTransitioning(true);
-      window.setTimeout(() => {
+      globalThis.setTimeout(() => {
         setActiveIndex(targetIndex);
         setNextIndex(null);
         setIsTransitioning(false);
@@ -73,8 +73,8 @@ export default function GalleryClient({ images }: Props) {
       if (event.key === "ArrowLeft") showPrev();
     }
 
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    globalThis.addEventListener("keydown", onKeyDown);
+    return () => globalThis.removeEventListener("keydown", onKeyDown);
   }, [hasLightbox, activeIndex, showNext, showPrev]);
 
   return (
@@ -116,81 +116,84 @@ export default function GalleryClient({ images }: Props) {
       </div>
 
       {hasLightbox && activeImage && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 px-4 py-10 text-white"
-          role="dialog"
-          aria-modal="true"
-          onClick={closeLightbox}
-          onTouchStart={(event) => {
-            setTouchStartX(event.touches[0]?.clientX ?? null);
-          }}
-          onTouchEnd={(event) => {
-            if (touchStartX === null) return;
-            const touchEndX = event.changedTouches[0]?.clientX ?? touchStartX;
-            const deltaX = touchEndX - touchStartX;
-            if (deltaX > 50) showPrev();
-            if (deltaX < -50) showNext();
-            setTouchStartX(null);
-          }}
+        <dialog
+          open
+          className="fixed inset-0 z-50 border-none bg-transparent p-0 text-white"
         >
-          <div
-            className="relative w-full max-w-5xl"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <div className="relative mx-auto flex max-h-[80vh] items-center justify-center">
-              {/* Active image */}
-              <div
-                className={`transition-opacity duration-200 ${
-                  isTransitioning ? "opacity-0" : "opacity-100"
-                }`}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={activeImage.url}
-                  alt={activeImage.altText}
-                  className="max-h-[80vh] w-auto rounded-2xl"
-                />
-              </div>
-
-              {/* Next image for cross-fade */}
-              {nextImage && (
-                <div className="absolute inset-0 flex items-center justify-center">
+          <button
+            type="button"
+            className="absolute inset-0 cursor-default bg-black/90"
+            onClick={closeLightbox}
+            onTouchStart={(event) => {
+              setTouchStartX(event.touches[0]?.clientX ?? null);
+            }}
+            onTouchEnd={(event) => {
+              if (touchStartX === null) return;
+              const touchEndX = event.changedTouches[0]?.clientX ?? touchStartX;
+              const deltaX = touchEndX - touchStartX;
+              if (deltaX > 50) showPrev();
+              if (deltaX < -50) showNext();
+              setTouchStartX(null);
+            }}
+            aria-label="Close lightbox"
+          />
+          <div className="pointer-events-none relative z-10 flex h-full w-full items-center justify-center px-4 py-10">
+            <div className="pointer-events-auto relative w-full max-w-5xl">
+              <div className="relative mx-auto flex max-h-[80vh] items-center justify-center">
+                {/* Active image */}
+                <div
+                  className={`transition-opacity duration-200 ${
+                    isTransitioning ? "opacity-0" : "opacity-100"
+                  }`}
+                >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={nextImage.url}
-                    alt={nextImage.altText}
-                    className={`max-h-[80vh] w-auto rounded-2xl transition-opacity duration-200 ${
-                      isTransitioning ? "opacity-100" : "opacity-0"
-                    }`}
+                    src={activeImage.url}
+                    alt={activeImage.altText}
+                    className="max-h-[80vh] w-auto rounded-2xl"
                   />
                 </div>
-              )}
-            </div>
 
-            <button
-              className="absolute top-1/2 left-0 -translate-y-1/2 rounded-lg bg-white/10 px-4 py-2 text-sm transition hover:bg-white/20"
-              type="button"
-              onClick={showPrev}
-            >
-              ←
-            </button>
-            <button
-              className="absolute top-1/2 right-0 -translate-y-1/2 rounded-lg bg-white/10 px-4 py-2 text-sm transition hover:bg-white/20"
-              type="button"
-              onClick={showNext}
-            >
-              →
-            </button>
-            <button
-              className="absolute top-0 right-0 rounded-lg bg-white/10 px-3 py-1 text-sm transition hover:bg-white/20"
-              type="button"
-              onClick={closeLightbox}
-              aria-label="Close"
-            >
-              ✕
-            </button>
+                {/* Next image for cross-fade */}
+                {nextImage && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={nextImage.url}
+                      alt={nextImage.altText}
+                      className={`max-h-[80vh] w-auto rounded-2xl transition-opacity duration-200 ${
+                        isTransitioning ? "opacity-100" : "opacity-0"
+                      }`}
+                    />
+                  </div>
+                )}
+              </div>
+
+              <button
+                className="absolute top-1/2 left-0 -translate-y-1/2 rounded-lg bg-white/10 px-4 py-2 text-sm transition hover:bg-white/20"
+                type="button"
+                onClick={showPrev}
+              >
+                ←
+              </button>
+              <button
+                className="absolute top-1/2 right-0 -translate-y-1/2 rounded-lg bg-white/10 px-4 py-2 text-sm transition hover:bg-white/20"
+                type="button"
+                onClick={showNext}
+              >
+                →
+              </button>
+              <button
+                className="absolute top-0 right-0 rounded-lg bg-white/10 px-3 py-1 text-sm transition hover:bg-white/20"
+                type="button"
+                onClick={closeLightbox}
+                aria-label="Close"
+              >
+                ✕
+              </button>
+            </div>
           </div>
-        </div>
+        </dialog>
       )}
     </>
   );

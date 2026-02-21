@@ -9,6 +9,7 @@ type SubNavGroup = {
 
 type VillaSubNavProps = Readonly<{
   groups: SubNavGroup[];
+  ariaLabel?: string;
 }>;
 
 function labelStyle(isActive: boolean, isHovered: boolean): string {
@@ -17,7 +18,7 @@ function labelStyle(isActive: boolean, isHovered: boolean): string {
   return "font-normal text-[var(--muted)] opacity-40";
 }
 
-export default function VillaSubNav({ groups }: VillaSubNavProps) {
+export default function VillaSubNav({ groups, ariaLabel }: VillaSubNavProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const navRef = useRef<HTMLElement>(null);
@@ -67,7 +68,7 @@ export default function VillaSubNav({ groups }: VillaSubNavProps) {
     <nav
       ref={navRef}
       className="fixed top-[58%] right-6 z-30 hidden -translate-y-1/2 flex-col items-end gap-3 xl:flex 2xl:right-10"
-      aria-label="Nawigacja sekcji"
+      aria-label={ariaLabel}
     >
       {groups.map((group, gi) => (
         <div key={group.label} className="flex flex-col items-end gap-2">
