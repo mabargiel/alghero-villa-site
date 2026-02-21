@@ -25,10 +25,7 @@ jobs:
           node-version: "20"
       - run: npm ci
         working-directory: app
-      - uses: SonarSource/sonarqube-scan-action@v5
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.organization=mbargiel
-            -Dsonar.projectKey=alghero-villa-site
