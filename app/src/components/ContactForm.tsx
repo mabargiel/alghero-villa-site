@@ -8,6 +8,30 @@ import DateRangePicker from "./DateRangePicker";
 
 type FormState = "idle" | "sending" | "success" | "error";
 
+function PrivacyLink(chunks: React.ReactNode) {
+  return (
+    <Link
+      href="/privacy"
+      className="font-medium text-[var(--accent-strong)] underline underline-offset-2"
+      target="_blank"
+    >
+      {chunks}
+    </Link>
+  );
+}
+
+function RulesLink(chunks: React.ReactNode) {
+  return (
+    <Link
+      href="/house-rules"
+      className="font-medium text-[var(--accent-strong)] underline underline-offset-2"
+      target="_blank"
+    >
+      {chunks}
+    </Link>
+  );
+}
+
 export default function ContactForm() {
   const [state, setState] = useState<FormState>("idle");
   const [message, setMessage] = useState<string | null>(null);
@@ -40,7 +64,7 @@ export default function ContactForm() {
       email: String(formData.get("email") || ""),
       phone: String(formData.get("phone") || ""),
       guests: Number(formData.get("guests") || 0),
-      message: String(formData.get("message") || ""),
+      message: (formData.get("message") as string) ?? "",
       website: String(formData.get("website") || ""),
       arriveDate: dateRange?.from?.toISOString() || "",
       leaveDate: dateRange?.to?.toISOString() || "",
@@ -159,24 +183,8 @@ export default function ContactForm() {
         />
         <span>
           {t.rich("consent", {
-            privacy: (chunks) => (
-              <Link
-                href="/privacy"
-                className="font-medium text-[var(--accent-strong)] underline underline-offset-2"
-                target="_blank"
-              >
-                {chunks}
-              </Link>
-            ),
-            rules: (chunks) => (
-              <Link
-                href="/house-rules"
-                className="font-medium text-[var(--accent-strong)] underline underline-offset-2"
-                target="_blank"
-              >
-                {chunks}
-              </Link>
-            ),
+            privacy: PrivacyLink,
+            rules: RulesLink,
           })}
         </span>
       </label>

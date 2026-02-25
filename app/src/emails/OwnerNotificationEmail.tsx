@@ -46,7 +46,7 @@ export default function OwnerNotificationEmail({
   message,
   translations: t,
   siteUrl,
-}: OwnerNotificationEmailProps) {
+}: Readonly<OwnerNotificationEmailProps>) {
   return (
     <Html>
       <Head />

@@ -19,7 +19,7 @@ const NAV_BTN =
 const NAV_ICON = "text-muted group-hover:text-brand h-4 w-4 transition-colors";
 
 function PreviousMonthButton(
-  props: React.ButtonHTMLAttributes<HTMLButtonElement>,
+  props: Readonly<React.ButtonHTMLAttributes<HTMLButtonElement>>,
 ) {
   return (
     <button {...props} className={NAV_BTN}>
@@ -28,7 +28,9 @@ function PreviousMonthButton(
   );
 }
 
-function NextMonthButton(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+function NextMonthButton(
+  props: Readonly<React.ButtonHTMLAttributes<HTMLButtonElement>>,
+) {
   return (
     <button {...props} className={NAV_BTN}>
       <ChevronRight className={NAV_ICON} />

@@ -28,7 +28,7 @@ export default function ConfirmationEmail({
   firstName,
   translations: t,
   siteUrl,
-}: ConfirmationEmailProps) {
+}: Readonly<ConfirmationEmailProps>) {
   return (
     <Html>
       <Head />

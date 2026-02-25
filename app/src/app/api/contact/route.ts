@@ -13,7 +13,7 @@ const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL || "https://montecalvia.com"
 ).replace(/\/$/, "");
 
-const SUPPORTED_LOCALES = ["en", "it", "pl", "es", "fr", "de"];
+const SUPPORTED_LOCALES = new Set(["en", "it", "pl", "es", "fr", "de"]);
 
 const rateLimitWindowMs = 10 * 60 * 1000;
 const rateLimitMax = 5;
@@ -43,7 +43,7 @@ function isRateLimited(ip: string) {
 }
 
 async function loadTranslations(locale: string) {
-  const safeLocale = SUPPORTED_LOCALES.includes(locale) ? locale : "en";
+  const safeLocale = SUPPORTED_LOCALES.has(locale) ? locale : "en";
   const messages = (await import(`../../../../messages/${safeLocale}.json`))
     .default;
   return {
@@ -104,7 +104,11 @@ export async function POST(request: Request) {
 
   const arrive = new Date(arriveDate);
   const leave = new Date(leaveDate);
-  if (isNaN(arrive.getTime()) || isNaN(leave.getTime()) || arrive >= leave) {
+  if (
+    Number.isNaN(arrive.getTime()) ||
+    Number.isNaN(leave.getTime()) ||
+    arrive >= leave
+  ) {
     return Response.json(
       { message: "Arrival date must be before departure date." },
       { status: 400 },
@@ -121,7 +125,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const safeLocale = SUPPORTED_LOCALES.includes(locale) ? locale : "en";
+  const safeLocale = SUPPORTED_LOCALES.has(locale) ? locale : "en";
   const [visitorTranslations, ownerTranslations] = await Promise.all([
     loadTranslations(safeLocale),
     loadTranslations("pl"),
