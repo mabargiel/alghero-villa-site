@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useCallback, useContext, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 type ConsentValue = "granted" | "denied" | null;
 
@@ -37,10 +43,14 @@ export default function ConsentProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [consent, setConsentState] = useState<ConsentValue>(readStoredConsent);
-  const [showBanner, setShowBanner] = useState(
-    () => readStoredConsent() === null,
-  );
+  const [consent, setConsentState] = useState<ConsentValue>(null);
+  const [showBanner, setShowBanner] = useState(false);
+
+  useEffect(() => {
+    const stored = readStoredConsent();
+    setConsentState(stored);
+    setShowBanner(stored === null);
+  }, []);
 
   const setConsent = useCallback((value: "granted" | "denied") => {
     setConsentState(value);

@@ -1,4 +1,4 @@
-## ADDED Requirements
+## MODIFIED Requirements
 
 ### Requirement: Language switcher in top bar
 The system SHALL display a horizontal language switcher in the top bar row (where social icons are), separated from the social icons by a `|` divider. The switcher SHALL show all 6 locale codes: EN, IT, PL, ES, FR, DE.
@@ -36,10 +36,3 @@ The language switcher SHALL be visible on mobile viewports in the same top bar p
 #### Scenario: Mobile top bar with 6 locale codes
 - **WHEN** any page loads on mobile
 - **THEN** the social icons and language switcher row is visible above the logo/hamburger row, displaying all 6 locale codes
-
-### Requirement: Language switcher sets locale cookie
-Clicking a language in the switcher SHALL set the `NEXT_LOCALE` cookie to persist the user's preference.
-
-#### Scenario: User selects Spanish
-- **WHEN** the user clicks "ES" in the language switcher
-- **THEN** the `NEXT_LOCALE` cookie is set to `es` and subsequent visits default to Spanish
