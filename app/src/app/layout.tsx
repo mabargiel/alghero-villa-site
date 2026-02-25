@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import { Lato } from "next/font/google";
 import { getLocale } from "next-intl/server";
 import "./globals.css";
@@ -16,7 +17,10 @@ export default async function RootLayout({
   const locale = await getLocale();
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={`${lato.variable} antialiased`}>{children}</body>
+      <body className={`${lato.variable} antialiased`}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
