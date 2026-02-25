@@ -4,8 +4,8 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
   useState,
+  useSyncExternalStore,
 } from "react";
 
 type ConsentValue = "granted" | "denied" | null;
@@ -19,8 +19,7 @@ type ConsentContextType = {
 
 const STORAGE_KEY = "cookie-consent";
 
-function readStoredConsent(): ConsentValue {
-  if (typeof window === "undefined") return null;
+function getSnapshot(): ConsentValue {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored === "granted" || stored === "denied") return stored;
@@ -28,6 +27,15 @@ function readStoredConsent(): ConsentValue {
     // localStorage unavailable
   }
   return null;
+}
+
+function getServerSnapshot(): ConsentValue {
+  return null;
+}
+
+function subscribe(callback: () => void) {
+  window.addEventListener("storage", callback);
+  return () => window.removeEventListener("storage", callback);
 }
 
 const ConsentContext = createContext<ConsentContextType | undefined>(undefined);
@@ -43,14 +51,13 @@ export default function ConsentProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [consent, setConsentState] = useState<ConsentValue>(null);
-  const [showBanner, setShowBanner] = useState(false);
-
-  useEffect(() => {
-    const stored = readStoredConsent();
-    setConsentState(stored);
-    setShowBanner(stored === null);
-  }, []);
+  const storedConsent = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot,
+  );
+  const [consent, setConsentState] = useState<ConsentValue>(storedConsent);
+  const [showBanner, setShowBanner] = useState(storedConsent === null);
 
   const setConsent = useCallback((value: "granted" | "denied") => {
     setConsentState(value);
