@@ -185,8 +185,39 @@
     "description": "A selection of photos showing the garden, interiors, and surroundings of the villa.",
     "emptyState": "Add photos in Sanity Studio for them to appear in the gallery."
   },
+  "cookieConsent": {
+    "message": "We use cookies for marketing analytics to improve our advertising. You can accept or reject them.",
+    "accept": "Accept",
+    "reject": "Reject",
+    "privacyLink": "Privacy Policy",
+    "cookiePreferences": "Cookie preferences",
+    "bannerAria": "Cookie consent"
+  },
+  "privacy": {
+    "eyebrow": "Legal",
+    "title": "Privacy & Cookie Policy",
+    "metaDescription": "Privacy and cookie policy for Villa Monte Calvia website.",
+    "lastUpdated": "Last updated: February 2026",
+    "controllerTitle": "1. Data Controller",
+    "controllerBody": "The data controller for this website is Villa Monte Calvia, operated at montecalvia.com. For any questions regarding data processing, please contact us at the email address provided in the Contact section below.",
+    "dataCollectedTitle": "2. What Data We Collect",
+    "dataCollectedBody": "We collect the following categories of personal data:\n\n— Contact form submissions: first name, email address, phone number, and the content of your enquiry.\n— Analytics data: anonymous page-view statistics collected by Vercel Web Analytics (no cookies, no personally identifiable information).\n— Marketing data: when you consent to marketing cookies, the FastTony pixel (Meta Pixel) may collect browsing behaviour data, IP address, and device information for advertising purposes.",
+    "purposeTitle": "3. Purpose and Legal Basis",
+    "purposeBody": "We process personal data for the following purposes:\n\n— To respond to your enquiries (legal basis: legitimate interest, Art. 6(1)(f) GDPR).\n— To analyse website traffic and improve our services using Vercel Web Analytics (legal basis: legitimate interest, Art. 6(1)(f) GDPR). This tool does not use cookies and does not collect personally identifiable information.\n— To deliver targeted advertising via the Meta Pixel / FastTony pixel (legal basis: your consent, Art. 6(1)(a) GDPR). This data is only collected after you explicitly accept marketing cookies.",
+    "cookiesTitle": "4. Cookies",
+    "cookiesBody": "This website uses the following cookies:\n\n— Essential storage: We store your cookie consent preference in your browser's local storage (key: \"cookie-consent\"). This is not a cookie and does not require consent.\n— Marketing cookies: If you accept marketing cookies, the FastTony pixel (Meta Pixel) sets cookies to track your browsing activity across websites for advertising purposes. These cookies are set by Meta Platforms, Inc. and typically persist for up to 90 days.\n\nVercel Web Analytics does not use cookies.\n\nYou can change your cookie preference at any time via the \"Cookie preferences\" link in the website footer.",
+    "thirdPartiesTitle": "5. Third-Party Data Sharing",
+    "thirdPartiesBody": "When you consent to marketing cookies, data may be shared with:\n\n— Meta Platforms, Inc. (via the FastTony pixel) for advertising campaign measurement and optimisation. Meta processes this data in accordance with its own privacy policy. Data may be transferred to the United States under Meta's data processing terms.\n— Vercel Inc. processes anonymous analytics data on our behalf. Vercel Web Analytics is designed to be privacy-friendly and does not collect personally identifiable information.",
+    "retentionTitle": "6. Data Retention",
+    "retentionBody": "Contact form submissions are retained for as long as necessary to handle your enquiry and any follow-up correspondence, typically no longer than 12 months.\n\nAnalytics data collected by Vercel is aggregated and anonymous.\n\nMarketing cookie data is retained by Meta in accordance with their data retention policies, typically up to 90 days after your last website visit.",
+    "rightsTitle": "7. Your Rights",
+    "rightsBody": "Under the GDPR, you have the following rights:\n\n— Right of access: You can request a copy of the personal data we hold about you.\n— Right to rectification: You can ask us to correct inaccurate data.\n— Right to erasure: You can ask us to delete your personal data.\n— Right to data portability: You can request your data in a structured, machine-readable format.\n— Right to object: You can object to the processing of your data based on legitimate interests.\n— Right to withdraw consent: You can withdraw your marketing cookie consent at any time via the \"Cookie preferences\" link in the footer.\n— Right to lodge a complaint: You have the right to lodge a complaint with a supervisory authority in the EU member state of your habitual residence.",
+    "contactTitle": "8. Contact",
+    "contactBody": "For any questions or requests regarding your personal data, please contact us via the contact form on our website or by email at info@montecalvia.com."
+  },
   "common": {
-    "allRightsReserved": "© {year} Villa Monte Calvia TM. All rights reserved.",
-    "designedBy": "Designed and implemented by"
+    "allRightsReserved": "© {year} Villa Monte Calvia. All rights reserved.",
+    "designedBy": "Designed and implemented by",
+    "privacyPolicy": "Privacy Policy"
   }
 }

@@ -185,8 +185,39 @@
     "description": "Una selezione di foto che mostra il giardino, gli interni e i dintorni della villa.",
     "emptyState": "Aggiungete le foto in Sanity Studio per visualizzarle nella galleria."
   },
+  "cookieConsent": {
+    "message": "Utilizziamo cookie per analisi di marketing per migliorare la nostra pubblicità. Puoi accettarli o rifiutarli.",
+    "accept": "Accetta",
+    "reject": "Rifiuta",
+    "privacyLink": "Informativa sulla privacy",
+    "cookiePreferences": "Preferenze cookie",
+    "bannerAria": "Consenso cookie"
+  },
+  "privacy": {
+    "eyebrow": "Legale",
+    "title": "Informativa sulla privacy e sui cookie",
+    "metaDescription": "Informativa sulla privacy e sui cookie del sito web Villa Monte Calvia.",
+    "lastUpdated": "Ultimo aggiornamento: febbraio 2026",
+    "controllerTitle": "1. Titolare del trattamento",
+    "controllerBody": "Il titolare del trattamento dei dati di questo sito web è Villa Monte Calvia, operante su montecalvia.com. Per qualsiasi domanda relativa al trattamento dei dati, è possibile contattarci all'indirizzo email indicato nella sezione Contatti qui di seguito.",
+    "dataCollectedTitle": "2. Dati raccolti",
+    "dataCollectedBody": "Raccogliamo le seguenti categorie di dati personali:\n\n— Invio del modulo di contatto: nome, indirizzo email, numero di telefono e contenuto della richiesta.\n— Dati analitici: statistiche anonime sulle visualizzazioni delle pagine raccolte da Vercel Web Analytics (nessun cookie, nessuna informazione personale identificabile).\n— Dati di marketing: quando acconsentite ai cookie di marketing, il pixel FastTony (Meta Pixel) può raccogliere dati sul comportamento di navigazione, indirizzo IP e informazioni sul dispositivo a fini pubblicitari.",
+    "purposeTitle": "3. Finalità e base giuridica",
+    "purposeBody": "Trattiamo i dati personali per le seguenti finalità:\n\n— Per rispondere alle vostre richieste (base giuridica: legittimo interesse, Art. 6(1)(f) GDPR).\n— Per analizzare il traffico del sito e migliorare i nostri servizi tramite Vercel Web Analytics (base giuridica: legittimo interesse, Art. 6(1)(f) GDPR). Questo strumento non utilizza cookie e non raccoglie informazioni personali identificabili.\n— Per fornire pubblicità mirata tramite Meta Pixel / pixel FastTony (base giuridica: il vostro consenso, Art. 6(1)(a) GDPR). Questi dati vengono raccolti solo dopo aver esplicitamente accettato i cookie di marketing.",
+    "cookiesTitle": "4. Cookie",
+    "cookiesBody": "Questo sito web utilizza i seguenti cookie:\n\n— Archiviazione essenziale: salviamo la vostra preferenza sul consenso ai cookie nella memoria locale del browser (chiave: \"cookie-consent\"). Questo non è un cookie e non richiede consenso.\n— Cookie di marketing: se accettate i cookie di marketing, il pixel FastTony (Meta Pixel) imposta cookie per tracciare la vostra attività di navigazione tra i siti web a fini pubblicitari. Questi cookie sono impostati da Meta Platforms, Inc. e di norma persistono fino a 90 giorni.\n\nVercel Web Analytics non utilizza cookie.\n\nPotete modificare le vostre preferenze sui cookie in qualsiasi momento tramite il link \"Preferenze cookie\" nel piè di pagina del sito.",
+    "thirdPartiesTitle": "5. Condivisione dei dati con terze parti",
+    "thirdPartiesBody": "Quando acconsentite ai cookie di marketing, i dati possono essere condivisi con:\n\n— Meta Platforms, Inc. (tramite il pixel FastTony) per la misurazione e l'ottimizzazione delle campagne pubblicitarie. Meta tratta questi dati in conformità con la propria informativa sulla privacy. I dati possono essere trasferiti negli Stati Uniti in base ai termini di trattamento dei dati di Meta.\n— Vercel Inc. tratta i dati analitici anonimi per nostro conto. Vercel Web Analytics è progettato per rispettare la privacy e non raccoglie informazioni personali identificabili.",
+    "retentionTitle": "6. Conservazione dei dati",
+    "retentionBody": "I dati inviati tramite il modulo di contatto vengono conservati per il tempo necessario a gestire la richiesta e l'eventuale corrispondenza successiva, di norma non oltre 12 mesi.\n\nI dati analitici raccolti da Vercel sono aggregati e anonimi.\n\nI dati dei cookie di marketing vengono conservati da Meta in conformità con le loro politiche di conservazione dei dati, di norma fino a 90 giorni dall'ultima visita al sito.",
+    "rightsTitle": "7. I vostri diritti",
+    "rightsBody": "Ai sensi del GDPR, avete i seguenti diritti:\n\n— Diritto di accesso: potete richiedere una copia dei dati personali che conserviamo su di voi.\n— Diritto di rettifica: potete chiederci di correggere dati inesatti.\n— Diritto alla cancellazione: potete chiederci di eliminare i vostri dati personali.\n— Diritto alla portabilità dei dati: potete richiedere i vostri dati in un formato strutturato e leggibile da dispositivo automatico.\n— Diritto di opposizione: potete opporvi al trattamento dei vostri dati basato su interessi legittimi.\n— Diritto di revoca del consenso: potete revocare il consenso ai cookie di marketing in qualsiasi momento tramite il link \"Preferenze cookie\" nel piè di pagina.\n— Diritto di reclamo: avete il diritto di presentare un reclamo a un'autorità di controllo nello Stato membro UE della vostra residenza abituale.",
+    "contactTitle": "8. Contatti",
+    "contactBody": "Per qualsiasi domanda o richiesta relativa ai vostri dati personali, potete contattarci tramite il modulo di contatto sul nostro sito o via email a info@montecalvia.com."
+  },
   "common": {
-    "allRightsReserved": "© {year} Villa Monte Calvia TM. Tutti i diritti riservati.",
-    "designedBy": "Progettato e realizzato da"
+    "allRightsReserved": "© {year} Villa Monte Calvia. Tutti i diritti riservati.",
+    "designedBy": "Progettato e realizzato da",
+    "privacyPolicy": "Informativa sulla privacy"
   }
 }

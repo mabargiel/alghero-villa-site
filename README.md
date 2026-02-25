@@ -15,6 +15,7 @@ A premium villa rental website for a property in Alghero, Sardinia. Built as a r
 | Animation | Framer Motion |
 | CMS | Sanity (headless, separate repo) |
 | Email | Resend |
+| Analytics | Vercel Web Analytics (cookie-free), Meta Pixel via FastTony |
 | Hosting | Vercel |
 | Quality | SonarCloud, CodeQL, Dependabot, ESLint, Prettier, Stylelint |
 | Icons | Lucide React, Simple Icons |

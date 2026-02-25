@@ -185,8 +185,39 @@
     "description": "Wybór zdjęć przedstawiających ogród, wnętrza oraz otoczenie willi.",
     "emptyState": "Dodaj zdjęcia w Sanity Studio, aby pojawiły się w galerii."
   },
+  "cookieConsent": {
+    "message": "Używamy plików cookie do analityki marketingowej w celu ulepszenia naszych reklam. Możesz je zaakceptować lub odrzucić.",
+    "accept": "Akceptuję",
+    "reject": "Odrzucam",
+    "privacyLink": "Polityka prywatności",
+    "cookiePreferences": "Ustawienia cookie",
+    "bannerAria": "Zgoda na pliki cookie"
+  },
+  "privacy": {
+    "eyebrow": "Prawne",
+    "title": "Polityka prywatności i plików cookie",
+    "metaDescription": "Polityka prywatności i plików cookie strony internetowej Villa Monte Calvia.",
+    "lastUpdated": "Ostatnia aktualizacja: luty 2026",
+    "controllerTitle": "1. Administrator danych",
+    "controllerBody": "Administratorem danych osobowych tej strony internetowej jest Villa Monte Calvia, działająca pod adresem montecalvia.com. W przypadku jakichkolwiek pytań dotyczących przetwarzania danych, prosimy o kontakt na adres email podany w sekcji Kontakt poniżej.",
+    "dataCollectedTitle": "2. Jakie dane zbieramy",
+    "dataCollectedBody": "Zbieramy następujące kategorie danych osobowych:\n\n— Dane z formularza kontaktowego: imię, adres email, numer telefonu oraz treść zapytania.\n— Dane analityczne: anonimowe statystyki wyświetleń stron zbierane przez Vercel Web Analytics (bez plików cookie, bez danych umożliwiających identyfikację osoby).\n— Dane marketingowe: gdy wyrażasz zgodę na pliki cookie marketingowe, piksel FastTony (Meta Pixel) może zbierać dane o zachowaniu podczas przeglądania, adres IP i informacje o urządzeniu w celach reklamowych.",
+    "purposeTitle": "3. Cel i podstawa prawna",
+    "purposeBody": "Przetwarzamy dane osobowe w następujących celach:\n\n— W celu odpowiedzi na zapytania (podstawa prawna: uzasadniony interes, art. 6 ust. 1 lit. f RODO).\n— W celu analizy ruchu na stronie i ulepszania naszych usług za pomocą Vercel Web Analytics (podstawa prawna: uzasadniony interes, art. 6 ust. 1 lit. f RODO). Narzędzie to nie wykorzystuje plików cookie i nie zbiera danych umożliwiających identyfikację.\n— W celu dostarczania ukierunkowanych reklam za pośrednictwem Meta Pixel / piksela FastTony (podstawa prawna: Twoja zgoda, art. 6 ust. 1 lit. a RODO). Dane te są zbierane wyłącznie po wyraźnym zaakceptowaniu plików cookie marketingowych.",
+    "cookiesTitle": "4. Pliki cookie",
+    "cookiesBody": "Ta strona internetowa wykorzystuje następujące pliki cookie:\n\n— Pamięć podstawowa: zapisujemy Twoją preferencję dotyczącą zgody na pliki cookie w pamięci lokalnej przeglądarki (klucz: \"cookie-consent\"). To nie jest plik cookie i nie wymaga zgody.\n— Pliki cookie marketingowe: jeśli zaakceptujesz pliki cookie marketingowe, piksel FastTony (Meta Pixel) ustawia pliki cookie w celu śledzenia aktywności przeglądania między stronami internetowymi w celach reklamowych. Te pliki cookie są ustawiane przez Meta Platforms, Inc. i zazwyczaj są przechowywane do 90 dni.\n\nVercel Web Analytics nie wykorzystuje plików cookie.\n\nMożesz zmienić swoje preferencje dotyczące plików cookie w dowolnym momencie za pomocą linku \"Ustawienia cookie\" w stopce strony.",
+    "thirdPartiesTitle": "5. Udostępnianie danych osobom trzecim",
+    "thirdPartiesBody": "Gdy wyrażasz zgodę na pliki cookie marketingowe, dane mogą być udostępniane:\n\n— Meta Platforms, Inc. (za pośrednictwem piksela FastTony) w celu pomiaru i optymalizacji kampanii reklamowych. Meta przetwarza te dane zgodnie ze swoją własną polityką prywatności. Dane mogą być przekazywane do Stanów Zjednoczonych na podstawie warunków przetwarzania danych Meta.\n— Vercel Inc. przetwarza anonimowe dane analityczne w naszym imieniu. Vercel Web Analytics jest zaprojektowany z myślą o prywatności i nie zbiera danych umożliwiających identyfikację.",
+    "retentionTitle": "6. Okres przechowywania danych",
+    "retentionBody": "Dane przesłane za pośrednictwem formularza kontaktowego są przechowywane przez czas niezbędny do obsługi zapytania i ewentualnej dalszej korespondencji, zazwyczaj nie dłużej niż 12 miesięcy.\n\nDane analityczne zbierane przez Vercel są zagregowane i anonimowe.\n\nDane z plików cookie marketingowych są przechowywane przez Meta zgodnie z ich polityką przechowywania danych, zazwyczaj do 90 dni od ostatniej wizyty na stronie.",
+    "rightsTitle": "7. Twoje prawa",
+    "rightsBody": "Na mocy RODO przysługują Ci następujące prawa:\n\n— Prawo dostępu: możesz poprosić o kopię danych osobowych, które posiadamy.\n— Prawo do sprostowania: możesz poprosić nas o poprawienie nieprawidłowych danych.\n— Prawo do usunięcia: możesz poprosić nas o usunięcie Twoich danych osobowych.\n— Prawo do przenoszenia danych: możesz poprosić o swoje dane w ustrukturyzowanym, nadającym się do odczytu maszynowego formacie.\n— Prawo do sprzeciwu: możesz sprzeciwić się przetwarzaniu danych opartemu na uzasadnionym interesie.\n— Prawo do wycofania zgody: możesz wycofać zgodę na pliki cookie marketingowe w dowolnym momencie za pomocą linku \"Ustawienia cookie\" w stopce.\n— Prawo do wniesienia skargi: masz prawo złożyć skargę do organu nadzorczego w państwie członkowskim UE swojego zwykłego miejsca pobytu.",
+    "contactTitle": "8. Kontakt",
+    "contactBody": "W przypadku jakichkolwiek pytań lub żądań dotyczących Twoich danych osobowych, prosimy o kontakt za pośrednictwem formularza kontaktowego na naszej stronie lub mailowo na adres info@montecalvia.com."
+  },
   "common": {
-    "allRightsReserved": "© {year} Villa Monte Calvia TM. Wszelkie prawa zastrzeżone.",
-    "designedBy": "Zaprojektowane i wykonane przez"
+    "allRightsReserved": "© {year} Villa Monte Calvia. Wszelkie prawa zastrzeżone.",
+    "designedBy": "Zaprojektowane i wykonane przez",
+    "privacyPolicy": "Polityka prywatności"
   }
 }
