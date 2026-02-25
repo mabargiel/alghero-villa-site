@@ -19,6 +19,8 @@ const localeLabels: Record<string, string> = {
   it: "IT",
   pl: "PL",
   es: "ES",
+  fr: "FR",
+  de: "DE",
 };
 
 export default function TopNav() {
