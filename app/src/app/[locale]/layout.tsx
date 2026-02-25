@@ -76,32 +76,75 @@ export default async function LocaleLayout({
         <TopNav />
         {children}
         <footer className="mt-12 w-full bg-[var(--surface-strong)]">
-          <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 border-t border-white/30 p-6 pt-8 text-xs text-[var(--muted)] md:flex-row md:items-center md:justify-between">
-            <span>
-              {t("allRightsReserved", { year: new Date().getFullYear() })}
-            </span>
-            <div className="flex items-center gap-3">
-              <Link
-                href="/privacy"
-                className="underline decoration-[var(--accent)] underline-offset-4 transition hover:text-[var(--accent-strong)]"
-              >
-                {t("privacyPolicy")}
-              </Link>
-              <span className="text-white/30">|</span>
-              <CookiePreferencesButton />
-              <span className="text-white/30">|</span>
-              <span>
-                {t("designedBy")}{" "}
+          <div className="mx-auto max-w-6xl px-6 py-10">
+            <div className="grid gap-8 md:grid-cols-3">
+              <div className="space-y-3">
+                <h3 className="text-sm font-semibold tracking-wide text-[var(--foreground)]">
+                  Villa Monte Calvia
+                </h3>
+                <p className="text-xs leading-relaxed text-[var(--muted)]">
+                  Alghero, Sardinia
+                </p>
+                <div className="space-y-1 text-xs text-[var(--muted)]">
+                  <a
+                    href="tel:+393207171841"
+                    className="block transition hover:text-[var(--accent-strong)]"
+                  >
+                    +39 320 717 1841
+                  </a>
+                  <a
+                    href="mailto:contact@montecalvia.com"
+                    className="block transition hover:text-[var(--accent-strong)]"
+                  >
+                    contact@montecalvia.com
+                  </a>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="text-sm font-semibold tracking-wide text-[var(--foreground)]">
+                  Legal
+                </h3>
+                <div className="flex flex-col gap-1.5 text-xs text-[var(--muted)]">
+                  <Link
+                    href="/privacy"
+                    className="transition hover:text-[var(--accent-strong)]"
+                  >
+                    {t("privacyPolicy")}
+                  </Link>
+                  <Link
+                    href="/house-rules"
+                    className="transition hover:text-[var(--accent-strong)]"
+                  >
+                    {t("houseRules")}
+                  </Link>
+                  <Link
+                    href="/privacy"
+                    className="transition hover:text-[var(--accent-strong)]"
+                  >
+                    {t("cookiePolicy")}
+                  </Link>
+                  <CookiePreferencesButton />
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="text-sm font-semibold tracking-wide text-[var(--foreground)]">
+                  {t("designedBy")}
+                </h3>
                 <a
                   href="https://github.com/mabargiel/alghero-villa-site"
-                  className="font-semibold text-[var(--foreground)] underline decoration-[var(--accent)] underline-offset-4 transition hover:text-[var(--accent-strong)]"
+                  className="text-xs font-semibold text-[var(--muted)] transition hover:text-[var(--accent-strong)]"
                   target="_blank"
                   rel="noreferrer"
                 >
                   Mateusz Bargiel
                 </a>
-                {"."}
-              </span>
+              </div>
+            </div>
+
+            <div className="mt-8 border-t border-white/20 pt-6 text-center text-xs text-[var(--muted)]">
+              {t("allRightsReserved", { year: new Date().getFullYear() })}
             </div>
           </div>
         </footer>

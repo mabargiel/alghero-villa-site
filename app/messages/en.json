@@ -15,7 +15,8 @@
     "logoAria": "Villa Monte Calvia — Home page",
     "facebookAria": "Facebook",
     "instagramAria": "Instagram",
-    "googleAria": "Google"
+    "googleAria": "Google",
+    "bookNow": "Book now"
   },
   "home": {
     "heroBadge": "Villa Monte Calvia — Alghero",
@@ -176,8 +177,34 @@
     "success": "Thank you! We will get back to you shortly.",
     "errorGeneric": "Failed to send the message.",
     "errorUnknown": "An error occurred while sending.",
+    "arriveDate": "Arrival date",
+    "leaveDate": "Departure date",
+    "guests": "Number of guests (incl. children)",
+    "message": "Message",
+    "selectDates": "Select dates",
+    "errorDates": "Please select arrival and departure dates.",
+    "consent": "I accept the <privacy>Privacy Policy</privacy> and <rules>House Rules</rules>.",
     "getDirections": "Get directions",
     "mapAlt": "Villa Monte Calvia — location on the map"
+  },
+  "confirmationEmail": {
+    "subject": "Thank you for your enquiry — Villa Monte Calvia",
+    "greeting": "Thank you, {firstName}!",
+    "body": "We have received your enquiry and appreciate your interest in Villa Monte Calvia.",
+    "followUp": "Someone from our team will contact you soon with availability and stay details.",
+    "contactHeader": "Contact us directly"
+  },
+  "ownerEmail": {
+    "subject": "New enquiry — {firstName}",
+    "contactSection": "Contact details",
+    "staySection": "Stay details",
+    "messageSection": "Message",
+    "nameLabel": "Name",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone",
+    "arrivalLabel": "Arrival",
+    "departureLabel": "Departure",
+    "guestsLabel": "Guests"
   },
   "gallery": {
     "eyebrow": "Gallery",
@@ -215,9 +242,27 @@
     "contactTitle": "8. Contact",
     "contactBody": "For any questions or requests regarding your personal data, please contact us via the contact form on our website or by email at info@montecalvia.com."
   },
+  "houseRules": {
+    "eyebrow": "House Rules",
+    "title": "House Rules & Rental Terms",
+    "metaDescription": "House rules and rental terms for Villa Monte Calvia in Alghero, Sardinia.",
+    "lastUpdated": "Last updated: February 2026",
+    "reservationTitle": "§1 Reservation",
+    "reservationBody": "1. Reservations can be made:\n— by phone: +39 320 717 1841\n— by email: contact@montecalvia.com\n— through authorised booking platforms (Booking.com, Airbnb). Prices on these platforms may differ and are binding.\n\n2. A reservation is considered confirmed once the Guest has paid the required deposit within the specified deadline (detailed terms are sent by email in response to the booking enquiry).\n\n3. Payment of the deposit is equivalent to acceptance of these House Rules.\n\n4. Once the conditions in §1.2 are met, the Owner will send the Guest a booking confirmation.\n\n5. Failure to pay within the required deadline results in automatic cancellation of the reservation without further notice from the Owner.\n\n6. The Guest has the right to cancel and may do so in writing by sending a message to contact@montecalvia.com.\n\n7. The amount paid by the Guest is refunded within 3 business days of receiving the written cancellation request, minus cancellation fees as follows:\na) free of charge — cancellation 45 or more days before the start of the stay\nb) 50% of the booking value — cancellation 44 to 31 days before the start of the stay\nc) 100% of the booking value — cancellation 30 days or fewer before the start of the stay",
+    "checkInOutTitle": "§2 Check-in & Check-out",
+    "checkInOutBody": "1. Check-in begins at 16:00 on the day of arrival; check-out is by 10:00 on the day of departure.\n\n2. In special cases, alternative check-in/check-out times may be arranged with the Owner's prior consent.\n\n3. Upon check-in the Guest is required to present a valid identity document and provide a list of all persons staying at the villa (max. 14 persons including children).\n\n4. Persons not registered as guests may only visit the property with the Owner's prior approval.\n\n5. The Guest may use the property solely for residential and leisure purposes and may not sublet it without the Owner's consent.\n\n6. On the day of arrival the Guest receives the keys, which must be returned on the day of departure. A fee of €200 applies for lost or unreturned keys.\n\n7. Any issues regarding the condition of the property must be reported upon check-in. Failure to report issues is treated as acceptance that the property was handed over in satisfactory condition.",
+    "rentalScopeTitle": "§3 Rental Scope & Pricing",
+    "rentalScopeBody": "1. Rental offers and pricing are available on montecalvia.com and on authorised booking platforms.\n\n2. The rental price is gross and covers the entire villa on an exclusive basis, including utilities, bed linen, and towels.\n\n3. At least 3 days before arrival, the Guest pays a refundable security deposit of €500 by bank transfer. The deposit is returned within 3 business days of departure. Payment or non-payment of the deposit does not release the Guest from liability for damages exceeding the deposit amount.\n\n4. The Owner is not liable for loss of or damage to items brought onto the property by the Guest.",
+    "guestObligationsTitle": "§4 Guest Obligations",
+    "guestObligationsBody": "1. The Guest undertakes to respect good-neighbourly conduct and to maintain the property in its original condition. Any damage (including permanent stains, breakages, or missing items) must be reported to the Owner immediately. The Guest bears the cost of repairs or replacement.\n\n2. Loud outdoor parties are strictly prohibited.\n\n3. Quiet hours are from 22:00 to 07:00.\n\n4. Visitors who are not registered guests may not enter the property without the Owner's consent.\n\n5. Pets require prior written approval (email or SMS) from the Owner. An additional cleaning fee may apply. Unauthorised pets incur a charge of €100 per animal.\n\n6. Smoking inside the villa is strictly forbidden. Smoking is permitted only in the garden and on the terrace.\n\n7. When leaving the property, please ensure all windows and entrance doors are closed and locked.\n\n8. Waste separation is mandatory — labelled bins are provided on the property.",
+    "finalProvisionsTitle": "§5 Final Provisions",
+    "finalProvisionsBody": "1. The Owner reserves the right to carry out maintenance, cleaning, or necessary repairs during the Guest's stay, with prior notice, except in emergencies threatening life or property.\n\n2. Italian law governs the relationship between the Owner and the Guest. Disputes shall be resolved amicably; failing that, the competent court shall be that of the Owner's place of business.\n\nPlease take care of the property, switch off unnecessary lights, turn off taps, and leave the villa in the condition in which you found it.\n\nFor the safety of our guests — the property is monitored by CCTV in common outdoor areas."
+  },
   "common": {
     "allRightsReserved": "© {year} Villa Monte Calvia. All rights reserved.",
     "designedBy": "Designed and implemented by",
-    "privacyPolicy": "Privacy Policy"
+    "privacyPolicy": "Privacy Policy",
+    "houseRules": "House Rules",
+    "cookiePolicy": "Cookie Policy"
   }
 }

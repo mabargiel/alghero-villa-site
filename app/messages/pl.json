@@ -15,7 +15,8 @@
     "logoAria": "Villa Monte Calvia — Strona główna",
     "facebookAria": "Facebook",
     "instagramAria": "Instagram",
-    "googleAria": "Google"
+    "googleAria": "Google",
+    "bookNow": "Rezerwuj"
   },
   "home": {
     "heroBadge": "Villa Monte Calvia — Alghero",
@@ -176,8 +177,34 @@
     "success": "Dziękujemy! Odezwiemy się wkrótce.",
     "errorGeneric": "Nie udało się wysłać wiadomości.",
     "errorUnknown": "Wystąpił błąd podczas wysyłania.",
+    "arriveDate": "Data przyjazdu",
+    "leaveDate": "Data wyjazdu",
+    "guests": "Liczba gości (łącznie z dziećmi)",
+    "message": "Wiadomość",
+    "selectDates": "Wybierz daty",
+    "errorDates": "Proszę wybrać daty przyjazdu i wyjazdu.",
+    "consent": "Akceptuję <privacy>Politykę prywatności</privacy> oraz <rules>Regulamin</rules>.",
     "getDirections": "Sprawdź dojazd",
     "mapAlt": "Villa Monte Calvia — lokalizacja na mapie"
+  },
+  "confirmationEmail": {
+    "subject": "Dziękujemy za zapytanie — Villa Monte Calvia",
+    "greeting": "Dziękujemy, {firstName}!",
+    "body": "Otrzymaliśmy Twoje zapytanie i cieszymy się z zainteresowania Villa Monte Calvia.",
+    "followUp": "Ktoś z naszego zespołu skontaktuje się z Tobą wkrótce z informacją o dostępności i szczegółach pobytu.",
+    "contactHeader": "Skontaktuj się bezpośrednio"
+  },
+  "ownerEmail": {
+    "subject": "Nowe zapytanie — {firstName}",
+    "contactSection": "Dane kontaktowe",
+    "staySection": "Szczegóły pobytu",
+    "messageSection": "Wiadomość",
+    "nameLabel": "Imię",
+    "emailLabel": "Email",
+    "phoneLabel": "Telefon",
+    "arrivalLabel": "Przyjazd",
+    "departureLabel": "Wyjazd",
+    "guestsLabel": "Goście"
   },
   "gallery": {
     "eyebrow": "Galeria",
@@ -215,9 +242,27 @@
     "contactTitle": "8. Kontakt",
     "contactBody": "W przypadku jakichkolwiek pytań lub żądań dotyczących Twoich danych osobowych, prosimy o kontakt za pośrednictwem formularza kontaktowego na naszej stronie lub mailowo na adres info@montecalvia.com."
   },
+  "houseRules": {
+    "eyebrow": "Regulamin",
+    "title": "Regulamin i zasady wynajmu",
+    "metaDescription": "Regulamin pobytu i zasady wynajmu Villa Monte Calvia w Alghero, Sardynia.",
+    "lastUpdated": "Ostatnia aktualizacja: luty 2026",
+    "reservationTitle": "§1 Rezerwacja",
+    "reservationBody": "1. Rezerwacji można dokonać:\n— telefonicznie: +39 320 717 1841\n— mailowo: contact@montecalvia.com\n— poprzez autoryzowane platformy rezerwacyjne (Booking.com, Airbnb). Oferty cenowe na ww. portalach mogą być różne i są wiążące.\n\n2. Rezerwację uważa się za dokonaną po uiszczeniu przez Gościa zaliczki w wymaganej wysokości i terminie (szczegółowe warunki Gość otrzymuje mailowo w odpowiedzi na zapytanie rezerwacyjne).\n\n3. Wpłata zaliczki równoznaczna jest z akceptacją niniejszego regulaminu.\n\n4. Po spełnieniu warunków, o których mowa w §1 pkt 2, Wynajmujący prześle Gościowi potwierdzenie rezerwacji.\n\n5. Brak wpłaty w wymaganym terminie skutkuje automatycznym anulowaniem rezerwacji i nie wymaga dodatkowego powiadomienia ze strony Wynajmującego.\n\n6. Gość ma prawo odstąpienia i może to uczynić w formie pisemnej, wysyłając informację na adres: contact@montecalvia.com.\n\n7. Kwota wpłacona przez Gościa jest zwracana w ciągu 3 dni roboczych po otrzymaniu pisemnej dyspozycji, z potrąceniem kosztów anulacji wg następujących zasad:\na) bezkosztowo — przy anulacji na 45 dni lub więcej do rozpoczęcia pobytu\nb) 50% wartości rezerwacji w przypadku anulacji na 44 do 31 dni przed rozpoczęciem pobytu\nc) 100% wartości rezerwacji w przypadku anulacji na 30 dni lub krócej przed rozpoczęciem pobytu",
+    "checkInOutTitle": "§2 Przyjazd i wyjazd",
+    "checkInOutBody": "1. Doba rozpoczyna się o godz. 16:00 w dniu przyjazdu, a kończy o godz. 10:00 w dniu wyjazdu.\n\n2. W szczególnych przypadkach możliwe jest ustalenie innych godzin zameldowania/wymeldowania, za potwierdzoną zgodą Wynajmującego.\n\n3. Do czynności zameldowania wymagany jest dokument tożsamości Gościa. W dniu przyjazdu Gość przedkłada również imienną listę osób, które będą zakwaterowane w willi (max. 14 osób włącznie z dziećmi).\n\n4. Osoby niezakwaterowane w willi mogą w niej przebywać jedynie po uprzednim uzgodnieniu tego faktu z Wynajmującym.\n\n5. Gość może korzystać z obiektu jedynie w celach mieszkaniowo-wypoczynkowych i nie może go oddać w dalszy podnajem bez zgody Wynajmującego.\n\n6. W dniu przyjazdu Gość otrzymuje klucze, które jest zobowiązany zwrócić w dniu wyjazdu. Za zgubienie lub niepozostawienie kluczy Gość ponosi opłatę w wysokości 200 €.\n\n7. Niezgłoszenie uwag co do stanu technicznego w momencie zameldowania równoznaczne jest z tym, że willa została oddana do użytku w stanie niebudzącym zastrzeżeń Gościa.",
+    "rentalScopeTitle": "§3 Zakres wynajmu i ceny",
+    "rentalScopeBody": "1. Oferty wynajmu wraz z cenami znajdują się na stronie montecalvia.com oraz na stronach platform rezerwacyjnych.\n\n2. Cena za wynajem jest ceną brutto i obejmuje całą willę na wyłączność, opłaty za media, pościel i ręczniki.\n\n3. Najpóźniej na 3 dni przed przyjazdem Gość wpłaca depozyt zwrotny w wysokości 500 € na pokrycie ewentualnych szkód. Depozyt zwracany jest w ciągu 3 dni roboczych od dnia wyjazdu. Zapłata depozytu lub jego brak nie zwalnia Gościa z obowiązku pokrycia szkód w pełnej wysokości.\n\n4. Wynajmujący nie ponosi odpowiedzialności za utratę lub uszkodzenie rzeczy wniesionych przez Gościa.",
+    "guestObligationsTitle": "§4 Obowiązki Gościa",
+    "guestObligationsBody": "1. Gość zobowiązany jest do dbania o zasady dobrego sąsiedztwa i utrzymywania obiektu w niepogorszonym stanie. Wszelkie szkody (w tym trwałe zabrudzenia, uszkodzenia elementów wyposażenia bądź ich zaginięcie) należy niezwłocznie zgłosić Wynajmującemu. Koszty naprawy lub wymiany pokrywa Gość.\n\n2. Na terenie obiektu obowiązuje całkowity zakaz urządzania głośnych imprez na zewnątrz.\n\n3. Cisza nocna obowiązuje od godz. 22:00 do godz. 7:00.\n\n4. Bez zgody Wynajmującego na terenie obiektu nie mogą przebywać osoby z zewnątrz.\n\n5. Pobyt zwierząt wymaga wcześniejszej pisemnej zgody (mail/SMS) Wynajmującego. Może zostać naliczona dodatkowa opłata za sprzątanie. Za pobyt zwierząt bez zgody naliczana jest opłata 100 € za zwierzę.\n\n6. W willi obowiązuje bezwzględny zakaz palenia tytoniu. Palenie dozwolone jest wyłącznie w ogrodzie i na tarasie.\n\n7. Przy każdorazowym opuszczaniu willi prosimy o sprawdzenie, czy zamknięte są wszystkie okna i drzwi wejściowe.\n\n8. Na terenie obiektu obowiązuje segregacja odpadów — oznaczone kosze są dostępne na miejscu.",
+    "finalProvisionsTitle": "§5 Postanowienia końcowe",
+    "finalProvisionsBody": "1. Wynajmujący ma prawo wykonać w trakcie pobytu Gościa prace serwisowe, porządkowe i niezbędne naprawy, po uprzednim poinformowaniu Gościa, z wyjątkiem sytuacji zagrażającej życiu lub mieniu.\n\n2. Prawem właściwym jest prawo włoskie. Ewentualne spory rozstrzygane będą polubownie, a w przypadku braku porozumienia sądem właściwym będzie sąd dla miejsca prowadzenia działalności Wynajmującego.\n\nProsimy o dbanie o willę, wyłączanie zbędnego oświetlenia i zakręcanie wody oraz pozostawienie jej w takim stanie, w jakim Państwo ją zastali.\n\nW trosce o bezpieczeństwo naszych gości — teren zewnętrzny obiektu jest monitorowany."
+  },
   "common": {
     "allRightsReserved": "© {year} Villa Monte Calvia. Wszelkie prawa zastrzeżone.",
     "designedBy": "Zaprojektowane i wykonane przez",
-    "privacyPolicy": "Polityka prywatności"
+    "privacyPolicy": "Polityka prywatności",
+    "houseRules": "Regulamin",
+    "cookiePolicy": "Polityka cookies"
   }
 }

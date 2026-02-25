@@ -15,7 +15,8 @@
     "logoAria": "Villa Monte Calvia — Startseite",
     "facebookAria": "Facebook",
     "instagramAria": "Instagram",
-    "googleAria": "Google"
+    "googleAria": "Google",
+    "bookNow": "Jetzt buchen"
   },
   "home": {
     "heroBadge": "Villa Monte Calvia — Alghero",
@@ -176,8 +177,34 @@
     "success": "Vielen Dank! Wir melden uns in Kürze bei Ihnen.",
     "errorGeneric": "Die Nachricht konnte nicht gesendet werden.",
     "errorUnknown": "Beim Senden ist ein Fehler aufgetreten.",
+    "arriveDate": "Anreisedatum",
+    "leaveDate": "Abreisedatum",
+    "guests": "Anzahl der Gäste (inkl. Kinder)",
+    "message": "Nachricht",
+    "selectDates": "Daten auswählen",
+    "errorDates": "Bitte wählen Sie An- und Abreisedatum aus.",
+    "consent": "Ich akzeptiere die <privacy>Datenschutzerklärung</privacy> und die <rules>Hausordnung</rules>.",
     "getDirections": "Wegbeschreibung",
     "mapAlt": "Villa Monte Calvia — Standort auf der Karte"
+  },
+  "confirmationEmail": {
+    "subject": "Vielen Dank für Ihre Anfrage — Villa Monte Calvia",
+    "greeting": "Vielen Dank, {firstName}!",
+    "body": "Wir haben Ihre Anfrage erhalten und freuen uns über Ihr Interesse an der Villa Monte Calvia.",
+    "followUp": "Ein Mitglied unseres Teams wird sich in Kürze mit Ihnen in Verbindung setzen, um Ihnen Verfügbarkeiten und Aufenthaltsdetails mitzuteilen.",
+    "contactHeader": "Kontaktieren Sie uns direkt"
+  },
+  "ownerEmail": {
+    "subject": "Neue Anfrage — {firstName}",
+    "contactSection": "Kontaktdaten",
+    "staySection": "Aufenthaltsdetails",
+    "messageSection": "Nachricht",
+    "nameLabel": "Name",
+    "emailLabel": "E-Mail",
+    "phoneLabel": "Telefon",
+    "arrivalLabel": "Anreise",
+    "departureLabel": "Abreise",
+    "guestsLabel": "Gäste"
   },
   "gallery": {
     "eyebrow": "Galerie",
@@ -215,9 +242,27 @@
     "contactTitle": "8. Kontakt",
     "contactBody": "Bei Fragen oder Anfragen zu Ihren personenbezogenen Daten kontaktieren Sie uns bitte über das Kontaktformular auf unserer Website oder per E-Mail an info@montecalvia.com."
   },
+  "houseRules": {
+    "eyebrow": "Hausordnung",
+    "title": "Hausordnung und Mietbedingungen",
+    "metaDescription": "Hausordnung und Mietbedingungen der Villa Monte Calvia in Alghero, Sardinien.",
+    "lastUpdated": "Letzte Aktualisierung: Februar 2026",
+    "reservationTitle": "§1 Reservierung",
+    "reservationBody": "1. Reservierungen können vorgenommen werden:\n— telefonisch: +39 320 717 1841\n— per E-Mail: contact@montecalvia.com\n— über autorisierte Buchungsplattformen (Booking.com, Airbnb). Die Preise auf diesen Plattformen können abweichen und sind verbindlich.\n\n2. Die Reservierung gilt als bestätigt, sobald der Gast die erforderliche Anzahlung innerhalb der festgelegten Frist geleistet hat.\n\n3. Die Zahlung der Anzahlung gilt als Akzeptanz dieser Hausordnung.\n\n4. Nach Erfüllung der Bedingungen aus §1.2 sendet der Eigentümer dem Gast die Buchungsbestätigung.\n\n5. Bei Nichtzahlung innerhalb der Frist wird die Reservierung automatisch storniert.\n\n6. Der Gast hat das Recht, schriftlich zu stornieren: contact@montecalvia.com.\n\n7. Der gezahlte Betrag wird innerhalb von 3 Werktagen erstattet, abzüglich Stornogebühren:\na) kostenfrei — Stornierung 45 oder mehr Tage vor Aufenthaltsbeginn\nb) 50 % des Buchungswerts — Stornierung 44 bis 31 Tage vorher\nc) 100 % des Buchungswerts — Stornierung 30 Tage oder weniger vorher",
+    "checkInOutTitle": "§2 An- und Abreise",
+    "checkInOutBody": "1. Der Check-in beginnt um 16:00 Uhr am Anreisetag; der Check-out ist bis 10:00 Uhr am Abreisetag.\n\n2. In besonderen Fällen können abweichende Zeiten mit dem Eigentümer vereinbart werden.\n\n3. Beim Check-in ist ein gültiger Ausweis erforderlich. Der Gast legt zudem eine Namensliste aller in der Villa untergebrachten Personen vor (max. 14 Personen inkl. Kinder).\n\n4. Nicht registrierte Personen dürfen das Grundstück nur mit Genehmigung des Eigentümers betreten.\n\n5. Der Gast darf die Unterkunft ausschließlich zu Wohn- und Erholungszwecken nutzen und nicht untervermieten.\n\n6. Bei der Ankunft erhält der Gast die Schlüssel, die bei der Abreise zurückzugeben sind. Für verlorene Schlüssel wird eine Gebühr von 200 € erhoben.\n\n7. Mängel müssen beim Check-in gemeldet werden. Unterlassene Meldung gilt als Akzeptanz des Zustands.",
+    "rentalScopeTitle": "§3 Mietumfang und Preise",
+    "rentalScopeBody": "1. Angebote und Preise sind auf montecalvia.com und auf autorisierten Buchungsplattformen verfügbar.\n\n2. Der Mietpreis ist brutto und umfasst die gesamte Villa exklusiv, Nebenkosten, Bettwäsche und Handtücher.\n\n3. Spätestens 3 Tage vor Anreise zahlt der Gast eine erstattbare Kaution von 500 € per Überweisung. Die Kaution wird innerhalb von 3 Werktagen nach Abreise zurückerstattet.\n\n4. Der Eigentümer haftet nicht für Verlust oder Beschädigung von Gegenständen des Gastes.",
+    "guestObligationsTitle": "§4 Pflichten des Gastes",
+    "guestObligationsBody": "1. Der Gast verpflichtet sich zur guten Nachbarschaft und zur Erhaltung der Unterkunft im Originalzustand. Schäden sind unverzüglich zu melden. Die Reparaturkosten trägt der Gast.\n\n2. Laute Feiern im Freien sind streng verboten.\n\n3. Die Ruhezeiten gelten von 22:00 bis 07:00 Uhr.\n\n4. Nicht registrierte Besucher dürfen das Grundstück nicht ohne Zustimmung des Eigentümers betreten.\n\n5. Haustiere erfordern eine vorherige schriftliche Genehmigung. Für nicht genehmigte Tiere wird eine Gebühr von 100 € pro Tier erhoben.\n\n6. Rauchen in der Villa ist streng verboten. Rauchen ist nur im Garten und auf der Terrasse gestattet.\n\n7. Beim Verlassen bitte alle Fenster und Türen schließen und abschließen.\n\n8. Mülltrennung ist Pflicht — beschriftete Behälter stehen auf dem Grundstück bereit.",
+    "finalProvisionsTitle": "§5 Schlussbestimmungen",
+    "finalProvisionsBody": "1. Der Eigentümer behält sich das Recht vor, während des Aufenthalts Wartungs- oder Reparaturarbeiten durchzuführen, mit Vorankündigung, außer in Notfällen.\n\n2. Italienisches Recht gilt für das Verhältnis zwischen Eigentümer und Gast. Streitigkeiten werden gütlich beigelegt; andernfalls ist das Gericht am Geschäftssitz des Eigentümers zuständig.\n\nBitte pflegen Sie die Unterkunft, schalten Sie unnötige Beleuchtung aus, drehen Sie Wasserhähne zu und hinterlassen Sie die Villa so, wie Sie sie vorgefunden haben.\n\nFür die Sicherheit unserer Gäste — die Außenbereiche werden videoüberwacht."
+  },
   "common": {
     "allRightsReserved": "© {year} Villa Monte Calvia. Alle Rechte vorbehalten.",
     "designedBy": "Entworfen und umgesetzt von",
-    "privacyPolicy": "Datenschutzerklärung"
+    "privacyPolicy": "Datenschutzerklärung",
+    "houseRules": "Hausordnung",
+    "cookiePolicy": "Cookie-Richtlinie"
   }
 }

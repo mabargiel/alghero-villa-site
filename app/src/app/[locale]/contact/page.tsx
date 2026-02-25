@@ -13,7 +13,7 @@ export default async function ContactPage() {
         description={t("description")}
       />
       <div className="mx-auto max-w-6xl px-6 pt-10">
-        <div className="grid gap-10 md:grid-cols-[1fr_1.2fr] md:items-start">
+        <div className="grid gap-10 md:grid-cols-[1fr_1.2fr] md:items-stretch">
           <ContactInfoPanel />
           <ContactForm />
         </div>

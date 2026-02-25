@@ -15,7 +15,8 @@
     "logoAria": "Villa Monte Calvia — Pagina principale",
     "facebookAria": "Facebook",
     "instagramAria": "Instagram",
-    "googleAria": "Google"
+    "googleAria": "Google",
+    "bookNow": "Prenota ora"
   },
   "home": {
     "heroBadge": "Villa Monte Calvia — Alghero",
@@ -176,8 +177,34 @@
     "success": "Grazie! Vi risponderemo al più presto.",
     "errorGeneric": "Invio del messaggio non riuscito.",
     "errorUnknown": "Si è verificato un errore durante l'invio.",
+    "arriveDate": "Data di arrivo",
+    "leaveDate": "Data di partenza",
+    "guests": "Numero di ospiti (bambini inclusi)",
+    "message": "Messaggio",
+    "selectDates": "Seleziona le date",
+    "errorDates": "Seleziona le date di arrivo e partenza.",
+    "consent": "Accetto l'<privacy>Informativa sulla privacy</privacy> e il <rules>Regolamento</rules>.",
     "getDirections": "Come raggiungerci",
     "mapAlt": "Villa Monte Calvia — posizione sulla mappa"
+  },
+  "confirmationEmail": {
+    "subject": "Grazie per la tua richiesta — Villa Monte Calvia",
+    "greeting": "Grazie, {firstName}!",
+    "body": "Abbiamo ricevuto la tua richiesta e apprezziamo il tuo interesse per Villa Monte Calvia.",
+    "followUp": "Un membro del nostro team ti contatterà presto con informazioni sulla disponibilità e i dettagli del soggiorno.",
+    "contactHeader": "Contattaci direttamente"
+  },
+  "ownerEmail": {
+    "subject": "Nuova richiesta — {firstName}",
+    "contactSection": "Dati di contatto",
+    "staySection": "Dettagli del soggiorno",
+    "messageSection": "Messaggio",
+    "nameLabel": "Nome",
+    "emailLabel": "Email",
+    "phoneLabel": "Telefono",
+    "arrivalLabel": "Arrivo",
+    "departureLabel": "Partenza",
+    "guestsLabel": "Ospiti"
   },
   "gallery": {
     "eyebrow": "Galleria",
@@ -215,9 +242,27 @@
     "contactTitle": "8. Contatti",
     "contactBody": "Per qualsiasi domanda o richiesta relativa ai vostri dati personali, potete contattarci tramite il modulo di contatto sul nostro sito o via email a info@montecalvia.com."
   },
+  "houseRules": {
+    "eyebrow": "Regolamento",
+    "title": "Regolamento e condizioni di affitto",
+    "metaDescription": "Regolamento della casa e condizioni di affitto di Villa Monte Calvia ad Alghero, Sardegna.",
+    "lastUpdated": "Ultimo aggiornamento: febbraio 2026",
+    "reservationTitle": "§1 Prenotazione",
+    "reservationBody": "1. Le prenotazioni possono essere effettuate:\n— telefonicamente: +39 320 717 1841\n— via e-mail: contact@montecalvia.com\n— tramite piattaforme di prenotazione autorizzate (Booking.com, Airbnb). I prezzi su tali piattaforme possono differire e sono vincolanti.\n\n2. La prenotazione si considera confermata al ricevimento dell'acconto richiesto entro i termini stabiliti (le condizioni dettagliate vengono inviate via e-mail in risposta alla richiesta di prenotazione).\n\n3. Il pagamento dell'acconto equivale all'accettazione del presente regolamento.\n\n4. Una volta soddisfatte le condizioni di cui al §1.2, il Proprietario invierà all'Ospite la conferma della prenotazione.\n\n5. Il mancato pagamento entro i termini previsti comporta l'annullamento automatico della prenotazione senza ulteriore preavviso.\n\n6. L'Ospite ha diritto di cancellazione e può farlo per iscritto inviando comunicazione a: contact@montecalvia.com.\n\n7. L'importo versato viene rimborsato entro 3 giorni lavorativi dal ricevimento della richiesta scritta di cancellazione, al netto delle penali:\na) gratuito — cancellazione 45 o più giorni prima dell'inizio del soggiorno\nb) 50% del valore della prenotazione — cancellazione da 44 a 31 giorni prima\nc) 100% del valore della prenotazione — cancellazione a 30 giorni o meno",
+    "checkInOutTitle": "§2 Check-in e check-out",
+    "checkInOutBody": "1. Il check-in è dalle 16:00 del giorno di arrivo; il check-out entro le 10:00 del giorno di partenza.\n\n2. In casi particolari, è possibile concordare orari diversi con il consenso del Proprietario.\n\n3. Per il check-in è necessario un documento d'identità valido. L'Ospite fornisce inoltre l'elenco delle persone alloggiate nella villa (max. 14 persone, bambini inclusi).\n\n4. Le persone non registrate come ospiti possono accedere alla proprietà solo con l'approvazione del Proprietario.\n\n5. L'Ospite può utilizzare la struttura esclusivamente a scopo residenziale e ricreativo e non può subaffittarla.\n\n6. Al momento dell'arrivo l'Ospite riceve le chiavi, che devono essere restituite alla partenza. Per lo smarrimento o la mancata restituzione delle chiavi si applica un addebito di 200 €.\n\n7. Eventuali problemi relativi allo stato della proprietà devono essere segnalati al check-in. La mancata segnalazione equivale all'accettazione della proprietà in condizioni soddisfacenti.",
+    "rentalScopeTitle": "§3 Ambito del noleggio e prezzi",
+    "rentalScopeBody": "1. Le offerte e i prezzi sono disponibili su montecalvia.com e sulle piattaforme di prenotazione autorizzate.\n\n2. Il prezzo di noleggio è comprensivo di IVA e include l'intera villa in esclusiva, utenze, biancheria da letto e asciugamani.\n\n3. Almeno 3 giorni prima dell'arrivo, l'Ospite versa un deposito cauzionale rimborsabile di 500 € tramite bonifico bancario. Il deposito viene restituito entro 3 giorni lavorativi dalla partenza.\n\n4. Il Proprietario non è responsabile per la perdita o il danneggiamento di oggetti portati dall'Ospite.",
+    "guestObligationsTitle": "§4 Obblighi dell'Ospite",
+    "guestObligationsBody": "1. L'Ospite si impegna a rispettare il buon vicinato e a mantenere la proprietà nelle condizioni originali. Eventuali danni devono essere segnalati immediatamente al Proprietario. I costi di riparazione o sostituzione sono a carico dell'Ospite.\n\n2. È severamente vietato organizzare feste rumorose all'aperto.\n\n3. L'orario di silenzio va dalle 22:00 alle 07:00.\n\n4. I visitatori non registrati non possono accedere alla proprietà senza il consenso del Proprietario.\n\n5. Gli animali domestici richiedono l'approvazione scritta preventiva del Proprietario. Potrebbe essere applicata una tariffa di pulizia aggiuntiva. Per animali non autorizzati si applica un addebito di 100 € per animale.\n\n6. È severamente vietato fumare all'interno della villa. È consentito fumare solo in giardino e sulla terrazza.\n\n7. All'uscita dalla proprietà, assicurarsi che tutte le finestre e le porte siano chiuse a chiave.\n\n8. La raccolta differenziata è obbligatoria — contenitori etichettati sono disponibili nella proprietà.",
+    "finalProvisionsTitle": "§5 Disposizioni finali",
+    "finalProvisionsBody": "1. Il Proprietario si riserva il diritto di effettuare manutenzione, pulizia o riparazioni necessarie durante il soggiorno, previo avviso, salvo in caso di emergenza.\n\n2. Il diritto italiano disciplina il rapporto tra Proprietario e Ospite. Le controversie saranno risolte amichevolmente; in caso contrario, il foro competente sarà quello del luogo di attività del Proprietario.\n\nSi prega di avere cura della proprietà, spegnere le luci non necessarie, chiudere i rubinetti e lasciare la villa nelle condizioni in cui è stata trovata.\n\nPer la sicurezza dei nostri ospiti — le aree esterne comuni sono monitorate da telecamere."
+  },
   "common": {
     "allRightsReserved": "© {year} Villa Monte Calvia. Tutti i diritti riservati.",
     "designedBy": "Progettato e realizzato da",
-    "privacyPolicy": "Informativa sulla privacy"
+    "privacyPolicy": "Informativa sulla privacy",
+    "houseRules": "Regolamento",
+    "cookiePolicy": "Politica sui cookie"
   }
 }

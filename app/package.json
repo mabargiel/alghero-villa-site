@@ -12,6 +12,8 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
+    "@react-email/components": "^1.0.8",
+    "@react-email/render": "^2.0.4",
     "@sanity/client": "^7.14.1",
     "@sanity/image-url": "^2.0.3",
     "@vercel/analytics": "^1.6.1",

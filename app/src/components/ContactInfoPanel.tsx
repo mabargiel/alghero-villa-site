@@ -1,6 +1,6 @@
 "use client";
 
-import { MapPin, Phone, Mail } from "lucide-react";
+import { Phone, Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
 import SocialIcon from "@/components/SocialIcon";
 
@@ -11,30 +11,23 @@ export default function ContactInfoPanel() {
   const t = useTranslations("contact");
 
   return (
-    <div className="flex flex-col gap-6">
-      {/* Static map with pin overlay */}
-      <div className="relative mb-5">
+    <div className="flex h-full flex-col justify-between gap-6">
+      {/* Static map */}
+      <div className="relative">
         <a
           href={DIRECTIONS_URL}
           target="_blank"
           rel="noreferrer"
-          className="group relative block overflow-hidden rounded-2xl"
+          className="group relative block aspect-square overflow-hidden rounded-2xl"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/map-alghero.png"
             alt={t("mapAlt")}
-            className="w-full object-cover transition group-hover:brightness-95"
+            className="h-full w-full object-cover transition group-hover:brightness-95"
           />
           {/* Inset border */}
           <span className="pointer-events-none absolute inset-2 rounded-xl border border-black/8" />
-          {/* Pin overlay */}
-          <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-full">
-            <MapPin
-              className="h-8 w-8 fill-[var(--accent)] text-white drop-shadow-md"
-              strokeWidth={1.5}
-            />
-          </span>
         </a>
         {/* CTA button — half outside the map */}
         <a
