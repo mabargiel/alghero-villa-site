@@ -19,6 +19,15 @@ type ConsentContextType = {
 
 const STORAGE_KEY = "cookie-consent";
 
+// Listeners for same-tab localStorage writes (storage event only fires cross-tab)
+let listeners: Array<() => void> = [];
+
+function emitChange() {
+  for (const listener of listeners) {
+    listener();
+  }
+}
+
 function getSnapshot(): ConsentValue {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
@@ -33,9 +42,24 @@ function getServerSnapshot(): ConsentValue {
   return null;
 }
 
+// Client-only hydration detection (avoids useEffect + setState)
+function subscribeNoop() {
+  return () => {};
+}
+function getHydratedTrue() {
+  return true;
+}
+function getHydratedFalse() {
+  return false;
+}
+
 function subscribe(callback: () => void) {
+  listeners.push(callback);
   window.addEventListener("storage", callback);
-  return () => window.removeEventListener("storage", callback);
+  return () => {
+    listeners = listeners.filter((l) => l !== callback);
+    window.removeEventListener("storage", callback);
+  };
 }
 
 const ConsentContext = createContext<ConsentContextType | undefined>(undefined);
@@ -51,22 +75,32 @@ export default function ConsentProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const storedConsent = useSyncExternalStore(
+  const consent = useSyncExternalStore(
     subscribe,
     getSnapshot,
     getServerSnapshot,
   );
-  const [consent, setConsentState] = useState<ConsentValue>(storedConsent);
-  const [showBanner, setShowBanner] = useState(storedConsent === null);
+  const isHydrated = useSyncExternalStore(
+    subscribeNoop,
+    getHydratedTrue,
+    getHydratedFalse,
+  );
+  const [bannerForceOpen, setBannerForceOpen] = useState(false);
+
+  const showBanner = isHydrated && (bannerForceOpen || consent === null);
 
   const setConsent = useCallback((value: "granted" | "denied") => {
-    setConsentState(value);
-    setShowBanner(false);
+    setBannerForceOpen(false);
     try {
       localStorage.setItem(STORAGE_KEY, value);
     } catch {
-      // localStorage unavailable — consent still applies for this session
+      // localStorage unavailable
     }
+    emitChange();
+  }, []);
+
+  const setShowBanner = useCallback((show: boolean) => {
+    setBannerForceOpen(show);
   }, []);
 
   return (
