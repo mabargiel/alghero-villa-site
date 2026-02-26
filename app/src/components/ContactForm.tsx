@@ -12,7 +12,7 @@ function PrivacyLink(chunks: React.ReactNode) {
   return (
     <Link
       href="/privacy"
-      className="font-medium text-[var(--accent-strong)] underline underline-offset-2"
+      className="font-medium text-[var(--accent-sky)] underline underline-offset-2"
       target="_blank"
     >
       {chunks}
@@ -24,7 +24,7 @@ function RulesLink(chunks: React.ReactNode) {
   return (
     <Link
       href="/house-rules"
-      className="font-medium text-[var(--accent-strong)] underline underline-offset-2"
+      className="font-medium text-[var(--accent-sky)] underline underline-offset-2"
       target="_blank"
     >
       {chunks}
@@ -179,7 +179,7 @@ export default function ContactForm() {
           type="checkbox"
           name="consent"
           required
-          className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--accent)]"
+          className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--brand)]"
         />
         <span>
           {t.rich("consent", {
@@ -212,7 +212,7 @@ export default function ContactForm() {
       )}
 
       <button
-        className="rounded-xl bg-gradient-to-r from-[var(--accent-strong)] to-[var(--accent)] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_34px_-22px_rgba(0,0,0,0.7)] transition hover:-translate-y-0.5 hover:shadow-[0_22px_50px_-28px_rgba(0,0,0,0.75)] disabled:opacity-60"
+        className="rounded-xl bg-[var(--brand)] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_34px_-12px_var(--shadow-brand)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-hover)] hover:shadow-[0_22px_50px_-16px_var(--shadow-brand-strong)] disabled:opacity-60"
         type="submit"
         disabled={state === "sending"}
       >

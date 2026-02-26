@@ -46,6 +46,7 @@ const iconMap = {
   wifi: Wifi,
   crib: Baby,
   "extra-bed": BedSingle,
+  "twin-double": BedDouble,
   lounger: Armchair,
   "garden-furniture": Umbrella,
 };

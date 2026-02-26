@@ -119,7 +119,7 @@ export default function OwnerNotificationEmail({
 }
 
 const main: React.CSSProperties = {
-  backgroundColor: "#f6f6f0",
+  backgroundColor: "#F4F1EB",
   fontFamily:
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
 };
@@ -143,19 +143,19 @@ const logo: React.CSSProperties = {
 const heading: React.CSSProperties = {
   fontSize: "20px",
   fontWeight: 600,
-  color: "#2d3b2d",
+  color: "#2C2825",
   marginBottom: "8px",
 };
 
 const divider: React.CSSProperties = {
-  borderColor: "#d9d4c7",
+  borderColor: "#D5CCBE",
   margin: "24px 0",
 };
 
 const sectionHeader: React.CSSProperties = {
   fontSize: "13px",
   fontWeight: 600,
-  color: "#7a8a7a",
+  color: "#8A8478",
   textTransform: "uppercase" as const,
   letterSpacing: "0.08em",
   marginBottom: "12px",
@@ -167,7 +167,7 @@ const detailsSection: React.CSSProperties = {
 
 const labelCol: React.CSSProperties = {
   fontSize: "13px",
-  color: "#7a8a7a",
+  color: "#8A8478",
   width: "100px",
   paddingBottom: "6px",
   verticalAlign: "top" as const,
@@ -175,7 +175,7 @@ const labelCol: React.CSSProperties = {
 
 const valueCol: React.CSSProperties = {
   fontSize: "14px",
-  color: "#2d3b2d",
+  color: "#2C2825",
   paddingBottom: "6px",
   verticalAlign: "top" as const,
 };
@@ -183,16 +183,16 @@ const valueCol: React.CSSProperties = {
 const messageText: React.CSSProperties = {
   fontSize: "14px",
   lineHeight: "1.6",
-  color: "#4a5a4a",
+  color: "#6B6560",
   whiteSpace: "pre-wrap" as const,
   backgroundColor: "#ffffff",
   padding: "16px",
   borderRadius: "8px",
-  border: "1px solid #e8e4da",
+  border: "1px solid #E8E2D6",
 };
 
 const footer: React.CSSProperties = {
   fontSize: "12px",
-  color: "#9a9a8a",
+  color: "#A09A90",
   textAlign: "center" as const,
 };

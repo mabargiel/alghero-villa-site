@@ -7,8 +7,10 @@ import { Link } from "@/i18n/navigation";
 import ConsentProvider from "@/components/ConsentProvider";
 import CookieBanner from "@/components/CookieBanner";
 import CookiePreferencesButton from "@/components/CookiePreferencesButton";
+import PricingModalProvider from "@/components/PricingModalProvider";
 import TopNav from "@/components/TopNav";
 import TrackingPixels from "@/components/TrackingPixels";
+import { getPricingConfig } from "@/lib/sanity/queries";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -62,7 +64,10 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  const messages = await getMessages();
+  const [messages, pricingConfig] = await Promise.all([
+    getMessages(),
+    getPricingConfig(),
+  ]);
   const t = await getTranslations({ locale, namespace: "common" });
 
   return (
@@ -73,83 +78,85 @@ export default async function LocaleLayout({
             __html: String.raw`(function(){if(window.location.pathname==='/'||window.location.pathname.match(/^\/[a-z]{2}\/?$/)){document.documentElement.classList.add('is-home')}})()`,
           }}
         />
-        <TopNav />
-        {children}
-        <footer className="mt-12 w-full bg-[var(--surface-strong)]">
-          <div className="mx-auto max-w-6xl px-6 py-10">
-            <div className="grid gap-8 md:grid-cols-3">
-              <div className="space-y-3">
-                <h3 className="text-sm font-semibold tracking-wide text-[var(--foreground)]">
-                  Villa Monte Calvia
-                </h3>
-                <p className="text-xs leading-relaxed text-[var(--muted)]">
-                  Alghero, Sardinia
-                </p>
-                <div className="space-y-1 text-xs text-[var(--muted)]">
+        <PricingModalProvider config={pricingConfig}>
+          <TopNav />
+          {children}
+          <footer className="mt-12 w-full bg-[var(--surface-strong)]">
+            <div className="mx-auto max-w-6xl px-6 py-10">
+              <div className="grid gap-8 md:grid-cols-3">
+                <div className="space-y-3">
+                  <h3 className="text-sm font-semibold tracking-wide text-[var(--foreground)]">
+                    Villa Monte Calvia
+                  </h3>
+                  <p className="text-xs leading-relaxed text-[var(--muted)]">
+                    Alghero, Sardinia
+                  </p>
+                  <div className="space-y-1 text-xs text-[var(--muted)]">
+                    <a
+                      href="tel:+393207171841"
+                      className="block transition hover:text-[var(--accent-warm)]"
+                    >
+                      +39 320 717 1841
+                    </a>
+                    <a
+                      href="mailto:contact@montecalvia.com"
+                      className="block transition hover:text-[var(--accent-warm)]"
+                    >
+                      contact@montecalvia.com
+                    </a>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <h3 className="text-sm font-semibold tracking-wide text-[var(--foreground)]">
+                    Legal
+                  </h3>
+                  <div className="flex flex-col gap-1.5 text-xs text-[var(--muted)]">
+                    <Link
+                      href="/privacy"
+                      className="transition hover:text-[var(--accent-sky)]"
+                    >
+                      {t("privacyPolicy")}
+                    </Link>
+                    <Link
+                      href="/house-rules"
+                      className="transition hover:text-[var(--accent-sky)]"
+                    >
+                      {t("houseRules")}
+                    </Link>
+                    <Link
+                      href="/privacy"
+                      className="transition hover:text-[var(--accent-sky)]"
+                    >
+                      {t("cookiePolicy")}
+                    </Link>
+                    <CookiePreferencesButton />
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <h3 className="text-sm font-semibold tracking-wide text-[var(--foreground)]">
+                    {t("designedBy")}
+                  </h3>
                   <a
-                    href="tel:+393207171841"
-                    className="block transition hover:text-[var(--accent-strong)]"
+                    href="https://github.com/mabargiel/alghero-villa-site"
+                    className="text-xs font-semibold text-[var(--muted)] transition hover:text-[var(--accent-sky)]"
+                    target="_blank"
+                    rel="noreferrer"
                   >
-                    +39 320 717 1841
-                  </a>
-                  <a
-                    href="mailto:contact@montecalvia.com"
-                    className="block transition hover:text-[var(--accent-strong)]"
-                  >
-                    contact@montecalvia.com
+                    Mateusz Bargiel
                   </a>
                 </div>
               </div>
 
-              <div className="space-y-3">
-                <h3 className="text-sm font-semibold tracking-wide text-[var(--foreground)]">
-                  Legal
-                </h3>
-                <div className="flex flex-col gap-1.5 text-xs text-[var(--muted)]">
-                  <Link
-                    href="/privacy"
-                    className="transition hover:text-[var(--accent-strong)]"
-                  >
-                    {t("privacyPolicy")}
-                  </Link>
-                  <Link
-                    href="/house-rules"
-                    className="transition hover:text-[var(--accent-strong)]"
-                  >
-                    {t("houseRules")}
-                  </Link>
-                  <Link
-                    href="/privacy"
-                    className="transition hover:text-[var(--accent-strong)]"
-                  >
-                    {t("cookiePolicy")}
-                  </Link>
-                  <CookiePreferencesButton />
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <h3 className="text-sm font-semibold tracking-wide text-[var(--foreground)]">
-                  {t("designedBy")}
-                </h3>
-                <a
-                  href="https://github.com/mabargiel/alghero-villa-site"
-                  className="text-xs font-semibold text-[var(--muted)] transition hover:text-[var(--accent-strong)]"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Mateusz Bargiel
-                </a>
+              <div className="mt-8 border-t border-white/20 pt-6 text-center text-xs text-[var(--muted)]">
+                {t("allRightsReserved", { year: new Date().getFullYear() })}
               </div>
             </div>
-
-            <div className="mt-8 border-t border-white/20 pt-6 text-center text-xs text-[var(--muted)]">
-              {t("allRightsReserved", { year: new Date().getFullYear() })}
-            </div>
-          </div>
-        </footer>
-        <CookieBanner />
-        <TrackingPixels />
+          </footer>
+          <CookieBanner />
+          <TrackingPixels />
+        </PricingModalProvider>
       </ConsentProvider>
     </NextIntlClientProvider>
   );

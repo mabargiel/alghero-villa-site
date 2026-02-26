@@ -141,12 +141,6 @@ export default function TopNav() {
               </Link>
             );
           })}
-          <Link
-            href="/contact"
-            className="rounded-full bg-[var(--accent-gold)] px-6 py-2.5 text-sm font-semibold tracking-[0.1em] text-[var(--deep-olive)] shadow-[0_8px_24px_-8px_rgba(0,0,0,0.3)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.4)] hover:brightness-110"
-          >
-            {t("bookNow")}
-          </Link>
         </nav>
 
         <button

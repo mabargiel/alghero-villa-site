@@ -79,7 +79,7 @@ export default function ConfirmationEmail({
 }
 
 const main: React.CSSProperties = {
-  backgroundColor: "#f6f6f0",
+  backgroundColor: "#F4F1EB",
   fontFamily:
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
 };
@@ -103,26 +103,26 @@ const logo: React.CSSProperties = {
 const greeting: React.CSSProperties = {
   fontSize: "22px",
   fontWeight: 600,
-  color: "#2d3b2d",
+  color: "#2C2825",
   marginBottom: "16px",
 };
 
 const bodyText: React.CSSProperties = {
   fontSize: "15px",
   lineHeight: "1.6",
-  color: "#4a5a4a",
+  color: "#6B6560",
   marginBottom: "12px",
 };
 
 const divider: React.CSSProperties = {
-  borderColor: "#d9d4c7",
+  borderColor: "#D5CCBE",
   margin: "28px 0",
 };
 
 const contactHeader: React.CSSProperties = {
   fontSize: "13px",
   fontWeight: 600,
-  color: "#7a8a7a",
+  color: "#8A8478",
   textTransform: "uppercase" as const,
   letterSpacing: "0.08em",
   marginBottom: "8px",
@@ -130,17 +130,17 @@ const contactHeader: React.CSSProperties = {
 
 const contactText: React.CSSProperties = {
   fontSize: "14px",
-  color: "#4a5a4a",
+  color: "#6B6560",
   margin: "4px 0",
 };
 
 const link: React.CSSProperties = {
-  color: "#5a7a5a",
+  color: "#2D5A4A",
   textDecoration: "none",
 };
 
 const footer: React.CSSProperties = {
   fontSize: "12px",
-  color: "#9a9a8a",
+  color: "#A09A90",
   textAlign: "center" as const,
 };

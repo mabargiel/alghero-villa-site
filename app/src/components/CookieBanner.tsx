@@ -21,7 +21,7 @@ export default function CookieBanner() {
           {t("message")}{" "}
           <Link
             href="/privacy"
-            className="underline decoration-[var(--accent)] underline-offset-4 transition hover:text-[var(--accent-strong)]"
+            className="underline decoration-[var(--accent-sky)] underline-offset-4 transition hover:text-[var(--accent-sky)]"
           >
             {t("privacyLink")}
           </Link>
@@ -35,7 +35,7 @@ export default function CookieBanner() {
           </button>
           <button
             onClick={() => setConsent("granted")}
-            className="rounded-md bg-[var(--accent)] px-4 py-2 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--accent-strong)]"
+            className="rounded-md bg-[var(--brand)] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[var(--accent)]"
           >
             {t("accept")}
           </button>
