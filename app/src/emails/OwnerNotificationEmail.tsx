@@ -10,6 +10,7 @@ import {
   Row,
   Column,
 } from "@react-email/components";
+import { main, container, logo, divider, footer } from "./styles";
 
 type Translations = {
   subject: string;
@@ -118,26 +119,9 @@ export default function OwnerNotificationEmail({
   );
 }
 
-const main: React.CSSProperties = {
-  backgroundColor: "#F4F1EB",
-  fontFamily:
-    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-};
-
-const container: React.CSSProperties = {
-  maxWidth: "520px",
-  margin: "0 auto",
-  padding: "40px 24px",
-};
-
 const logoSection: React.CSSProperties = {
   textAlign: "center" as const,
   marginBottom: "24px",
-};
-
-const logo: React.CSSProperties = {
-  borderRadius: "50%",
-  margin: "0 auto",
 };
 
 const heading: React.CSSProperties = {
@@ -145,11 +129,6 @@ const heading: React.CSSProperties = {
   fontWeight: 600,
   color: "#2C2825",
   marginBottom: "8px",
-};
-
-const divider: React.CSSProperties = {
-  borderColor: "#D5CCBE",
-  margin: "24px 0",
 };
 
 const sectionHeader: React.CSSProperties = {
@@ -189,10 +168,4 @@ const messageText: React.CSSProperties = {
   padding: "16px",
   borderRadius: "8px",
   border: "1px solid #E8E2D6",
-};
-
-const footer: React.CSSProperties = {
-  fontSize: "12px",
-  color: "#A09A90",
-  textAlign: "center" as const,
 };

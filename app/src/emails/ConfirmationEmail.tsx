@@ -9,6 +9,7 @@ import {
   Hr,
   Link,
 } from "@react-email/components";
+import { main, container, logo, divider, footer } from "./styles";
 
 type Translations = {
   subject: string;
@@ -78,26 +79,9 @@ export default function ConfirmationEmail({
   );
 }
 
-const main: React.CSSProperties = {
-  backgroundColor: "#F4F1EB",
-  fontFamily:
-    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-};
-
-const container: React.CSSProperties = {
-  maxWidth: "520px",
-  margin: "0 auto",
-  padding: "40px 24px",
-};
-
 const logoSection: React.CSSProperties = {
   textAlign: "center" as const,
   marginBottom: "32px",
-};
-
-const logo: React.CSSProperties = {
-  borderRadius: "50%",
-  margin: "0 auto",
 };
 
 const greeting: React.CSSProperties = {
@@ -112,11 +96,6 @@ const bodyText: React.CSSProperties = {
   lineHeight: "1.6",
   color: "#6B6560",
   marginBottom: "12px",
-};
-
-const divider: React.CSSProperties = {
-  borderColor: "#D5CCBE",
-  margin: "28px 0",
 };
 
 const contactHeader: React.CSSProperties = {
@@ -137,10 +116,4 @@ const contactText: React.CSSProperties = {
 const link: React.CSSProperties = {
   color: "#2D5A4A",
   textDecoration: "none",
-};
-
-const footer: React.CSSProperties = {
-  fontSize: "12px",
-  color: "#A09A90",
-  textAlign: "center" as const,
 };

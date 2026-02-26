@@ -46,8 +46,10 @@ export default function PricingModalProvider({
     if (config) setIsOpen(true);
   }, [config]);
 
+  const contextValue = useMemo(() => ({ openModal }), [openModal]);
+
   return (
-    <PricingModalContext.Provider value={{ openModal }}>
+    <PricingModalContext.Provider value={contextValue}>
       {children}
       {isOpen && config && (
         <PricingModal

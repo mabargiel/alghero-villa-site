@@ -17,7 +17,7 @@ export default function CheckAvailabilityButton({
 
   return (
     <button type="button" className={className} onClick={openModal}>
-      {t(translationKey as Parameters<typeof t>[0])}
+      {t(translationKey)}
     </button>
   );
 }
