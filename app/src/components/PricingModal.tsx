@@ -71,7 +71,7 @@ export default function PricingModal({
           </button>
 
           <h2 className="mb-6 text-xl font-semibold text-[var(--foreground)]">
-            {t("checkPrice")}
+            {t("checkAvailability")}
           </h2>
 
           <PricingCalendar

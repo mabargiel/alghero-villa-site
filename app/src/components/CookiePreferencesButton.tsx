@@ -10,7 +10,7 @@ export default function CookiePreferencesButton() {
   return (
     <button
       onClick={() => setShowBanner(true)}
-      className="underline decoration-[var(--accent)] underline-offset-4 transition hover:text-[var(--accent-strong)]"
+      className="underline decoration-[var(--accent-sky)] underline-offset-4 transition hover:text-[var(--accent-sky)]"
     >
       {t("cookiePreferences")}
     </button>

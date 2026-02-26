@@ -100,7 +100,7 @@ export default function VillaSubNav({ groups, ariaLabel }: VillaSubNavProps) {
                 <span
                   className={`block shrink-0 rounded-full transition-all duration-300 ${
                     isActive
-                      ? "h-2.5 w-2.5 bg-[var(--accent-strong)] shadow-[0_0_6px_rgba(72,104,90,0.4)]"
+                      ? "h-2.5 w-2.5 bg-[var(--accent-strong)] shadow-[0_0_6px_var(--shadow-brand)]"
                       : "h-1.5 w-1.5 bg-[var(--muted)] opacity-40 group-hover:h-2 group-hover:w-2 group-hover:opacity-70"
                   }`}
                 />

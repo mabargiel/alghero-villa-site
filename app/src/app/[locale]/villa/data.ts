@@ -15,7 +15,7 @@ export const rooms: RoomData[] = [
   { key: "bedroom-2", amenities: [...STANDARD_AMENITIES] },
   { key: "bedroom-3", amenities: [...STANDARD_AMENITIES, "crib"] },
   { key: "bedroom-4", amenities: [...STANDARD_AMENITIES, "extra-bed"] },
-  { key: "bedroom-5", amenities: [...STANDARD_AMENITIES] },
+  { key: "bedroom-5", amenities: ["wifi", "climate", "twin-double"] },
   { key: "bedroom-6", amenities: [...STANDARD_AMENITIES] },
   { key: "salon", amenities: ["wifi", "climate", "kitchen"], isSalon: true },
 ];

@@ -113,7 +113,7 @@ function SummaryContent({
                   {line.nights} {t("nights", { count: line.nights })}
                 </span>
                 {line.promotion && (
-                  <span className="ml-2 inline-flex items-center rounded-full bg-pink-100 px-2 py-0.5 text-xs font-semibold text-pink-700">
+                  <span className="ml-2 inline-flex items-center rounded-full bg-orange-100 px-2 py-0.5 text-xs font-semibold text-orange-700">
                     {line.promotion.type === "percentage"
                       ? `−${line.promotion.value}%`
                       : t("promotion")}
@@ -173,7 +173,7 @@ function SummaryContent({
 
       <Link
         href="/contact"
-        className="mt-6 block w-full rounded-lg bg-[var(--brand)] px-6 py-3 text-center font-semibold text-white shadow-[0_8px_24px_-8px_rgba(72,104,90,0.4)] transition-all hover:-translate-y-0.5 hover:bg-[#567a6a] hover:shadow-[0_12px_32px_-8px_rgba(72,104,90,0.5)]"
+        className="mt-6 block w-full rounded-lg bg-[var(--brand)] px-6 py-3 text-center font-semibold text-white shadow-[0_8px_24px_-8px_var(--shadow-brand)] transition-all hover:-translate-y-0.5 hover:bg-[var(--brand-hover)] hover:shadow-[0_12px_32px_-8px_var(--shadow-brand-strong)]"
       >
         {t("askAbout")}
       </Link>

@@ -3,6 +3,7 @@ import BookingBar from "@/components/BookingBar";
 import HeroMedia from "@/components/HeroMedia";
 import LucideIcon from "@/components/LucideIcon";
 import Reveal from "@/components/Reveal";
+import CtaSection from "@/components/CtaSection";
 import { urlFor } from "@/lib/sanity/image";
 import type { HomeSection } from "@/lib/sanity/queries";
 import {
@@ -176,7 +177,7 @@ export default async function HomePage() {
             alt=""
             width={480}
             height={88}
-            className="mx-auto mb-6 h-12 w-auto fill-[var(--accent)]"
+            className="mx-auto mb-6 h-12 w-auto fill-[var(--brand)]"
           />
         </div>
       </Reveal>
@@ -186,8 +187,8 @@ export default async function HomePage() {
           <h2 className="text-2xl font-semibold md:text-3xl">
             Villa Monte Calvia
           </h2>
-          <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
-          <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
+          <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-[var(--accent-warm)]" />
+          <p className="mt-2 text-sm font-semibold text-[var(--brand)]">
             {t("discoverSubtitle")}
           </p>
           <AreaHighlights images={areaHighlightImages} />
@@ -201,15 +202,15 @@ export default async function HomePage() {
               <h2 className="text-2xl font-semibold md:text-3xl">
                 {t("villaTitle")}
               </h2>
-              <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
-              <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
+              <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent-warm)]" />
+              <p className="mt-2 text-sm font-semibold text-[var(--brand)]">
                 {t("villaSubtitle")}
               </p>
               <p className="mt-4 text-[var(--muted)]">
                 {t("villaDescription")}
               </p>
               <Link
-                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-strong)]"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-sky)]"
                 href="/villa"
               >
                 {t("villaLink")}
@@ -236,15 +237,15 @@ export default async function HomePage() {
               <h2 className="text-2xl font-semibold md:text-3xl">
                 {t("interiorsTitle")}
               </h2>
-              <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
-              <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
+              <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent-warm)]" />
+              <p className="mt-2 text-sm font-semibold text-[var(--brand)]">
                 {t("interiorsSubtitle")}
               </p>
               <p className="mt-4 text-[var(--muted)]">
                 {t("interiorsDescription")}
               </p>
               <Link
-                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-strong)]"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-sky)]"
                 href="/villa"
               >
                 {t("interiorsLink")}
@@ -294,15 +295,15 @@ export default async function HomePage() {
               <h2 className="text-2xl font-semibold md:text-3xl">
                 {t("gardenTitle")}
               </h2>
-              <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
-              <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
+              <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent-warm)]" />
+              <p className="mt-2 text-sm font-semibold text-[var(--brand)]">
                 {t("gardenSubtitle")}
               </p>
               <p className="mt-4 text-[var(--muted)]">
                 {t("gardenDescription")}
               </p>
               <Link
-                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-strong)]"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-sky)]"
                 href="/location"
               >
                 {t("gardenLink")}
@@ -329,8 +330,8 @@ export default async function HomePage() {
               <h2 className="text-2xl font-semibold md:text-3xl">
                 {t("locationTitle")}
               </h2>
-              <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
-              <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
+              <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent-warm)]" />
+              <p className="mt-2 text-sm font-semibold text-[var(--brand)]">
                 {t("locationSubtitle")}
               </p>
               <p className="mt-4 text-[var(--muted)]">
@@ -340,28 +341,28 @@ export default async function HomePage() {
                 <li className="flex items-center gap-3 rounded-lg bg-white/70 px-3 py-2 shadow-sm">
                   <LucideIcon
                     name="port"
-                    className="h-4 w-4 text-[var(--accent)]"
+                    className="h-4 w-4 text-[var(--brand)]"
                   />
                   {t("locationItem1")}
                 </li>
                 <li className="flex items-center gap-3 rounded-lg bg-white/70 px-3 py-2 shadow-sm">
                   <LucideIcon
                     name="beach"
-                    className="h-4 w-4 text-[var(--accent)]"
+                    className="h-4 w-4 text-[var(--brand)]"
                   />
                   {t("locationItem2")}
                 </li>
                 <li className="flex items-center gap-3 rounded-lg bg-white/70 px-3 py-2 shadow-sm">
                   <LucideIcon
                     name="heritage"
-                    className="h-4 w-4 text-[var(--accent)]"
+                    className="h-4 w-4 text-[var(--brand)]"
                   />
                   {t("locationItem3")}
                 </li>
                 <li className="flex items-center gap-3 rounded-lg bg-white/70 px-3 py-2 shadow-sm">
                   <LucideIcon
                     name="cafe"
-                    className="h-4 w-4 text-[var(--accent)]"
+                    className="h-4 w-4 text-[var(--brand)]"
                   />
                   {t("locationItem4")}
                 </li>
@@ -376,24 +377,24 @@ export default async function HomePage() {
           <h2 className="text-2xl font-semibold md:text-3xl">
             {t("amenitiesTitle")}
           </h2>
-          <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-[var(--accent)]" />
-          <p className="mt-2 text-sm font-semibold text-[var(--accent)]">
+          <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-[var(--accent-warm)]" />
+          <p className="mt-2 text-sm font-semibold text-[var(--brand)]">
             {t("amenitiesSubtitle")}
           </p>
-          <div className="mt-10 grid grid-cols-3 items-start gap-6 text-center md:grid-cols-6 md:gap-4">
+          <div className="mx-auto mt-10 grid max-w-3xl grid-cols-3 items-start gap-x-8 gap-y-10 text-center">
             {amenityIconKeys.map((iconKey, index) => (
               <div
                 key={iconKey}
                 className="amenity-item flex min-w-0 flex-col items-center gap-3"
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-[0_0_0_1px_rgba(72,104,90,0.2),_0_10px_18px_-12px_rgba(72,104,90,0.55),_0_20px_40px_-18px_rgba(0,0,0,0.6)]">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-[0_0_0_1px_var(--shadow-brand),_0_10px_18px_-12px_var(--shadow-brand-strong),_0_20px_40px_-18px_rgba(0,0,0,0.6)]">
                   <LucideIcon
                     name={iconKey}
-                    className="h-5 w-5 text-[var(--accent-strong)] md:h-6 md:w-6"
+                    className="h-7 w-7 text-[var(--brand)]"
                   />
                 </div>
-                <span className="text-[10px] font-semibold tracking-[0.14em] text-[var(--foreground)] uppercase sm:text-[11px] md:text-xs">
+                <span className="text-xs font-semibold tracking-[0.14em] text-[var(--foreground)] uppercase">
                   {amenityLabels[index]}
                 </span>
               </div>
@@ -402,24 +403,7 @@ export default async function HomePage() {
         </section>
       </Reveal>
 
-      <Reveal>
-        <section className="mx-auto max-w-6xl px-6 pb-24">
-          <div className="rounded-xl bg-[#e3d8c8] p-10 text-center shadow-[0_6px_16px_-10px_rgba(20,20,20,0.28),_0_22px_45px_-28px_rgba(20,20,20,0.4)]">
-            <h2 className="text-2xl font-semibold md:text-3xl">
-              {t("ctaTitle")}
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-[var(--muted)]">
-              {t("ctaDescription")}
-            </p>
-            <Link
-              className="mt-6 inline-flex rounded-xl bg-[var(--brand)] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_34px_-12px_rgba(72,104,90,0.4)] transition hover:-translate-y-0.5 hover:bg-[#567a6a] hover:shadow-[0_22px_50px_-16px_rgba(72,104,90,0.5)]"
-              href="/contact"
-            >
-              {t("ctaButton")}
-            </Link>
-          </div>
-        </section>
-      </Reveal>
+      <CtaSection namespace="home" />
     </main>
   );
 }

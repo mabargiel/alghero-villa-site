@@ -3,16 +3,25 @@
 
 :root {
   --nav-height: 56px;
-  --background: #ede6da;
-  --foreground: #26241f;
-  --muted: #6f6b5e;
-  --surface: #e6dfd2;
-  --surface-strong: #d9d0c2;
-  --brand: #48685a;
-  --accent: #48685a;
-  --accent-strong: #48685a;
-  --deep-olive: #1f2a23;
-  --accent-gold: #d7c38e;
+  --background: #f4f1eb;
+  --foreground: #2c2825;
+  --muted: #8a8478;
+  --surface: #e8e2d6;
+  --surface-strong: #d5ccbe;
+  --brand: #2d5a4a;
+  --accent: #1a4535;
+  --accent-strong: #0d3326;
+  --deep-olive: #1a2420;
+  --accent-warm: #d2b27a;
+  --accent-sky: #1b7fa3;
+
+  /* Derived — auto-update when base colors change */
+  --accent-warm-hover: color-mix(in srgb, var(--accent-warm) 80%, #000);
+  --brand-hover: color-mix(in srgb, var(--brand) 80%, #000);
+  --shadow-warm: color-mix(in srgb, var(--accent-warm) 40%, transparent);
+  --shadow-warm-strong: color-mix(in srgb, var(--accent-warm) 50%, transparent);
+  --shadow-brand: color-mix(in srgb, var(--brand) 40%, transparent);
+  --shadow-brand-strong: color-mix(in srgb, var(--brand) 50%, transparent);
 
   /* Navbar — always light (all pages have dark header area) */
   --nav-text: rgb(255 255 255 / 90%);
@@ -23,7 +32,7 @@
   --nav-logo-shadow: drop-shadow(0 2px 12px rgb(0 0 0 / 70%));
   --nav-border: rgb(255 255 255 / 40%);
   --nav-hamburger: white;
-  --nav-mobile-bg: rgb(11 15 10 / 95%);
+  --nav-mobile-bg: rgb(26 36 32 / 95%);
   --nav-mobile-text: white;
   --nav-mobile-border: rgb(255 255 255 / 15%);
   --nav-underline: rgb(255 255 255 / 90%);
@@ -39,7 +48,10 @@
   --color-accent: var(--accent);
   --color-accent-strong: var(--accent-strong);
   --color-deep-olive: var(--deep-olive);
-  --color-accent-gold: var(--accent-gold);
+  --color-accent-warm: var(--accent-warm);
+  --color-accent-warm-hover: var(--accent-warm-hover);
+  --color-accent-sky: var(--accent-sky);
+  --color-brand-hover: var(--brand-hover);
   --font-sans: var(--font-lato);
   --font-serif: var(--font-lato);
 }
@@ -80,7 +92,7 @@ button,
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-sky);
   outline-offset: 3px;
 }
 
@@ -164,8 +176,8 @@ h4 {
 
 .hero-motion {
   background:
-    radial-gradient(circle at 20% 20%, rgb(107 122 75 / 18%), transparent 55%),
-    radial-gradient(circle at 80% 30%, rgb(235 229 216 / 55%), transparent 60%);
+    radial-gradient(circle at 20% 20%, rgb(45 90 74 / 18%), transparent 55%),
+    radial-gradient(circle at 80% 30%, rgb(232 226 214 / 55%), transparent 60%);
   background-size: 140% 140%;
   animation: hero-pan 18s ease-in-out infinite;
   opacity: 0.25;
@@ -239,7 +251,7 @@ h4 {
   content: "";
   position: absolute;
   inset: 0;
-  background: #050805;
+  background: #1a2420;
   z-index: 30;
   pointer-events: none;
   animation: hero-shell-reveal 2400ms ease-out forwards;
@@ -283,15 +295,15 @@ h4 {
 
 /* Tier background colors on day buttons */
 .pricing-tier-low > .pricing-day-btn {
-  background: #dceee4;
+  background: #d9ebe2;
 }
 
 .pricing-tier-mid > .pricing-day-btn {
-  background: #f0e4c3;
+  background: #f0e2c0;
 }
 
 .pricing-tier-high > .pricing-day-btn {
-  background: #e8cdb5;
+  background: #edd0bb;
 }
 
 /* Promotion indicator — glowy pink dot in top-right corner */
@@ -307,8 +319,8 @@ h4 {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #e84393;
-  box-shadow: 0 0 6px 2px rgb(232 67 147 / 45%);
+  background: #d4654a;
+  box-shadow: 0 0 6px 2px rgb(212 101 74 / 45%);
 }
 
 /* Today */
@@ -324,7 +336,7 @@ h4 {
   background: var(--brand) !important;
   color: white !important;
   font-weight: 600;
-  box-shadow: 0 4px 12px -2px rgb(72 104 90 / 45%);
+  box-shadow: 0 4px 12px -2px rgb(45 90 74 / 45%);
 }
 
 /* Selected range: middle */
@@ -338,20 +350,20 @@ h4 {
 
 /* Legend swatches */
 .pricing-legend-0 {
-  background: #7bbe95;
+  background: #6aae88;
 }
 
 .pricing-legend-1 {
-  background: #d4a94e;
+  background: #c49a4a;
 }
 
 .pricing-legend-2 {
-  background: #c47a4a;
+  background: #b86e48;
 }
 
 .pricing-legend-promo {
-  background: #e84393;
-  box-shadow: 0 0 6px 2px rgb(232 67 147 / 40%);
+  background: #d4654a;
+  box-shadow: 0 0 6px 2px rgb(212 101 74 / 40%);
 }
 
 /* ── Pricing modal ───────────────────────────────────── */

@@ -24,6 +24,7 @@ const amenityKeyMap: Record<string, string> = {
   climate: "amenityClimate",
   crib: "amenityCrib",
   "extra-bed": "amenityExtraBed",
+  "twin-double": "amenityTwinDouble",
   bathroom: "amenityBathroom",
   lounger: "amenityLounger",
   kitchen: "amenityKitchen",
@@ -142,7 +143,7 @@ export default function RoomTilesGrid({ rooms }: RoomTilesGridProps) {
                   >
                     <LucideIcon
                       name={key}
-                      className="h-3 w-3 text-[var(--accent-strong)] sm:h-3.5 sm:w-3.5"
+                      className="h-3 w-3 text-[var(--brand)] sm:h-3.5 sm:w-3.5"
                     />
                     <span className="hidden sm:inline">
                       {t(amenityKeyMap[key] ?? key)}

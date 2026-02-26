@@ -1,4 +1,6 @@
 import { Resend } from "resend";
+import ConfirmationEmail from "@/emails/ConfirmationEmail";
+import OwnerNotificationEmail from "@/emails/OwnerNotificationEmail";
 
 export const runtime = "nodejs";
 
@@ -7,6 +9,11 @@ const contactToEmail = process.env.CONTACT_TO_EMAIL || "";
 const contactFromEmail =
   process.env.CONTACT_FROM_EMAIL ||
   "Villa Monte Calvia <onboarding@resend.dev>";
+const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL || "https://montecalvia.com"
+).replace(/\/$/, "");
+
+const SUPPORTED_LOCALES = new Set(["en", "it", "pl", "es", "fr", "de"]);
 
 const rateLimitWindowMs = 10 * 60 * 1000;
 const rateLimitMax = 5;
@@ -35,6 +42,25 @@ function isRateLimited(ip: string) {
   return false;
 }
 
+async function loadTranslations(locale: string) {
+  const safeLocale = SUPPORTED_LOCALES.has(locale) ? locale : "en";
+  const messages = (await import(`../../../../messages/${safeLocale}.json`))
+    .default;
+  return {
+    confirmationEmail: messages.confirmationEmail,
+    ownerEmail: messages.ownerEmail,
+  };
+}
+
+function formatDateForEmail(isoDate: string, locale: string): string {
+  const date = new Date(isoDate);
+  return date.toLocaleDateString(locale, {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}
+
 export async function POST(request: Request) {
   const ip = getClientIp(request);
   if (isRateLimited(ip)) {
@@ -49,6 +75,11 @@ export async function POST(request: Request) {
   const email = String(body.email || "").trim();
   const phone = String(body.phone || "").trim();
   const website = String(body.website || "").trim();
+  const message = String(body.message || "").trim();
+  const arriveDate = String(body.arriveDate || "").trim();
+  const leaveDate = String(body.leaveDate || "").trim();
+  const guests = Number(body.guests) || 0;
+  const locale = String(body.locale || "en").trim();
 
   if (website) {
     return Response.json(
@@ -57,9 +88,29 @@ export async function POST(request: Request) {
     );
   }
 
-  if (!firstName || !email || !phone) {
+  if (!firstName || !email || !phone || !arriveDate || !leaveDate) {
     return Response.json(
       { message: "Please fill in all required fields." },
+      { status: 400 },
+    );
+  }
+
+  if (guests < 1) {
+    return Response.json(
+      { message: "Please specify the number of guests." },
+      { status: 400 },
+    );
+  }
+
+  const arrive = new Date(arriveDate);
+  const leave = new Date(leaveDate);
+  if (
+    Number.isNaN(arrive.getTime()) ||
+    Number.isNaN(leave.getTime()) ||
+    arrive >= leave
+  ) {
+    return Response.json(
+      { message: "Arrival date must be before departure date." },
       { status: 400 },
     );
   }
@@ -74,17 +125,50 @@ export async function POST(request: Request) {
     );
   }
 
+  const safeLocale = SUPPORTED_LOCALES.has(locale) ? locale : "en";
+  const [visitorTranslations, ownerTranslations] = await Promise.all([
+    loadTranslations(safeLocale),
+    loadTranslations("pl"),
+  ]);
+  const arriveDateForOwner = formatDateForEmail(arriveDate, "pl");
+  const leaveDateForOwner = formatDateForEmail(leaveDate, "pl");
+
   const resend = new Resend(resendApiKey);
 
-  const result = await resend.emails.send({
-    from: contactFromEmail,
-    to: contactToEmail,
-    replyTo: email,
-    subject: `New enquiry — ${firstName}`,
-    text: `Name: ${firstName}\nEmail: ${email}\nPhone: ${phone}`,
-  });
+  const [ownerResult, confirmationResult] = await Promise.all([
+    resend.emails.send({
+      from: contactFromEmail,
+      to: contactToEmail,
+      replyTo: email,
+      subject: ownerTranslations.ownerEmail.subject.replace(
+        "{firstName}",
+        firstName,
+      ),
+      react: OwnerNotificationEmail({
+        firstName,
+        email,
+        phone,
+        arriveDate: arriveDateForOwner,
+        leaveDate: leaveDateForOwner,
+        guests,
+        message: message || "—",
+        translations: ownerTranslations.ownerEmail,
+        siteUrl,
+      }),
+    }),
+    resend.emails.send({
+      from: contactFromEmail,
+      to: email,
+      subject: visitorTranslations.confirmationEmail.subject,
+      react: ConfirmationEmail({
+        firstName,
+        translations: visitorTranslations.confirmationEmail,
+        siteUrl,
+      }),
+    }),
+  ]);
 
-  if (result.error) {
+  if (ownerResult.error || confirmationResult.error) {
     return Response.json(
       { message: "Email delivery failed. Please try again later." },
       { status: 502 },
