@@ -28,6 +28,7 @@ export default function TopNav() {
   const locale = useLocale();
   const t = useTranslations("nav");
   const [isOpen, setIsOpen] = useState(false);
+  const isHome = pathname === "/";
 
   function handleToggle() {
     setIsOpen((prev) => !prev);
@@ -99,23 +100,27 @@ export default function TopNav() {
           </div>
         </div>
       </div>
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 pt-1 pb-6 md:pb-8">
-        <Link href="/" aria-label={t("logoAria")}>
-          <span
-            className="block h-20 w-64 [filter:var(--nav-logo-shadow)]"
-            style={{
-              maskImage: "url(/logo.svg)",
-              WebkitMaskImage: "url(/logo.svg)",
-              maskSize: "contain",
-              WebkitMaskSize: "contain",
-              maskRepeat: "no-repeat",
-              WebkitMaskRepeat: "no-repeat",
-              maskPosition: "left center",
-              WebkitMaskPosition: "left center",
-              backgroundColor: "var(--nav-logo-bg)",
-            }}
-          />
-        </Link>
+      <div
+        className={`mx-auto flex max-w-6xl items-center px-6 pt-1 pb-6 md:pb-8 ${isHome ? "justify-end" : "justify-between"}`}
+      >
+        {!isHome && (
+          <Link href="/" aria-label={t("logoAria")}>
+            <span
+              className="block h-20 w-64 [filter:var(--nav-logo-shadow)]"
+              style={{
+                maskImage: "url(/logo.svg)",
+                WebkitMaskImage: "url(/logo.svg)",
+                maskSize: "contain",
+                WebkitMaskSize: "contain",
+                maskRepeat: "no-repeat",
+                WebkitMaskRepeat: "no-repeat",
+                maskPosition: "left center",
+                WebkitMaskPosition: "left center",
+                backgroundColor: "var(--nav-logo-bg)",
+              }}
+            />
+          </Link>
+        )}
 
         <nav className="hidden items-center gap-8 text-[18px] font-medium tracking-[0.08em] text-[var(--nav-text)] md:flex">
           {navItems.map((item) => {

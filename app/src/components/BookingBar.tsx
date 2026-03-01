@@ -46,7 +46,7 @@ export default function BookingBar({ config }: BookingBarProps) {
     <>
       <button
         type="button"
-        className="mx-auto flex w-full max-w-2xl cursor-pointer flex-col items-stretch gap-3 rounded-2xl bg-white/85 p-3 text-left shadow-[0_12px_48px_-6px_rgba(0,0,0,0.3),_0_4px_14px_-4px_rgba(0,0,0,0.15)] backdrop-blur-md sm:flex-row sm:items-center sm:rounded-full sm:p-2 sm:pl-6"
+        className="mx-auto flex w-full max-w-lg cursor-pointer flex-col items-stretch gap-2 rounded-2xl bg-white/85 p-2 text-left shadow-[0_12px_48px_-6px_rgba(0,0,0,0.3),_0_4px_14px_-4px_rgba(0,0,0,0.15)] backdrop-blur-md sm:flex-row sm:items-center sm:rounded-full sm:pl-5"
         onClick={() => setIsModalOpen(true)}
       >
         <span className="flex flex-1 items-center gap-3 px-3 sm:px-0">
