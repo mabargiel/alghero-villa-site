@@ -136,13 +136,26 @@ export default async function HomePage() {
           aria-hidden="true"
         />
         <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center px-6 pt-28 pb-32 text-center">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-xs tracking-[0.3em] text-[var(--foreground)] uppercase shadow-md">
-              {t("heroBadge")}
-            </div>
-            <h1 className="hero-text-shadow mt-6 text-4xl leading-tight font-bold tracking-wide text-white md:text-5xl">
-              <span className="md:hidden">{t("heroHeadlineMobile")}</span>
-              <span className="hidden md:inline">{t("heroHeadline")}</span>
+          <div className="flex flex-col items-center">
+            <span
+              className="mx-auto block h-auto w-64 [filter:drop-shadow(0_2px_8px_rgb(0_0_0/60%))_drop-shadow(0_4px_16px_rgb(0_0_0/40%))_drop-shadow(0_8px_40px_rgb(0_0_0/30%))] md:w-96"
+              style={{
+                maskImage: "url(/logo.svg)",
+                WebkitMaskImage: "url(/logo.svg)",
+                maskSize: "contain",
+                WebkitMaskSize: "contain",
+                maskRepeat: "no-repeat",
+                WebkitMaskRepeat: "no-repeat",
+                maskPosition: "center",
+                WebkitMaskPosition: "center",
+                backgroundColor: "#fff",
+                aspectRatio: "293 / 156",
+              }}
+              role="img"
+              aria-label="Villa Monte Calvia"
+            />
+            <h1 className="hero-text-shadow mt-16 text-xl font-medium tracking-[0.55em] text-white uppercase md:mt-20 md:text-5xl">
+              {t("heroHeadline")}
             </h1>
           </div>
         </div>
