@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import type { DateRange } from "react-day-picker";
 import { Link } from "@/i18n/navigation";
-import DateRangePicker from "./DateRangePicker";
+import { usePricingModal } from "./PricingModalProvider";
+import DatePickerModal from "./DatePickerModal";
 
 type FormState = "idle" | "sending" | "success" | "error";
 
@@ -33,16 +34,13 @@ function RulesLink(chunks: React.ReactNode) {
 }
 
 export default function ContactForm() {
+  const { range: sharedRange, config } = usePricingModal();
   const [state, setState] = useState<FormState>("idle");
   const [message, setMessage] = useState<string | null>(null);
-  const [dateRange, setDateRange] = useState<DateRange | undefined>();
+  const [dateRange, setDateRange] = useState<DateRange | undefined>(sharedRange);
   const [showCalendar, setShowCalendar] = useState(false);
   const t = useTranslations("contact");
   const locale = useLocale();
-
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const disablePast = (date: Date) => date < today;
 
   function formatDate(date: Date): string {
     return date.toLocaleDateString(locale, {
@@ -145,24 +143,19 @@ export default function ContactForm() {
           className={`${inputClass} cursor-pointer text-left ${
             dateRange?.from ? "text-[var(--foreground)]" : "text-[var(--muted)]"
           }`}
-          onClick={() => setShowCalendar((v) => !v)}
+          onClick={() => setShowCalendar(true)}
         >
           {dateRange?.from && dateRange?.to
             ? `${formatDate(dateRange.from)} → ${formatDate(dateRange.to)}`
             : t("selectDates")}
         </button>
-        {showCalendar && (
-          <div className="rounded-xl border border-[var(--surface)] bg-white p-4">
-            <DateRangePicker
-              range={dateRange}
-              onRangeChange={(r) => {
-                setDateRange(r);
-                if (r?.from && r?.to) setShowCalendar(false);
-              }}
-              disabled={disablePast}
-              numberOfMonths={1}
-            />
-          </div>
+        {showCalendar && config && (
+          <DatePickerModal
+            config={config}
+            range={dateRange}
+            onRangeChange={setDateRange}
+            onClose={() => setShowCalendar(false)}
+          />
         )}
       </div>
 

@@ -21,17 +21,17 @@ export function checkMinNightsWarning(range: DateRange | undefined): boolean {
   return nights < MIN_NIGHTS;
 }
 
-type PricingCalendarProps = Readonly<{
+type AvailabilityCalendarProps = Readonly<{
   config: PricingConfig;
   range: DateRange | undefined;
   onRangeChange: (range: DateRange | undefined) => void;
 }>;
 
-export default function PricingCalendar({
+export default function AvailabilityCalendar({
   config,
   range,
   onRangeChange,
-}: PricingCalendarProps) {
+}: AvailabilityCalendarProps) {
   const t = useTranslations("pricing");
 
   const tierLabels = [t("tierLow"), t("tierMid"), t("tierHigh")] as const;

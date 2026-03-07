@@ -1,14 +1,15 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Calendar, ArrowRight, Search } from "lucide-react";
 import { useTranslations, useLocale, useFormatter } from "next-intl";
 import type { DateRange } from "react-day-picker";
 
 import type { PricingConfig } from "@/lib/sanity/queries";
 import { calculatePriceBreakdown, type PriceBreakdown } from "@/lib/pricing";
-import { checkMinNightsWarning } from "./PricingCalendar";
+import { checkMinNightsWarning } from "./AvailabilityCalendar";
 import PricingModal from "./PricingModal";
+import { usePricingModal } from "./PricingModalProvider";
 
 type BookingBarProps = Readonly<{
   config: PricingConfig;
@@ -17,9 +18,14 @@ type BookingBarProps = Readonly<{
 export default function BookingBar({ config }: BookingBarProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [range, setRange] = useState<DateRange | undefined>();
+  const { setRange: setSharedRange } = usePricingModal();
   const t = useTranslations("pricing");
   const locale = useLocale();
   const format = useFormatter();
+
+  useEffect(() => {
+    setSharedRange(range);
+  }, [range, setSharedRange]);
 
   const breakdown: PriceBreakdown | null = useMemo(() => {
     if (!range?.from || !range?.to) return null;

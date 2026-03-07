@@ -6,29 +6,23 @@ import { useTranslations } from "next-intl";
 import type { DateRange } from "react-day-picker";
 
 import type { PricingConfig } from "@/lib/sanity/queries";
-import type { PriceBreakdown } from "@/lib/pricing";
 import AvailabilityCalendar from "./AvailabilityCalendar";
-import PriceSummary from "./PriceSummary";
 
-type PricingModalProps = Readonly<{
+type DatePickerModalProps = Readonly<{
   config: PricingConfig;
   range: DateRange | undefined;
   onRangeChange: (range: DateRange | undefined) => void;
-  breakdown: PriceBreakdown | null;
-  minNightsWarning: boolean;
   onClose: () => void;
 }>;
 
-export default function PricingModal({
+export default function DatePickerModal({
   config,
   range,
   onRangeChange,
-  breakdown,
-  minNightsWarning,
   onClose,
-}: PricingModalProps) {
+}: DatePickerModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const t = useTranslations("pricing");
+  const t = useTranslations("contact");
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -45,6 +39,13 @@ export default function PricingModal({
   const handleCancel = (e: React.SyntheticEvent) => {
     e.preventDefault();
     onClose();
+  };
+
+  const handleRangeChange = (newRange: DateRange | undefined) => {
+    onRangeChange(newRange);
+    if (newRange?.from && newRange?.to) {
+      onClose();
+    }
   };
 
   return (
@@ -65,28 +66,20 @@ export default function PricingModal({
             type="button"
             onClick={onClose}
             className="absolute top-4 right-4 flex h-9 w-9 items-center justify-center rounded-full bg-[var(--surface)] text-[var(--muted)] transition hover:bg-[var(--surface-strong)] hover:text-[var(--foreground)]"
-            aria-label={t("close")}
+            aria-label={t("selectDates")}
           >
             <X className="h-5 w-5" />
           </button>
 
           <h2 className="mb-6 text-xl font-semibold text-[var(--foreground)]">
-            {t("checkAvailability")}
+            {t("selectDates")}
           </h2>
 
           <AvailabilityCalendar
             config={config}
             range={range}
-            onRangeChange={onRangeChange}
+            onRangeChange={handleRangeChange}
           />
-
-          <div className="mt-6">
-            <PriceSummary
-              breakdown={breakdown}
-              config={config}
-              minNightsWarning={minNightsWarning}
-            />
-          </div>
         </div>
       </div>
     </dialog>

@@ -10,15 +10,21 @@ import {
 import type { DateRange } from "react-day-picker";
 import type { PricingConfig } from "@/lib/sanity/queries";
 import { calculatePriceBreakdown, type PriceBreakdown } from "@/lib/pricing";
-import { checkMinNightsWarning } from "./PricingCalendar";
+import { checkMinNightsWarning } from "./AvailabilityCalendar";
 import PricingModal from "./PricingModal";
 
 type PricingModalContextType = {
   openModal: () => void;
+  range: DateRange | undefined;
+  setRange: (range: DateRange | undefined) => void;
+  config: PricingConfig | null;
 };
 
 const PricingModalContext = createContext<PricingModalContextType>({
   openModal: () => {},
+  range: undefined,
+  setRange: () => {},
+  config: null,
 });
 
 export function usePricingModal() {
@@ -46,7 +52,10 @@ export default function PricingModalProvider({
     if (config) setIsOpen(true);
   }, [config]);
 
-  const contextValue = useMemo(() => ({ openModal }), [openModal]);
+  const contextValue = useMemo(
+    () => ({ openModal, range, setRange, config }),
+    [openModal, range, config],
+  );
 
   return (
     <PricingModalContext.Provider value={contextValue}>
