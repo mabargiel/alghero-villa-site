@@ -1,13 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import type { DateRange } from "react-day-picker";
 
 import type { PricingConfig } from "@/lib/sanity/queries";
 import type { PriceBreakdown } from "@/lib/pricing";
 import AvailabilityCalendar from "./AvailabilityCalendar";
+import ModalShell from "./ModalShell";
 import PriceSummary from "./PriceSummary";
 
 type PricingModalProps = Readonly<{
@@ -27,68 +26,27 @@ export default function PricingModal({
   minNightsWarning,
   onClose,
 }: PricingModalProps) {
-  const dialogRef = useRef<HTMLDialogElement>(null);
   const t = useTranslations("pricing");
 
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-    if (!dialog.open) dialog.showModal();
-
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, []);
-
-  const handleCancel = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    onClose();
-  };
-
   return (
-    <dialog
-      ref={dialogRef}
-      className="pricing-modal-backdrop fixed inset-0 z-50 bg-transparent p-4 backdrop:bg-black/50"
-      onCancel={handleCancel}
+    <ModalShell
+      onClose={onClose}
+      closeLabel={t("close")}
+      title={t("checkAvailability")}
     >
-      <div
-        className="flex min-h-full items-center justify-center"
-        role="presentation"
-        onClick={(e) => {
-          if (e.target === e.currentTarget) onClose();
-        }}
-      >
-        <div className="pricing-modal-content relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl bg-[var(--background)] p-6 shadow-[0_25px_60px_-12px_rgba(0,0,0,0.35)] sm:p-8">
-          <button
-            type="button"
-            onClick={onClose}
-            className="absolute top-4 right-4 flex h-9 w-9 items-center justify-center rounded-full bg-[var(--surface)] text-[var(--muted)] transition hover:bg-[var(--surface-strong)] hover:text-[var(--foreground)]"
-            aria-label={t("close")}
-          >
-            <X className="h-5 w-5" />
-          </button>
+      <AvailabilityCalendar
+        config={config}
+        range={range}
+        onRangeChange={onRangeChange}
+      />
 
-          <h2 className="mb-6 text-xl font-semibold text-[var(--foreground)]">
-            {t("checkAvailability")}
-          </h2>
-
-          <AvailabilityCalendar
-            config={config}
-            range={range}
-            onRangeChange={onRangeChange}
-          />
-
-          <div className="mt-6">
-            <PriceSummary
-              breakdown={breakdown}
-              config={config}
-              minNightsWarning={minNightsWarning}
-            />
-          </div>
-        </div>
+      <div className="mt-6">
+        <PriceSummary
+          breakdown={breakdown}
+          config={config}
+          minNightsWarning={minNightsWarning}
+        />
       </div>
-    </dialog>
+    </ModalShell>
   );
 }

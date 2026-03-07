@@ -37,7 +37,9 @@ export default function ContactForm() {
   const { range: sharedRange, config } = usePricingModal();
   const [state, setState] = useState<FormState>("idle");
   const [message, setMessage] = useState<string | null>(null);
-  const [dateRange, setDateRange] = useState<DateRange | undefined>(sharedRange);
+  const [dateRange, setDateRange] = useState<DateRange | undefined>(
+    sharedRange,
+  );
   const [showCalendar, setShowCalendar] = useState(false);
   const t = useTranslations("contact");
   const locale = useLocale();

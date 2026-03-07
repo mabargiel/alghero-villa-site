@@ -14,6 +14,7 @@ The contact form's date picker is visually inconsistent with the hero pricing ca
 ## Capabilities
 
 ### New Capabilities
+
 - `contact-calendar-modal`: Modal-based availability calendar in the contact form, with date propagation from hero booking bar
 
 ### Modified Capabilities

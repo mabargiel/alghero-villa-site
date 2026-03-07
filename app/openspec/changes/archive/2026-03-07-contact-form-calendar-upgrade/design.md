@@ -7,12 +7,14 @@ The app has a `PricingCalendar` component (wrapping `react-day-picker`) used ins
 ## Goals / Non-Goals
 
 **Goals:**
+
 - Visual consistency: contact form calendar matches the hero pricing modal calendar
 - Date propagation: dates picked on hero carry to the contact form
 - Rename `PricingCalendar` → `AvailabilityCalendar` for clarity
 - Contact form date field opens a modal (not inline) with the full 2-month availability calendar
 
 **Non-Goals:**
+
 - Refactoring `BookingBar` to fully reuse the provider's modal (it keeps its own modal — we just sync the range)
 - Changing the pricing modal's layout or behavior
 - Adding price summary to the contact form calendar modal
