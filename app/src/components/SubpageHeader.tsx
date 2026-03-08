@@ -13,7 +13,7 @@ export default function SubpageHeader({
     <div className="bg-[var(--deep-olive)] pt-36 pb-12 md:pt-40 md:pb-14">
       <header className="mx-auto max-w-6xl px-6">
         {eyebrow && (
-          <p className="text-xs tracking-[0.2em] text-[var(--accent-warm)] uppercase">
+          <p className="text-sm tracking-[0.2em] text-[var(--accent-warm)] uppercase">
             {eyebrow}
           </p>
         )}
@@ -22,7 +22,7 @@ export default function SubpageHeader({
         </h1>
         <div className="mt-3 h-0.5 w-12 rounded-full bg-[var(--accent-warm)]" />
         {description && (
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/60 md:text-base">
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/60 md:text-lg">
             {description}
           </p>
         )}

@@ -57,7 +57,7 @@ export type Hero = {
 
 export type HomeSection = {
   _id: string;
-  sectionKey: "property" | "interiors" | "garden" | "location";
+  sectionKey: "property" | "interiors" | "garden" | "beaches" | "location";
   image?: MediaImage;
 };
 
@@ -110,6 +110,8 @@ export type VillaExteriorImage = {
 
 export type VillaPage = {
   _id: string;
+  heroNavInteriorsImage?: MediaImage;
+  heroNavOutdoorsImage?: MediaImage;
   roomImages?: VillaRoomImages[];
   exteriorImages?: VillaExteriorImage[];
 };
@@ -283,9 +285,22 @@ export async function getPricingConfig() {
   );
 }
 
+const mediaImageProjection = `{
+  altText,
+  image {
+    asset->{
+      _id,
+      url,
+      metadata { dimensions }
+    }
+  }
+}`;
+
 const villaPageQuery = `
   *[_type == "villaPage"][0]{
     _id,
+    heroNavInteriorsImage ${mediaImageProjection},
+    heroNavOutdoorsImage ${mediaImageProjection},
     roomImages[] {
       _key,
       roomKey,

@@ -10,6 +10,8 @@ type SubNavGroup = {
 type VillaSubNavProps = Readonly<{
   groups: SubNavGroup[];
   ariaLabel?: string;
+  /** ID of an element — nav is hidden until this element leaves the viewport */
+  hideUntilPastId?: string;
 }>;
 
 function labelStyle(isActive: boolean, isHovered: boolean): string {
@@ -18,14 +20,39 @@ function labelStyle(isActive: boolean, isHovered: boolean): string {
   return "font-normal text-[var(--muted)] opacity-40";
 }
 
-export default function VillaSubNav({ groups, ariaLabel }: VillaSubNavProps) {
+export default function VillaSubNav({
+  groups,
+  ariaLabel,
+  hideUntilPastId,
+}: VillaSubNavProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [visible, setVisible] = useState(() => !hideUntilPastId);
   const navRef = useRef<HTMLElement>(null);
 
   const allItems = groups.flatMap((g) =>
     g.items.map((item) => ({ ...item, group: g.label })),
   );
+
+  // Hide nav while the sentinel element is in view
+  useEffect(() => {
+    if (!hideUntilPastId) return;
+    const sentinel = document.getElementById(hideUntilPastId);
+    if (!sentinel) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Only show nav after the sentinel has been scrolled past (above viewport),
+        // not when it's still below the viewport on initial load
+        setVisible(
+          !entry.isIntersecting && entry.boundingClientRect.bottom < 0,
+        );
+      },
+      { threshold: 0 },
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [hideUntilPastId]);
 
   // IntersectionObserver to track which section is in view
   useEffect(() => {
@@ -38,12 +65,12 @@ export default function VillaSubNav({ groups, ariaLabel }: VillaSubNavProps) {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        const visible = entries
+        const visibleEntries = entries
           .filter((e) => e.isIntersecting)
           .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
 
-        if (visible.length > 0) {
-          setActiveId(visible[0].target.id);
+        if (visibleEntries.length > 0) {
+          setActiveId(visibleEntries[0].target.id);
         }
       },
       {
@@ -67,14 +94,20 @@ export default function VillaSubNav({ groups, ariaLabel }: VillaSubNavProps) {
   return (
     <nav
       ref={navRef}
-      className="fixed top-[58%] right-6 z-30 hidden -translate-y-1/2 flex-col items-end gap-3 xl:flex 2xl:right-10"
+      className={`fixed top-1/2 right-6 z-30 hidden -translate-y-1/2 flex-col items-end gap-3 transition-opacity duration-300 xl:flex 2xl:right-10 ${
+        visible ? "opacity-100" : "pointer-events-none opacity-0"
+      }`}
       aria-label={ariaLabel}
     >
       {groups.map((group, gi) => (
         <div key={group.label} className="flex flex-col items-end gap-2">
           {gi > 0 && (
-            <div className="my-1 h-px w-4 bg-[var(--surface-strong)]" />
+            <div className="my-2 h-px w-6 bg-[var(--surface-strong)]" />
           )}
+          {/* Group header label */}
+          <span className="text-[10px] font-semibold tracking-[0.15em] text-[var(--muted)] uppercase opacity-60">
+            {group.label}
+          </span>
           {group.items.map((item) => {
             const isActive = activeId === item.id;
             const isHovered = hoveredId === item.id;

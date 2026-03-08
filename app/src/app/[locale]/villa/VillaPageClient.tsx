@@ -88,7 +88,11 @@ export default function VillaPageClient({
   return (
     <>
       {groups.length > 0 && (
-        <VillaSubNav groups={groups} ariaLabel={t("sectionNavAria")} />
+        <VillaSubNav
+          groups={groups}
+          ariaLabel={t("sectionNavAria")}
+          hideUntilPastId="villa-hero-nav"
+        />
       )}
 
       <div className="mx-auto max-w-6xl px-6">
@@ -102,10 +106,10 @@ export default function VillaPageClient({
                     {salon.title}
                   </h2>
                   <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent-warm)]" />
-                  <p className="mt-2 text-sm font-semibold text-[var(--brand)]">
+                  <p className="mt-2 text-lg font-normal text-[var(--brand)]">
                     {t("salonSubtitle")}
                   </p>
-                  <p className="mt-4 text-[var(--muted)]">
+                  <p className="mt-4 text-lg leading-relaxed text-[var(--muted)]">
                     {salon.description}
                   </p>
                   {salon.amenities.length > 0 && (
@@ -113,7 +117,7 @@ export default function VillaPageClient({
                       {salon.amenities.map((key) => (
                         <span
                           key={key}
-                          className="inline-flex items-center gap-1.5 text-xs text-[var(--muted)]"
+                          className="inline-flex items-center gap-1.5 text-sm text-[var(--muted)]"
                         >
                           <LucideIcon
                             name={key}
@@ -141,7 +145,7 @@ export default function VillaPageClient({
               {t("bedroomsTitle")}
             </h2>
             <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent-warm)]" />
-            <p className="mt-2 text-sm font-semibold text-[var(--brand)]">
+            <p className="mt-2 text-lg font-normal text-[var(--brand)]">
               {t("bedroomsSubtitle", { count: bedrooms.length })}
             </p>
             <div className="mt-8">
@@ -154,7 +158,7 @@ export default function VillaPageClient({
         {exteriorSections.length > 0 && rooms.length > 0 && (
           <div className="flex items-center gap-4 pb-12">
             <div className="h-px flex-1 bg-[var(--surface)]" />
-            <span className="text-xs font-semibold tracking-[0.2em] text-[var(--muted)] uppercase">
+            <span className="text-sm font-medium tracking-[0.2em] text-[var(--muted)] uppercase">
               {t("groupOutdoors")}
             </span>
             <div className="h-px flex-1 bg-[var(--surface)]" />
@@ -179,10 +183,10 @@ export default function VillaPageClient({
                     {section.title}
                   </h2>
                   <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent-warm)]" />
-                  <p className="mt-2 text-sm font-semibold text-[var(--brand)]">
+                  <p className="mt-2 text-lg font-normal text-[var(--brand)]">
                     {section.subtitle}
                   </p>
-                  <p className="mt-4 text-[var(--muted)]">
+                  <p className="mt-4 text-lg leading-relaxed text-[var(--muted)]">
                     {section.description}
                   </p>
                 </div>
