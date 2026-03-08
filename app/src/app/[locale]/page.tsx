@@ -85,8 +85,8 @@ export default async function HomePage() {
     };
   };
   const propertyImage = sectionImage("property");
-  const interiorsImage = sectionImage("interiors");
   const gardenImage = sectionImage("garden");
+  const beachesImage = sectionImage("beaches");
   const locationImage = sectionImage("location");
   const heroVideoUrl = hero?.video?.asset?.url ?? hero?.videoUrl;
   const heroVideoUrlLight = hero?.videoLight?.asset?.url;
@@ -186,11 +186,11 @@ export default async function HomePage() {
           className="mx-auto max-w-6xl px-6 pt-16 pb-4 text-center"
         >
           <Image
-            src="/divider.svg"
+            src="/logo-flower.svg"
             alt=""
-            width={480}
-            height={88}
-            className="mx-auto mb-6 h-12 w-auto fill-[var(--brand)]"
+            width={48}
+            height={48}
+            className="mx-auto mb-6 h-12 w-12"
           />
         </div>
       </Reveal>
@@ -201,7 +201,7 @@ export default async function HomePage() {
             Villa Monte Calvia
           </h2>
           <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-[var(--accent-warm)]" />
-          <p className="mt-2 text-sm font-semibold text-[var(--brand)]">
+          <p className="mt-2 text-xl font-normal text-[var(--brand)]">
             {t("discoverSubtitle")}
           </p>
           <AreaHighlights images={areaHighlightImages} />
@@ -216,15 +216,15 @@ export default async function HomePage() {
                 {t("villaTitle")}
               </h2>
               <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent-warm)]" />
-              <p className="mt-2 text-sm font-semibold text-[var(--brand)]">
+              <p className="mt-2 text-lg font-normal text-[var(--brand)]">
                 {t("villaSubtitle")}
               </p>
-              <p className="mt-4 text-[var(--muted)]">
+              <p className="mt-4 text-lg leading-relaxed text-[var(--muted)]">
                 {t("villaDescription")}
               </p>
               <Link
-                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-sky)]"
-                href="/villa"
+                className="mt-6 inline-flex items-center gap-2 text-base font-medium text-[var(--accent-sky)]"
+                href="/villa#salon"
               >
                 {t("villaLink")}
               </Link>
@@ -241,27 +241,27 @@ export default async function HomePage() {
       <Reveal>
         <section className="mx-auto max-w-6xl px-6 pb-16">
           <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
-            {interiorsImage ? (
+            {gardenImage ? (
               <div className="order-2 md:order-none">
-                <SectionImage {...interiorsImage} />
+                <SectionImage {...gardenImage} />
               </div>
             ) : null}
             <div className="order-1 md:order-none">
               <h2 className="text-2xl font-semibold md:text-3xl">
-                {t("interiorsTitle")}
+                {t("gardenTitle")}
               </h2>
               <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent-warm)]" />
-              <p className="mt-2 text-sm font-semibold text-[var(--brand)]">
-                {t("interiorsSubtitle")}
+              <p className="mt-2 text-lg font-normal text-[var(--brand)]">
+                {t("gardenSubtitle")}
               </p>
-              <p className="mt-4 text-[var(--muted)]">
-                {t("interiorsDescription")}
+              <p className="mt-4 text-lg leading-relaxed text-[var(--muted)]">
+                {t("gardenDescription")}
               </p>
               <Link
-                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-sky)]"
-                href="/villa"
+                className="mt-6 inline-flex items-center gap-2 text-base font-medium text-[var(--accent-sky)]"
+                href="/villa#ext-garden"
               >
-                {t("interiorsLink")}
+                {t("gardenLink")}
               </Link>
             </div>
           </div>
@@ -306,25 +306,25 @@ export default async function HomePage() {
           <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
             <div className="order-1 md:order-none">
               <h2 className="text-2xl font-semibold md:text-3xl">
-                {t("gardenTitle")}
+                {t("beachesTitle")}
               </h2>
               <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent-warm)]" />
-              <p className="mt-2 text-sm font-semibold text-[var(--brand)]">
-                {t("gardenSubtitle")}
+              <p className="mt-2 text-lg font-normal text-[var(--brand)]">
+                {t("beachesSubtitle")}
               </p>
-              <p className="mt-4 text-[var(--muted)]">
-                {t("gardenDescription")}
+              <p className="mt-4 text-lg leading-relaxed text-[var(--muted)]">
+                {t("beachesDescription")}
               </p>
               <Link
-                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-sky)]"
+                className="mt-6 inline-flex items-center gap-2 text-base font-medium text-[var(--accent-sky)]"
                 href="/location"
               >
-                {t("gardenLink")}
+                {t("beachesLink")}
               </Link>
             </div>
-            {gardenImage ? (
+            {beachesImage ? (
               <div className="order-2 md:order-none">
-                <SectionImage {...gardenImage} />
+                <SectionImage {...beachesImage} />
               </div>
             ) : null}
           </div>
@@ -344,13 +344,13 @@ export default async function HomePage() {
                 {t("locationTitle")}
               </h2>
               <div className="mt-3 h-1 w-12 rounded-full bg-[var(--accent-warm)]" />
-              <p className="mt-2 text-sm font-semibold text-[var(--brand)]">
+              <p className="mt-2 text-lg font-normal text-[var(--brand)]">
                 {t("locationSubtitle")}
               </p>
-              <p className="mt-4 text-[var(--muted)]">
+              <p className="mt-4 text-lg leading-relaxed text-[var(--muted)]">
                 {t("locationDescription")}
               </p>
-              <ul className="mt-5 grid gap-3 text-sm text-[var(--muted)] sm:grid-cols-2">
+              <ul className="mt-5 grid gap-3 text-base text-[var(--muted)] sm:grid-cols-2">
                 <li className="flex items-center gap-3 rounded-lg bg-white/70 px-3 py-2 shadow-sm">
                   <LucideIcon
                     name="port"
@@ -391,7 +391,7 @@ export default async function HomePage() {
             {t("amenitiesTitle")}
           </h2>
           <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-[var(--accent-warm)]" />
-          <p className="mt-2 text-sm font-semibold text-[var(--brand)]">
+          <p className="mt-2 text-lg font-normal text-[var(--brand)]">
             {t("amenitiesSubtitle")}
           </p>
           <div className="mx-auto mt-10 grid max-w-3xl grid-cols-3 items-start gap-x-8 gap-y-10 text-center">
@@ -407,7 +407,7 @@ export default async function HomePage() {
                     className="h-7 w-7 text-[var(--brand)]"
                   />
                 </div>
-                <span className="text-xs font-semibold tracking-[0.14em] text-[var(--foreground)] uppercase">
+                <span className="text-sm font-medium tracking-[0.14em] text-[var(--foreground)] uppercase">
                   {amenityLabels[index]}
                 </span>
               </div>

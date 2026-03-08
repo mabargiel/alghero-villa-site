@@ -10,9 +10,11 @@ We already use Vercel Analytics for page views but have no visibility into real-
 ## Capabilities
 
 ### New Capabilities
+
 - `vercel-speed-insights`: Collecting and reporting real-user Web Vitals (LCP, FID, CLS, TTFB, INP) via Vercel Speed Insights
 
 ### Modified Capabilities
+
 _(none — no existing spec requirements change)_
 
 ## Impact
