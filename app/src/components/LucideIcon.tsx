@@ -1,5 +1,6 @@
 import {
   Activity,
+  Anchor,
   Armchair,
   Baby,
   Bath,
@@ -9,18 +10,26 @@ import {
   CarFront,
   Circle,
   Coffee,
+  Droplets,
+  Fish,
   LandPlot,
   Landmark,
+  Leaf,
   MapPin,
+  Mountain,
   Sailboat,
+  Shell,
   Snowflake,
   Sofa,
   Sun,
+  TreePine,
   Trees,
   Umbrella,
   UtensilsCrossed,
+  Waves,
   Wifi,
   Wind,
+  Wine,
 } from "lucide-react";
 
 const iconMap = {
@@ -49,6 +58,18 @@ const iconMap = {
   "twin-double": BedDouble,
   lounger: Armchair,
   "garden-furniture": Umbrella,
+  // Beach / location tags
+  sandy: Shell,
+  rocks: Mountain,
+  seaweed: Leaf,
+  turquoise: Droplets,
+  "kid-friendly": Baby,
+  "beach-services": Umbrella,
+  bars: Wine,
+  snorkeling: Fish,
+  waves: Waves,
+  "rope-park": TreePine,
+  "diving-center": Anchor,
 };
 
 export type IconKey = keyof typeof iconMap;

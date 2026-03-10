@@ -349,3 +349,69 @@ export async function getVillaPage() {
     { next: { revalidate: 300 } },
   );
 }
+
+// ---------------------------------------------------------------------------
+// Location page
+// ---------------------------------------------------------------------------
+
+export type LocationImageSet = {
+  _key: string;
+  locationKey: string;
+  images: MediaImage[];
+};
+
+export type LocationPage = {
+  _id: string;
+  heroImage?: MediaImage;
+  beaches?: LocationImageSet[];
+  towns?: LocationImageSet[];
+  nature?: LocationImageSet[];
+  archaeology?: LocationImageSet[];
+  dayTrips?: LocationImageSet[];
+  diving?: LocationImageSet[];
+};
+
+const locationPageQuery = `
+  *[_type == "locationPage"][0]{
+    _id,
+    heroImage ${mediaImageProjection},
+    beaches[] {
+      _key,
+      locationKey,
+      images[] ${mediaImageProjection}
+    },
+    towns[] {
+      _key,
+      locationKey,
+      images[] ${mediaImageProjection}
+    },
+    nature[] {
+      _key,
+      locationKey,
+      images[] ${mediaImageProjection}
+    },
+    archaeology[] {
+      _key,
+      locationKey,
+      images[] ${mediaImageProjection}
+    },
+    dayTrips[] {
+      _key,
+      locationKey,
+      images[] ${mediaImageProjection}
+    },
+    diving[] {
+      _key,
+      locationKey,
+      images[] ${mediaImageProjection}
+    }
+  }
+`;
+
+export async function getLocationPage() {
+  return sanityClient.fetch<LocationPage | null>(
+    locationPageQuery,
+    {},
+    { next: { revalidate: 300 } },
+  );
+}
