@@ -260,6 +260,169 @@
     "finalProvisionsTitle": "§5 Disposizioni finali",
     "finalProvisionsBody": "1. Il Proprietario si riserva il diritto di effettuare manutenzione, pulizia o riparazioni necessarie durante il soggiorno, previo avviso, salvo in caso di emergenza.\n\n2. Il diritto italiano disciplina il rapporto tra Proprietario e Ospite. Le controversie saranno risolte amichevolmente; in caso contrario, il foro competente sarà quello del luogo di attività del Proprietario.\n\nSi prega di avere cura della proprietà, spegnere le luci non necessarie, chiudere i rubinetti e lasciare la villa nelle condizioni in cui è stata trovata.\n\nPer la sicurezza dei nostri ospiti — le aree esterne comuni sono monitorate da telecamere."
   },
+  "location": {
+    "eyebrow": "Dintorni",
+    "title": "Scopri i dintorni di Alghero",
+    "description": "Spiagge, borghi affascinanti, siti antichi e meraviglie naturali — tutto a breve distanza da Villa Monte Calvia.",
+    "sectionBeaches": "Spiagge",
+    "sectionTowns": "Borghi",
+    "sectionArchaeology": "Patrimonio",
+    "sectionNature": "Natura",
+    "sectionDayTrips": "Escursioni",
+    "sectionDiving": "Immersioni",
+    "sectionMap": "Mappa",
+    "subgroupAlghero": "Spiagge di Alghero",
+    "subgroupSouth": "Costa meridionale",
+    "subgroupNearby": "Spiagge nei dintorni",
+    "beachesIntro": "La zona di Alghero è famosa per le sue splendide spiagge, che attirano visitatori da tutto il mondo. Il nome della città deriva dalle alghe portate a riva — le potete vedere lungo alcune spiagge.",
+    "townsIntro": "Affascinanti borghi sardi raggiungibili in giornata.",
+    "archaeologyIntro": "La Sardegna nasconde alcuni dei monumenti più antichi e misteriosi d'Europa.",
+    "natureIntro": "La costa occidentale della Sardegna offre esperienze naturalistiche indimenticabili.",
+    "dayTripsIntro": "Escursioni giornaliere da non perdere durante il soggiorno.",
+    "divingIntro": "La Riviera del Corallo è un paradiso per gli appassionati del mondo sottomarino.",
+    "driveTime": "{minutes} min",
+    "openInMaps": "Apri in Google Maps",
+    "tagSandy": "Sabbiosa",
+    "tagRocks": "Rocce",
+    "tagSeaweed": "Alghe",
+    "tagTurquoise": "Acqua turchese",
+    "tagKidFriendly": "Per bambini",
+    "tagBeachServices": "Servizi spiaggia",
+    "tagBars": "Bar",
+    "tagSnorkeling": "Snorkeling",
+    "tagWaves": "Onde",
+    "tagRopePark": "Parco avventura",
+    "tagDivingCenter": "Centro immersioni",
+    "mapTitle": "Mappa dei dintorni di Alghero",
+    "mapLegendBeaches": "Spiagge",
+    "mapLegendTowns": "Borghi",
+    "mapLegendNature": "Natura",
+    "mapLegendArchaeology": "Patrimonio",
+    "mapLegendTrips": "Escursioni e immersioni",
+    "ctaTitle": "Benvenuti a Villa Monte Calvia",
+    "ctaDescription": "Scoprite la bellezza della Sardegna dalla base perfetta — spazio, tranquillità e fascino mediterraneo.",
+    "scrollAria": "Scorri verso il basso",
+    "sectionNavAria": "Navigazione sezioni",
+    "bottomSheetClose": "Chiudi",
+
+    "loc_lido-di-alghero_name": "Lido di Alghero",
+    "loc_lido-di-alghero": "La spiaggia cittadina più vicina al centro storico. Un ampio arenile che si estende dal porto lungo il lungomare principale.",
+
+    "loc_san-giovanni_name": "Spiaggia di San Giovanni",
+    "loc_san-giovanni": "Spiaggia cittadina lungo il lungomare principale, prosecuzione naturale del Lido.",
+
+    "loc_baia-dei-venti_name": "La Baia dei Venti",
+    "loc_baia-dei-venti": "Fondali bassi per un lungo tratto e sabbia bianca. Perfetta per i bambini.",
+
+    "loc_maria-pia_name": "Spiaggia di Maria Pia",
+    "loc_maria-pia": "Sabbia bianca, dune, pineta e ginepri. Ideale per le famiglie. Piuttosto affollata in estate. Stabilimenti balneari, ristoranti e bar.",
+
+    "loc_fertilia_name": "Fertilia",
+    "loc_fertilia": "Tranquilla, meno turistica. Acqua bassa. Sulla riva si possono trovare alghe secche.",
+
+    "loc_punta-negra_name": "Punta Negra",
+    "loc_punta-negra": "Piccola spiaggia in un'insenatura. Una parte è riservata agli ospiti dell'hotel.",
+
+    "loc_le-bombarde_name": "Le Bombarde",
+    "loc_le-bombarde": "Una delle spiagge più famose e alla moda di Alghero. Circondata da intrattenimento, sport e relax (incluso un grande parco avventura per bambini).",
+    "loc_le-bombarde_highlight": "Una delle spiagge più famose!",
+
+    "loc_lazzaretto_name": "Lazzaretto",
+    "loc_lazzaretto": "Spiaggia di sabbia fine immersa nella macchia mediterranea. Circondata da una serie di calette con sabbia, ghiaia e rocce bagnate da acque cristalline, riparate dal vento.",
+
+    "loc_torre-del-lazzaretto_name": "Spiaggia di Torre del Lazzaretto",
+    "loc_torre-del-lazzaretto": "Piccola spiaggia nascosta. Meno affollata. Per chi apprezza la tranquillità.",
+
+    "loc_maristella_name": "Spiaggia di Maristella",
+    "loc_maristella": "Spiaggia tranquilla nei pressi di Maristella.",
+
+    "loc_mugoni_name": "Porto Conte / Mugoni",
+    "loc_mugoni": "Porto Conte è un'ampia baia lungo la costa settentrionale della Riviera del Corallo, racchiusa dal promontorio roccioso di Capo Caccia. La spiaggia di Mugoni è incorniciata da una pineta con eucalipti — ci si può riparare alla loro ombra senza bisogno di ombrelloni. Spiaggia spaziosa — anche in alta stagione troverete sempre posto per tutta la famiglia. Sabbia dorata. Dotata di stabilimento balneare, noleggio barche, immersioni, bar.",
+    "loc_mugoni_highlight": "La nostra preferita!",
+
+    "loc_tramariglio-beach_name": "Tramariglio",
+    "loc_tramariglio-beach": "Spiaggia di ghiaia e sabbia dorata. Vicina all'imponente promontorio di Capo Caccia.",
+
+    "loc_pischina-salida_name": "Pischina Salida",
+    "loc_pischina-salida": "Piccola spiaggia selvaggia nei pressi di Capo Caccia.",
+
+    "loc_cala-dragunara_name": "Cala Dragunara",
+    "loc_cala-dragunara": "Incantevole caletta ai piedi di Capo Caccia. Servizio barche per la Grotta di Nettuno. Spiaggia attrezzata (lettini, ombrelloni), bar.",
+
+    "loc_porticciolo_name": "Porticciolo",
+    "loc_porticciolo": "A forma di mezzaluna, immersa nella macchia mediterranea. In primavera, quando la natura si risveglia, è una vera esplosione di colori. Fondali rocciosi poco profondi che regalano all'acqua infinite sfumature di verde e azzurro.",
+
+    "loc_porto-ferro_name": "Porto Ferro",
+    "loc_porto-ferro": "La spiaggia preferita dai surfisti! Ampia spiaggia libera al confine tra Alghero e Sassari, incorniciata da grandi dune. Vicina al Lago Baratz, l'unico lago naturale della Sardegna.",
+
+    "loc_calabona_name": "Calabona",
+    "loc_calabona": "Vicina al centro, nei pressi di uno dei punti panoramici più suggestivi della Riviera del Corallo — la collina di Balaguer. La zona è composta da piccole calette e insenature nascoste, alcune sabbiose, altre con ciottoli.",
+
+    "loc_cala-burantino_name": "Cala Burantino",
+    "loc_cala-burantino": "Tra le rocce arenarie a sud della città, due piccole spiagge di sabbia dorata. Meta preferita dai velisti. Non facilmente raggiungibile via terra — bisogna lasciare l'auto e camminare circa 1 km.",
+
+    "loc_la-speranza_name": "La Speranza",
+    "loc_la-speranza": "Al confine tra Alghero e Villanova Monteleone. Prevalentemente ghiaia e sabbia ambrata. L'esposizione al vento la rende popolare tra i surfisti nelle giornate ventose.",
+
+    "loc_ezzi-mannu_name": "Ezzi Mannu",
+    "loc_ezzi-mannu": "Splendida spiaggia nei pressi di Stintino.",
+
+    "loc_le-saline_name": "Spiaggia Le Saline",
+    "loc_le-saline": "Grande spiaggia sabbiosa nei pressi di Stintino.",
+
+    "loc_la-pelosa_name": "La Pelosa",
+    "loc_la-pelosa": "Una delle spiagge più belle della Sardegna e dell'intero Mediterraneo. Acqua cristallina color turchese e sabbia bianca con vista sull'isola dell'Asinara.",
+    "loc_la-pelosa_highlight": "La perla della Sardegna!",
+
+    "loc_alghero_name": "Alghero",
+    "loc_alghero": "Affascinante città catalana con un pittoresco centro storico, vicoli stretti, lungomare del porto e una ricca storia. Il cuore della vita notturna e delle esperienze gastronomiche della regione.",
+
+    "loc_bosa_name": "Bosa",
+    "loc_bosa": "Cittadina colorata sul fiume Temo, con il Castello Malaspina sulla collina. Nota per la tradizionale concia delle pelli, le case pittoresche e l'eccellente vino Malvasia.",
+
+    "loc_castelsardo_name": "Castelsardo",
+    "loc_castelsardo": "Borgo medievale arroccato sulla scogliera con l'imponente Castello dei Doria. Famoso per l'artigianato dell'intreccio e i panorami mozzafiato sul Golfo dell'Asinara.",
+
+    "loc_nuraghi_name": "Nuraghi",
+    "loc_nuraghi": "Antiche torri difensive sarde risalenti all'Età del Bronzo. Nei pressi di Alghero si trovano il Nuraghe Sant'Imbenia e molti altri — strutture in pietra uniche al mondo.",
+
+    "loc_domus-de-janas_name": "Domus de Janas",
+    "loc_domus-de-janas": "Tombe neolitiche scavate nella roccia, note come 'case delle fate'. Camere misteriose con incisioni millenarie — uno dei siti preistorici più importanti della Sardegna.",
+
+    "loc_pozzo-santa-cristina_name": "Pozzo Santa Cristina",
+    "loc_pozzo-santa-cristina": "Pozzo sacro dell'epoca nuragica — un capolavoro di architettura sacra. La perfetta geometria della scala che conduce nel sottosuolo è davvero impressionante.",
+
+    "loc_piramida_name": "Monte d'Accoddi",
+    "loc_piramida": "L'unica piramide a gradoni dell'Europa antica. Risalente al IV millennio a.C. — una struttura misteriosa che continua ad affascinare gli archeologi.",
+
+    "loc_grotta-di-nettuno_name": "Grotta di Nettuno",
+    "loc_grotta-di-nettuno": "Una delle grotte marine più belle del Mediterraneo. Raggiungibile in barca dal porto di Alghero o tramite la scala dell'Escala del Cabirol (654 gradini!). L'interno stupisce con stalattiti, stalagmiti e un lago sotterraneo.",
+    "loc_grotta-di-nettuno_highlight": "Da non perdere!",
+
+    "loc_capo-caccia_name": "Capo Caccia",
+    "loc_capo-caccia": "Maestoso promontorio roccioso con panorami mozzafiato sul mare. Punto di partenza per la Grotta di Nettuno e paradiso per gli amanti dell'escursionismo.",
+
+    "loc_grotta-verde_name": "Grotta Verde",
+    "loc_grotta-verde": "Grotta marina nota per la luce verdastra che si riflette sull'acqua. Raggiungibile in barca — un'esperienza intima immersa nella natura incontaminata.",
+
+    "loc_trekking_name": "Sentieri escursionistici",
+    "loc_trekking": "La regione offre numerosi sentieri escursionistici — dalle facili passeggiate costiere ai percorsi più impegnativi nell'entroterra. Capo Caccia, Porto Conte e la zona di Bosa offrono i sentieri più belli.",
+
+    "loc_asinara_name": "Isola dell'Asinara",
+    "loc_asinara": "Ex carcere di massima sicurezza, oggi Parco Nazionale. Natura selvaggia, asinelli bianchi (da cui il nome), acque cristalline e una storia affascinante. Raggiungibile in traghetto da Stintino.",
+
+    "loc_costa-smeralda_name": "Costa Smeralda",
+    "loc_costa-smeralda": "La costa esclusiva della Sardegna nord-orientale. Porto Cervo, Porto Rotondo e baie color smeraldo — perfetta per una gita glamour di una giornata.",
+
+    "loc_la-maddalena_name": "Arcipelago di La Maddalena",
+    "loc_la-maddalena": "Arcipelago di 7 isole di straordinaria bellezza. Acque turchesi, la sabbia rosa della spiaggia di Budelli e natura incontaminata. Traghetto da Palau.",
+
+    "loc_tramariglio-diving_name": "Tramariglio — centro immersioni",
+    "loc_tramariglio-diving": "Centro immersioni nella baia di Tramariglio, nel Parco di Porto Conte. Perfetto per immergersi con un istruttore o esplorare in autonomia il mondo sottomarino della Riviera del Corallo.",
+
+    "loc_porto-conte-diving_name": "Porto Conte — escursioni e immersioni",
+    "loc_porto-conte-diving": "La baia di Porto Conte è il punto di partenza per crociere lungo la costa verso la Grotta di Nettuno e Capo Caccia. Noleggio barche e crociere organizzate in pontone."
+  },
   "common": {
     "allRightsReserved": "© {year} Villa Monte Calvia. Tutti i diritti riservati.",
     "designedBy": "Progettato e realizzato da",
