@@ -90,7 +90,7 @@ export default async function VillaPage() {
       ...room,
       title: keys ? t(keys.title as Parameters<typeof t>[0]) : room.key,
       description: keys ? t(keys.description as Parameters<typeof t>[0]) : "",
-      coverImage: cmsImages?.coverImage
+      coverImage: cmsImages?.coverImage?.image
         ? {
             altText: cmsImages.coverImage.altText,
             url: urlFor(cmsImages.coverImage.image)
@@ -100,10 +100,12 @@ export default async function VillaPage() {
               .url(),
           }
         : null,
-      galleryImages: (cmsImages?.galleryImages ?? []).map((img) => ({
-        altText: img.altText,
-        url: urlFor(img.image).width(1200).quality(85).auto("format").url(),
-      })),
+      galleryImages: (cmsImages?.galleryImages ?? [])
+        .filter((img) => img.image)
+        .map((img) => ({
+          altText: img.altText,
+          url: urlFor(img.image).width(1200).quality(85).auto("format").url(),
+        })),
     };
   });
 
@@ -116,7 +118,7 @@ export default async function VillaPage() {
       title: keys ? t(keys.title as Parameters<typeof t>[0]) : section.key,
       subtitle: keys ? t(keys.subtitle as Parameters<typeof t>[0]) : "",
       description: keys ? t(keys.description as Parameters<typeof t>[0]) : "",
-      image: cmsImage?.image
+      image: cmsImage?.image?.image
         ? {
             altText: cmsImage.image.altText,
             url: urlFor(cmsImage.image.image)
@@ -164,7 +166,7 @@ export default async function VillaPage() {
         <div className="mt-auto">
           <VillaHeroNav
             interiorsImage={
-              villaPage?.heroNavInteriorsImage
+              villaPage?.heroNavInteriorsImage?.image
                 ? {
                     altText: villaPage.heroNavInteriorsImage.altText,
                     url: urlFor(villaPage.heroNavInteriorsImage.image)
@@ -176,7 +178,7 @@ export default async function VillaPage() {
                 : null
             }
             outdoorsImage={
-              villaPage?.heroNavOutdoorsImage
+              villaPage?.heroNavOutdoorsImage?.image
                 ? {
                     altText: villaPage.heroNavOutdoorsImage.altText,
                     url: urlFor(villaPage.heroNavOutdoorsImage.image)

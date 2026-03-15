@@ -19,7 +19,7 @@ export default function LocationCard({
   onTap,
 }: LocationCardProps) {
   const t = useTranslations("location");
-  const imageUrl = image
+  const imageUrl = image?.image
     ? urlFor(image.image).width(800).quality(80).auto("format").url()
     : undefined;
 

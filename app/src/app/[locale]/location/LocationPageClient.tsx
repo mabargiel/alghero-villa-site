@@ -471,7 +471,7 @@ export default function LocationPageClient({
         {sheetItem && (
           <div className="flex flex-col gap-4">
             {/* Image */}
-            {sheetImage && (
+            {sheetImage?.image && (
               <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl">
                 <Image
                   src={urlFor(sheetImage.image)

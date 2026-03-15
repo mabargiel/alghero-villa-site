@@ -7,12 +7,14 @@ import GalleryClient from "./GalleryClient";
 export default async function GalleryPage() {
   const gallery = await getGallery();
   const t = await getTranslations("gallery");
-  const images = (gallery?.images ?? []).map((image) => ({
-    key: image._key,
-    altText: "",
-    url: urlFor(image).width(1400).quality(80).auto("format").url(),
-    aspectRatio: image.asset.metadata?.dimensions?.aspectRatio,
-  }));
+  const images = (gallery?.images ?? [])
+    .filter((image) => image.asset)
+    .map((image) => ({
+      key: image._key,
+      altText: "",
+      url: urlFor(image).width(1400).quality(80).auto("format").url(),
+      aspectRatio: image.asset.metadata?.dimensions?.aspectRatio,
+    }));
 
   return (
     <main className="min-h-screen pb-16">

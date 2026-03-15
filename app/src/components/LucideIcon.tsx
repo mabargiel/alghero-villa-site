@@ -1,5 +1,4 @@
 import {
-  Activity,
   Anchor,
   Armchair,
   Baby,
@@ -26,6 +25,7 @@ import {
   Trees,
   Umbrella,
   UtensilsCrossed,
+  Volleyball,
   Waves,
   Wifi,
   Wind,
@@ -41,7 +41,7 @@ const iconMap = {
   location: MapPin,
   kitchen: UtensilsCrossed,
   veranda: Umbrella,
-  sports: Activity,
+  sports: Volleyball,
   garden: Trees,
   parking: Car,
   bathroom: Bath,
