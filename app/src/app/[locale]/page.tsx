@@ -60,11 +60,13 @@ export default async function HomePage() {
     (sections ?? []).map((section) => [section.sectionKey, section.image]),
   );
   const heroImages =
-    hero?.images?.map((image) => ({
-      altText: image.altText,
-      url: urlFor(image.image).width(2200).quality(85).auto("format").url(),
-    })) ?? [];
-  const heroMobileImage = hero?.mobileImage
+    hero?.images
+      ?.filter((image) => image.image)
+      .map((image) => ({
+        altText: image.altText,
+        url: urlFor(image.image).width(2200).quality(85).auto("format").url(),
+      })) ?? [];
+  const heroMobileImage = hero?.mobileImage?.image
     ? {
         altText: hero.mobileImage.altText,
         url: urlFor(hero.mobileImage.image)
@@ -76,7 +78,7 @@ export default async function HomePage() {
     : undefined;
   const sectionImage = (key: HomeSection["sectionKey"]) => {
     const image = sectionMap.get(key);
-    if (!image) {
+    if (!image?.image) {
       return null;
     }
     return {
@@ -91,16 +93,21 @@ export default async function HomePage() {
   const heroVideoUrl = hero?.video?.asset?.url ?? hero?.videoUrl;
   const heroVideoUrlLight = hero?.videoLight?.asset?.url;
   const areaHighlightImages =
-    areaHighlights?.images?.map((image) => ({
-      altText: image.altText,
-      url: urlFor(image.image).width(800).quality(85).auto("format").url(),
-    })) ?? [];
+    areaHighlights?.images
+      ?.filter((image) => image.image)
+      .map((image) => ({
+        altText: image.altText,
+        url: urlFor(image.image).width(800).quality(85).auto("format").url(),
+      })) ?? [];
   const miniGalleryImages =
-    miniGallery?.images?.slice(0, 5).map((image) => ({
-      key: image._key,
-      altText: "",
-      url: urlFor(image).width(1200).quality(85).auto("format").url(),
-    })) ?? [];
+    miniGallery?.images
+      ?.filter((image) => image.asset)
+      .slice(0, 5)
+      .map((image) => ({
+        key: image._key,
+        altText: "",
+        url: urlFor(image).width(1200).quality(85).auto("format").url(),
+      })) ?? [];
 
   const amenityLabels = [
     t("amenity1"),

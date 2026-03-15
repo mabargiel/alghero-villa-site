@@ -17,7 +17,7 @@ export default function FeaturedLocationCard({
   image,
 }: FeaturedLocationCardProps) {
   const t = useTranslations("location");
-  const imageUrl = image
+  const imageUrl = image?.image
     ? urlFor(image.image).width(1400).quality(85).auto("format").url()
     : undefined;
 
