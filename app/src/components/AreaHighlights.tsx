@@ -19,14 +19,14 @@ type Area = {
 
 const areas: Area[] = [
   {
-    titleKey: "areaBedroomsTitle",
-    descriptionKey: "areaBedroomsDescription",
-    iconKey: "bedrooms",
+    titleKey: "areaInteriorsTitle",
+    descriptionKey: "areaInteriorsDescription",
+    iconKey: "living-room",
   },
   {
-    titleKey: "areaSalonTitle",
-    descriptionKey: "areaSalonDescription",
-    iconKey: "living-room",
+    titleKey: "areaVerandasTitle",
+    descriptionKey: "areaVerandasDescription",
+    iconKey: "veranda",
   },
   {
     titleKey: "areaGardenTitle",
@@ -34,9 +34,9 @@ const areas: Area[] = [
     iconKey: "garden",
   },
   {
-    titleKey: "areaVerandaTitle",
-    descriptionKey: "areaVerandaDescription",
-    iconKey: "veranda",
+    titleKey: "areaSportsFieldTitle",
+    descriptionKey: "areaSportsFieldDescription",
+    iconKey: "sports",
   },
 ];
 
