@@ -330,6 +330,7 @@
     "loc_alghero_name": "Alghero",
     "loc_bosa_name": "Bosa",
     "loc_castelsardo_name": "Castelsardo",
+    "loc_tinnura_name": "Tinnura & Orgosolo",
     "loc_nuraghi_name": "Nuraghi",
     "loc_domus-de-janas_name": "Maisons des Fées (Domus de Janas)",
     "loc_pozzo-santa-cristina_name": "Pozzo Santa Cristina",
@@ -369,6 +370,7 @@
     "loc_alghero": "Charmante ville catalane avec une vieille ville pittoresque, des ruelles étroites, une promenade le long du port et une riche histoire. Le cœur de la vie nocturne et des expériences gastronomiques.",
     "loc_bosa": "Ville colorée au bord du fleuve Temo, dominée par le château de Malaspina. Connue pour le tannage traditionnel, ses maisons pittoresques et son excellent vin Malvasia.",
     "loc_castelsardo": "Cité médiévale perchée sur une falaise avec le château des Doria. Célèbre pour la vannerie et ses vues imprenables sur le golfe d'Asinara.",
+    "loc_tinnura": "Deux minuscules villages sardes célèbres pour leurs murales spectaculaires. Tinnura, près de Bosa, est un musée à ciel ouvert avec plus de 20 peintures représentant la vie rurale. Orgosolo, au cœur des montagnes de la Barbagia, compte environ 150 murales à forte charge politique, témoignage de l'esprit rebelle de la Sardaigne.",
     "loc_nuraghi": "Anciennes tours défensives sardes datant de l'âge du Bronze. Près d'Alghero : le Nuraghe Sant'Imbenia et bien d'autres — des structures de pierre uniques que l'on ne trouve nulle part ailleurs.",
     "loc_domus-de-janas": "Tombes néolithiques taillées dans la roche, connues sous le nom de « maisons des fées ». Des chambres mystérieuses ornées de gravures millénaires — l'un des sites préhistoriques les plus importants de Sardaigne.",
     "loc_pozzo-santa-cristina": "Puits sacré de l'époque nuragique — un chef-d'œuvre d'architecture sacrée. La géométrie parfaite de l'escalier menant sous terre est saisissante.",
@@ -383,8 +385,10 @@
     "loc_tramariglio-diving": "Centre de plongée à Tramariglio dans le Parc de Porto Conte. Idéal pour plonger avec un moniteur ou explorer le monde sous-marin de la Riviera du Corail.",
     "loc_porto-conte-diving": "La baie de Porto Conte — point de départ de croisières côtières vers la Grotte de Neptune et Capo Caccia. Location de bateaux et excursions en vedette.",
 
-    "loc_mugoni_highlight": "Notre préférée !",
+    "loc_maria-pia_highlight": "Notre préférée !",
+    "loc_mugoni_highlight": "Pinède et sable doré !",
     "loc_le-bombarde_highlight": "L'une des plages les plus célèbres !",
+    "loc_lazzaretto_highlight": "Criques aux eaux cristallines !",
     "loc_la-pelosa_highlight": "La perle de la Sardaigne !",
     "loc_grotta-di-nettuno_highlight": "À ne pas manquer !"
   },

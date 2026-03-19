@@ -330,6 +330,7 @@
     "loc_alghero_name": "Alghero",
     "loc_bosa_name": "Bosa",
     "loc_castelsardo_name": "Castelsardo",
+    "loc_tinnura_name": "Tinnura & Orgosolo",
     "loc_nuraghi_name": "Nuraghi",
     "loc_domus-de-janas_name": "Fairy Houses (Domus de Janas)",
     "loc_pozzo-santa-cristina_name": "Pozzo Santa Cristina",
@@ -369,6 +370,7 @@
     "loc_alghero": "A charming Catalan town with a picturesque Old Town, narrow streets, a harbour-side promenade, and a rich history. The hub of nightlife and culinary experiences in the region.",
     "loc_bosa": "A colourful town on the River Temo, crowned by Malaspina Castle on the hilltop. Known for its traditional tanning craft, picturesque houses, and excellent Malvasia wine.",
     "loc_castelsardo": "A medieval clifftop town with the imposing Doria Castle. Famous for its basket-weaving tradition and breathtaking views over the Gulf of Asinara.",
+    "loc_tinnura": "Two tiny Sardinian villages famous for their spectacular murals (murales). Tinnura, near Bosa, is an open-air museum with over 20 vivid paintings depicting rural life and traditions. Orgosolo, deep in the Barbagia mountains, boasts around 150 politically charged murals that tell the story of Sardinia's rebellious spirit.",
     "loc_nuraghi": "Ancient Sardinian defensive towers dating back to the Bronze Age. Near Alghero you will find the Nuraghe Sant'Imbenia and many others — unique stone structures found nowhere else in the world.",
     "loc_domus-de-janas": "Neolithic rock-cut tombs known as fairy houses. These mysterious chambers with millennia-old carvings are among the most important prehistoric monuments in Sardinia.",
     "loc_pozzo-santa-cristina": "A sacred well from the Nuragic era — a masterpiece of religious architecture. The flawless geometry of the stairs descending underground is truly awe-inspiring.",
@@ -383,8 +385,10 @@
     "loc_tramariglio-diving": "A diving centre by the Tramariglio cove in Porto Conte Park. The perfect spot for guided dives or independent exploration of the underwater world of the Coral Riviera.",
     "loc_porto-conte-diving": "The bay of Porto Conte is the starting point for cruises along the coast towards Neptune's Grotto and Capo Caccia. Boat hire and organised dinghy excursions available.",
 
-    "loc_mugoni_highlight": "Our favourite!",
+    "loc_maria-pia_highlight": "Our favourite!",
+    "loc_mugoni_highlight": "Pine forest & golden sand!",
     "loc_le-bombarde_highlight": "One of the most famous beaches!",
+    "loc_lazzaretto_highlight": "Crystal-clear coves!",
     "loc_la-pelosa_highlight": "The pearl of Sardinia!",
     "loc_grotta-di-nettuno_highlight": "Don't miss it!"
   },

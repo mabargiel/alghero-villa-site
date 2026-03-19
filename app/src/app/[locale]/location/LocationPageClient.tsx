@@ -78,18 +78,16 @@ export default function LocationPageClient({
   const southBeaches = beaches.filter((b) => b.subgroup === "south");
   const nearbyBeaches = beaches.filter((b) => b.subgroup === "nearby");
 
-  const featured = beaches.filter((b) => b.featured);
+  const algheroFeatured = algheroBeaches.filter((b) => b.featured);
   const algheroRegular = algheroBeaches.filter((b) => !b.featured);
+  const nearbyFeatured = nearbyBeaches.filter((b) => b.featured);
   const nearbyRegular = nearbyBeaches.filter((b) => !b.featured);
 
-  // Split alghero regular into two chunks around featured cards
-  const firstChunk = algheroRegular.slice(0, 6);
-  const secondChunk = algheroRegular.slice(6);
-
-  // Featured beaches by id for ordering
-  const mugoni = featured.find((b) => b.id === "mugoni");
-  const leBombarde = featured.find((b) => b.id === "le-bombarde");
-  const laPelosa = featured.find((b) => b.id === "la-pelosa");
+  // Split regular cards into chunks interleaved between featured cards
+  const regularPerChunk =
+    algheroFeatured.length > 0
+      ? Math.ceil(algheroRegular.length / algheroFeatured.length)
+      : algheroRegular.length;
 
   // Nature: Grotta di Nettuno featured, rest regular
   const natureFeatured = nature.find((n) => n.featured);
@@ -130,69 +128,47 @@ export default function LocationPageClient({
           </h3>
         </Reveal>
 
-        {/* Featured: Mugoni */}
-        {mugoni && (
-          <Reveal>
-            <div className="mb-6">
-              <FeaturedLocationCard
-                item={mugoni}
-                image={getFirstImage(imagesByCategory.beaches, mugoni.id)}
-              />
+        {/* Featured cards interspersed with regular card grids */}
+        {algheroFeatured.map((feat, i) => {
+          const chunk = algheroRegular.slice(
+            i * regularPerChunk,
+            (i + 1) * regularPerChunk,
+          );
+          return (
+            <div key={feat.id}>
+              <Reveal>
+                <div className={i === 0 ? "mb-6" : "my-6"}>
+                  <FeaturedLocationCard
+                    item={feat}
+                    image={getFirstImage(imagesByCategory.beaches, feat.id)}
+                  />
+                </div>
+              </Reveal>
+              {chunk.length > 0 && (
+                <Reveal>
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
+                    {chunk.map((beach) => (
+                      <LocationCard
+                        key={beach.id}
+                        item={beach}
+                        image={getFirstImage(
+                          imagesByCategory.beaches,
+                          beach.id,
+                        )}
+                        onTap={() =>
+                          openSheet(
+                            beach,
+                            getFirstImage(imagesByCategory.beaches, beach.id),
+                          )
+                        }
+                      />
+                    ))}
+                  </div>
+                </Reveal>
+              )}
             </div>
-          </Reveal>
-        )}
-
-        {/* First chunk of regular cards */}
-        <Reveal>
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
-            {firstChunk.map((beach) => (
-              <LocationCard
-                key={beach.id}
-                item={beach}
-                image={getFirstImage(imagesByCategory.beaches, beach.id)}
-                onTap={() =>
-                  openSheet(
-                    beach,
-                    getFirstImage(imagesByCategory.beaches, beach.id),
-                  )
-                }
-              />
-            ))}
-          </div>
-        </Reveal>
-
-        {/* Featured: Le Bombarde */}
-        {leBombarde && (
-          <Reveal>
-            <div className="my-6">
-              <FeaturedLocationCard
-                item={leBombarde}
-                image={getFirstImage(imagesByCategory.beaches, leBombarde.id)}
-              />
-            </div>
-          </Reveal>
-        )}
-
-        {/* Second chunk of regular cards */}
-        {secondChunk.length > 0 && (
-          <Reveal>
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
-              {secondChunk.map((beach) => (
-                <LocationCard
-                  key={beach.id}
-                  item={beach}
-                  image={getFirstImage(imagesByCategory.beaches, beach.id)}
-                  onTap={() =>
-                    openSheet(
-                      beach,
-                      getFirstImage(imagesByCategory.beaches, beach.id),
-                    )
-                  }
-                />
-              ))}
-            </div>
-          </Reveal>
-        )}
+          );
+        })}
 
         {/* Subgroup: South */}
         {southBeaches.length > 0 && (
@@ -229,17 +205,17 @@ export default function LocationPageClient({
           </h3>
         </Reveal>
 
-        {/* Featured: La Pelosa */}
-        {laPelosa && (
-          <Reveal>
+        {/* Featured nearby beaches */}
+        {nearbyFeatured.map((feat) => (
+          <Reveal key={feat.id}>
             <div className="mb-6">
               <FeaturedLocationCard
-                item={laPelosa}
-                image={getFirstImage(imagesByCategory.beaches, laPelosa.id)}
+                item={feat}
+                image={getFirstImage(imagesByCategory.beaches, feat.id)}
               />
             </div>
           </Reveal>
-        )}
+        ))}
 
         {nearbyRegular.length > 0 && (
           <Reveal>

@@ -330,6 +330,7 @@
     "loc_alghero_name": "Alghero",
     "loc_bosa_name": "Bosa",
     "loc_castelsardo_name": "Castelsardo",
+    "loc_tinnura_name": "Tinnura i Orgosolo",
     "loc_nuraghi_name": "Nuraghi",
     "loc_domus-de-janas_name": "Domy Wróżek (Domus de Janas)",
     "loc_pozzo-santa-cristina_name": "Pozzo Santa Cristina",
@@ -369,6 +370,7 @@
     "loc_alghero": "Urokliwe katalońskie miasteczko z malowniczą Starówką, wąskimi uliczkami, portowym deptakiem i bogatą historią. Centrum życia nocnego i kulinarnych doświadczeń regionu.",
     "loc_bosa": "Kolorowe miasteczko nad rzeką Temo, z zamkiem Malaspina na wzgórzu. Znane z tradycyjnego garbarstwa, malowniczych domów i doskonałego wina Malvasia.",
     "loc_castelsardo": "Średniowieczne miasteczko na klifie z imponującym zamkiem Doria. Słynie z rękodzieła koszykarskiego i zapierających dech w piersiach widoków na Zatokę Asinara.",
+    "loc_tinnura": "Dwie malutkie sardyńskie wioski słynące ze spektakularnych murali (murales). Tinnura, w pobliżu Bosa, to muzeum na wolnym powietrzu z ponad 20 malowidłami przedstawiającymi życie i tradycje wsi. Orgosolo, w głębi gór Barbagia, szczyci się około 150 politycznie zaangażowanymi muralami, opowiadającymi historię buntowniczego ducha Sardynii.",
     "loc_nuraghi": "Starożytne sardyńskie wieże obronne z epoki brązu. W okolicy Alghero znajduje się nurag Sant'Imbenia oraz wiele innych — to unikalne budowle kamienne, niepowtarzalne na świecie.",
     "loc_domus-de-janas": "Neolityczne grobowce wykute w skale, zwane \u201Edomami wróżek\u201D. To tajemnicze komory z tysiącletnimi rycinami — jedno z najważniejszych świadectw prehistorii Sardynii.",
     "loc_pozzo-santa-cristina": "Święta studnia z epoki nuraghicznej — arcydzieło architektury sakralnej. Perfekcyjna geometria schodów prowadzących pod ziemię robi niesamowite wrażenie.",
@@ -383,8 +385,10 @@
     "loc_tramariglio-diving": "Centrum nurkowe przy zatoczce Tramariglio w Parku Porto Conte. Idealne miejsce na nurkowanie z instruktorem lub samodzielne eksplorowanie podwodnego świata Riviery Koralowej.",
     "loc_porto-conte-diving": "Zatoka Porto Conte to punkt startowy rejsów wzdłuż wybrzeża, w kierunku Groty Neptuna i Capo Caccia. Wypożyczalnia łodzi i organizowane rejsy pontonem.",
 
-    "loc_mugoni_highlight": "Nasza ulubiona!",
+    "loc_maria-pia_highlight": "Nasza ulubiona!",
+    "loc_mugoni_highlight": "Las sosnowy i złoty piasek!",
     "loc_le-bombarde_highlight": "Jedna z najsłynniejszych plaż!",
+    "loc_lazzaretto_highlight": "Krystalicznie czyste zatoczki!",
     "loc_la-pelosa_highlight": "Perła Sardynii!",
     "loc_grotta-di-nettuno_highlight": "Nie przegap!"
   },

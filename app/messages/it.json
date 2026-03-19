@@ -316,6 +316,7 @@
 
     "loc_maria-pia_name": "Spiaggia di Maria Pia",
     "loc_maria-pia": "Sabbia bianca, dune, pineta e ginepri. Ideale per le famiglie. Piuttosto affollata in estate. Stabilimenti balneari, ristoranti e bar.",
+    "loc_maria-pia_highlight": "La nostra preferita!",
 
     "loc_fertilia_name": "Fertilia",
     "loc_fertilia": "Tranquilla, meno turistica. Acqua bassa. Sulla riva si possono trovare alghe secche.",
@@ -329,6 +330,7 @@
 
     "loc_lazzaretto_name": "Lazzaretto",
     "loc_lazzaretto": "Spiaggia di sabbia fine immersa nella macchia mediterranea. Circondata da una serie di calette con sabbia, ghiaia e rocce bagnate da acque cristalline, riparate dal vento.",
+    "loc_lazzaretto_highlight": "Calette dalle acque cristalline!",
 
     "loc_torre-del-lazzaretto_name": "Spiaggia di Torre del Lazzaretto",
     "loc_torre-del-lazzaretto": "Piccola spiaggia nascosta. Meno affollata. Per chi apprezza la tranquillità.",
@@ -338,7 +340,7 @@
 
     "loc_mugoni_name": "Porto Conte / Mugoni",
     "loc_mugoni": "Porto Conte è un'ampia baia lungo la costa settentrionale della Riviera del Corallo, racchiusa dal promontorio roccioso di Capo Caccia. La spiaggia di Mugoni è incorniciata da una pineta con eucalipti — ci si può riparare alla loro ombra senza bisogno di ombrelloni. Spiaggia spaziosa — anche in alta stagione troverete sempre posto per tutta la famiglia. Sabbia dorata. Dotata di stabilimento balneare, noleggio barche, immersioni, bar.",
-    "loc_mugoni_highlight": "La nostra preferita!",
+    "loc_mugoni_highlight": "Pineta e sabbia dorata!",
 
     "loc_tramariglio-beach_name": "Tramariglio",
     "loc_tramariglio-beach": "Spiaggia di ghiaia e sabbia dorata. Vicina all'imponente promontorio di Capo Caccia.",
@@ -382,6 +384,9 @@
 
     "loc_castelsardo_name": "Castelsardo",
     "loc_castelsardo": "Borgo medievale arroccato sulla scogliera con l'imponente Castello dei Doria. Famoso per l'artigianato dell'intreccio e i panorami mozzafiato sul Golfo dell'Asinara.",
+
+    "loc_tinnura_name": "Tinnura & Orgosolo",
+    "loc_tinnura": "Due piccoli villaggi sardi famosi per i loro spettacolari murales. Tinnura, vicino a Bosa, è un museo a cielo aperto con oltre 20 dipinti che raffigurano la vita rurale e le tradizioni. Orgosolo, nel cuore della Barbagia, vanta circa 150 murales a forte carica politica, testimonianza dello spirito ribelle della Sardegna.",
 
     "loc_nuraghi_name": "Nuraghi",
     "loc_nuraghi": "Antiche torri difensive sarde risalenti all'Età del Bronzo. Nei pressi di Alghero si trovano il Nuraghe Sant'Imbenia e molti altri — strutture in pietra uniche al mondo.",
