@@ -187,7 +187,11 @@
     "errorDates": "Veuillez sélectionner les dates d'arrivée et de départ.",
     "consent": "J'accepte la <privacy>Politique de confidentialité</privacy> et le <rules>Règlement intérieur</rules>.",
     "getDirections": "Itinéraire",
-    "mapAlt": "Villa Monte Calvia — emplacement sur la carte"
+    "mapAlt": "Villa Monte Calvia — emplacement sur la carte",
+    "successTitle": "Merci !",
+    "successMessage": "Nous vous répondrons dans les plus brefs délais.",
+    "successEmailNote": "Un email de confirmation a été envoyé dans votre boîte de réception.",
+    "successCta": "Découvrir la villa"
   },
   "confirmationEmail": {
     "subject": "Merci pour votre demande — Villa Monte Calvia",
