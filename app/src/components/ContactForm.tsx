@@ -90,9 +90,6 @@ export default function ContactForm() {
       }
 
       setState("success");
-      setMessage(t("success"));
-      form.reset();
-      setDateRange(undefined);
     } catch (error) {
       setState("error");
       setMessage(error instanceof Error ? error.message : t("errorUnknown"));
@@ -101,6 +98,38 @@ export default function ContactForm() {
 
   const inputClass =
     "rounded-xl border border-[var(--surface)] bg-white px-4 py-3 text-base text-[var(--foreground)]";
+
+  if (state === "success") {
+    return (
+      <div className="grid place-items-center gap-6 rounded-2xl border border-[var(--surface)] bg-white px-8 py-16 text-center">
+        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-10 w-10 text-emerald-600"
+          >
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+        </div>
+        <h2 className="text-2xl font-bold text-[var(--foreground)]">
+          {t("successTitle")}
+        </h2>
+        <p className="text-[var(--muted)]">{t("successMessage")}</p>
+        <p className="text-sm text-[var(--muted)]">{t("successEmailNote")}</p>
+        <Link
+          href="/villa"
+          className="mt-2 inline-block rounded-xl bg-[var(--brand)] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_34px_-12px_var(--shadow-brand)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-hover)] hover:shadow-[0_22px_50px_-16px_var(--shadow-brand-strong)]"
+        >
+          {t("successCta")}
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <form
@@ -131,6 +160,7 @@ export default function ContactForm() {
             name="guests"
             type="number"
             min={1}
+            max={12}
             required
           />
         </label>
@@ -195,13 +225,7 @@ export default function ContactForm() {
       </label>
 
       {message && (
-        <div
-          className={`rounded-xl border px-4 py-3 text-sm ${
-            state === "success"
-              ? "border-emerald-200 bg-emerald-50 text-emerald-800"
-              : "border-rose-200 bg-rose-50 text-rose-700"
-          }`}
-        >
+        <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
           {message}
         </div>
       )}
