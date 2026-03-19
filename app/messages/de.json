@@ -330,6 +330,7 @@
     "loc_alghero_name": "Alghero",
     "loc_bosa_name": "Bosa",
     "loc_castelsardo_name": "Castelsardo",
+    "loc_tinnura_name": "Tinnura & Orgosolo",
     "loc_nuraghi_name": "Nuraghi",
     "loc_domus-de-janas_name": "Feenhäuser (Domus de Janas)",
     "loc_pozzo-santa-cristina_name": "Pozzo Santa Cristina",
@@ -369,6 +370,7 @@
     "loc_alghero": "Bezaubernde katalanische Stadt mit malerischer Altstadt, engen Gassen, Hafenpromenade und reicher Geschichte. Das Herz des Nachtlebens und kulinarischer Erlebnisse.",
     "loc_bosa": "Farbenfrohe Stadt am Fluss Temo, gekrönt von der Burg Malaspina. Bekannt für traditionelle Gerberei, malerische Häuser und ausgezeichneten Malvasia-Wein.",
     "loc_castelsardo": "Mittelalterliche Klippen-Stadt mit der Burg der Doria. Berühmt für Korbflechterei und atemberaubende Ausblicke über den Golf von Asinara.",
+    "loc_tinnura": "Zwei winzige sardische Dörfer, berühmt für ihre spektakulären Wandmalereien (Murales). Tinnura, nahe Bosa, ist ein Freilichtmuseum mit über 20 lebhaften Gemälden, die das ländliche Leben darstellen. Orgosolo, tief in den Bergen der Barbagia, besitzt rund 150 politisch geprägte Wandbilder, die vom rebellischen Geist Sardiniens erzählen.",
     "loc_nuraghi": "Antike sardische Wehrtürme aus der Bronzezeit. In der Nähe von Alghero: die Nuraghe Sant'Imbenia und viele weitere — einzigartige Steinbauten, die es nirgendwo sonst gibt.",
     "loc_domus-de-janas": "Neolithische Felsgräber, bekannt als «Feenhäuser». Geheimnisvolle Kammern mit jahrtausendealten Gravuren — eine der bedeutendsten prähistorischen Stätten Sardiniens.",
     "loc_pozzo-santa-cristina": "Heiliger Brunnen aus der Nuraghenzeit — ein Meisterwerk sakraler Architektur. Die perfekte Geometrie der in die Tiefe führenden Treppe ist beeindruckend.",
@@ -383,8 +385,10 @@
     "loc_tramariglio-diving": "Tauchzentrum in Tramariglio im Park von Porto Conte. Ideal zum Tauchen mit Tauchlehrer oder zum Erkunden der Unterwasserwelt der Korallenriviera.",
     "loc_porto-conte-diving": "Die Bucht von Porto Conte — Ausgangspunkt für Küstenfahrten Richtung Neptungrotte und Capo Caccia. Bootsverleih und Ausflugsfahrten.",
 
-    "loc_mugoni_highlight": "Unser Favorit!",
+    "loc_maria-pia_highlight": "Unser Favorit!",
+    "loc_mugoni_highlight": "Pinienwald & goldener Sand!",
     "loc_le-bombarde_highlight": "Einer der berühmtesten Strände!",
+    "loc_lazzaretto_highlight": "Kristallklare Buchten!",
     "loc_la-pelosa_highlight": "Die Perle Sardiniens!",
     "loc_grotta-di-nettuno_highlight": "Nicht verpassen!"
   },

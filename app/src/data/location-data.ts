@@ -105,6 +105,7 @@ export const beaches: LocationItem[] = [
     googleMapsUrl: directionsUrl(40.586111, 8.306667),
     category: "beaches",
     subgroup: "alghero",
+    featured: true,
   },
   {
     id: "fertilia",
@@ -146,6 +147,7 @@ export const beaches: LocationItem[] = [
     googleMapsUrl: directionsUrl(40.5825, 8.246944),
     category: "beaches",
     subgroup: "alghero",
+    featured: true,
   },
   {
     id: "torre-del-lazzaretto",
@@ -327,6 +329,14 @@ export const towns: LocationItem[] = [
     driveMinutes: 60,
     coords: [40.9135, 8.7127],
     googleMapsUrl: directionsUrl(40.9135, 8.7127),
+    category: "towns",
+  },
+  {
+    id: "tinnura",
+    name: "Tinnura & Orgosolo",
+    driveMinutes: 50,
+    coords: [40.269293787521136, 8.54836358254349],
+    googleMapsUrl: directionsUrl(40.269293787521136, 8.54836358254349),
     category: "towns",
   },
 ];

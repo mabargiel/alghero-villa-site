@@ -330,6 +330,7 @@
     "loc_alghero_name": "Alghero",
     "loc_bosa_name": "Bosa",
     "loc_castelsardo_name": "Castelsardo",
+    "loc_tinnura_name": "Tinnura y Orgosolo",
     "loc_nuraghi_name": "Nuraghi",
     "loc_domus-de-janas_name": "Casas de Hadas (Domus de Janas)",
     "loc_pozzo-santa-cristina_name": "Pozzo Santa Cristina",
@@ -369,6 +370,7 @@
     "loc_alghero": "Encantadora ciudad catalana con un pintoresco casco antiguo, calles estrechas, paseo marítimo y una rica historia. El corazón de la vida nocturna y las experiencias gastronómicas.",
     "loc_bosa": "Pueblo colorido a orillas del río Temo, coronado por el castillo de Malaspina. Conocido por la curtición tradicional, sus casas pintorescas y el excelente vino Malvasía.",
     "loc_castelsardo": "Pueblo medieval en lo alto de un acantilado con el castillo de los Doria. Famoso por la cestería y las vistas impresionantes sobre el golfo de Asinara.",
+    "loc_tinnura": "Dos diminutos pueblos sardos famosos por sus espectaculares murales. Tinnura, cerca de Bosa, es un museo al aire libre con más de 20 pinturas que representan la vida rural y las tradiciones. Orgosolo, en lo profundo de las montañas de Barbagia, cuenta con unos 150 murales de fuerte carga política que narran el espíritu rebelde de Cerdeña.",
     "loc_nuraghi": "Antiguas torres defensivas sardas de la Edad del Bronce. Cerca de Alghero: el Nuraghe Sant'Imbenia y muchos otros — estructuras de piedra únicas que no se encuentran en ningún otro lugar.",
     "loc_domus-de-janas": "Tumbas neolíticas excavadas en la roca, conocidas como «casas de hadas». Cámaras misteriosas con grabados milenarios — uno de los yacimientos prehistóricos más importantes de Cerdeña.",
     "loc_pozzo-santa-cristina": "Pozo sagrado de la época nurágica — una obra maestra de la arquitectura sacra. La geometría perfecta de la escalera que desciende al subsuelo resulta impresionante.",
@@ -383,8 +385,10 @@
     "loc_tramariglio-diving": "Centro de buceo en Tramariglio, dentro del Parque de Porto Conte. Perfecto para bucear con instructor o explorar el mundo submarino de la Riviera del Coral.",
     "loc_porto-conte-diving": "La bahía de Porto Conte — punto de partida de cruceros costeros hacia la Gruta de Neptuno y Capo Caccia. Alquiler de embarcaciones y excursiones en barco.",
 
-    "loc_mugoni_highlight": "¡Nuestra favorita!",
+    "loc_maria-pia_highlight": "¡Nuestra favorita!",
+    "loc_mugoni_highlight": "¡Pinar y arena dorada!",
     "loc_le-bombarde_highlight": "¡Una de las playas más famosas!",
+    "loc_lazzaretto_highlight": "¡Calas de aguas cristalinas!",
     "loc_la-pelosa_highlight": "¡La perla de Cerdeña!",
     "loc_grotta-di-nettuno_highlight": "¡No te la pierdas!"
   },
