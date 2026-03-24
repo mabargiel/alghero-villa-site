@@ -165,7 +165,10 @@
     "promotion": "Promoción",
     "tierLow": "Temporada baja",
     "tierMid": "Temporada media",
-    "tierHigh": "Temporada alta"
+    "tierHigh": "Temporada alta",
+    "tooltipLabel": "Detalles del precio",
+    "tooltipCleaningFee": "Limpieza final incluida en el precio",
+    "tooltipDepositNote": "Depósito reembolsable de €800 cobrado por separado"
   },
   "contact": {
     "eyebrow": "Contacto",
@@ -198,7 +201,10 @@
     "greeting": "¡Gracias, {firstName}!",
     "body": "Hemos recibido tu consulta y agradecemos tu interés en Villa Monte Calvia.",
     "followUp": "Alguien de nuestro equipo se pondrá en contacto contigo pronto con información sobre disponibilidad y detalles de la estancia.",
-    "contactHeader": "Contáctanos directamente"
+    "contactHeader": "Contáctanos directamente",
+    "estimatedPriceLabel": "Precio estimado",
+    "estimatedNights": "noches",
+    "estimatedDisclaimer": "Precio orientativo, sujeto a confirmación."
   },
   "ownerEmail": {
     "subject": "Nueva consulta — {firstName}",
@@ -210,7 +216,10 @@
     "phoneLabel": "Teléfono",
     "arrivalLabel": "Llegada",
     "departureLabel": "Salida",
-    "guestsLabel": "Huéspedes"
+    "guestsLabel": "Huéspedes",
+    "estimatedPriceLabel": "Precio estimado",
+    "estimatedNights": "noches",
+    "estimatedDisclaimer": "Precio orientativo, sujeto a confirmación."
   },
   "gallery": {
     "eyebrow": "Galería",

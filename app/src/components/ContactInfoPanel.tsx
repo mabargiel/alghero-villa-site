@@ -53,6 +53,16 @@ export default function ContactInfoPanel() {
           +39 320 717 1841
         </a>
         <a
+          href="tel:+48500290390"
+          className="inline-flex items-center gap-3 text-sm font-medium text-[var(--foreground)] transition hover:text-[var(--accent-warm)]"
+        >
+          <Phone
+            className="h-4 w-4 text-[var(--accent-warm)]"
+            strokeWidth={1.8}
+          />
+          +48 500 290 390
+        </a>
+        <a
           href="mailto:contact@montecalvia.com"
           className="inline-flex items-center gap-3 text-sm font-medium text-[var(--foreground)] transition hover:text-[var(--accent-warm)]"
         >
