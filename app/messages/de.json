@@ -165,7 +165,10 @@
     "promotion": "Aktion",
     "tierLow": "Nebensaison",
     "tierMid": "Zwischensaison",
-    "tierHigh": "Hochsaison"
+    "tierHigh": "Hochsaison",
+    "tooltipLabel": "Preisdetails",
+    "tooltipCleaningFee": "Endreinigung im Preis enthalten",
+    "tooltipDepositNote": "Erstattbare Kaution von €800 wird separat erhoben"
   },
   "contact": {
     "eyebrow": "Kontakt",
@@ -198,7 +201,10 @@
     "greeting": "Vielen Dank, {firstName}!",
     "body": "Wir haben Ihre Anfrage erhalten und freuen uns über Ihr Interesse an der Villa Monte Calvia.",
     "followUp": "Ein Mitglied unseres Teams wird sich in Kürze mit Ihnen in Verbindung setzen, um Ihnen Verfügbarkeiten und Aufenthaltsdetails mitzuteilen.",
-    "contactHeader": "Kontaktieren Sie uns direkt"
+    "contactHeader": "Kontaktieren Sie uns direkt",
+    "estimatedPriceLabel": "Geschätzter Preis",
+    "estimatedNights": "Nächte",
+    "estimatedDisclaimer": "Richtpreis, vorbehaltlich Bestätigung."
   },
   "ownerEmail": {
     "subject": "Neue Anfrage — {firstName}",
@@ -210,7 +216,10 @@
     "phoneLabel": "Telefon",
     "arrivalLabel": "Anreise",
     "departureLabel": "Abreise",
-    "guestsLabel": "Gäste"
+    "guestsLabel": "Gäste",
+    "estimatedPriceLabel": "Geschätzter Preis",
+    "estimatedNights": "Nächte",
+    "estimatedDisclaimer": "Richtpreis, vorbehaltlich Bestätigung."
   },
   "gallery": {
     "eyebrow": "Galerie",

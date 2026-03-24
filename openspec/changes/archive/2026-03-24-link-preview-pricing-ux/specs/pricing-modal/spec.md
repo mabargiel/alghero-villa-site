@@ -1,29 +1,5 @@
 ## MODIFIED Requirements
 
-### Requirement: Modal overlay with pricing calendar
-The system SHALL display a centered modal overlay containing the pricing calendar and price summary when triggered from the booking bar. All text labels SHALL come from the translation system.
-
-#### Scenario: Modal opens with translated header
-- **WHEN** the user opens the pricing modal in Italian locale
-- **THEN** the modal header displays "Verifica il prezzo" instead of hardcoded Polish
-
-#### Scenario: Close button aria-label is translated
-- **WHEN** the modal renders in any locale
-- **THEN** the close button has a translated aria-label (e.g., "Close" in English, "Chiudi" in Italian)
-
-### Requirement: Contact CTA in modal
-The price summary inside the modal SHALL display a CTA button linking to the locale-aware `/contact` route when a valid date range is selected. The button label SHALL come from the translation system.
-
-#### Scenario: CTA in English locale
-- **WHEN** the user has selected a valid date range in English locale
-- **THEN** the button displays "Ask about availability" and links to `/contact`
-
-#### Scenario: CTA in Italian locale
-- **WHEN** the user has selected a valid date range in Italian locale
-- **THEN** the button displays "Richiedi disponibilità" and links to `/it/contact`
-
-## ADDED Requirements
-
 ### Requirement: Price summary labels use translations
 All labels in the price summary (summary heading, total label, extras labels, night pluralization, min-nights warning, empty state prompt, tooltip labels) SHALL come from the translation system.
 
@@ -46,6 +22,8 @@ All labels in the price summary (summary heading, total label, extras labels, ni
 #### Scenario: Empty state prompt translated
 - **WHEN** no dates are selected in Italian locale
 - **THEN** the prompt displays "Seleziona le date sul calendario per vedere il prezzo."
+
+## ADDED Requirements
 
 ### Requirement: Cleaning fee included in displayed total
 The price summary SHALL add the cleaning fee (€150) to the displayed total price. The cleaning fee SHALL NOT appear as a separate line item below the total.

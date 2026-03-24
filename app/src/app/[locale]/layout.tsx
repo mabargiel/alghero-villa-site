@@ -112,6 +112,12 @@ export default async function LocaleLayout({
                       +39 320 717 1841
                     </a>
                     <a
+                      href="tel:+48500290390"
+                      className="block transition hover:text-[var(--accent-warm)]"
+                    >
+                      +48 500 290 390
+                    </a>
+                    <a
                       href="mailto:contact@montecalvia.com"
                       className="block transition hover:text-[var(--accent-warm)]"
                     >

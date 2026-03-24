@@ -87,11 +87,6 @@ function SummaryContent({
     }).format(Math.round(amount));
   }
 
-  const extras = [
-    { label: t("cleaning"), amount: 150, type: "included" as const },
-    { label: t("deposit"), amount: 800, type: "deposit" as const },
-  ];
-
   const nightsLabel = t("nights", { count: breakdown.totalNights });
 
   return (
@@ -141,34 +136,34 @@ function SummaryContent({
         }
       >
         <div className="text-foreground flex items-center justify-between text-base font-bold">
-          <span>
+          <span className="flex items-center gap-1.5">
             {t("total", { nights: `${breakdown.totalNights} ${nightsLabel}` })}
+            <span className="group relative">
+              <button
+                type="button"
+                className="text-muted hover:text-foreground inline-flex h-5 w-5 items-center justify-center rounded-full border border-current text-xs font-medium transition-colors focus:ring-2 focus:ring-[var(--brand)] focus:ring-offset-1 focus:outline-none"
+                aria-label={t("tooltipLabel")}
+              >
+                ?
+              </button>
+              <span className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 w-52 -translate-x-1/2 rounded-lg bg-[var(--foreground)] p-3 text-xs leading-relaxed font-normal text-white opacity-0 shadow-lg transition-opacity group-focus-within:opacity-100 group-hover:opacity-100">
+                <span className="block">{t("tooltipCleaningFee")}</span>
+                <span className="mt-1 block text-white/70">
+                  {t("tooltipDepositNote")}
+                </span>
+                <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[var(--foreground)]" />
+              </span>
+            </span>
           </span>
           <span>{formatPrice(breakdown.totalPrice)} €</span>
         </div>
       </div>
 
       <div className="border-surface-strong mt-4 space-y-2 border-t pt-4 text-sm">
-        {extras.map((extra) => (
-          <div
-            key={extra.label}
-            className="text-muted flex items-center justify-between"
-          >
-            <span>{extra.label}</span>
-            <span>
-              {extra.type === "included" ? (
-                <span>
-                  <span className="mr-1.5">{formatPrice(extra.amount)} €</span>
-                  <span className="text-brand font-medium">
-                    {t("included")}
-                  </span>
-                </span>
-              ) : (
-                `${formatPrice(extra.amount)} €`
-              )}
-            </span>
-          </div>
-        ))}
+        <div className="text-muted flex items-center justify-between">
+          <span>{t("deposit")}</span>
+          <span>800 €</span>
+        </div>
       </div>
 
       <Link

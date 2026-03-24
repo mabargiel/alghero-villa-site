@@ -23,6 +23,16 @@ type Translations = {
   arrivalLabel: string;
   departureLabel: string;
   guestsLabel: string;
+  estimatedPriceLabel?: string;
+  estimatedNights?: string;
+  estimatedDisclaimer?: string;
+};
+
+type EstimatedPrice = {
+  totalPrice: number;
+  totalNights: number;
+  arriveDate: string;
+  leaveDate: string;
 };
 
 type OwnerNotificationEmailProps = {
@@ -35,6 +45,7 @@ type OwnerNotificationEmailProps = {
   message: string;
   translations: Translations;
   siteUrl: string;
+  estimatedPrice?: EstimatedPrice;
 };
 
 export default function OwnerNotificationEmail({
@@ -47,6 +58,7 @@ export default function OwnerNotificationEmail({
   message,
   translations: t,
   siteUrl,
+  estimatedPrice,
 }: Readonly<OwnerNotificationEmailProps>) {
   return (
     <Html>
@@ -108,6 +120,23 @@ export default function OwnerNotificationEmail({
           <Text style={sectionHeader}>{t.messageSection}</Text>
           <Text style={messageText}>{message}</Text>
 
+          {estimatedPrice && (
+            <>
+              <Hr style={divider} />
+              <Text style={sectionHeader}>
+                {t.estimatedPriceLabel ?? "Estimated price"}
+              </Text>
+              <Text style={priceText}>
+                €{Math.round(estimatedPrice.totalPrice)} ·{" "}
+                {estimatedPrice.totalNights} {t.estimatedNights ?? "nights"}
+              </Text>
+              <Text style={disclaimerText}>
+                {t.estimatedDisclaimer ??
+                  "This is an estimated price, subject to confirmation."}
+              </Text>
+            </>
+          )}
+
           <Hr style={divider} />
 
           <Text style={footer}>
@@ -157,6 +186,20 @@ const valueCol: React.CSSProperties = {
   color: "#2C2825",
   paddingBottom: "6px",
   verticalAlign: "top" as const,
+};
+
+const priceText: React.CSSProperties = {
+  fontSize: "18px",
+  fontWeight: 600,
+  color: "#2C2825",
+  marginBottom: "4px",
+};
+
+const disclaimerText: React.CSSProperties = {
+  fontSize: "12px",
+  color: "#8A8478",
+  fontStyle: "italic",
+  marginBottom: "4px",
 };
 
 const messageText: React.CSSProperties = {

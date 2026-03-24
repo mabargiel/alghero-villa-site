@@ -1,6 +1,8 @@
 import { Resend } from "resend";
 import ConfirmationEmail from "@/emails/ConfirmationEmail";
 import OwnerNotificationEmail from "@/emails/OwnerNotificationEmail";
+import { calculatePriceBreakdown } from "@/lib/pricing";
+import { getPricingConfig } from "@/lib/sanity/queries";
 
 export const runtime = "nodejs";
 
@@ -126,12 +128,30 @@ export async function POST(request: Request) {
   }
 
   const safeLocale = SUPPORTED_LOCALES.has(locale) ? locale : "en";
-  const [visitorTranslations, ownerTranslations] = await Promise.all([
-    loadTranslations(safeLocale),
-    loadTranslations("pl"),
-  ]);
+  const [visitorTranslations, ownerTranslations, pricingConfig] =
+    await Promise.all([
+      loadTranslations(safeLocale),
+      loadTranslations("pl"),
+      getPricingConfig(),
+    ]);
   const arriveDateForOwner = formatDateForEmail(arriveDate, "pl");
   const leaveDateForOwner = formatDateForEmail(leaveDate, "pl");
+
+  const breakdown = pricingConfig
+    ? calculatePriceBreakdown(
+        pricingConfig,
+        new Date(arriveDate),
+        new Date(leaveDate),
+      )
+    : null;
+  const estimatedPrice = breakdown
+    ? {
+        totalPrice: breakdown.totalPrice,
+        totalNights: breakdown.totalNights,
+        arriveDate: formatDateForEmail(arriveDate, safeLocale),
+        leaveDate: formatDateForEmail(leaveDate, safeLocale),
+      }
+    : undefined;
 
   const resend = new Resend(resendApiKey);
 
@@ -154,6 +174,14 @@ export async function POST(request: Request) {
         message: message || "—",
         translations: ownerTranslations.ownerEmail,
         siteUrl,
+        estimatedPrice: breakdown
+          ? {
+              totalPrice: breakdown.totalPrice,
+              totalNights: breakdown.totalNights,
+              arriveDate: arriveDateForOwner,
+              leaveDate: leaveDateForOwner,
+            }
+          : undefined,
       }),
     }),
     resend.emails.send({
@@ -164,6 +192,7 @@ export async function POST(request: Request) {
         firstName,
         translations: visitorTranslations.confirmationEmail,
         siteUrl,
+        estimatedPrice,
       }),
     }),
   ]);

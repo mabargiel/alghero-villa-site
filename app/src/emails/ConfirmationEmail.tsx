@@ -17,18 +17,30 @@ type Translations = {
   body: string;
   followUp: string;
   contactHeader: string;
+  estimatedPriceLabel?: string;
+  estimatedNights?: string;
+  estimatedDisclaimer?: string;
+};
+
+type EstimatedPrice = {
+  totalPrice: number;
+  totalNights: number;
+  arriveDate: string;
+  leaveDate: string;
 };
 
 type ConfirmationEmailProps = {
   firstName: string;
   translations: Translations;
   siteUrl: string;
+  estimatedPrice?: EstimatedPrice;
 };
 
 export default function ConfirmationEmail({
   firstName,
   translations: t,
   siteUrl,
+  estimatedPrice,
 }: Readonly<ConfirmationEmailProps>) {
   return (
     <Html>
@@ -53,6 +65,26 @@ export default function ConfirmationEmail({
 
           <Text style={bodyText}>{t.followUp}</Text>
 
+          {estimatedPrice && (
+            <>
+              <Hr style={divider} />
+              <Text style={priceHeader}>
+                {t.estimatedPriceLabel ?? "Estimated price"}
+              </Text>
+              <Text style={priceText}>
+                €{Math.round(estimatedPrice.totalPrice)} ·{" "}
+                {estimatedPrice.totalNights} {t.estimatedNights ?? "nights"}
+              </Text>
+              <Text style={priceDate}>
+                {estimatedPrice.arriveDate} – {estimatedPrice.leaveDate}
+              </Text>
+              <Text style={disclaimerText}>
+                {t.estimatedDisclaimer ??
+                  "This is an estimated price, subject to confirmation."}
+              </Text>
+            </>
+          )}
+
           <Hr style={divider} />
 
           <Text style={contactHeader}>{t.contactHeader}</Text>
@@ -60,6 +92,11 @@ export default function ConfirmationEmail({
           <Text style={contactText}>
             <Link href="tel:+393207171841" style={link}>
               +39 320 717 1841
+            </Link>
+          </Text>
+          <Text style={contactText}>
+            <Link href="tel:+48500290390" style={link}>
+              +48 500 290 390
             </Link>
           </Text>
           <Text style={contactText}>
@@ -96,6 +133,35 @@ const bodyText: React.CSSProperties = {
   lineHeight: "1.6",
   color: "#6B6560",
   marginBottom: "12px",
+};
+
+const priceHeader: React.CSSProperties = {
+  fontSize: "13px",
+  fontWeight: 600,
+  color: "#8A8478",
+  textTransform: "uppercase" as const,
+  letterSpacing: "0.08em",
+  marginBottom: "8px",
+};
+
+const priceText: React.CSSProperties = {
+  fontSize: "18px",
+  fontWeight: 600,
+  color: "#2C2825",
+  marginBottom: "4px",
+};
+
+const priceDate: React.CSSProperties = {
+  fontSize: "13px",
+  color: "#6B6560",
+  marginBottom: "4px",
+};
+
+const disclaimerText: React.CSSProperties = {
+  fontSize: "12px",
+  color: "#8A8478",
+  fontStyle: "italic",
+  marginBottom: "4px",
 };
 
 const contactHeader: React.CSSProperties = {
