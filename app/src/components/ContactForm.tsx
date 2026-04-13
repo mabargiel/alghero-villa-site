@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import type { DateRange } from "react-day-picker";
 import { Link } from "@/i18n/navigation";
@@ -43,6 +43,12 @@ export default function ContactForm() {
   const [showCalendar, setShowCalendar] = useState(false);
   const t = useTranslations("contact");
   const locale = useLocale();
+
+  useEffect(() => {
+    if (typeof fbq !== "undefined") {
+      fbq("track", "ViewContent", { content_name: "Contact Page" });
+    }
+  }, []);
 
   function formatDate(date: Date): string {
     return date.toLocaleDateString(locale, {
@@ -89,6 +95,9 @@ export default function ContactForm() {
         throw new Error(data?.message || t("errorGeneric"));
       }
 
+      if (typeof fbq !== "undefined") {
+        fbq("track", "Contact");
+      }
       setState("success");
     } catch (error) {
       setState("error");
