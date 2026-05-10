@@ -22,18 +22,3 @@ The system SHALL display a booking bar near the bottom of the hero section conta
 #### Scenario: CTA label in Italian locale
 - **WHEN** the page is rendered in Italian
 - **THEN** the CTA button reads "Prenota"
-
-### Requirement: Booking bar shows selected dates
-The system SHALL update the booking bar to display the selected check-in and check-out dates after the user selects a range in the modal. Date formatting SHALL use the active locale.
-
-#### Scenario: Dates selected and modal closed (Italian)
-- **WHEN** the user selects a valid date range in Italian locale and closes the modal
-- **THEN** the booking bar displays dates formatted in Italian (e.g., "15 mar" → "28 mar")
-
-#### Scenario: Dates selected and modal closed (English)
-- **WHEN** the user selects a valid date range in English locale and closes the modal
-- **THEN** the booking bar displays dates formatted in English (e.g., "Mar 15" → "Mar 28")
-
-#### Scenario: Dates selected with price
-- **WHEN** a valid date range with a computed price exists and the modal is closed
-- **THEN** the booking bar displays the total price formatted according to the active locale

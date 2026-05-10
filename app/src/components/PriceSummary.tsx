@@ -155,7 +155,16 @@ function SummaryContent({
               </span>
             </span>
           </span>
-          <span>{formatPrice(breakdown.totalPrice)} €</span>
+          <div className="text-right">
+            <span>{formatPrice(breakdown.totalPrice)} €</span>
+            <span className="text-muted mt-0.5 block text-xs font-normal">
+              {t("perNight", {
+                price: formatPrice(
+                  Math.round(breakdown.totalPrice / breakdown.totalNights),
+                ),
+              })}
+            </span>
+          </div>
         </div>
       </div>
 
