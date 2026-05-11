@@ -30,8 +30,6 @@ export default function AvailabilityCalendar({
 }: AvailabilityCalendarProps) {
   const t = useTranslations("pricing");
 
-  const minPrice = Math.min(...config.baseRanges.map((r) => r.pricePerDay));
-
   const startMonth = (() => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -84,8 +82,7 @@ export default function AvailabilityCalendar({
         </span>
       </div>
       <p className="text-muted mt-3 text-center text-xs tracking-wide">
-        {t("nightlyRate", { price: minPrice })} · {t("minNights")} ·{" "}
-        {t("maxGuests")}
+        {t("minNights")} · {t("maxGuests")}
       </p>
     </div>
   );
