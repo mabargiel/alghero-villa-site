@@ -25,7 +25,7 @@ type PricingModalProps = Readonly<{
   onClose: () => void;
 }>;
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const EMAIL_RE = /^[^\s@]{1,64}@[^\s@]{1,255}\.[^\s@]{1,255}$/;
 const TOTAL_STAGES = 3;
 
 const initialForm: InquiryFormValues = {
