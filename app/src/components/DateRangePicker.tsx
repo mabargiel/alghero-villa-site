@@ -50,19 +50,19 @@ type DateRangePickerProps = Readonly<{
 
 const BASE_CLASS_NAMES = {
   root: "pricing-calendar w-full",
-  months: "flex flex-col gap-8 md:flex-row md:gap-16",
+  months: "flex flex-col gap-6 sm:flex-row sm:gap-6",
   month: "flex-1 min-w-0",
   month_caption:
-    "mb-5 text-center text-base font-semibold tracking-wide capitalize text-foreground",
-  nav: "flex items-center justify-between gap-4 mb-6",
+    "mb-4 text-center text-sm font-semibold tracking-wide capitalize text-foreground",
+  nav: "flex items-center justify-between gap-4 mb-4 px-1",
   weekdays: "grid grid-cols-7 mb-2",
   weekday:
-    "text-center text-[11px] font-semibold tracking-[0.12em] uppercase text-muted/60 py-2",
-  month_grid: "",
+    "text-center text-[11px] font-semibold tracking-[0.12em] uppercase text-muted/60 py-1.5",
+  month_grid: "w-full",
   week: "grid grid-cols-7",
-  day: "relative p-1 text-center",
+  day: "relative p-0.5 text-center",
   day_button:
-    "pricing-day-btn size-6 mx-auto flex items-center justify-center text-xs rounded-lg transition-all duration-200 cursor-pointer disabled:cursor-default disabled:opacity-20 disabled:hover:bg-transparent",
+    "pricing-day-btn size-8 sm:size-9 mx-auto flex items-center justify-center text-sm rounded-lg transition-all duration-200 cursor-pointer disabled:cursor-default disabled:opacity-25 disabled:hover:bg-transparent",
   selected: "pricing-day-selected",
   range_start: "pricing-day-range-start",
   range_end: "pricing-day-range-end",
@@ -83,16 +83,38 @@ export default function DateRangePicker({
   const locale = useLocale();
   const dpLocale = dayPickerLocales[locale] ?? enUS;
 
+  function hasDisabledBetween(start: Date, end: Date): boolean {
+    if (!disabled) return false;
+    const cursor = new Date(start);
+    cursor.setHours(0, 0, 0, 0);
+    cursor.setDate(cursor.getDate() + 1);
+    const last = new Date(end);
+    last.setHours(0, 0, 0, 0);
+    while (cursor < last) {
+      if (disabled(cursor)) return true;
+      cursor.setDate(cursor.getDate() + 1);
+    }
+    return false;
+  }
+
   function handleDayClick(day: Date, dayModifiers: Modifiers) {
     if (dayModifiers.disabled) return;
 
     if (!range?.from || (range.from && range.to)) {
       onRangeChange({ from: day, to: undefined });
-    } else if (day < range.from) {
-      onRangeChange({ from: day, to: range.from });
-    } else {
-      onRangeChange({ from: range.from, to: day });
+      return;
     }
+
+    const start = day < range.from ? day : range.from;
+    const end = day < range.from ? range.from : day;
+
+    if (hasDisabledBetween(start, end)) {
+      // Gap contains booked dates — start a fresh range at the clicked day.
+      onRangeChange({ from: day, to: undefined });
+      return;
+    }
+
+    onRangeChange({ from: start, to: end });
   }
 
   return (

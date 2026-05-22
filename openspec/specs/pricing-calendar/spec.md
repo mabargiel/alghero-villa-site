@@ -1,5 +1,7 @@
-## MODIFIED Requirements
+## Purpose
 
+The pricing calendar is the date-range selection surface shared by the home-page pricing modal and the contact-page form. It wraps `react-day-picker` with locale support, pricing-driven day modifiers, and a legend showing available and promotional dates.
+## Requirements
 ### Requirement: Date range selection calendar
 The system SHALL provide a shared `DateRangePicker` component that wraps `react-day-picker` in range mode with locale-aware month/weekday names. The `AvailabilityCalendar` component SHALL compose this shared component, layering pricing-specific logic (promotion modifiers, disabled date matchers) on top. The shared component MUST support: configurable `numberOfMonths`, locale mapping, custom navigation buttons, range selection with the existing click logic, and an `onRangeChange` callback.
 
@@ -12,22 +14,19 @@ The system SHALL provide a shared `DateRangePicker` component that wraps `react-
 - **THEN** the `AvailabilityCalendar` renders the shared `DateRangePicker` with a single color for all available dates, promotion highlights, and pricing-range-based disabled dates
 
 ### Requirement: Calendar legend shows availability and promotion
-The calendar legend SHALL display a "Booked" entry for unavailable dates and a "Promotion" entry. Season-type labels (Low/Mid/High season) and per-tier price dots SHALL NOT appear.
+The calendar legend SHALL display two entries: an "Available" entry and a "Promotion" entry. No "Booked" entry SHALL be shown. Season-type labels (Low/Mid/High season) and per-tier price dots SHALL NOT appear.
 
-#### Scenario: Legend shows booked indicator
+#### Scenario: Legend shows available indicator
 - **WHEN** the pricing calendar is rendered
-- **THEN** a legend entry labeled with the locale-appropriate word for "Booked" / "Zajęte" is shown with a visually distinct (grayed) dot
+- **THEN** a legend entry labeled with the locale-appropriate word for "Available" / "Dostępne" is shown with a non-promo tile-color swatch
 
-#### Scenario: Promotion entry remains
+#### Scenario: Legend shows promotion indicator
 - **WHEN** the pricing calendar is rendered
-- **THEN** the legend includes the promotion entry with its existing styling
+- **THEN** a legend entry labeled with the locale-appropriate word for "Promotion" / "Promocja" is shown with its existing styling
 
-### Requirement: Calendar constraints info row
-The calendar SHALL display a subtle info row below the legend showing the starting nightly rate, minimum stay, and maximum guest count. All text SHALL come from the translation system.
-
-#### Scenario: Constraints row is visible
+#### Scenario: Legend omits booked indicator
 - **WHEN** the pricing calendar is rendered
-- **THEN** a line reading "od {minPrice}€/noc · min. 7 nocy · max. 12 osób" (locale-appropriate) is visible below the legend in muted text
+- **THEN** no "Booked" / "Zajęte" entry appears in the legend
 
 ### Requirement: Minimum stay enforcement
 The calendar SHALL enforce a minimum stay of 7 nights. Selecting a range shorter than 7 nights SHALL trigger a warning.
@@ -42,3 +41,15 @@ The price summary SHALL display the effective per-night rate below the total pri
 #### Scenario: Per-night rate visible after date selection
 - **WHEN** the user selects a valid date range
 - **THEN** the price summary shows the total price and, below it, the per-night rate formatted as "{price} €/noc" (locale-appropriate)
+
+### Requirement: Calendar supports collapsed-then-expanded presentation
+The `AvailabilityCalendar` component SHALL support a presentation in which it is hidden behind a single-row date input until the user activates it, at which point the calendar replaces its host's body. This presentation is used inside the pricing modal's Stage 1.
+
+#### Scenario: Calendar exposes a collapsed and expanded presentation
+- **WHEN** the calendar is mounted inside the pricing modal Stage 1
+- **THEN** it renders only the collapsed date input until the user activates expansion, after which it renders the full 2-month calendar plus an exit affordance
+
+#### Scenario: Selection state persists across collapse and expand
+- **WHEN** the user selects a date range and then collapses the calendar back to the input
+- **THEN** the selected range is summarized on the collapsed input and re-displayed on the calendar when expanded again
+

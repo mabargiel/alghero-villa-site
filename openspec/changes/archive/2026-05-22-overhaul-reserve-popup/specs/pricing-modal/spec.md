@@ -1,69 +1,4 @@
-## Purpose
-
-The pricing modal is the home-page booking flow. It opens from the booking bar in the hero, presents stay parameters (dates, guest count), reviews the price breakdown, and submits an inquiry to `/api/contact`.
-## Requirements
-### Requirement: Modal overlay with pricing calendar
-The system SHALL display a centered modal overlay containing the three-stage booking flow when triggered from the booking bar. All text labels SHALL come from the translation system. The legacy single-pane composition of `AvailabilityCalendar` + `PriceSummary` is replaced by the three-stage flow described in the ADDED Requirements above.
-
-#### Scenario: Modal opens with translated header
-- **WHEN** the user opens the pricing modal in Italian locale
-- **THEN** the modal header displays the translated title for the current stage (e.g., "Prenota" on Stage 1) instead of hardcoded Polish
-
-#### Scenario: Close button aria-label is translated
-- **WHEN** the modal renders in any locale
-- **THEN** the close button has a translated aria-label (e.g., "Close" in English, "Chiudi" in Italian)
-
-### Requirement: Contact CTA in modal
-The modal SHALL collect contact information inline on Stage 3 and submit directly to `/api/contact`. The modal CTA on Stages 1 and 2 SHALL advance to the next stage; the Stage 3 CTA SHALL trigger submission. The CTA labels SHALL come from the translation system. The modal SHALL NOT link out to the `/contact` page from any stage CTA.
-
-#### Scenario: Stage 1 CTA advances
-- **WHEN** the user clicks the Stage 1 CTA with valid inputs in English locale
-- **THEN** the button displays "See price →" (or locale equivalent) and the modal transitions to Stage 2 without navigation
-
-#### Scenario: Stage 3 CTA submits inline
-- **WHEN** the user clicks the Stage 3 CTA with a valid form
-- **THEN** the button displays "Send inquiry" (or locale equivalent) and the modal POSTs to `/api/contact` without navigation
-
-### Requirement: Price summary labels use translations
-All labels in the price summary (summary heading, total label, extras labels, night pluralization, min-nights warning, empty state prompt, tooltip labels) SHALL come from the translation system.
-
-#### Scenario: Summary heading in Spanish
-- **WHEN** the price summary renders in Spanish
-- **THEN** the heading displays "Resumen"
-
-#### Scenario: Night pluralization in Italian
-- **WHEN** the summary shows 3 nights in Italian locale
-- **THEN** it displays "3 notti"
-
-#### Scenario: Tooltip labels translated
-- **WHEN** the user hovers the info icon in English locale
-- **THEN** the tooltip shows "Base price", "Cleaning fee", and "Refundable deposit" labels from translations
-
-#### Scenario: Min-nights warning translated
-- **WHEN** the user selects fewer than 5 nights in Polish locale
-- **THEN** the warning displays "Minimalny pobyt to 5 nocy. Wybierz dłuższy zakres dat."
-
-#### Scenario: Empty state prompt translated
-- **WHEN** no dates are selected in Italian locale
-- **THEN** the prompt displays "Seleziona le date sul calendario per vedere il prezzo."
-
-### Requirement: Cleaning fee included in displayed total
-The price summary SHALL add the cleaning fee (€150) to the displayed total price. The cleaning fee SHALL NOT appear as a separate line item below the total.
-
-#### Scenario: Total includes cleaning fee
-- **WHEN** the user selects a date range with a calculated base price of €1000
-- **THEN** the total displays €1150 (base price + €150 cleaning fee)
-
-#### Scenario: Cleaning fee not shown as separate extra
-- **WHEN** the price summary renders with a valid date range
-- **THEN** no separate "Cleaning" line item appears in the extras section
-
-### Requirement: Refundable deposit remains visible
-The security deposit (€800) SHALL continue to be displayed as a separate line item below the total, marked as refundable.
-
-#### Scenario: Deposit shown separately
-- **WHEN** the price summary renders with a valid date range
-- **THEN** the deposit line shows "€800" with "Refundable deposit" label
+## ADDED Requirements
 
 ### Requirement: Modal presents a three-stage flow
 The pricing modal SHALL render exactly one of three stages at a time: `choose-stay` (Stage 1), `review-pricing` (Stage 2), or `send-inquiry` (Stage 3). The modal SHALL start at Stage 1 on every fresh open.
@@ -187,4 +122,28 @@ The modal close affordance (✕ button and backdrop click) SHALL prompt for conf
 #### Scenario: Dirty Stage 3 prompts before close
 - **WHEN** the user has typed any character into a Stage 3 input and then clicks ✕ or the backdrop
 - **THEN** a confirmation prompt asks the user to confirm losing their input before closing
+
+## MODIFIED Requirements
+
+### Requirement: Modal overlay with pricing calendar
+The system SHALL display a centered modal overlay containing the three-stage booking flow when triggered from the booking bar. All text labels SHALL come from the translation system. The legacy single-pane composition of `AvailabilityCalendar` + `PriceSummary` is replaced by the three-stage flow described in the ADDED Requirements above.
+
+#### Scenario: Modal opens with translated header
+- **WHEN** the user opens the pricing modal in Italian locale
+- **THEN** the modal header displays the translated title for the current stage (e.g., "Prenota" on Stage 1) instead of hardcoded Polish
+
+#### Scenario: Close button aria-label is translated
+- **WHEN** the modal renders in any locale
+- **THEN** the close button has a translated aria-label (e.g., "Close" in English, "Chiudi" in Italian)
+
+### Requirement: Contact CTA in modal
+The modal SHALL collect contact information inline on Stage 3 and submit directly to `/api/contact`. The modal CTA on Stages 1 and 2 SHALL advance to the next stage; the Stage 3 CTA SHALL trigger submission. The CTA labels SHALL come from the translation system. The modal SHALL NOT link out to the `/contact` page from any stage CTA.
+
+#### Scenario: Stage 1 CTA advances
+- **WHEN** the user clicks the Stage 1 CTA with valid inputs in English locale
+- **THEN** the button displays "See price →" (or locale equivalent) and the modal transitions to Stage 2 without navigation
+
+#### Scenario: Stage 3 CTA submits inline
+- **WHEN** the user clicks the Stage 3 CTA with a valid form
+- **THEN** the button displays "Send inquiry" (or locale equivalent) and the modal POSTs to `/api/contact` without navigation
 
