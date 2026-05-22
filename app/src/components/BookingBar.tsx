@@ -32,7 +32,7 @@ export default function BookingBar({ config }: BookingBarProps) {
     return calculatePriceBreakdown(config, range.from, range.to);
   }, [config, range]);
 
-  const minNightsWarning = useMemo(() => checkMinNightsWarning(range), [range]);
+  const minNightsWarning = checkMinNightsWarning(range);
 
   const hasValidPrice = breakdown && !minNightsWarning;
 
@@ -88,8 +88,6 @@ export default function BookingBar({ config }: BookingBarProps) {
           config={config}
           range={range}
           onRangeChange={setRange}
-          breakdown={breakdown}
-          minNightsWarning={minNightsWarning}
           onClose={() => setIsModalOpen(false)}
         />
       )}

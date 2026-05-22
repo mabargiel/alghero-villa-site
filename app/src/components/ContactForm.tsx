@@ -159,8 +159,8 @@ export default function ContactForm() {
 
       <div className="grid gap-4 md:grid-cols-2">
         <label className="grid gap-2 text-sm font-medium text-[var(--muted)]">
-          {t("phone")} *
-          <input className={inputClass} name="phone" type="tel" required />
+          {t("phone")}
+          <input className={inputClass} name="phone" type="tel" />
         </label>
         <label className="grid gap-2 text-sm font-medium text-[var(--muted)]">
           {t("guests")} *

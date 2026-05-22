@@ -293,19 +293,6 @@ h4 {
   background: color-mix(in srgb, var(--brand) 12%, transparent);
 }
 
-/* Tier background colors on day buttons */
-.pricing-tier-low > .pricing-day-btn {
-  background: #d9ebe2;
-}
-
-.pricing-tier-mid > .pricing-day-btn {
-  background: #f0e2c0;
-}
-
-.pricing-tier-high > .pricing-day-btn {
-  background: #edd0bb;
-}
-
 /* Promotion indicator — glowy pink dot in top-right corner */
 .pricing-promo > .pricing-day-btn {
   position: relative;

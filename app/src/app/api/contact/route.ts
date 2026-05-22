@@ -90,7 +90,7 @@ export async function POST(request: Request) {
     );
   }
 
-  if (!firstName || !email || !phone || !arriveDate || !leaveDate) {
+  if (!firstName || !email || !arriveDate || !leaveDate) {
     return Response.json(
       { message: "Please fill in all required fields." },
       { status: 400 },
@@ -167,7 +167,7 @@ export async function POST(request: Request) {
       react: OwnerNotificationEmail({
         firstName,
         email,
-        phone,
+        phone: phone || "—",
         arriveDate: arriveDateForOwner,
         leaveDate: leaveDateForOwner,
         guests,
