@@ -19,7 +19,11 @@ export default function StageProgress({ current, total }: StageProgressProps) {
       {Array.from({ length: total }, (_, i) => {
         const step = i + 1;
         const state =
-          step < current ? "complete" : step === current ? "active" : "upcoming";
+          step < current
+            ? "complete"
+            : step === current
+              ? "active"
+              : "upcoming";
         return (
           <span
             key={step}

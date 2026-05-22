@@ -30,9 +30,7 @@ export default function InquiryForm({
   const inputClass =
     "rounded-xl border bg-white px-4 py-3 text-base text-[var(--foreground)] focus:ring-2 focus:ring-[var(--brand)] focus:ring-offset-1 focus:outline-none";
   const borderClass = (key: keyof InquiryFormValues) =>
-    invalid[key]
-      ? "border-rose-300"
-      : "border-[var(--surface-strong)]";
+    invalid[key] ? "border-rose-300" : "border-[var(--surface-strong)]";
 
   return (
     <div className="grid gap-4">

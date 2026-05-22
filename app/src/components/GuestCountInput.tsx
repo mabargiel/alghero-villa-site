@@ -48,10 +48,7 @@ export default function GuestCountInput({
     <div>
       <label className="grid gap-2 text-sm font-medium text-[var(--muted)]">
         <span className="flex items-center gap-2">
-          <Users
-            className="h-4 w-4 text-[var(--muted)]"
-            aria-hidden="true"
-          />
+          <Users className="h-4 w-4 text-[var(--muted)]" aria-hidden="true" />
           {t("guestsLabel")}
         </span>
         <input
@@ -65,19 +62,13 @@ export default function GuestCountInput({
           aria-invalid={invalid || undefined}
           aria-describedby={errorId}
           className={`rounded-xl border bg-white px-4 py-3 text-base text-[var(--foreground)] focus:ring-2 focus:ring-[var(--brand)] focus:ring-offset-1 focus:outline-none ${
-            invalid
-              ? "border-rose-300"
-              : "border-[var(--surface-strong)]"
+            invalid ? "border-rose-300" : "border-[var(--surface-strong)]"
           }`}
         />
         <span className="text-xs text-[var(--muted)]">{t("guestsHelper")}</span>
       </label>
       {invalid && (
-        <p
-          id={errorId}
-          className="mt-2 text-sm text-rose-700"
-          role="alert"
-        >
+        <p id={errorId} className="mt-2 text-sm text-rose-700" role="alert">
           {t("guestsErrorRange")}
         </p>
       )}

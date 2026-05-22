@@ -29,8 +29,7 @@ export default function CollapsedDateInput({
   const filled = Boolean(range?.from && range?.to);
   const nights = filled
     ? Math.round(
-        (range!.to!.getTime() - range!.from!.getTime()) /
-          (1000 * 60 * 60 * 24),
+        (range!.to!.getTime() - range!.from!.getTime()) / (1000 * 60 * 60 * 24),
       )
     : 0;
 

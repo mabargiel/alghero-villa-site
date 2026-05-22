@@ -64,7 +64,9 @@ export default function PricingModal({
   const minNightsWarning = useMemo(() => checkMinNightsWarning(range), [range]);
 
   const dateRangeValid =
-    Boolean(range?.from && range?.to) && !minNightsWarning && Boolean(breakdown);
+    Boolean(range?.from && range?.to) &&
+    !minNightsWarning &&
+    Boolean(breakdown);
   const guestsValid = isGuestCountValid(guests);
   const stage1Valid = dateRangeValid && guestsValid;
 
@@ -108,9 +110,7 @@ export default function PricingModal({
   }
 
   function handleFormChange(field: keyof InquiryFormValues) {
-    return (
-      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) => {
+    return (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       setForm((prev) => ({ ...prev, [field]: e.target.value }));
     };
   }
@@ -229,10 +229,7 @@ export default function PricingModal({
           </div>
 
           {/* Body */}
-          <div
-            className="flex-1 overflow-hidden px-5 py-5"
-            aria-live="polite"
-          >
+          <div className="flex-1 overflow-hidden px-5 py-5" aria-live="polite">
             {stage === "choose" && (
               <div className="flex h-full flex-col">
                 <StageProgress current={1} total={TOTAL_STAGES} />
@@ -326,9 +323,7 @@ export default function PricingModal({
                   disabled={submitState === "sending"}
                   className="mt-5 rounded-xl bg-[var(--brand)] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_var(--shadow-brand)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-hover)] hover:shadow-[0_12px_32px_-8px_var(--shadow-brand-strong)] disabled:opacity-60"
                 >
-                  {submitState === "sending"
-                    ? t("sending")
-                    : t("sendInquiry")}
+                  {submitState === "sending" ? t("sending") : t("sendInquiry")}
                 </button>
               </form>
             )}
@@ -359,32 +354,34 @@ export default function PricingModal({
           </div>
 
           {closePrompt && (
-            <div
-              className="absolute inset-0 z-10 flex items-center justify-center bg-black/40 p-5"
-              onClick={() => setClosePrompt(false)}
-            >
-              <div
-                className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <p className="text-sm text-[var(--foreground)]">
-                  {t("closeDirtyPrompt")}
-                </p>
-                <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:justify-end">
-                  <button
-                    type="button"
-                    onClick={() => setClosePrompt(false)}
-                    className="rounded-xl border border-[var(--surface-strong)] bg-white px-4 py-2 text-sm font-medium text-[var(--foreground)] hover:bg-[var(--surface)]"
-                  >
-                    {t("closeDirtyKeep")}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleDiscardAndClose}
-                    className="rounded-xl bg-rose-600 px-4 py-2 text-sm font-medium text-white hover:bg-rose-700"
-                  >
-                    {t("closeDirtyDiscard")}
-                  </button>
+            <div className="absolute inset-0 z-10">
+              <button
+                type="button"
+                aria-label={t("closeDirtyKeep")}
+                onClick={() => setClosePrompt(false)}
+                className="absolute inset-0 cursor-default bg-black/40"
+              />
+              <div className="pointer-events-none absolute inset-0 flex items-center justify-center p-5">
+                <div className="pointer-events-auto w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl">
+                  <p className="text-sm text-[var(--foreground)]">
+                    {t("closeDirtyPrompt")}
+                  </p>
+                  <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:justify-end">
+                    <button
+                      type="button"
+                      onClick={() => setClosePrompt(false)}
+                      className="rounded-xl border border-[var(--surface-strong)] bg-white px-4 py-2 text-sm font-medium text-[var(--foreground)] hover:bg-[var(--surface)]"
+                    >
+                      {t("closeDirtyKeep")}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleDiscardAndClose}
+                      className="rounded-xl bg-rose-600 px-4 py-2 text-sm font-medium text-white hover:bg-rose-700"
+                    >
+                      {t("closeDirtyDiscard")}
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

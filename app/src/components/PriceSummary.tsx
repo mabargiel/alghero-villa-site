@@ -62,10 +62,7 @@ function buildDisplayLines(segments: PriceSegment[]): DisplayLine[] {
   return lines;
 }
 
-export default function PriceSummary({
-  breakdown,
-  guests,
-}: PriceSummaryProps) {
+export default function PriceSummary({ breakdown, guests }: PriceSummaryProps) {
   const t = useTranslations("pricing");
   const locale = useLocale();
   const format = useFormatter();
@@ -101,7 +98,7 @@ export default function PriceSummary({
     <div className="flex flex-col gap-5">
       <div className="border-surface-strong rounded-xl border bg-white p-5">
         <p className="text-sm text-[var(--muted)]">
-          <span className="text-[var(--foreground)] font-medium">
+          <span className="font-medium text-[var(--foreground)]">
             {formatDate(rangeFrom)} – {formatDate(rangeTo)}
           </span>
           <span> · {breakdown.totalNights} </span>
@@ -121,7 +118,7 @@ export default function PriceSummary({
                   <span className="text-[var(--foreground)]">
                     {formatDate(line.startDate)} – {formatDate(line.endDate)}
                   </span>
-                  <span className="text-[var(--muted)] ml-2">
+                  <span className="ml-2 text-[var(--muted)]">
                     {line.nights} {t("nights", { count: line.nights })}
                   </span>
                   {line.promotion && (
@@ -134,11 +131,11 @@ export default function PriceSummary({
                 </div>
                 <div className="text-right whitespace-nowrap">
                   {line.promotion && (
-                    <span className="text-[var(--muted)] mr-2 line-through">
+                    <span className="mr-2 text-[var(--muted)] line-through">
                       {formatPrice(line.promotion.originalTotal)} €
                     </span>
                   )}
-                  <span className="text-[var(--foreground)] font-semibold">
+                  <span className="font-semibold text-[var(--foreground)]">
                     {formatPrice(line.total)} €
                   </span>
                 </div>

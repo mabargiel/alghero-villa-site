@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, useState, useMemo, useCallback } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useMemo,
+  useCallback,
+} from "react";
 import type { DateRange } from "react-day-picker";
 import type { PricingConfig } from "@/lib/sanity/queries";
 import PricingModal from "./PricingModal";
