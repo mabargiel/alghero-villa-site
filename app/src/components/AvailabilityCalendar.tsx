@@ -68,8 +68,8 @@ export default function AvailabilityCalendar({
   const canConfirm = rangeComplete && !minNightsWarning;
 
   return (
-    <div className="flex h-full flex-col">
-      <div className="border-surface-strong flex-1 overflow-y-auto rounded-2xl border bg-white/60 p-3 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.06)] sm:p-5">
+    <div className="flex h-full min-h-0 flex-col">
+      <div className="border-surface-strong min-h-0 flex-1 overflow-y-auto rounded-2xl border bg-white/60 p-3 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.06)] sm:p-5">
         <DateRangePicker
           range={range}
           onRangeChange={onRangeChange}
