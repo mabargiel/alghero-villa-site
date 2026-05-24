@@ -229,7 +229,10 @@ export default function PricingModal({
           </div>
 
           {/* Body */}
-          <div className="flex-1 overflow-hidden px-5 py-5" aria-live="polite">
+          <div
+            className="flex min-h-0 flex-1 flex-col overflow-hidden px-5 py-5"
+            aria-live="polite"
+          >
             {stage === "choose" && (
               <div className="flex h-full flex-col">
                 <StageProgress current={1} total={TOTAL_STAGES} />
