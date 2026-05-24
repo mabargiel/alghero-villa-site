@@ -2,7 +2,7 @@
 
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SocialIcon from "@/components/SocialIcon";
 import { routing } from "@/i18n/routing";
 
@@ -28,7 +28,15 @@ export default function TopNav() {
   const locale = useLocale();
   const t = useTranslations("nav");
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const isHome = pathname === "/";
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   function handleToggle() {
     setIsOpen((prev) => !prev);
@@ -39,7 +47,13 @@ export default function TopNav() {
   }
 
   return (
-    <header className="absolute top-0 left-0 z-30 w-full">
+    <header
+      className={`fixed top-0 left-0 z-30 w-full transition-colors duration-200 ${
+        scrolled
+          ? "bg-[var(--deep-olive)]/70 backdrop-blur-md"
+          : "bg-transparent"
+      }`}
+    >
       <div className="mx-auto flex max-w-6xl justify-end px-6 pt-3 pb-2">
         <div className="flex items-center gap-4 text-sm text-[var(--nav-text-muted)]">
           <div className="flex items-center gap-4">

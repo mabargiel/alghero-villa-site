@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Reveal from "@/components/Reveal";
 import CtaSection from "@/components/CtaSection";
+import FloatingBookingCTA from "@/components/FloatingBookingCTA";
 import {
   beaches,
   towns,
@@ -436,7 +437,10 @@ export default function LocationPageClient({
       </section>
 
       {/* CTA */}
-      <CtaSection namespace="location" />
+      <CtaSection namespace="location" id="location-natural-cta" />
+
+      {/* Mobile-only floating CTA — hides when the natural CTA is in view */}
+      <FloatingBookingCTA hideWhenVisibleSelector="#location-natural-cta" />
 
       {/* Bottom Sheet (mobile detail view) */}
       <BottomSheet
