@@ -6,12 +6,13 @@ import CheckAvailabilityButton from "@/components/CheckAvailabilityButton";
 
 export default function CtaSection({
   namespace,
-}: Readonly<{ namespace: string }>) {
+  id,
+}: Readonly<{ namespace: string; id?: string }>) {
   const t = useTranslations(namespace);
 
   return (
     <Reveal>
-      <section className="mx-auto max-w-6xl px-6 pb-24">
+      <section id={id} className="mx-auto max-w-6xl px-6 pb-24">
         <div className="bg-surface-strong rounded-xl p-10 text-center shadow-[0_6px_16px_-10px_rgba(20,20,20,0.28),_0_22px_45px_-28px_rgba(20,20,20,0.4)]">
           <h2 className="text-2xl font-semibold md:text-3xl">
             {t("ctaTitle")}
