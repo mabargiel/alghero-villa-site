@@ -31,7 +31,7 @@ const areas: Area[] = [
   {
     titleKey: "areaSummerKitchenTitle",
     descriptionKey: "areaSummerKitchenDescription",
-    iconKey: "kitchen",
+    iconKey: "garden",
   },
   {
     titleKey: "areaSportsFieldTitle",
