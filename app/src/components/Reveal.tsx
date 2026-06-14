@@ -22,6 +22,15 @@ export default function Reveal({ children, className }: RevealProps) {
       return;
     }
 
+    // If the URL hash points at a node inside this Reveal, the user is
+    // deep-linking into this section — skip the animation so the anchor
+    // lands on the heading's final position instead of fighting the fade-in.
+    const hash = window.location.hash.slice(1);
+    if (hash && element.querySelector(`#${CSS.escape(hash)}`)) {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

@@ -15,6 +15,7 @@ type Area = {
   titleKey: string;
   descriptionKey: string;
   iconKey: string;
+  href: string;
 };
 
 const areas: Area[] = [
@@ -22,21 +23,25 @@ const areas: Area[] = [
     titleKey: "areaInteriorsTitle",
     descriptionKey: "areaInteriorsDescription",
     iconKey: "living-room",
+    href: "/villa#salon",
   },
   {
     titleKey: "areaVerandasTitle",
     descriptionKey: "areaVerandasDescription",
     iconKey: "veranda",
+    href: "/villa#ext-veranda",
   },
   {
     titleKey: "areaSummerKitchenTitle",
     descriptionKey: "areaSummerKitchenDescription",
     iconKey: "garden",
+    href: "/villa#ext-summer-kitchen",
   },
   {
     titleKey: "areaSportsFieldTitle",
     descriptionKey: "areaSportsFieldDescription",
     iconKey: "sports",
+    href: "/villa#ext-sports-court",
   },
 ];
 
@@ -58,7 +63,7 @@ export default function AreaHighlights({ images }: AreaHighlightsProps) {
         return (
           <Link
             key={area.iconKey}
-            href="/villa"
+            href={area.href}
             aria-label={title}
             className={`highlight-card-item relative h-[260px] overflow-visible rounded-lg ${
               isExpanded ? "z-10" : "z-0"

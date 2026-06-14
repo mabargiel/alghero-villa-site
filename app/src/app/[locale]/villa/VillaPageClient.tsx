@@ -64,7 +64,7 @@ export default function VillaPageClient({
   const interiorItems: { id: string; label: string }[] = [];
   if (salon) interiorItems.push({ id: "salon", label: t("salonLabel") });
   if (bedrooms.length > 0)
-    interiorItems.push({ id: "sypialnie", label: t("bedroomsLabel") });
+    interiorItems.push({ id: "bedrooms", label: t("bedroomsLabel") });
 
   const exteriorItems = exteriorSections.map((s) => ({
     id: `ext-${s.key}`,
@@ -140,7 +140,7 @@ export default function VillaPageClient({
 
         {/* === BEDROOMS === */}
         {bedrooms.length > 0 && (
-          <section id="sypialnie" className="pb-16">
+          <section id="bedrooms" className="pb-16">
             <h2 className="text-2xl font-semibold md:text-3xl">
               {t("bedroomsTitle")}
             </h2>
