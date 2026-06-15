@@ -324,7 +324,7 @@ export default async function HomePage() {
               </p>
               <Link
                 className="mt-6 inline-flex items-center gap-2 text-base font-medium text-[var(--accent-sky)]"
-                href="/location"
+                href="/location#section-beaches"
               >
                 {t("beachesLink")}
               </Link>
@@ -387,6 +387,12 @@ export default async function HomePage() {
                   {t("locationItem4")}
                 </li>
               </ul>
+              <Link
+                className="mt-6 inline-flex items-center gap-2 text-base font-medium text-[var(--accent-sky)]"
+                href="/location"
+              >
+                {t("locationLink")}
+              </Link>
             </div>
           </div>
         </section>

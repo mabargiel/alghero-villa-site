@@ -64,7 +64,7 @@ export default function VillaPageClient({
   const interiorItems: { id: string; label: string }[] = [];
   if (salon) interiorItems.push({ id: "salon", label: t("salonLabel") });
   if (bedrooms.length > 0)
-    interiorItems.push({ id: "sypialnie", label: t("bedroomsLabel") });
+    interiorItems.push({ id: "bedrooms", label: t("bedroomsLabel") });
 
   const exteriorItems = exteriorSections.map((s) => ({
     id: `ext-${s.key}`,
@@ -98,7 +98,7 @@ export default function VillaPageClient({
       <div className="mx-auto max-w-6xl px-6">
         {/* === SALON === */}
         {salon && (
-          <Reveal>
+          <Reveal anchorId="salon">
             <section id="salon" className="pt-12 pb-16">
               <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
                 <div>
@@ -140,7 +140,7 @@ export default function VillaPageClient({
 
         {/* === BEDROOMS === */}
         {bedrooms.length > 0 && (
-          <section id="sypialnie" className="pb-16">
+          <section id="bedrooms" className="pb-16">
             <h2 className="text-2xl font-semibold md:text-3xl">
               {t("bedroomsTitle")}
             </h2>
@@ -167,7 +167,7 @@ export default function VillaPageClient({
 
         {/* === EXTERIORS === */}
         {exteriorSections.map((section, index) => (
-          <Reveal key={section.key}>
+          <Reveal key={section.key} anchorId={`ext-${section.key}`}>
             <section id={`ext-${section.key}`} className="pb-16">
               <div className="grid gap-10 md:grid-cols-[1fr_1fr]">
                 {index % 2 === 1 && section.image && (
