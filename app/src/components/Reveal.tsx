@@ -5,29 +5,30 @@ import { useEffect, useRef, useState } from "react";
 type RevealProps = {
   children: React.ReactNode;
   className?: string;
+  // If the URL hash matches this id on initial mount, Reveal starts visible
+  // — the user is deep-linking into this section, so skip the fade-in animation
+  // that would otherwise fight the anchor scroll.
+  anchorId?: string;
 };
 
-export default function Reveal({ children, className }: RevealProps) {
+export default function Reveal({ children, className, anchorId }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const [isVisible, setIsVisible] = useState(() => {
     if (typeof window === "undefined") return false;
     if (!("matchMedia" in window)) return false;
-    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return true;
+    }
+    if (anchorId && window.location.hash.slice(1) === anchorId) {
+      return true;
+    }
+    return false;
   });
 
   useEffect(() => {
     const element = ref.current;
     if (!element || isVisible) {
-      return;
-    }
-
-    // If the URL hash points at a node inside this Reveal, the user is
-    // deep-linking into this section — skip the animation so the anchor
-    // lands on the heading's final position instead of fighting the fade-in.
-    const hash = window.location.hash.slice(1);
-    if (hash && element.querySelector(`#${CSS.escape(hash)}`)) {
-      setIsVisible(true);
       return;
     }
 

@@ -113,7 +113,7 @@ export default function LocationPageClient({
         id={SECTION_IDS.beaches}
         className="mx-auto max-w-6xl px-6 pt-16 pb-10"
       >
-        <Reveal>
+        <Reveal anchorId={SECTION_IDS.beaches}>
           <h2 className="text-3xl font-semibold md:text-4xl">
             {t("sectionBeaches")}
           </h2>
@@ -246,7 +246,7 @@ export default function LocationPageClient({
         id={SECTION_IDS.towns}
         className="mx-auto max-w-6xl px-6 pt-16 pb-10"
       >
-        <Reveal>
+        <Reveal anchorId={SECTION_IDS.towns}>
           <h2 className="text-3xl font-semibold md:text-4xl">
             {t("sectionTowns")}
           </h2>
@@ -280,7 +280,7 @@ export default function LocationPageClient({
         id={SECTION_IDS.archaeology}
         className="mx-auto max-w-6xl px-6 pt-16 pb-10"
       >
-        <Reveal>
+        <Reveal anchorId={SECTION_IDS.archaeology}>
           <h2 className="text-3xl font-semibold md:text-4xl">
             {t("sectionArchaeology")}
           </h2>
@@ -314,7 +314,7 @@ export default function LocationPageClient({
         id={SECTION_IDS.nature}
         className="mx-auto max-w-6xl px-6 pt-16 pb-10"
       >
-        <Reveal>
+        <Reveal anchorId={SECTION_IDS.nature}>
           <h2 className="text-3xl font-semibold md:text-4xl">
             {t("sectionNature")}
           </h2>
@@ -363,7 +363,7 @@ export default function LocationPageClient({
         id={SECTION_IDS.dayTrips}
         className="mx-auto max-w-6xl px-6 pt-16 pb-10"
       >
-        <Reveal>
+        <Reveal anchorId={SECTION_IDS.dayTrips}>
           <h2 className="text-3xl font-semibold md:text-4xl">
             {t("sectionDayTrips")}
           </h2>
@@ -397,7 +397,7 @@ export default function LocationPageClient({
         id={SECTION_IDS.diving}
         className="mx-auto max-w-6xl px-6 pt-16 pb-10"
       >
-        <Reveal>
+        <Reveal anchorId={SECTION_IDS.diving}>
           <h2 className="text-3xl font-semibold md:text-4xl">
             {t("sectionDiving")}
           </h2>
@@ -431,7 +431,7 @@ export default function LocationPageClient({
         id={SECTION_IDS.map}
         className="mx-auto max-w-6xl px-6 pt-16 pb-10"
       >
-        <Reveal>
+        <Reveal anchorId={SECTION_IDS.map}>
           <LocationMap />
         </Reveal>
       </section>

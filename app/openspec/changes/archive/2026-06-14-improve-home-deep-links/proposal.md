@@ -14,9 +14,11 @@ Links on the home page that route to `/villa` and `/location` either point at th
 ## Capabilities
 
 ### New Capabilities
+
 - `section-deep-links`: home-page CTAs deep-link to specific sections on destination pages; anchor scroll lands the section heading below the fixed top nav rather than behind it; section IDs follow the project's English-in-code convention.
 
 ### Modified Capabilities
+
 <!-- None - no existing specs in this project yet -->
 
 ## Impact
