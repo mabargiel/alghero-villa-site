@@ -5,6 +5,8 @@ import { useTranslations, useLocale } from "next-intl";
 import type { DateRange } from "react-day-picker";
 import { Link } from "@/i18n/navigation";
 import { usePricingModal } from "./PricingModalProvider";
+import { useConsent } from "./ConsentProvider";
+import { readFbCookies } from "@/lib/meta/fb-cookies";
 import DatePickerModal from "./DatePickerModal";
 
 type FormState = "idle" | "sending" | "success" | "error";
@@ -43,11 +45,10 @@ export default function ContactForm() {
   const [showCalendar, setShowCalendar] = useState(false);
   const t = useTranslations("contact");
   const locale = useLocale();
+  const { consent } = useConsent();
 
   useEffect(() => {
-    if (typeof fbq !== "undefined") {
-      fbq("track", "ViewContent", { content_name: "Contact Page" });
-    }
+    window.fbq?.("track", "ViewContent", { content_name: "Contact Page" });
   }, []);
 
   function formatDate(date: Date): string {
@@ -65,6 +66,9 @@ export default function ContactForm() {
     setMessage(null);
 
     const formData = new FormData(form);
+    const eventId = crypto.randomUUID();
+    const consentGranted = consent === "granted";
+    const { fbp, fbc } = consentGranted ? readFbCookies() : {};
     const payload = {
       firstName: String(formData.get("firstName") || ""),
       email: String(formData.get("email") || ""),
@@ -75,12 +79,28 @@ export default function ContactForm() {
       arriveDate: dateRange?.from?.toISOString() || "",
       leaveDate: dateRange?.to?.toISOString() || "",
       locale,
+      eventId,
+      consent: consentGranted,
+      fbp,
+      fbc,
     };
 
     if (!payload.arriveDate || !payload.leaveDate) {
       setState("error");
       setMessage(t("errorDates"));
       return;
+    }
+
+    // Fire the browser-side Lead event BEFORE awaiting the fetch so it
+    // still fires if the user navigates away during the request. CAPI
+    // mirrors this server-side with the same eventId for dedup.
+    if (consentGranted) {
+      window.fbq?.(
+        "track",
+        "Lead",
+        { value: 0, currency: "EUR" },
+        { eventID: eventId },
+      );
     }
 
     try {
@@ -95,9 +115,6 @@ export default function ContactForm() {
         throw new Error(data?.message || t("errorGeneric"));
       }
 
-      if (typeof fbq !== "undefined") {
-        fbq("track", "Contact");
-      }
       setState("success");
     } catch (error) {
       setState("error");

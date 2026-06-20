@@ -7,6 +7,8 @@ import type { DateRange } from "react-day-picker";
 
 import type { PricingConfig } from "@/lib/sanity/queries";
 import { calculatePriceBreakdown, type PriceBreakdown } from "@/lib/pricing";
+import { useConsent } from "./ConsentProvider";
+import { readFbCookies } from "@/lib/meta/fb-cookies";
 import AvailabilityCalendar, {
   checkMinNightsWarning,
 } from "./AvailabilityCalendar";
@@ -45,6 +47,7 @@ export default function PricingModal({
   const t = useTranslations("pricing");
   const locale = useLocale();
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const { consent } = useConsent();
 
   const [stage, setStage] = useState<Stage>("choose");
   const [guests, setGuests] = useState<number | "">("");
@@ -125,6 +128,9 @@ export default function PricingModal({
 
     setSubmitState("sending");
 
+    const eventId = crypto.randomUUID();
+    const consentGranted = consent === "granted";
+    const { fbp, fbc } = consentGranted ? readFbCookies() : {};
     const payload = {
       firstName: form.firstName.trim(),
       email: form.email.trim(),
@@ -135,7 +141,22 @@ export default function PricingModal({
       arriveDate: range.from.toISOString(),
       leaveDate: range.to.toISOString(),
       locale,
+      eventId,
+      consent: consentGranted,
+      fbp,
+      fbc,
     };
+
+    // Fire the browser-side Lead event BEFORE awaiting the fetch so it
+    // still fires if the user navigates away during the request.
+    if (consentGranted) {
+      window.fbq?.(
+        "track",
+        "Lead",
+        { value: 0, currency: "EUR" },
+        { eventID: eventId },
+      );
+    }
 
     try {
       const response = await fetch("/api/contact", {
@@ -144,9 +165,6 @@ export default function PricingModal({
         body: JSON.stringify(payload),
       });
       if (!response.ok) throw new Error("send_failed");
-      if (typeof fbq !== "undefined") {
-        fbq("track", "Contact");
-      }
       setSubmitState("idle");
       setStage("sent");
     } catch {
@@ -290,7 +308,15 @@ export default function PricingModal({
                 </div>
                 <button
                   type="button"
-                  onClick={() => setStage("inquiry")}
+                  onClick={() => {
+                    if (consent === "granted") {
+                      window.fbq?.("track", "InitiateCheckout", {
+                        value: 0,
+                        currency: "EUR",
+                      });
+                    }
+                    setStage("inquiry");
+                  }}
                   className="mt-5 rounded-xl bg-[var(--brand)] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_var(--shadow-brand)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-hover)] hover:shadow-[0_12px_32px_-8px_var(--shadow-brand-strong)]"
                 >
                   {t("next")} →
