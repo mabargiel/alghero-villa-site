@@ -3,6 +3,7 @@ import ConfirmationEmail from "@/emails/ConfirmationEmail";
 import OwnerNotificationEmail from "@/emails/OwnerNotificationEmail";
 import { calculatePriceBreakdown } from "@/lib/pricing";
 import { getPricingConfig } from "@/lib/sanity/queries";
+import { sendLeadEvent } from "@/lib/meta/conversions-api";
 
 export const runtime = "nodejs";
 
@@ -82,6 +83,10 @@ export async function POST(request: Request) {
   const leaveDate = String(body.leaveDate || "").trim();
   const guests = Number(body.guests) || 0;
   const locale = String(body.locale || "en").trim();
+  const eventId = typeof body.eventId === "string" ? body.eventId : "";
+  const consent = body.consent === true;
+  const fbp = typeof body.fbp === "string" ? body.fbp : undefined;
+  const fbc = typeof body.fbc === "string" ? body.fbc : undefined;
 
   if (website) {
     return Response.json(
@@ -202,6 +207,33 @@ export async function POST(request: Request) {
       { message: "Email delivery failed. Please try again later." },
       { status: 502 },
     );
+  }
+
+  // Fire the Meta Conversions API Lead event mirroring the browser-side fbq
+  // call. Same eventId so Meta dedupes. Fire-and-forget — failures are
+  // logged but never block the user-facing form response.
+  if (consent && eventId) {
+    const referer = request.headers.get("referer");
+    const sourceUrl = referer || `${siteUrl}/contact`;
+    const userAgent = request.headers.get("user-agent") || undefined;
+    void sendLeadEvent({
+      eventId,
+      email,
+      phone: phone || undefined,
+      firstName: firstName || undefined,
+      fbp,
+      fbc,
+      clientIp: ip !== "unknown" ? ip : undefined,
+      userAgent,
+      sourceUrl,
+      customData: {
+        currency: "EUR",
+        value: breakdown?.totalPrice ?? 0,
+        num_guests: guests,
+        arrive_date: arriveDate,
+        leave_date: leaveDate,
+      },
+    }).catch((err) => console.error("[meta-capi] unexpected error", err));
   }
 
   return Response.json({ ok: true });

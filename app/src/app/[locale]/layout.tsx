@@ -9,6 +9,7 @@ import CookieBanner from "@/components/CookieBanner";
 import CookiePreferencesButton from "@/components/CookiePreferencesButton";
 import PricingModalProvider from "@/components/PricingModalProvider";
 import TopNav from "@/components/TopNav";
+import MetaPageView from "@/components/MetaPageView";
 import TrackingPixels from "@/components/TrackingPixels";
 import { getPricingConfig } from "@/lib/sanity/queries";
 
@@ -175,6 +176,7 @@ export default async function LocaleLayout({
           </footer>
           <CookieBanner />
           <TrackingPixels />
+          <MetaPageView />
         </PricingModalProvider>
       </ConsentProvider>
     </NextIntlClientProvider>
