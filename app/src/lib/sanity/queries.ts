@@ -350,10 +350,6 @@ export async function getVillaPage() {
   );
 }
 
-// ---------------------------------------------------------------------------
-// Location page
-// ---------------------------------------------------------------------------
-
 export type LocationImageSet = {
   _key: string;
   locationKey: string;

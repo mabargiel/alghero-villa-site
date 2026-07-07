@@ -74,7 +74,6 @@ export default async function VillaPage() {
     { icon: "parking", value: t("stat6Value"), label: t("stat6Label") },
   ];
 
-  // Build image maps keyed by roomKey / sectionKey
   const roomImageMap = new Map(
     (villaPage?.roomImages ?? []).map((ri) => [ri.roomKey, ri]),
   );

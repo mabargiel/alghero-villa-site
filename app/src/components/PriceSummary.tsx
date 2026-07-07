@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import { Check } from "lucide-react";
 import { useTranslations, useLocale, useFormatter } from "next-intl";
 import type { PriceBreakdown, PriceSegment } from "@/lib/pricing";
+import { formatCalendarDate } from "@/lib/date";
 
 type PriceSummaryProps = Readonly<{
   breakdown: PriceBreakdown;
@@ -73,7 +74,7 @@ export default function PriceSummary({ breakdown, guests }: PriceSummaryProps) {
   );
 
   function formatDate(date: Date): string {
-    return format.dateTime(date, { day: "numeric", month: "short" });
+    return formatCalendarDate(format, date);
   }
 
   function formatPrice(amount: number): string {

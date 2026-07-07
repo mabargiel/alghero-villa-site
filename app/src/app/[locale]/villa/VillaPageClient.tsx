@@ -60,7 +60,6 @@ export default function VillaPageClient({
   const bedrooms = rooms.filter((r) => !r.isSalon);
   const salon = rooms.find((r) => r.isSalon) ?? null;
 
-  // Build sub-nav groups
   const interiorItems: { id: string; label: string }[] = [];
   if (salon) interiorItems.push({ id: "salon", label: t("salonLabel") });
   if (bedrooms.length > 0)
@@ -96,7 +95,6 @@ export default function VillaPageClient({
       )}
 
       <div className="mx-auto max-w-6xl px-6">
-        {/* === SALON === */}
         {salon && (
           <Reveal anchorId="salon">
             <section id="salon" className="pt-12 pb-16">
@@ -138,7 +136,6 @@ export default function VillaPageClient({
           </Reveal>
         )}
 
-        {/* === BEDROOMS === */}
         {bedrooms.length > 0 && (
           <section id="bedrooms" className="pb-16">
             <h2 className="text-2xl font-semibold md:text-3xl">
@@ -154,7 +151,6 @@ export default function VillaPageClient({
           </section>
         )}
 
-        {/* === VISUAL DIVIDER === */}
         {exteriorSections.length > 0 && rooms.length > 0 && (
           <div className="flex items-center gap-4 pb-12">
             <div className="h-px flex-1 bg-[var(--surface)]" />
@@ -165,7 +161,6 @@ export default function VillaPageClient({
           </div>
         )}
 
-        {/* === EXTERIORS === */}
         {exteriorSections.map((section, index) => (
           <Reveal key={section.key} anchorId={`ext-${section.key}`}>
             <section id={`ext-${section.key}`} className="pb-16">
@@ -203,7 +198,6 @@ export default function VillaPageClient({
           </Reveal>
         ))}
 
-        {/* === CTA === */}
         <CtaSection namespace="villa" />
       </div>
     </>

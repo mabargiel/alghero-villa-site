@@ -78,7 +78,6 @@ export default function AreaHighlights({ images }: AreaHighlightsProps) {
                 isExpanded ? "h-[340px]" : "h-[260px]"
               }`}
             >
-              {/* Background image */}
               {image ? (
                 <Image
                   src={image.url}
@@ -95,7 +94,6 @@ export default function AreaHighlights({ images }: AreaHighlightsProps) {
                 <div className="absolute inset-0 bg-[var(--surface-strong)]" />
               )}
 
-              {/* Dark gradient overlay */}
               <div
                 className={`pointer-events-none absolute inset-0 transition-opacity duration-500 ${
                   isExpanded

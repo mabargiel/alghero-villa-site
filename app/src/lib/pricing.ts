@@ -72,7 +72,6 @@ function calculateDayPrice(
     return { price: promotion.value, promotion };
   }
 
-  // percentage discount
   const discounted = basePricePerDay * (1 - promotion.value / 100);
   return { price: Math.round(discounted * 100) / 100, promotion };
 }
@@ -92,7 +91,6 @@ export function calculatePriceBreakdown(
   const nights = daysBetween(startDate, endDate);
   if (nights < 1) return null;
 
-  // Build segments by walking day-by-day
   const segments: PriceSegment[] = [];
   let currentSegmentKey: string | null = null;
   let currentSegment: {
@@ -108,7 +106,7 @@ export function calculatePriceBreakdown(
     const day = addDays(startDate, i);
     const range = findRangeForDate(day, config.baseRanges);
 
-    if (!range) continue; // skip days without pricing
+    if (!range) continue;
 
     const promotion = findPromotionForDate(day, range.promotions);
     const { price } = calculateDayPrice(range.pricePerDay, promotion);
@@ -119,7 +117,6 @@ export function calculatePriceBreakdown(
       currentSegment.total += price;
       currentSegment.baseTotal += range.pricePerDay;
     } else {
-      // Flush previous segment
       if (currentSegment) {
         segments.push(buildSegment(currentSegment));
       }
@@ -136,7 +133,6 @@ export function calculatePriceBreakdown(
     }
   }
 
-  // Flush last segment
   if (currentSegment) {
     segments.push(buildSegment(currentSegment));
   }

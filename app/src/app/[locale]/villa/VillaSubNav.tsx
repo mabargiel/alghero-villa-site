@@ -104,7 +104,6 @@ export default function VillaSubNav({
           {gi > 0 && (
             <div className="my-2 h-px w-6 bg-[var(--surface-strong)]" />
           )}
-          {/* Group header label */}
           <span className="text-[10px] font-semibold tracking-[0.15em] text-[var(--muted)] uppercase opacity-60">
             {group.label}
           </span>
@@ -122,14 +121,12 @@ export default function VillaSubNav({
                 aria-label={item.label}
                 aria-current={isActive ? "true" : undefined}
               >
-                {/* Label — always visible, active is bold accent, inactive is muted */}
                 <span
                   className={`max-w-[min(200px,30vw)] truncate text-xs transition-all duration-200 ${labelStyle(isActive, isHovered)}`}
                 >
                   {item.label}
                 </span>
 
-                {/* Dot */}
                 <span
                   className={`block shrink-0 rounded-full transition-all duration-300 ${
                     isActive

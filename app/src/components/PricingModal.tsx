@@ -85,7 +85,6 @@ export default function PricingModal({
     if (!EMAIL_RE.test(form.email.trim())) formInvalid.email = true;
   }
 
-  // Lock body scroll while open
   useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -209,7 +208,6 @@ export default function PricingModal({
             stage === "choose-calendar" ? "max-w-3xl" : "max-w-lg"
           }`}
         >
-          {/* Header */}
           <div className="flex items-center justify-between gap-3 border-b border-[var(--surface-strong)]/60 px-5 py-4">
             <div className="flex items-center gap-3">
               {(stage === "review" ||
@@ -246,7 +244,6 @@ export default function PricingModal({
             </button>
           </div>
 
-          {/* Body */}
           <div
             className="flex min-h-0 flex-1 flex-col overflow-hidden px-5 py-5"
             aria-live="polite"

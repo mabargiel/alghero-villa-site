@@ -40,7 +40,6 @@ type RoomTilesGridProps = Readonly<{
 
 export default function RoomTilesGrid({ rooms }: RoomTilesGridProps) {
   const t = useTranslations("villa");
-  // Lightbox state
   const [lightboxRoom, setLightboxRoom] = useState<Room | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState<number | null>(null);
@@ -109,7 +108,6 @@ export default function RoomTilesGrid({ rooms }: RoomTilesGridProps) {
             onClick={() => room.galleryImages.length > 0 && openLightbox(room)}
             className="group flex flex-col overflow-hidden rounded-lg bg-white shadow-sm transition hover:shadow-md"
           >
-            {/* Cover photo */}
             <div className="relative aspect-[4/5] w-full overflow-hidden">
               {room.coverImage ? (
                 <Image
@@ -132,7 +130,6 @@ export default function RoomTilesGrid({ rooms }: RoomTilesGridProps) {
               </div>
             </div>
 
-            {/* Amenity strip */}
             {room.amenities.length > 0 && (
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1 px-3 py-2.5 md:px-4">
                 {room.amenities.map((key) => (
@@ -156,7 +153,6 @@ export default function RoomTilesGrid({ rooms }: RoomTilesGridProps) {
         ))}
       </div>
 
-      {/* Lightbox */}
       {lightboxRoom && activeImage && (
         <dialog
           open
@@ -164,7 +160,6 @@ export default function RoomTilesGrid({ rooms }: RoomTilesGridProps) {
           aria-modal="true"
           aria-label={t("galleryAria", { title: lightboxRoom.title })}
         >
-          {/* Backdrop button */}
           <button
             type="button"
             className="fixed inset-0 -z-10 h-full w-full cursor-default border-none bg-black/25 p-0 backdrop-blur-xl"
@@ -172,7 +167,6 @@ export default function RoomTilesGrid({ rooms }: RoomTilesGridProps) {
             aria-label={t("closeGalleryAria")}
           />
           <div className="relative mx-4 max-w-4xl rounded-2xl bg-white/80 p-4 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.3)] backdrop-blur-sm md:p-6">
-            {/* Close button */}
             <button
               className="absolute top-3 right-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-black/5 text-sm text-[var(--foreground)] transition hover:bg-black/10"
               type="button"
@@ -182,7 +176,6 @@ export default function RoomTilesGrid({ rooms }: RoomTilesGridProps) {
               ✕
             </button>
 
-            {/* Room title */}
             <p className="mb-3 text-center text-xs font-semibold tracking-[0.14em] text-[var(--muted)] uppercase">
               {lightboxRoom.title}
               <span className="ml-2 font-normal tracking-normal normal-case opacity-60">
@@ -206,7 +199,6 @@ export default function RoomTilesGrid({ rooms }: RoomTilesGridProps) {
               }}
               aria-label={t("swipeToChangeAria")}
             >
-              {/* Active image */}
               <div
                 className={`transition-opacity duration-200 ${
                   isTransitioning ? "opacity-0" : "opacity-100"

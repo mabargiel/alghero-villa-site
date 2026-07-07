@@ -1,7 +1,3 @@
-// ---------------------------------------------------------------------------
-// Tag vocabulary
-// ---------------------------------------------------------------------------
-
 export const LOCATION_TAGS = {
   sandy: { icon: "sandy", translationKey: "tagSandy" },
   rocks: { icon: "rocks", translationKey: "tagRocks" },
@@ -20,10 +16,6 @@ export const LOCATION_TAGS = {
 } as const;
 
 export type LocationTag = keyof typeof LOCATION_TAGS;
-
-// ---------------------------------------------------------------------------
-// Shared types
-// ---------------------------------------------------------------------------
 
 export type LocationCategory =
   | "beaches"
@@ -48,10 +40,7 @@ export type LocationItem = {
   subgroup?: BeachSubgroup;
 };
 
-// ---------------------------------------------------------------------------
-// Villa coordinates (origin for Google Maps directions)
-// ---------------------------------------------------------------------------
-
+// Villa coordinates — origin for Google Maps directions links
 export const VILLA_COORDS: [number, number] = [
   40.582009416971765, 8.369357493735524,
 ];
@@ -59,10 +48,6 @@ export const VILLA_COORDS: [number, number] = [
 function directionsUrl(lat: number, lng: number) {
   return `https://www.google.com/maps/dir/${VILLA_COORDS[0]},${VILLA_COORDS[1]}/${lat},${lng}`;
 }
-
-// ---------------------------------------------------------------------------
-// Beaches
-// ---------------------------------------------------------------------------
 
 export const beaches: LocationItem[] = [
   // --- Alghero ---
@@ -302,10 +287,6 @@ export const beaches: LocationItem[] = [
   },
 ];
 
-// ---------------------------------------------------------------------------
-// Towns
-// ---------------------------------------------------------------------------
-
 export const towns: LocationItem[] = [
   {
     id: "alghero",
@@ -341,10 +322,6 @@ export const towns: LocationItem[] = [
   },
 ];
 
-// ---------------------------------------------------------------------------
-// Archaeology
-// ---------------------------------------------------------------------------
-
 export const archaeology: LocationItem[] = [
   {
     id: "nuraghi",
@@ -379,10 +356,6 @@ export const archaeology: LocationItem[] = [
     category: "archaeology",
   },
 ];
-
-// ---------------------------------------------------------------------------
-// Nature
-// ---------------------------------------------------------------------------
 
 export const nature: LocationItem[] = [
   {
@@ -428,10 +401,6 @@ export const nature: LocationItem[] = [
   },
 ];
 
-// ---------------------------------------------------------------------------
-// Day trips
-// ---------------------------------------------------------------------------
-
 export const dayTrips: LocationItem[] = [
   {
     id: "costa-smeralda",
@@ -451,10 +420,6 @@ export const dayTrips: LocationItem[] = [
   },
 ];
 
-// ---------------------------------------------------------------------------
-// Diving & cruises
-// ---------------------------------------------------------------------------
-
 export const diving: LocationItem[] = [
   {
     id: "tramariglio-diving",
@@ -473,10 +438,6 @@ export const diving: LocationItem[] = [
     category: "diving",
   },
 ];
-
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
 
 export const allLocations: LocationItem[] = [
   ...beaches,

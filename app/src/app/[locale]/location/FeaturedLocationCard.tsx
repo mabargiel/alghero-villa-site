@@ -24,7 +24,6 @@ export default function FeaturedLocationCard({
   return (
     <div className="group relative overflow-hidden rounded-2xl bg-white shadow-md">
       <div className="flex flex-col md:flex-row">
-        {/* Image */}
         <div className="relative aspect-[16/10] w-full md:aspect-auto md:w-1/2">
           {imageUrl ? (
             <Image
@@ -43,7 +42,6 @@ export default function FeaturedLocationCard({
           )}
         </div>
 
-        {/* Content */}
         <div className="flex flex-col justify-center gap-3 p-6 md:w-1/2 md:p-8">
           {item.featured && (
             <span className="text-sm font-semibold tracking-wide text-[var(--accent-warm)] uppercase">

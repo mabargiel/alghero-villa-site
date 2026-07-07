@@ -29,7 +29,6 @@ export default function LocationCard({
       onClick={onTap}
       className="group relative flex w-full cursor-pointer flex-col overflow-hidden rounded-xl bg-white text-left shadow-sm transition-all duration-300 hover:z-10 hover:scale-[1.08] hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.25)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-sky)] xl:hover:scale-[1.12]"
     >
-      {/* Image */}
       <div className="relative aspect-[4/3] w-full overflow-hidden">
         {imageUrl ? (
           <Image
@@ -48,7 +47,6 @@ export default function LocationCard({
         )}
       </div>
 
-      {/* Base info (always visible) */}
       <div className="flex flex-col gap-1.5 p-3">
         <h3 className="text-sm leading-tight font-semibold">
           {t(`loc_${item.id}_name`)}

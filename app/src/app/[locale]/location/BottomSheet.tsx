@@ -33,7 +33,6 @@ export default function BottomSheet({
   useEffect(() => {
     if (open) {
       triggerRef.current = document.activeElement as HTMLElement;
-      // Focus the sheet container
       requestAnimationFrame(() => sheetRef.current?.focus());
     }
   }, [open]);
@@ -50,11 +49,9 @@ export default function BottomSheet({
 
   const handleClose = useCallback(() => {
     onClose();
-    // Return focus
     requestAnimationFrame(() => triggerRef.current?.focus());
   }, [onClose]);
 
-  // Escape key
   useEffect(() => {
     if (!open) return;
     const handler = (e: KeyboardEvent) => {
@@ -64,7 +61,6 @@ export default function BottomSheet({
     return () => window.removeEventListener("keydown", handler);
   }, [open, handleClose]);
 
-  // Touch drag handlers
   const onTouchStart = useCallback((e: React.TouchEvent) => {
     startY.current = e.touches[0].clientY;
     setDragging(true);
@@ -91,14 +87,12 @@ export default function BottomSheet({
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center xl:hidden">
-      {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/40 transition-opacity"
         onClick={handleClose}
         aria-hidden="true"
       />
 
-      {/* Sheet */}
       <div
         ref={sheetRef}
         role="dialog"

@@ -4,6 +4,8 @@ import { Calendar, ChevronDown } from "lucide-react";
 import { useTranslations, useFormatter } from "next-intl";
 import type { DateRange } from "react-day-picker";
 
+import { formatCalendarDate } from "@/lib/date";
+
 type CollapsedDateInputProps = Readonly<{
   range: DateRange | undefined;
   onExpand: () => void;
@@ -23,7 +25,7 @@ export default function CollapsedDateInput({
   const format = useFormatter();
 
   function formatDate(date: Date): string {
-    return format.dateTime(date, { day: "numeric", month: "short" });
+    return formatCalendarDate(format, date);
   }
 
   const filled = Boolean(range?.from && range?.to);
