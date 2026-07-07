@@ -26,17 +26,9 @@ import LocationMap from "./LocationMap";
 import BeachTags from "./BeachTags";
 import BottomSheet from "./BottomSheet";
 
-// ---------------------------------------------------------------------------
-// Types
-// ---------------------------------------------------------------------------
-
 type LocationPageClientProps = Readonly<{
   imagesByCategory: Record<string, LocationImageSet[] | undefined>;
 }>;
-
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
 
 function getFirstImage(
   sets: LocationImageSet[] | undefined,
@@ -45,10 +37,6 @@ function getFirstImage(
   const set = sets?.find((s) => s.locationKey === locationId);
   return set?.images?.[0];
 }
-
-// ---------------------------------------------------------------------------
-// Component
-// ---------------------------------------------------------------------------
 
 export default function LocationPageClient({
   imagesByCategory,
@@ -74,7 +62,6 @@ export default function LocationPageClient({
     { id: SECTION_IDS.diving, label: t("sectionDiving") },
   ];
 
-  // Beach sub-groups
   const algheroBeaches = beaches.filter((b) => b.subgroup === "alghero");
   const southBeaches = beaches.filter((b) => b.subgroup === "south");
   const nearbyBeaches = beaches.filter((b) => b.subgroup === "nearby");
@@ -106,9 +93,6 @@ export default function LocationPageClient({
         hideUntilPastId="location-horizontal-nav"
       />
 
-      {/* ================================================================ */}
-      {/* BEACHES */}
-      {/* ================================================================ */}
       <section
         id={SECTION_IDS.beaches}
         className="mx-auto max-w-6xl px-6 pt-16 pb-10"
@@ -122,7 +106,6 @@ export default function LocationPageClient({
           </p>
         </Reveal>
 
-        {/* Subgroup: Alghero */}
         <Reveal>
           <h3 className="mt-10 mb-5 text-lg font-medium tracking-wide text-[var(--foreground)]/60 uppercase">
             {t("subgroupAlghero")}
@@ -171,7 +154,6 @@ export default function LocationPageClient({
           );
         })}
 
-        {/* Subgroup: South */}
         {southBeaches.length > 0 && (
           <>
             <Reveal>
@@ -199,14 +181,12 @@ export default function LocationPageClient({
           </>
         )}
 
-        {/* Subgroup: Nearby */}
         <Reveal>
           <h3 className="mt-12 mb-5 text-lg font-medium tracking-wide text-[var(--foreground)]/60 uppercase">
             {t("subgroupNearby")}
           </h3>
         </Reveal>
 
-        {/* Featured nearby beaches */}
         {nearbyFeatured.map((feat) => (
           <Reveal key={feat.id}>
             <div className="mb-6">
@@ -239,9 +219,6 @@ export default function LocationPageClient({
         )}
       </section>
 
-      {/* ================================================================ */}
-      {/* TOWNS */}
-      {/* ================================================================ */}
       <section
         id={SECTION_IDS.towns}
         className="mx-auto max-w-6xl px-6 pt-16 pb-10"
@@ -273,9 +250,6 @@ export default function LocationPageClient({
         </Reveal>
       </section>
 
-      {/* ================================================================ */}
-      {/* ARCHAEOLOGY */}
-      {/* ================================================================ */}
       <section
         id={SECTION_IDS.archaeology}
         className="mx-auto max-w-6xl px-6 pt-16 pb-10"
@@ -307,9 +281,6 @@ export default function LocationPageClient({
         </Reveal>
       </section>
 
-      {/* ================================================================ */}
-      {/* NATURE */}
-      {/* ================================================================ */}
       <section
         id={SECTION_IDS.nature}
         className="mx-auto max-w-6xl px-6 pt-16 pb-10"
@@ -356,9 +327,6 @@ export default function LocationPageClient({
         </Reveal>
       </section>
 
-      {/* ================================================================ */}
-      {/* DAY TRIPS */}
-      {/* ================================================================ */}
       <section
         id={SECTION_IDS.dayTrips}
         className="mx-auto max-w-6xl px-6 pt-16 pb-10"
@@ -390,9 +358,6 @@ export default function LocationPageClient({
         </Reveal>
       </section>
 
-      {/* ================================================================ */}
-      {/* DIVING */}
-      {/* ================================================================ */}
       <section
         id={SECTION_IDS.diving}
         className="mx-auto max-w-6xl px-6 pt-16 pb-10"
@@ -424,9 +389,6 @@ export default function LocationPageClient({
         </Reveal>
       </section>
 
-      {/* ================================================================ */}
-      {/* MAP (placeholder — will be added in task 7) */}
-      {/* ================================================================ */}
       <section
         id={SECTION_IDS.map}
         className="mx-auto max-w-6xl px-6 pt-16 pb-10"
@@ -436,13 +398,11 @@ export default function LocationPageClient({
         </Reveal>
       </section>
 
-      {/* CTA */}
       <CtaSection namespace="location" id="location-natural-cta" />
 
       {/* Mobile-only floating CTA — hides when the natural CTA is in view */}
       <FloatingBookingCTA hideWhenVisibleSelector="#location-natural-cta" />
 
-      {/* Bottom Sheet (mobile detail view) */}
       <BottomSheet
         open={!!sheetItem}
         onClose={closeSheet}
@@ -450,7 +410,6 @@ export default function LocationPageClient({
       >
         {sheetItem && (
           <div className="flex flex-col gap-4">
-            {/* Image */}
             {sheetImage?.image && (
               <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl">
                 <Image

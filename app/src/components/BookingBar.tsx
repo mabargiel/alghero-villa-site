@@ -7,6 +7,7 @@ import type { DateRange } from "react-day-picker";
 
 import type { PricingConfig } from "@/lib/sanity/queries";
 import { calculatePriceBreakdown, type PriceBreakdown } from "@/lib/pricing";
+import { formatCalendarDate } from "@/lib/date";
 import { checkMinNightsWarning } from "./AvailabilityCalendar";
 import PricingModal from "./PricingModal";
 import { usePricingModal } from "./PricingModalProvider";
@@ -37,7 +38,7 @@ export default function BookingBar({ config }: BookingBarProps) {
   const hasValidPrice = breakdown && !minNightsWarning;
 
   function formatDate(date: Date): string {
-    return format.dateTime(date, { day: "numeric", month: "short" });
+    return formatCalendarDate(format, date);
   }
 
   function formatPrice(amount: number): string {

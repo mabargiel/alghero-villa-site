@@ -140,7 +140,6 @@ export default function GalleryClient({ images }: Props) {
           <div className="pointer-events-none relative z-10 flex h-full w-full items-center justify-center px-4 py-10">
             <div className="pointer-events-auto relative w-full max-w-5xl">
               <div className="relative mx-auto flex max-h-[80vh] items-center justify-center">
-                {/* Active image */}
                 <div
                   className={`transition-opacity duration-200 ${
                     isTransitioning ? "opacity-0" : "opacity-100"

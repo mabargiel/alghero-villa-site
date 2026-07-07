@@ -12,7 +12,6 @@ export default function ContactInfoPanel() {
 
   return (
     <div className="flex h-full flex-col justify-between gap-6">
-      {/* Static map */}
       <div className="relative">
         <a
           href={DIRECTIONS_URL}
@@ -26,7 +25,6 @@ export default function ContactInfoPanel() {
             alt={t("mapAlt")}
             className="h-full w-full object-cover transition group-hover:brightness-95"
           />
-          {/* Inset border */}
           <span className="pointer-events-none absolute inset-2 rounded-xl border border-black/8" />
         </a>
         {/* CTA button — half outside the map */}
@@ -40,7 +38,6 @@ export default function ContactInfoPanel() {
         </a>
       </div>
 
-      {/* Contact details */}
       <div className="flex flex-col gap-3">
         <a
           href="tel:+393207171841"
@@ -74,7 +71,6 @@ export default function ContactInfoPanel() {
         </a>
       </div>
 
-      {/* Social links */}
       <div className="flex items-center gap-4 text-[var(--accent-sky)]">
         <a
           className="inline-flex items-center gap-2 text-sm font-semibold transition hover:text-[var(--accent-sky)]"

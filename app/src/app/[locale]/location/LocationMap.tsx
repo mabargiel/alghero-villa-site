@@ -10,10 +10,6 @@ import {
 } from "@/data/location-data";
 import { MapPin } from "lucide-react";
 
-// ---------------------------------------------------------------------------
-// SVG pin generators (using Lucide MapPin path)
-// ---------------------------------------------------------------------------
-
 function pinSvg(color: string): string {
   // Wrapper div is 0×0 so Azure Maps anchor is exactly at the coordinate.
   // SVG is positioned absolutely with its tip at (0,0) — no pixelOffset needed.
@@ -23,10 +19,6 @@ function pinSvg(color: string): string {
 function villaPinSvg(): string {
   return `<div style="position:relative;width:0;height:0;"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="38" viewBox="4 2 16 20" fill="#dc2626" stroke="#dc2626" stroke-width="0" style="position:absolute;bottom:0;left:-15px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.35));cursor:default;"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><path d="M12 5.5l-4.5 3.5V14h3v-2.5h3V14h3V9L12 5.5z" fill="white" stroke="none"/></svg></div>`;
 }
-
-// ---------------------------------------------------------------------------
-// Legend config
-// ---------------------------------------------------------------------------
 
 const LEGEND_ITEMS: { key: string; color: string; labelKey: string }[] = [
   {
@@ -43,10 +35,6 @@ const LEGEND_ITEMS: { key: string; color: string; labelKey: string }[] = [
   },
   { key: "trips", color: CATEGORY_COLORS.dayTrips, labelKey: "mapLegendTrips" },
 ];
-
-// ---------------------------------------------------------------------------
-// Component
-// ---------------------------------------------------------------------------
 
 const AZURE_KEY = process.env.NEXT_PUBLIC_AZURE_MAPS_KEY;
 
@@ -95,7 +83,6 @@ export default function LocationMap() {
         if (cancelled) return;
         setLoaded(true);
 
-        // Villa marker — larger pin with house icon
         const villaMarker = new atlas.HtmlMarker({
           position: [VILLA_COORDS[1], VILLA_COORDS[0]],
           htmlContent: villaPinSvg(),
@@ -108,7 +95,6 @@ export default function LocationMap() {
           closeButton: false,
         });
 
-        // Touch state tracker
         const touchState = new Map<string, boolean>();
         const isTouch = "ontouchstart" in window;
 
@@ -180,7 +166,6 @@ export default function LocationMap() {
     <div className="flex flex-col gap-5">
       <h2 className="text-3xl font-semibold md:text-4xl">{t("mapTitle")}</h2>
 
-      {/* Map container */}
       <div className="relative w-full overflow-hidden rounded-2xl shadow-md">
         {!AZURE_KEY && (
           <div className="flex h-[400px] items-center justify-center bg-[var(--surface)] text-[var(--muted)]">
@@ -198,7 +183,6 @@ export default function LocationMap() {
         )}
       </div>
 
-      {/* Legend */}
       <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-[var(--muted)]">
         {LEGEND_ITEMS.map((item) => (
           <div key={item.key} className="flex items-center gap-1.5">
