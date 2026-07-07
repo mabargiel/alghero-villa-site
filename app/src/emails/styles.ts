@@ -25,3 +25,17 @@ export const footer: React.CSSProperties = {
   color: "#A09A90",
   textAlign: "center" as const,
 };
+
+export const priceText: React.CSSProperties = {
+  fontSize: "18px",
+  fontWeight: 600,
+  color: "#2C2825",
+  marginBottom: "4px",
+};
+
+export const disclaimerText: React.CSSProperties = {
+  fontSize: "12px",
+  color: "#8A8478",
+  fontStyle: "italic",
+  marginBottom: "4px",
+};

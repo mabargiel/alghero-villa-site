@@ -5,6 +5,7 @@ import { Check } from "lucide-react";
 import { useTranslations, useLocale, useFormatter } from "next-intl";
 import type { PriceBreakdown, PriceSegment } from "@/lib/pricing";
 import { formatCalendarDate } from "@/lib/date";
+import { formatPrice as formatPriceIntl } from "@/lib/format";
 
 type PriceSummaryProps = Readonly<{
   breakdown: PriceBreakdown;
@@ -78,11 +79,7 @@ export default function PriceSummary({ breakdown, guests }: PriceSummaryProps) {
   }
 
   function formatPrice(amount: number): string {
-    return new Intl.NumberFormat(locale, {
-      style: "decimal",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(Math.round(amount));
+    return formatPriceIntl(locale, amount);
   }
 
   const rangeFrom = breakdown.segments[0].startDate;

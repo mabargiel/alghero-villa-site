@@ -7,6 +7,7 @@ import { Link } from "@/i18n/navigation";
 import { usePricingModal } from "./PricingModalProvider";
 import { useConsent } from "./ConsentProvider";
 import { readFbCookies } from "@/lib/meta/fb-cookies";
+import { isValidEmail } from "@/lib/validation";
 import DatePickerModal from "./DatePickerModal";
 
 type FormState = "idle" | "sending" | "success" | "error";
@@ -84,6 +85,12 @@ export default function ContactForm() {
       fbp,
       fbc,
     };
+
+    if (!isValidEmail(payload.email)) {
+      setState("error");
+      setMessage(t("errorEmail"));
+      return;
+    }
 
     if (!payload.arriveDate || !payload.leaveDate) {
       setState("error");

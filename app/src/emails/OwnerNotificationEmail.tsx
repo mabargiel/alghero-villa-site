@@ -10,7 +10,15 @@ import {
   Row,
   Column,
 } from "@react-email/components";
-import { main, container, logo, divider, footer } from "./styles";
+import {
+  main,
+  container,
+  logo,
+  divider,
+  footer,
+  priceText,
+  disclaimerText,
+} from "./styles";
 
 type Translations = {
   subject: string;
@@ -186,20 +194,6 @@ const valueCol: React.CSSProperties = {
   color: "#2C2825",
   paddingBottom: "6px",
   verticalAlign: "top" as const,
-};
-
-const priceText: React.CSSProperties = {
-  fontSize: "18px",
-  fontWeight: 600,
-  color: "#2C2825",
-  marginBottom: "4px",
-};
-
-const disclaimerText: React.CSSProperties = {
-  fontSize: "12px",
-  color: "#8A8478",
-  fontStyle: "italic",
-  marginBottom: "4px",
 };
 
 const messageText: React.CSSProperties = {

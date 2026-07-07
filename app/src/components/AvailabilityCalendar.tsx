@@ -7,7 +7,7 @@ import type { PricingConfig } from "@/lib/sanity/queries";
 import { isDateInPricingRange, isDateInPromotion } from "@/lib/pricing";
 import DateRangePicker from "./DateRangePicker";
 
-export const MIN_NIGHTS = 7;
+const MIN_NIGHTS = 7;
 
 export function checkMinNightsWarning(range: DateRange | undefined): boolean {
   if (!range?.from || !range?.to) return false;
