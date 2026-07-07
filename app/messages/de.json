@@ -211,6 +211,7 @@
     "message": "Nachricht",
     "selectDates": "Daten auswählen",
     "errorDates": "Bitte wählen Sie An- und Abreisedatum aus.",
+    "errorEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
     "consent": "Ich akzeptiere die <privacy>Datenschutzerklärung</privacy> und die <rules>Hausordnung</rules>.",
     "getDirections": "Wegbeschreibung",
     "mapAlt": "Villa Monte Calvia — Standort auf der Karte",

@@ -13,14 +13,14 @@ function isAlreadyHashed(value: string): boolean {
   return SHA256_HEX_RE.test(value);
 }
 
-export function normalizeAndHashEmail(email: string): string | null {
+function normalizeAndHashEmail(email: string): string | null {
   const normalized = email.trim().toLowerCase();
   if (!normalized) return null;
   if (isAlreadyHashed(normalized)) return normalized;
   return sha256Hex(normalized);
 }
 
-export function normalizeAndHashPhone(phone: string): string | null {
+function normalizeAndHashPhone(phone: string): string | null {
   let digits = phone.replace(/\D/g, "");
   // International numbers (anything not starting with single zero / two-digit
   // country code logic varies, but Meta's SDK drops leading zeros once the
@@ -34,7 +34,7 @@ export function normalizeAndHashPhone(phone: string): string | null {
   return sha256Hex(digits);
 }
 
-export function normalizeAndHashFirstName(name: string): string | null {
+function normalizeAndHashFirstName(name: string): string | null {
   const normalized = name.trim().toLowerCase();
   if (!normalized) return null;
   if (isAlreadyHashed(normalized)) return normalized;

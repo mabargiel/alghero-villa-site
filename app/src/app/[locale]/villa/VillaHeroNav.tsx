@@ -1,9 +1,9 @@
 "use client";
 
-import { useCallback } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import LucideIcon from "@/components/LucideIcon";
+import { useScrollToSection } from "@/hooks/useSectionNav";
 
 type ImageData = {
   altText: string;
@@ -20,14 +20,7 @@ export default function VillaHeroNav({
   outdoorsImage,
 }: VillaHeroNavProps) {
   const t = useTranslations("villa");
-
-  const scrollTo = useCallback((id: string) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const navHeight = 80;
-    const y = el.getBoundingClientRect().top + window.scrollY - navHeight;
-    window.scrollTo({ top: y, behavior: "smooth" });
-  }, []);
+  const scrollTo = useScrollToSection();
 
   const cards = [
     {

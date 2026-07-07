@@ -8,6 +8,7 @@ import type { DateRange } from "react-day-picker";
 import type { PricingConfig } from "@/lib/sanity/queries";
 import { calculatePriceBreakdown, type PriceBreakdown } from "@/lib/pricing";
 import { formatCalendarDate } from "@/lib/date";
+import { formatPrice } from "@/lib/format";
 import { checkMinNightsWarning } from "./AvailabilityCalendar";
 import PricingModal from "./PricingModal";
 import { usePricingModal } from "./PricingModalProvider";
@@ -41,14 +42,6 @@ export default function BookingBar({ config }: BookingBarProps) {
     return formatCalendarDate(format, date);
   }
 
-  function formatPrice(amount: number): string {
-    return new Intl.NumberFormat(locale, {
-      style: "decimal",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(Math.round(amount));
-  }
-
   return (
     <>
       <button
@@ -70,7 +63,7 @@ export default function BookingBar({ config }: BookingBarProps) {
         {hasValidPrice && (
           <span className="hidden items-center border-l border-[var(--surface-strong)] px-4 sm:flex">
             <span className="text-sm font-semibold text-[var(--foreground)]">
-              {formatPrice(breakdown.totalPrice)} &euro;
+              {formatPrice(locale, breakdown.totalPrice)} &euro;
             </span>
           </span>
         )}

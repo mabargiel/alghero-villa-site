@@ -9,7 +9,15 @@ import {
   Hr,
   Link,
 } from "@react-email/components";
-import { main, container, logo, divider, footer } from "./styles";
+import {
+  main,
+  container,
+  logo,
+  divider,
+  footer,
+  priceText,
+  disclaimerText,
+} from "./styles";
 
 type Translations = {
   subject: string;
@@ -144,23 +152,9 @@ const priceHeader: React.CSSProperties = {
   marginBottom: "8px",
 };
 
-const priceText: React.CSSProperties = {
-  fontSize: "18px",
-  fontWeight: 600,
-  color: "#2C2825",
-  marginBottom: "4px",
-};
-
 const priceDate: React.CSSProperties = {
   fontSize: "13px",
   color: "#6B6560",
-  marginBottom: "4px",
-};
-
-const disclaimerText: React.CSSProperties = {
-  fontSize: "12px",
-  color: "#8A8478",
-  fontStyle: "italic",
   marginBottom: "4px",
 };
 

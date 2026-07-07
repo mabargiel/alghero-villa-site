@@ -7,6 +7,7 @@ import type { DateRange } from "react-day-picker";
 
 import type { PricingConfig } from "@/lib/sanity/queries";
 import { calculatePriceBreakdown, type PriceBreakdown } from "@/lib/pricing";
+import { EMAIL_RE } from "@/lib/validation";
 import { useConsent } from "./ConsentProvider";
 import { readFbCookies } from "@/lib/meta/fb-cookies";
 import AvailabilityCalendar, {
@@ -27,7 +28,6 @@ type PricingModalProps = Readonly<{
   onClose: () => void;
 }>;
 
-const EMAIL_RE = /^[^\s@]{1,64}@[^\s@]{1,255}\.[^\s@]{1,255}$/;
 const TOTAL_STAGES = 3;
 
 const initialForm: InquiryFormValues = {

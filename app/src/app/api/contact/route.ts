@@ -4,6 +4,7 @@ import OwnerNotificationEmail from "@/emails/OwnerNotificationEmail";
 import { calculatePriceBreakdown } from "@/lib/pricing";
 import { getPricingConfig } from "@/lib/sanity/queries";
 import { sendLeadEvent } from "@/lib/meta/conversions-api";
+import { isValidEmail } from "@/lib/validation";
 
 export const runtime = "nodejs";
 
@@ -98,6 +99,13 @@ export async function POST(request: Request) {
   if (!firstName || !email || !arriveDate || !leaveDate) {
     return Response.json(
       { message: "Please fill in all required fields." },
+      { status: 400 },
+    );
+  }
+
+  if (!isValidEmail(email)) {
+    return Response.json(
+      { message: "Please enter a valid email address." },
       { status: 400 },
     );
   }

@@ -187,8 +187,3 @@ export function isDateInPromotion(date: Date, config: PricingConfig): boolean {
   if (!range) return false;
   return findPromotionForDate(date, range.promotions) !== undefined;
 }
-
-export function getPriceTier(date: Date, config: PricingConfig): number | null {
-  const range = findRangeForDate(date, config.baseRanges);
-  return range ? range.pricePerDay : null;
-}

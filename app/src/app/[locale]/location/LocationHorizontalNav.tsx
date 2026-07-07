@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback } from "react";
+import { useScrollToSection } from "@/hooks/useSectionNav";
 
 type NavItem = { id: string; label: string };
 
@@ -13,12 +13,7 @@ export default function LocationHorizontalNav({
   items,
   ariaLabel,
 }: LocationHorizontalNavProps) {
-  const handleClick = useCallback((id: string) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const y = el.getBoundingClientRect().top + window.scrollY - 80;
-    window.scrollTo({ top: y, behavior: "smooth" });
-  }, []);
+  const handleClick = useScrollToSection();
 
   return (
     <nav
