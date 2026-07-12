@@ -295,23 +295,6 @@ h4 {
   background: color-mix(in srgb, var(--brand) 12%, transparent);
 }
 
-/* Promotion indicator — glowy pink dot in top-right corner */
-.pricing-promo > .pricing-day-btn {
-  position: relative;
-}
-
-.pricing-promo > .pricing-day-btn::after {
-  content: "";
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #d4654a;
-  box-shadow: 0 0 6px 2px rgb(212 101 74 / 45%);
-}
-
 /* Today */
 .pricing-day-today > .pricing-day-btn {
   font-weight: 700;
@@ -348,11 +331,6 @@ h4 {
 
 .pricing-legend-2 {
   background: #b86e48;
-}
-
-.pricing-legend-promo {
-  background: #d4654a;
-  box-shadow: 0 0 6px 2px rgb(212 101 74 / 40%);
 }
 
 /* ── Pricing modal ───────────────────────────────────── */

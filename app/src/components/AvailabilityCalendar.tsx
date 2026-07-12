@@ -4,10 +4,10 @@ import type { DateRange } from "react-day-picker";
 import { useTranslations } from "next-intl";
 
 import type { PricingConfig } from "@/lib/sanity/queries";
-import { isDateInPricingRange, isDateInPromotion } from "@/lib/pricing";
+import { isDateInPricingRange } from "@/lib/pricing";
 import DateRangePicker from "./DateRangePicker";
 
-const MIN_NIGHTS = 7;
+const MIN_NIGHTS = 5;
 
 export function checkMinNightsWarning(range: DateRange | undefined): boolean {
   if (!range?.from || !range?.to) return false;
@@ -61,8 +61,6 @@ export default function AvailabilityCalendar({
     return !isDateInPricingRange(date, config);
   };
 
-  const promotionMatcher = (date: Date) => isDateInPromotion(date, config);
-
   const minNightsWarning = checkMinNightsWarning(range);
   const rangeComplete = Boolean(range?.from && range?.to);
   const canConfirm = rangeComplete && !minNightsWarning;
@@ -74,8 +72,6 @@ export default function AvailabilityCalendar({
           range={range}
           onRangeChange={onRangeChange}
           disabled={disabledMatcher}
-          modifiers={{ promotion: promotionMatcher }}
-          modifiersClassNames={{ promotion: "pricing-promo" }}
           numberOfMonths={2}
           defaultMonth={startMonth}
         />
@@ -85,10 +81,6 @@ export default function AvailabilityCalendar({
         <span className="text-muted flex items-center gap-2 text-xs">
           <span className="inline-block h-3.5 w-3.5 rounded-full bg-[var(--brand)]" />
           <span className="tracking-wide">{t("available")}</span>
-        </span>
-        <span className="text-muted flex items-center gap-2 text-xs">
-          <span className="pricing-legend-promo inline-block h-3.5 w-3.5 rounded-full" />
-          <span className="tracking-wide">{t("promotion")}</span>
         </span>
       </div>
 

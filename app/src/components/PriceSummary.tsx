@@ -165,27 +165,45 @@ export default function PriceSummary({ breakdown, guests }: PriceSummaryProps) {
           </span>
         </div>
 
-        <div className="mt-3 flex items-center gap-2 text-sm text-emerald-700">
-          <Check className="h-4 w-4 shrink-0" aria-hidden="true" />
-          <span>{t("cleaningIncluded")}</span>
+        <div className="mt-3 text-sm">
+          <p className="font-medium text-[var(--foreground)]">
+            {t("includedLabel")}
+          </p>
+          <ul className="mt-1 space-y-1 text-emerald-700">
+            {[
+              t("includedCleaning"),
+              t("includedCar"),
+              t("includedTransfer"),
+            ].map((item) => (
+              <li key={item} className="flex items-center gap-2">
+                <Check className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 
       <div className="rounded-xl border border-amber-200/70 bg-amber-50/50 p-5">
         <p className="text-xs font-semibold tracking-wide text-[var(--muted)] uppercase">
-          {t("onSiteRefundable")}
+          {t("feesTitle")}
         </p>
-        <div className="mt-2 flex items-baseline justify-between">
+        <div className="mt-2 flex items-baseline justify-between gap-4">
           <span className="text-sm text-[var(--foreground)]">
             {t("depositLabel")}
           </span>
-          <span className="text-base font-semibold text-[var(--foreground)]">
+          <span className="text-base font-semibold whitespace-nowrap text-[var(--foreground)]">
             {formatPrice(DEPOSIT_AMOUNT)} €
           </span>
         </div>
-        <p className="mt-3 text-xs text-[var(--muted)]">
-          {t("paymentFootnote")}
-        </p>
+        <div className="mt-2 flex items-baseline justify-between gap-4">
+          <span className="text-sm text-[var(--foreground)]">
+            {t("climateFeeLabel")}
+          </span>
+          <span className="text-sm whitespace-nowrap text-[var(--foreground)]">
+            {t("climateFeeValue")}
+          </span>
+        </div>
       </div>
     </div>
   );
